@@ -1,5 +1,5 @@
 import React from 'react'
-import dancingImg from '/home/nix/my-app/src/img/2.jpg'
+import dancingImg from '/home/nix/my-apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
 import blueImg from '/home/nix/my-app/src/img/blueImg.png'
 
 const AccountBusiness = () => {
