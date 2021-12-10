@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Poppins:wght@300&family=Raleway:wght@300&display=swap');
+
+.App {
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid transparent;
+  padding-bottom: 20px;
+}
+
+
