@@ -1,6 +1,6 @@
 import React from 'react'
-import dancingImg from '/home/nix/my-apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
-import blueImg from '/home/nix/my-app/src/img/blueImg.png'
+import dancingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
+import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 
 const AccountBusiness = () => {
     return (

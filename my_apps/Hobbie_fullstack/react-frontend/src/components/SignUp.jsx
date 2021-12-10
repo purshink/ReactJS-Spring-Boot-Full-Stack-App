@@ -1,5 +1,5 @@
 import React from 'react'
-import blueImg from '/home/nix/my-app/src/img/blueImg.png'
+import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 

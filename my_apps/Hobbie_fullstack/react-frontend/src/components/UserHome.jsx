@@ -1,11 +1,11 @@
 import React from 'react'
-import blueImg from '/home/nix/my-app/src/img/blueImg.png'
-import hikingImg from '/home/nix/my-app/src/img/1.jpg'
-import ImgTwo from '/home/nix/my-app/src/img/2.jpg'
-import ImgThree from '/home/nix/my-app/src/img/3.jpg'
-import ImgFour from '/home/nix/my-app/src/img/4.jpg'
-import ImgFive from '/home/nix/my-app/src/img/5.jpg'
-import ImgSix from '/home/nix/my-app/src/img/6.jpg'
+import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
+import ImgTwo from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
+import ImgThree from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/3.jpg'
+import ImgFour from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/4.jpg'
+import ImgFive from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/5.jpg'
+import ImgSix from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/6.jpg'
 
 
 const UserHome = () => {

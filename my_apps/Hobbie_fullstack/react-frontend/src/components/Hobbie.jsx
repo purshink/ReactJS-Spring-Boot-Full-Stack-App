@@ -1,6 +1,7 @@
 import React from 'react'
-import blueImg from '/home/nix/my-app/src/img/blueImg.png'
-import hikingImg from '/home/nix/my-app/src/img/1.jpg'
+import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
+
 import Footer from './Footer'
 
 const Hobbie = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import Presentation from './Presentation'
-import cover from '/home/nix/my-app/src/img/coverImg.png'
-import blueImg from '/home/nix/my-app/src/img/blueImg.png'
+import cover from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/coverImg.png'
+import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import HomeService from '../api/HomeService'
 import { useState } from 'react'
 
