@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments/fragments::head"/></div>
+<body>
+<header>
+    <div th:replace="fragments/fragments::logo"/></div>
+    <div th:replace="fragments/fragments::navbar"/></div>
+    <div th:replace="fragments/fragments::cart"/></div>
+
+</header>
+<div class="greeting">  <h1> Order completed</h1>
+    <div th:marginheight="5px">
+        <div class="introduction">
+            <div class="intro-text">
+
+            </div>
+        </div>
+    </div>
+    <div th:marginheight="5px" >
+        <div class="introduction">
+            <div class="intro-text">
+               Thank you for your order.
+                <div class="cta">
+                    <button class="cta_add" ><a class="cta_second_s" href="/my-abos">See your Abos</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<footer class="footer bg-transparent  py-2">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 text-white">
+            &copy; Hobbie 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<img class="blueImg3" src="/img/blueImg.png" alt="blueImg3">
+<img class="blueImg4" src="/img/blueImg.png" alt="blueImg4">
+<img class="blue" src="img/blue.jpg" alt="blue">
+
+</body>
+</html>

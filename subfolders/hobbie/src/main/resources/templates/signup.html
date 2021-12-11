@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragments::head"></div>
+<body>
+
+    <header>
+        <div th:replace="fragments/fragments::logo"/></div>
+
+</header>
+     
+ <div class="test">
+    <h2>Sign up</h2>
+     <div th:marginheight="10px" th:if="${dontMatch}" class="errors" >
+         Passwords don't match
+     </div>
+     <div th:marginheight="10px" th:if="${isExists}" class="errors" >
+         This username or email already exist.
+     </div>
+    <form id="userInfo" method="POST" th:object="${signUpBindingModel}" th:action="@{/users/signup}">
+        
+  <div class="row">
+  <div class="form-field">
+
+    <div class="name-section">
+        <input  th:field="*{username}"  type="text" name="name"  required/>
+        <label id="name" class="label-name">
+            <span class="content-name">Username</span>
+            <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="errors">Invalid username</small>
+        </label>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="form-field">
+          <div class="name-section">
+              <input th:field="*{fullName}"  type="text" name="name"  required/>
+              <label for="name" class="label-name">
+                  <span class="content-name">Full Name</span>
+                  <small th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="errors">Invalid username</small>
+              </label>
+          </div>
+          </div>
+          </div>
+        
+    <div class="row">
+        <div class="form-field-radio">
+            <div class="name-section">
+            <label id="gender" class="label-name">
+                <span class="content-name">Gender</span>
+                <small th:if="${emptyGender}" class="errors"> can not be empty</small>
+            </label>
+        </div>
+    </div>
+        </div>
+        <div class="row">
+        <div  class="radio-choice-section">
+            <input type="checkbox"   th:field="${signUpBindingModel.gender}"  th:value="${T(com.example.hobbie.model.entities.enums.GenderEnum).MALE}" id="checkbox1"onclick="selectOnlyThis(this.id)" />
+            <label  class="checkbox" for="checkbox1">Male</label>
+            <input type="checkbox"  th:field="${signUpBindingModel.gender}"  th:value="${T(com.example.hobbie.model.entities.enums.GenderEnum).FEMALE}" id="checkbox2" onclick="selectOnlyThis(this.id)" />
+            <label class="checkbox"for="checkbox1">Female</label>
+            <input checked type="checkbox" th:field="${signUpBindingModel.gender}"  th:value="${T(com.example.hobbie.model.entities.enums.GenderEnum).OTHER}" id="checkbox3" onclick="selectOnlyThis(this.id)"  />
+            <label class="checkbox"for="checkbox1">Other</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="form-field">
+              <div class="name-section">
+                  <input  th:field="*{email}"  type="email" name="name"  required/>
+                  <label for="name" class="label-name">
+                      <span class="content-name">Email</span>
+                      <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errors">Invalid username</small>
+                  </label>
+              </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="form-field">
+                  <div class="name-section">
+                      <input  th:field="*{password}" type="password" name="password" id="password"  required/>
+                      <label for="name" class="label-name">
+                          <span class="content-name">Password</span>
+                          <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errors">Invalid username</small>
+                      </label>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-field">
+                      <div class="name-section">
+                          <input  th:field="*{confirmPassword}" type="password" name="confirmPassword" id="confirmPassword"   required/>
+                          <label for="name" class="label-name">
+                              <span class="content-name">Confirm Password</span>
+                              <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="errors">Invalid username</small>
+                          </label>
+                      </div>
+                      </div>
+                      </div>
+                     
+                        <div class="form-field">
+                      <button id="button" class="button button2">Sign up</button>
+                        </div>
+    </form>
+
+ </div>
+    <img class="blueImg2" src="/img/blueImg.png" alt="blueImg2">
+</body>
+<script>
+    $("#button").on('click', function (){
+
+
+        alert("Success")
+
+    });
+    $.ajax({
+        "url":'http://localhost:8080/users/singup',
+        "type":'POST',
+        "success":function(){
+
+            setTimeout(function () {
+
+            }, 800);
+        }
+    });
+
+
+    function selectOnlyThis(id) {
+        for (let i = 1; i <= 3; i++)
+        {
+            document.getElementById("checkbox" + i).checked = false;
+        }
+        document.getElementById(id).checked = true;
+    }
+</script>
+
+</html>

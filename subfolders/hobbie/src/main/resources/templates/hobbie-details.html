@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments/fragments::head"/></div>
+<body>
+<header>
+    <div th:replace="fragments/fragments::logo"/></div>
+    <div th:replace="fragments/fragments::navbar"/></div>
+    <div th:replace="fragments/fragments::cart"/></div>
+</header>
+<main class="hobbie-main" th:object="${hobbie}">
+    <div class="hobbie-container">
+        <div class="hobbie-cover"  th:style="'background-image:url(' + *{imgUrl} + ');'"></div>
+        <div class="hobbie-content">
+            <div class="hobbie-content-body">
+                <div class="hobbie-pages">
+                    <span class="hobbie-active"><b>01</b></span>
+                    <span>02</span>
+                    <span>03</span>
+                    <span>04</span>
+                </div>
+                <div class="hobbie-lable">
+                    <span th:text="*{name}"class="hobbie-title"><b>Title</b></span>
+                    <p th:text="*{description}">
+                        Bouldering at an indoors bouldering centre in Pasila, Helsinki, Finland
+                        Climbing activities include:
+                        Bouldering: Ascending boulders or small outcrops, often with climbing shoes and a chalk bag or bucket. Usually, instead of using a safety rope from above, injury is avoided using a crash pad and a human spotter (to direct a falling climber on to the pad. They can also give beta, or advice)[2]
+                        Buildering: Ascending the exterior skeletons of buildings, typically without protective equipment.
+                        Canyoneering: Climbing along canyons for sport or recreation.
+                        Chalk climbing: Ascending chalk cliffs uses some of the same techniques as ice climbing.
+                        Competition climbing: A formal, competitive sport of recent origins, normally practiced on artificial walls that resemble natural formations. The International Federation of Sport Climbing (IFSC) is the official organization governing competition rock climbing worldwide and is recognized by the IOC and GAISF and is a member of the International World Games Association (IWGA). The UIAA is the official organization governing competition ice climbing worldwide. Competition climbing has three major disciplines: Lead, Bouldering and Speed.
+
+                        Pole climbing: Climbing poles and masts without equipment. </p>
+                    <div class="prix">
+                        <span><b th:text="|*{price} CHF|"></b></span>
+
+                        <th:block sec:authorize="hasRole('USER')">
+                            <span ><a th:if="${isSaved}" class="add-crt-edit" th:href="@{/hobbies/remove-hobby/{id}(id = *{id})}">Remove</a></span>
+                            <span ><a th:if="${!isSaved}"class="add-crt-edit" th:href="@{/hobbies/save-hobby/{id}(id = *{id})}">Save</a></span>
+                            <span ><a class="add-crt-edit" th:href="@{/shoppingCart/addProduct/{id}(id = *{id})}">Add to cart</a></span>
+                        </th:block>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+</main>
+<img class="blueImg3" src="/img/blueImg.png" alt="blueImg">
+<img class="blueImg4" src="/img/blueImg.png" alt="blueImg">
+
+<footer class="footer bg-transparent  py-2">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 text-white">
+            &copy; Hobbie 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

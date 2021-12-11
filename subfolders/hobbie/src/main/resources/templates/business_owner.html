@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments/fragments::head"/></div>
+<body>
+<header>
+    <div th:replace="fragments/fragments::logo"/></div>
+    <div th:replace="fragments/fragments::navbar"/></div>
+</header>
+
+<main>
+    <div class="menu">
+        <div class="background">
+        <div class="classes" style="height: 30vh; overflow: auto">
+            <h3 class="mySticky bg-gray text-dark rounded">Clients</h3>
+            <div th:each="a : ${abos}" th:object="${a}" class="tow">
+                <span  class="edit-offer" th:text="| ${a.clientName} |">Name: Abo:  Entries:</span>
+                <span th:text="| ${a.name} Abo|">Name: Abo:  Entries:</span>
+                <a class="edit-offer" th:href="@{/abo/{id}(id = ${a.id})}"> Details</a>
+            </div>
+        </div>
+        <div class="classes" style="height: auto; overflow: hidden">
+            <h3 class="mySticky bg-gray text-dark rounded">Hobby offers</h3>
+            <div th:each="hobby : ${hobby_offers}" th:object="${hobby}" class="tow">
+<!--             <img hight="40px" width="40px" th:src="@{${hobby.profilePhotoImagePath}}" alt="hobby-photos" src=""/>-->
+                <span th:text="|*{name} - price per entry: *{price} CHF|"></span>
+
+                <a class="edit-offer" th:href="@{/hobbies/offer-details/{id}(id = *{id})}"> Edit</a>
+
+                </div>
+            </div>
+        </div>
+
+
+</main>
+<img class="blueImg3" src="/img/blueImg.png" alt="blueImg">
+<img class="blueImg4" src="/img/blueImg.png" alt="blueImg">
+<img class="blue" src="/img/blue.jpg" alt="blue">
+<footer class="footer bg-transparent  py-2">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 text-white">
+            &copy; Hobbie 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>

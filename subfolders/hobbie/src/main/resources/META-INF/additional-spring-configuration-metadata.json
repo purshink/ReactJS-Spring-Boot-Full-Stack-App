@@ -1,0 +1,58 @@
+{
+  "properties": [
+    {
+      "name": "paypal.mode",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "paypal.client.id",
+      "type": "java.lang.String",
+      "description": "Description for paypal.client.id."
+    },
+    {
+      "name": "paypal.client.secret",
+      "type": "java.lang.String",
+      "description": "Description for paypal.client.secret."
+    },
+    {
+      "name": "spring.servlet.multipart.cloudinary.api-key",
+      "type": "java.lang.String",
+      "description": "Description for spring.servlet.multipart.cloudinary.api-key."
+    },
+    {
+      "name": "spring.rsocket.server.error.include-message",
+      "type": "java.lang.String",
+      "description": "Description for spring.rsocket.server.error.include-message."
+    },
+    {
+      "name": "spring.rsocket.server.error.include-stacktrace",
+      "type": "java.lang.String",
+      "description": "Description for spring.rsocket.server.error.include-stacktrace."
+    },
+    {
+      "name": "spring.servlet.multipart.cloudinary.cloud-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.servlet.multipart.cloudinary.cloud-name."
+    },
+    {
+      "name": "spring.servlet.multipart.cloudinary.api-secret",
+      "type": "java.lang.String",
+      "description": "Description for spring.servlet.multipart.cloudinary.api-secret."
+    },
+    {
+      "name": "cloudinary.cloud-name",
+      "type": "java.lang.String",
+      "description": "Description for cloudinary.cloud-name."
+    },
+    {
+      "name": "cloudinary.api-key",
+      "type": "java.lang.String",
+      "description": "Description for cloudinary.api-key."
+    },
+    {
+      "name": "cloudinary.api-secret",
+      "type": "java.lang.String",
+      "description": "Description for cloudinary.api-secret."
+    }
+  ]
+}

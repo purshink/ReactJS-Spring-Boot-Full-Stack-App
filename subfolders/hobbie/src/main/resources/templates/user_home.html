@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments/fragments::head"/></div>
+<body>
+<header>
+    <div th:replace="fragments/fragments::logo"/></div>
+    <div th:replace="fragments/fragments::navbar"/></div>
+    <div th:replace="fragments/fragments::cart"/></div>
+
+</header>
+<div class="greeting">  <h1>Your hobbies</h1>
+    <div th:marginheight="5px" th:if="${hasNoMatches}">
+        <div class="introduction">
+            <div class="intro-text">
+        We're sorry but no matches for you have been found.
+            </div>
+        </div>
+    </div>
+    <div th:marginheight="5px" th:if="${hasNoResults}">
+        <div class="introduction">
+            <div class="intro-text">
+        Please take the test to find out the best hobbies for you in your aria:
+                 <div class="cta">
+                            <button class="cta_add" ><a class="cta_second_s" href="/test">Find Your Hobby</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+<main class="user_home">
+
+
+    <section class="cards">
+
+        <a th:href="@{/hobbies/hobbie-details/{id}(id = *{id})}" th:each="hobby : ${hobby_matches}" th:object="${hobby}" class="card" method="POST">
+            <div class="card_image-container">
+                <img  th:src="*{imgUrl}" alt="Hobby picture" />
+            </div>
+
+            <div   class="card_content">
+                <p th:text="*{name}" class="cart_title text_medium">
+                    Hiking
+                </p>
+                <div class="card_info">
+                    <p  class="text_medium">Find out more...</p>
+                    <p th:text="|*{price} CHF|"class="card_price text_medium">500 CHF</p>
+                </div>
+            </div>
+        </a>
+    </section>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 text-white">
+            &copy; Hobbie 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<img class="blueImg3" src="/img/blueImg.png" alt="blueImg3">
+<img class="blueImg4" src="/img/blueImg.png" alt="blueImg4">
+<img class="blue" src="img/blue.jpg" alt="blue">
+
+</body>
+</html>

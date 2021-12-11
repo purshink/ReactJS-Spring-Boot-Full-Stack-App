@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragments::head"/></div>
+<body>
+
+<header>
+    <div th:replace="fragments/fragments::logo"/></div>
+
+</header>
+
+<div class="test">
+    <h2>Edit account info</h2>
+    <div th:marginheight="10px" th:if="${dontMatch}" class="errors" >
+        Passwords don't match
+    </div>
+    <div th:marginheight="10px" th:if="${isExists}" class="errors" >
+        This email already exist.
+    </div>
+    <form method="Post"  th:object="${updateBusinessBindingModel}" th:action="@{/users/update-business}">
+        <div class="row">
+            <div class="form-field">
+                <div class="name-section">
+                    <input th:field="*{businessName}"  th:value="*{businessName}" type="text" name="name"  required/>
+                    <label id="businessName" class="label-name">
+                        <span class="content-name">Business Name</span>
+                        <small th:if="${#fields.hasErrors('businessName')}" th:errors="*{businessName}" class="errors">Invalid username</small>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-field">
+            <div class="name-section">
+                <input th:field="*{address}"  th:value="*{address}" type="text" name="name"  required/>
+                <label id="address" class="label-name">
+                    <span class="content-name">Address</span>
+                    <small th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="errors">Invalid username</small>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-field">
+                <div class="name-section">
+                    <input th:field="*{email}"  th:value="*{email}" type="email" name="name"  required/>
+                    <label id="email" class="label-name">
+                        <span class="content-name">Email</span>
+                        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errors">Invalid username</small>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-field">
+                <div class="name-section">
+                    <input th:field="*{password}" type="password"  name="password" required/>
+                    <label id="password" class="label-name">
+                        <span class="content-name">Password</span>
+                        <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errors">Invalid username</small>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-field">
+                <div class="name-section">
+                    <input th:field="*{confirmPassword}" type="password"  name="confirmPassword"   required/>
+                    <label id="confirmPassword" class="label-name">
+                        <span class="content-name">Confirm Password</span>
+                        <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="errors">Invalid username</small>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <button class="button button2">Update</button>
+        </div>
+    </form>
+
+</div>
+
+<img class="blueImg2" src="/img/blueImg.png" alt="blueImg2">
+</body>
+</html>
