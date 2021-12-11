@@ -7,22 +7,6 @@ const RegisterBusiness = () => {
     let navigate = useNavigate();
 
 
-    const [registerState, setRegisterState] = useState({
-        userNameOrEmailExist: false,
-        invalidUserName: false,
-        invalidBusinessName: false,
-        invalidAdress: false,
-        emtpyGender: false,
-        invalidEmail: false,
-        invalidPassword: false,
-        passwordsDontMatch: false
-
-    });
-  
-
-    // new 
-
-
    
     const [info, setInfo] = useState({
         username: '',

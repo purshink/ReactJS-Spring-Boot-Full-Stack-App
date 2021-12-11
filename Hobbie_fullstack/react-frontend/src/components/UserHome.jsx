@@ -15,17 +15,6 @@ const UserHome = () => {
  <div >
 
  </div>
-     {/* <div>
-         <div className="introduction">
-             <div className="intro-text">
-     You have no offers. Plase fill in the form and create a new offer:
-                 <div className="cta">
-                             <button className="cta_add" ><a className="cta_second_s" href="/test">Create new Offer</a></button>
-                 </div>
-             </div>
-         </div>
-
-     </div> */}
 
 </div>
 <hr className="home-hr"></hr>
@@ -36,7 +25,7 @@ const UserHome = () => {
 
      <a className="card" method="POST">
          <div className="card_image-container">
-             <img  src={hikingImg} alt="Hobby picture" />
+             <img src={hikingImg} alt="hobbie_img" />
          </div>
 
          <div   className="card_content">
@@ -68,7 +57,7 @@ const UserHome = () => {
 
      <a className="card" method="POST">
          <div className="card_image-container">
-             <img  src={ImgFour} alt="Hobby picture" />
+             <img  src={ImgFour}  />
          </div>
 
          <div   className="card_content">

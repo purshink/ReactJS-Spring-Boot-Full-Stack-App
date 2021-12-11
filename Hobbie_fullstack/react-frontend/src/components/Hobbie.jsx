@@ -2,7 +2,7 @@ import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
 
-import Footer from './Footer'
+
 
 const Hobbie = () => {
     return (
@@ -37,8 +37,8 @@ const Hobbie = () => {
             
 
                        
-                            <span ><a  className="add-crt-edit">Remove</a></span>
-                            <span ><a className="add-crt-edit" >Save</a></span>
+                            <span className="add-crt-edit">Remove</span>
+                            <span className="add-crt-edit" >Save</span>
                       
                     </div>
 

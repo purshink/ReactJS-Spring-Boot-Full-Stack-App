@@ -9,19 +9,19 @@ import { useState } from 'react'
 
 
 const Home = () => {
-    const [state, setState] = useState({
-        backendMessage: ''
-    })
+    // const [state, setState] = useState({
+    //     backendMessage: ''
+    // })
     
-    const retriveBackendMesage = () =>{
-        HomeService()
-        .then(response => handleSuccessfulResponse(response))
-        // .catch()
-    }
+    // const retriveBackendMesage = () =>{
+    //     HomeService()
+    //     .then(response => handleSuccessfulResponse(response))
+    //     // .catch()
+    // }
     
-    const handleSuccessfulResponse = (response) =>{
-        setState({backendMessage: response.data})
-    }
+    // const handleSuccessfulResponse = (response) =>{
+    //     setState({backendMessage: response.data})
+    // }
     
     return (
         

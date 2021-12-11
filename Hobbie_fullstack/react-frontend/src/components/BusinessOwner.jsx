@@ -14,17 +14,6 @@ const BusinessOwner = () => {
  <div >
 
  </div>
-     {/* <div>
-         <div className="introduction">
-             <div className="intro-text">
-     You have no offers. Plase fill in the form and create a new offer:
-                 <div className="cta">
-                             <button className="cta_add" ><a className="cta_second_s" href="/test">Create new Offer</a></button>
-                 </div>
-             </div>
-         </div>
-
-     </div> */}
 
 </div>
 <hr className="home-hr"></hr>
