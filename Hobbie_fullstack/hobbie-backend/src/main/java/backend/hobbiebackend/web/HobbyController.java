@@ -42,7 +42,7 @@ public class HobbyController {
 //          "isSaved", this.hobbyService.isHobbySaved(id));
 
 
-            return "hobbie-details";
+            return "hobbie-details-by-id";
 
     }
 
