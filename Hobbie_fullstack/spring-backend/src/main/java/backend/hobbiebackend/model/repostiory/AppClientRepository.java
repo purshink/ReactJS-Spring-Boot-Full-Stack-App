@@ -10,6 +10,4 @@ import java.util.Optional;
 @Repository
 public interface AppClientRepository extends JpaRepository<AppClient,Long> {
     Optional<AppClient> findByUsername(String username);
-
-
 }

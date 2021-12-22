@@ -1,10 +1,18 @@
 package backend.hobbiebackend.web;
 
 
+import backend.hobbiebackend.model.entities.AppClient;
+import backend.hobbiebackend.model.entities.Hobby;
+import backend.hobbiebackend.model.entities.UserEntity;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -19,19 +27,16 @@ public class HomeController {
         this.hobbyService = hobbyService;
         this.userService = userService;
     }
-    @RequestMapping(method = RequestMethod.GET, path = "/")
+    @GetMapping( "/")
     public String showHome(){
 
         return "Hello from the backend!";
     }
 
-    @GetMapping("/business_owner")
-    public String offersShow() {
+    @GetMapping( "/business-owner/{username}")
+    public Set<Hobby> offersShow(@PathVariable String username) {
 
-
-//           "hobby_offers", hobbyService.getAllHobbyOffers());
-
-            return "hobby_offers";
+            return  this.hobbyService.getAllHobbiesForBusiness(username);
 
     }
 
@@ -44,19 +49,15 @@ public class HomeController {
 //        return mav;
 //    }
 
-    @GetMapping("/user_home")
-    public String userHobbiesShow() {
+    @GetMapping("/user-home/{username}")
+    public Set<Hobby> userHobbiesShow(@PathVariable String username) {
+//        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+//        if(currentUserAppClient.getHobby_matches() == null){
+//            return new HashSet<>();
+//        }
+        Set<Hobby> allHobbieMatchesForClient = this.hobbyService.getAllHobbieMatchesForClient(username);
+        return allHobbieMatchesForClient;
 
-//
-//            AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//          hobbyMatches = this.hobbyService.getHobbyMatches(currentUserAppClient);
-
-//            if(currentUserAppClient.getTestResults() == null){
-//                hasNoResults = true;
-//            }
-
-
-            return "hobby_matches";
 
     }
 }

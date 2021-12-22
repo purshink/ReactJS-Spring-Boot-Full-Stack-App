@@ -127,10 +127,10 @@ a {
 }
 
 .introduction {
-  /* margin: auto; */
+
   width: 50%;
-  padding-top:  30px;
-  /* align-items: center; */
+
+  align-items: center;
 }
 
 .cover {

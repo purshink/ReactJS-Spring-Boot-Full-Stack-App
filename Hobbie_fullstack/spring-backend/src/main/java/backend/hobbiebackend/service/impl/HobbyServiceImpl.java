@@ -2,10 +2,7 @@ package backend.hobbiebackend.service.impl;
 
 
 import backend.hobbiebackend.handler.NotFoundException;
-import backend.hobbiebackend.model.entities.AppClient;
-import backend.hobbiebackend.model.entities.BusinessOwner;
-import backend.hobbiebackend.model.entities.Hobby;
-import backend.hobbiebackend.model.entities.Location;
+import backend.hobbiebackend.model.entities.*;
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
 import backend.hobbiebackend.model.repostiory.HobbyRepository;
@@ -20,10 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 
 @Service
@@ -34,6 +28,7 @@ public class HobbyServiceImpl implements HobbyService {
     private final CategoryService categoryService;
     private final UserService userService;
     private final LocationService locationService;
+
 
 
     @Autowired
@@ -66,13 +61,7 @@ public class HobbyServiceImpl implements HobbyService {
 //
 //    }
 
-    @Override
-    public List<Hobby> getAllHobbyOffers() {
-        BusinessOwner currentUserBusinessOwner = this.userService.findCurrentUserBusinessOwner();
-        List<Hobby> allHobbies = this.hobbyRepository.findAllByBusinessOwnerBusinessName(currentUserBusinessOwner.getBusinessName());
 
-        return allHobbies;
-    }
 
     @Override
     public Hobby findHobbieById(Long id) {
@@ -129,7 +118,7 @@ public class HobbyServiceImpl implements HobbyService {
                     "Because of the wide range and variety of rock formations around the world, rock climbing has been separated into several different styles and sub-disciplines, such as scrambling, another activity involving the scaling of hills and similar formations, differentiated by rock climbing's sustained use of hands to support the climber's weight as well as to provide balance.");
 
             climbing.setCategory(this.categoryService.findByName(CategoryNameEnum.ACTIVE));
-            climbing.setBusinessOwner(this.userService.findBusinessOwnerById(3L));
+            climbing.setCreator("business");
             climbing.setPrice(new BigDecimal("73"));
 //            climbing.setProfilePhoto("1.jpg");
             climbing.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
@@ -143,7 +132,7 @@ public class HobbyServiceImpl implements HobbyService {
                     "An important distinction is to be drawn between the contexts of theatrical and participatory dance, although these two categories are not always completely separate; both may have special functions, whether social, ceremonial, competitive, erotic, martial, or sacred/liturgical. Other forms of human movement are sometimes said to have a dance-like quality, including martial arts, gymnastics, cheerleading, figure skating, synchronised swimming, marching bands, and many other forms of athletics.");
 
             dancing.setCategory(this.categoryService.findByName(CategoryNameEnum.FUN));
-            dancing.setBusinessOwner(this.userService.findBusinessOwnerById(3L));
+            dancing.setCreator("business");
             dancing.setPrice(new BigDecimal("62.40"));
 //            dancing.setProfilePhoto("2.jpg");
             dancing.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
@@ -161,7 +150,7 @@ public class HobbyServiceImpl implements HobbyService {
                     "How fast your skills improve depend on every individual and on your purpose, you can ride for pleasure in the nature in all types of terrain or choose an equestrian sport and train professionally.\n" +
                     "\n");
             horseRiding.setCategory(this.categoryService.findByName(CategoryNameEnum.ACTIVE));
-            horseRiding.setBusinessOwner(this.userService.findBusinessOwnerById(3L));
+            horseRiding.setCreator("business");
             horseRiding.setPrice(new BigDecimal("162.20"));
 //            horseRiding.setProfilePhoto("3.jpg");
             horseRiding.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
@@ -177,7 +166,7 @@ public class HobbyServiceImpl implements HobbyService {
                     "\n" +
                     "Yoga professes a complete system of physical, mental, social, and spiritual development. For generations, this philosophy was passed on from the master teacher to the student. The first written records of the practice of yoga appeared around 200 BC in Yogasutra of Patanjali. The system consisted of the eightfold path or Asthangayoga.");
             yoga.setCategory(this.categoryService.findByName(CategoryNameEnum.RELAX));
-            yoga.setBusinessOwner(this.userService.findBusinessOwnerById(3L));
+            yoga.setCreator("business");
             yoga.setPrice(new BigDecimal("52.40"));
 //            yoga.setProfilePhoto("2.jpg");
             yoga.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
@@ -193,7 +182,7 @@ public class HobbyServiceImpl implements HobbyService {
                     "\n" +
                     "Life of Art is a place where all senses are stimulated; natural daylight, incense and music to help you relax. The goal is to create an atmosphere where your mind feels at ease and is not blocking your sensitivity and your imagination. Over time, students refine their technique and creativity.");
             painting.setCategory(this.categoryService.findByName(CategoryNameEnum.CREATIVE));
-            painting.setBusinessOwner(this.userService.findBusinessOwnerById(3L));
+            painting.setCreator("business");
             painting.setPrice(new BigDecimal("40"));
 //            painting.setProfilePhoto("5.jpg");
             painting.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
@@ -204,8 +193,9 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
-    public List<Hobby> findHobbyMatches(AppClient currentUserAppClient) {
-        List<Hobby> hobby_matches = new ArrayList<>();
+    public Set<Hobby> findHobbyMatches(String username) {
+        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+        Set<Hobby> hobby_matches = new HashSet<>();
         if(currentUserAppClient.getTestResults() != null) {
             boolean isAdded = false;
             Random rand = new Random();
@@ -248,34 +238,33 @@ public class HobbyServiceImpl implements HobbyService {
         return hobby_matches;
     }
 
-    @Override
-    public List<Hobby> getHobbyMatches(AppClient currentAppClient) {
-     return   findHobbyMatches(currentAppClient);
-    }
+
 
     @Override
     public void saveHobbyForClient(Hobby hobby) {
-        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
-        List<Hobby> saved_hobbies = currentUserAppClient.getSaved_hobbies();
-
-            if(hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
-                saved_hobbies.add(hobbyById.get());
-            }
+//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
+//        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
+//        List<Hobby> saved_hobbies = currentUserAppClient.getSaved_hobbies();
+//
+//            if(hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
+//                saved_hobbies.add(hobbyById.get());
+//            }
     }
 
     @Override
     public void removeHobbyForClient(Hobby hobby) {
-        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
-        hobbyById.ifPresent(value -> currentUserAppClient.getSaved_hobbies().remove(value));
+//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
+//        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
+//        hobbyById.ifPresent(value -> currentUserAppClient.getSaved_hobbies().remove(value));
     }
 
     @Override
     public boolean isHobbySaved(Long hobbyId) {
-        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-        Optional<Hobby> byId = this.hobbyRepository.findById(hobbyId);
-        return byId.filter(hobby -> currentUserAppClient.getSaved_hobbies().contains(hobby)).isPresent();
+//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
+//        Optional<Hobby> byId = this.hobbyRepository.findById(hobbyId);
+//        return byId.filter(hobby -> currentUserAppClient.getSaved_hobbies().contains(hobby)).isPresent();
+
+        return false;
 
     }
 
@@ -283,5 +272,24 @@ public class HobbyServiceImpl implements HobbyService {
     public List<Hobby> findSavedHobbies(AppClient currentAppClient) {
         return currentAppClient.getSaved_hobbies();
     }
+
+    @Override
+    public Set<Hobby> getAllHobbiesForBusiness(String username) {
+
+        return this.hobbyRepository.findAllByCreator(username);
+    }
+
+    @Override
+    public Set<Hobby> getAllHobbieMatchesForClient(String username) {
+        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+
+        return currentUserAppClient.getHobby_matches();
+    }
+
+    @Override
+    public void createHobby(Hobby offer) {
+        this.hobbyRepository.save(offer);
+    }
+
 }
 

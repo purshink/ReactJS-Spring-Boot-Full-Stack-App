@@ -12,9 +12,9 @@ import backend.hobbiebackend.service.UserRoleService;
 import backend.hobbiebackend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
@@ -36,11 +36,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
-                           PasswordEncoder passwordEncoder, AppClientRepository appClientRepository,
+                         AppClientRepository appClientRepository,
                            BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
@@ -62,7 +62,8 @@ public class UserServiceImpl implements UserService {
             AppClient user = new AppClient();
             user.setUsername("user");
             user.setEmail("n13@gmail.com");
-            user.setPassword(this.passwordEncoder.encode("topsecret"));
+//            user.setPassword(this.passwordEncoder.encode("topsecret"));
+            user.setPassword("123");
             user.setRoles(List.of(userRole));
             user.setFullName("Nikoleta Doykova");
             user.setGender(GenderEnum.FEMALE);
@@ -72,7 +73,8 @@ public class UserServiceImpl implements UserService {
             AppClient admin = new AppClient();
             admin.setUsername("admin");
             admin.setEmail("n11@gamil.com");
-            admin.setPassword(this.passwordEncoder.encode("topsecret"));
+//            admin.setPassword(this.passwordEncoder.encode("topsecret"));
+            admin.setPassword("123");
             admin.setRoles(List.of(adminRole, userRole));
             admin.setFullName("Full name of admin here");
             admin.setGender(GenderEnum.FEMALE);
@@ -91,11 +93,11 @@ public class UserServiceImpl implements UserService {
             BusinessOwner business_user = new BusinessOwner();
             business_user.setUsername("business");
             business_user.setEmail("n10@gamil.com");
-            business_user.setPassword(this.passwordEncoder.encode("topsecret"));
+//            business_user.setPassword(this.passwordEncoder.encode("topsecret"));
+            business_user.setPassword("123");
             business_user.setRoles(List.of(businessRole));
             business_user.setBusinessName("My Business name");
             business_user.setAddress("My business address");
-
             businessOwnerRepository.save(business_user);
             seededUsers.add( business_user);
         }
@@ -188,7 +190,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         UserEntity user = findUserById(id);
-        expireUserSessions();
+//        expireUserSessions();
 
         userRepository.delete(user);
 
@@ -200,8 +202,8 @@ public class UserServiceImpl implements UserService {
         Optional<BusinessOwner> user = this.businessOwnerRepository.findById(id);
         if(user.isPresent()) {
 
-
-            expireUserSessions();
+//
+//            expireUserSessions();
             userRepository.delete(user.get());
         }
         else {
@@ -216,7 +218,7 @@ public class UserServiceImpl implements UserService {
         if(user.isPresent()) {
 
             this.appClientRepository.save(user.get());
-            expireUserSessions();
+//            expireUserSessions();
 
             appClientRepository.delete(user.get());
         }
@@ -247,10 +249,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public void expireUserSessions() {
-                    SecurityContextHolder.clearContext();
-        }
+//    @Override
+//    public void expireUserSessions() {
+//                    SecurityContextHolder.clearContext();
+//        }
 
     @Override
     public boolean businessExists(String businessName) {
@@ -259,41 +261,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BusinessOwner findCurrentUserBusinessOwner() {
-
-        Optional<BusinessOwner> user = this.businessOwnerRepository.findByUsername(findCurrentUsername());
-        if(user.isPresent()) {
-            return user.get();
-        }
-        else {
-            throw new NotFoundException("Can not find current business owner");
-        }
-
+    public AppClient findAppClientByUsername(String username) {
+        //TODO CHECK EXCEPTION!
+        return this.appClientRepository.findByUsername(username).orElseThrow();
     }
 
-    @Override
-    public AppClient findCurrentUserAppClient() {
-        Optional<AppClient> user = this.appClientRepository.findByUsername(findCurrentUsername());
-        if(user.isPresent()) {
-            return user.get();
-        }
-        else {
-            throw new NotFoundException("Can not find current user");
-        }
-    }
+//    @Override
+//    public BusinessOwner findCurrentUserBusinessOwner() {
+//
+//        Optional<BusinessOwner> user = this.businessOwnerRepository.findByUsername(findCurrentUsername());
+//        if(user.isPresent()) {
+//            return user.get();
+//        }
+//        else {
+//            throw new NotFoundException("Can not find current business owner");
+//        }
+//
+//    }
+
+//    @Override
+//    public AppClient findCurrentUserAppClient() {
+//        Optional<AppClient> user = this.appClientRepository.findByUsername(findCurrentUsername());
+//        if(user.isPresent()) {
+//            return user.get();
+//        }
+//        else {
+//            throw new NotFoundException("Can not find current user");
+//        }
+//    }
 
 
-    public String findCurrentUsername() {
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = "";
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
-            return username;
-    }
+//    public String findCurrentUsername() {
+//
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        String username = "";
+//        if (principal instanceof UserDetails) {
+//            username = ((UserDetails)principal).getUsername();
+//        } else {
+//            username = principal.toString();
+//        }
+//            return username;
+//    }
 
 
 

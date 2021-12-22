@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "test_results")
 public class Test extends BaseEntity {
-    private AppClient appClient;
+    private String username;
     private CategoryNameEnum categoryOne;
     private CategoryNameEnum categoryTwo;
     private CategoryNameEnum categoryThree;
@@ -23,14 +23,15 @@ public class Test extends BaseEntity {
     public Test() {
     }
 
-    @OneToOne
-    public AppClient getAppClient() {
-        return appClient;
+    @Column
+    public String getUsername() {
+        return username;
     }
 
-    public void setAppClient(AppClient appClient) {
-        this.appClient = appClient;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_one")
     public CategoryNameEnum getCategoryOne() {

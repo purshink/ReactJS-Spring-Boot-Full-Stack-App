@@ -1,126 +1,160 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import TestResultsService from '../api/hobby/TestResultsService';
+import AuthenticationService from './AuthenticationService';
+import { useState, useEffect} from 'react'
 
 const TestForm = () => {
     let navigate = useNavigate();
 	let key = 1;
+	let username = AuthenticationService.getLoggedInUser();
 
     const questions = [
 		{
 			questionText: 'What is missing in your life?',
+			value: "categoryOne",
 			answerOptions: [
-				{ answerText: 'Excitement', category: "Fun" },
-				{ answerText: 'Mental stimulation', category: "Intellectual"  },
-				{ answerText: 'Pushing my boundaries', category: "Active"  },
-				{ answerText: 'Creativity', category: "Creative"  },
+				{ answerText: 'Excitement', category: "FUN" },
+				{ answerText: 'Mental stimulation', category: "INTELLECTUAL"  },
+				{ answerText: 'Pushing my boundaries', category: "ACTIVE"  },
+				{ answerText: 'Creativity', category: "CREATIVE"  },
 			],
 		},
 		{
 			questionText: 'Do you enjoy social activities?',
+			value: "categoryTwo",
 			answerOptions: [
-				{ answerText: 'Yes', category: "Social" },
-				{ answerText: 'No', category: "Other"  },
-				{ answerText: 'Sometimes', category: "Social"  },
-				{ answerText: 'Not sure', category: "Other"  },
+				{ answerText: 'Yes', category: "SOCIAL" },
+				{ answerText: 'No', category: "OTHER"  },
+				{ answerText: 'Sometimes', category: "SOCIAL"  },
+				{ answerText: 'Not sure', category: "OTHER"  },
 			],
 		},
 		{
 			questionText: 'Are you an active person?',
+			value: "categoryThree",
 			answerOptions: [
-				{ answerText: 'Yes', category: "Active" },
-				{ answerText: 'No', category: "Other"  },
-				{ answerText: 'Sometimes', category: "Active"  },
-				{ answerText: 'Not sure', category: "Other"  },
+				{ answerText: 'Yes', category: "ACTIVE" },
+				{ answerText: 'No', category: "OTHER"  },
+				{ answerText: 'Sometimes', category: "ACTIVE"  },
+				{ answerText: 'Not sure', category: "OTHER"  },
 			],
 		},
 		{
 			questionText: 'How did you spend your last weekend?',
+			value: "categoryFour",
 			answerOptions: [
-				{ answerText: 'On the computer', category: "Intellectual" },
-				{ answerText: 'On the couch', category: "Relax"  },
-				{ answerText: 'Outside', category: "Active"  },
-				{ answerText: 'Other', category: "Other"  },
+				{ answerText: 'On the computer', category: "INTELLECTUAL" },
+				{ answerText: 'On the couch', category: "RELAX"  },
+				{ answerText: 'Outside', category: "ACTIVE"  },
+				{ answerText: 'Other', category: "OTHER"  },
 			],
 		},
 		{
 			questionText: 'Where did you spent your last vacation?',
+			value: "categoryFive",
 			answerOptions: [
-				{ answerText: 'In the mountains', category: "Active" },
-				{ answerText: 'On the beach', category: "Relax"  },
-				{ answerText: 'At home', category: "Relax"  },
-				{ answerText: 'Other', category: "Other"  },
+				{ answerText: 'In the mountains', category: "ACTIVE" },
+				{ answerText: 'On the beach', category: "RELAX"  },
+				{ answerText: 'At home', category: "RELAX"  },
+				{ answerText: 'Other', category: "OTHER"  },
 			],
 		},
 		{
 			questionText: "What is the best compliment you've ever received?",
+			value: "categorySix",
 			answerOptions: [
-				{ answerText: 'You are creative', category: "Creative" },
-				{ answerText: 'You are fit', category: "Active"  },
-				{ answerText: 'You are smart', category: "Intellectual"  },
-				{ answerText: 'You are a good person', category: "Social"  },
+				{ answerText: 'You are creative', category: "CREATIVE" },
+				{ answerText: 'You are fit', category: "ACTIVE"  },
+				{ answerText: 'You are smart', category: "INTELLECTUAL"  },
+				{ answerText: 'You are a good person', category: "SOCIAL"  },
 			],
 		},
 		{
 			questionText: 'Are you willing to commit?',
+			value: "categorySeven",
 			answerOptions: [
-				{ answerText: 'Yes, always', category: "Other" },
-				{ answerText: 'Sometimes', category: "Other"  },
-				{ answerText: 'Only if I find the perfect activity', category: "Other"  },
-				{ answerText: 'No', category: "Other"  },
+				{ answerText: 'Yes, always', category: "OTHER",  },
+				{ answerText: 'Sometimes', category: "OTHER"  },
+				{ answerText: 'Only if I find the perfect activity', category: "OTHER"  },
+				{ answerText: 'No', category: "OTHER"  },
 			],
 		},
 		{
 			questionText: 'Your location?',
+			value: "location",
 			answerOptions: [
-				{ answerText: 'Zurich', category: "Zutich" },
-				{ answerText: 'Bern', category: "Other"  },
-				{ answerText: 'Luzern', category: "Other"   },
-				{ answerText: 'Zug', category: "Other"   },
+				{ answerText: 'Zurich', category: "ZURICH" },
+				{ answerText: 'Bern', category: "OTHER"  },
+				{ answerText: 'Luzern', category: "OTHER"   },
+				{ answerText: 'Zug', category: "OTHER"   },
 			],
 		},
 	];
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [categories, setCategoris] = useState([]);
-	const [location, setLocation] = useState('Other');
+	const [test, setTest] = useState(	{
+		username: username,
+		location: "ZURICH"
 
-	const handleAnswerOptionClick = (answer) => {
-		const updatedCategories = [...categories, answer];
-		setCategoris(updatedCategories)
+});
 
-		const nextQuestion = currentQuestion + 1;
-		setCurrentQuestion(nextQuestion)
-		if (nextQuestion === questions.length) {
-			setLocation(answer)
-			navigate("/user-home")
-		} 
-	};
+
+const handleAnswerOptionClick = (answer) => {
+
+
+	console.log(questions[currentQuestion].value);
+	console.log(answer);
+	
+	
+
+	setTest(test => ({...test,[questions[currentQuestion].value]: answer  }));
+
+
+	const nextQuestion = currentQuestion + 1;
+	setCurrentQuestion(nextQuestion)
+	if (nextQuestion === questions.length) {
+
+ 		TestResultsService(test);
+		 navigate("/user-home")
+	
+
+	} 
+};
+
+const handleSubmit =()=> {
+	console.log(test)
+	TestResultsService(test);
+
+}
+
+
+
     return (
+
 		<div>
 		<div className="test-content">
         <div className='test-form'>
-     
-        {false ? (
-            <div className='score-section'>You scored 1 out of {questions.length}</div>
-        ) : (
-            <>
+
+        
+          <>
                 <div className='question-section'>
-                    <div className='question-count'>
+							{/* {currentQuestion === questions.length  && handleSubmit()}  */}
+		 {currentQuestion !== questions.length   &&     <div className='question-count'>
                         <span>Question {currentQuestion +1}</span>
-                    </div>
+                    </div>}
 					
-                    <div className='question-text'>{questions[currentQuestion].questionText}</div>
-				
+					{currentQuestion !== questions.length   &&   <div className='question-text'>{questions[currentQuestion].questionText}</div>
+}
                 </div>
                 <div className='answer-section'>
-				{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button key={key++} className="test-button" onClick={() => handleAnswerOptionClick(answerOption.category)}>{answerOption.answerText}</button>
+				{currentQuestion !== questions.length   &&  questions[currentQuestion].answerOptions.map((answerOption) => (
+							<button key={key++} className="test-button"  onClick={() => handleAnswerOptionClick(answerOption.category)}>{answerOption.answerText}</button>
 						))}
                 </div>
             </>
-        )}
+		
 		</div>
     </div>
 	<footer className="footer bg-transparent  py-2">
@@ -139,3 +173,73 @@ const TestForm = () => {
 }
 
 export default TestForm
+
+// let currentQuestion = 0;
+// const [test, setTest] = useState(	{
+// 	username: username,
+// 	// location: "Zurich"
+
+// });
+
+
+// const handleAnswerOptionClick = (answer) => {
+
+
+// // console.log(questions[currentQuestion].value);
+// // console.log(answer);
+
+
+
+// // setTest(test => ({...test,[questions[currentQuestion].value]: answer  }));
+
+
+// 	 // TestResultsService(test);
+// 	 console.log(test)
+// 	 navigate("/user-home")
+
+
+// } 
+// };
+
+
+// return (
+// 	<>
+// 	<div className="test-content">
+// 	<div className='test-form'>
+// 			<div className='question-section'>
+// 			{currentQuestion === questions.length  &&  <div className='question-count'>
+// 			<button  className="test-button" onClick={handleAnswerOptionClick()} >Submit</button>
+// 		 </div>} 
+// 			{currentQuestion !== questions.length &&  <div className='question-count'>
+// 					<span>Question {currentQuestion++}</span>
+// 				</div>}
+				
+// 				{currentQuestion !== questions.length && 
+// 				<div className='question-text'>{questions[currentQuestion++].questionText}</div>}
+
+// 			</div>
+// 			<div className='answer-section'>
+// { questions[currentQuestion].answerOptions.map((answerOption) => (
+// 						<button key={key++} className="test-button"  name= {answerOption.value} value={answerOption.category}
+// 						onChange={e => setTest({...test, [e.target.name] : e.target.value})} >{answerOption.answerText}</button>
+// 					))}
+// 			</div>
+	
+// 	</div>
+// </div>
+// <footer className="footer bg-transparent  py-2">
+// 	<div className="container-fluid text-center">
+// 		<div className="footer-background h5 text-white">
+// 			&copy; Hobbie 2021. All rights reserved.
+// 		</div>
+// 	</div>
+// 	</footer>
+// 	   <img className="blueImg3" src={blueImg} alt="blueImg3"/>
+// <img className="blueImg4" src={blueImg} alt="blueImg4"/>
+// <img className="blue" src={blueImg} alt="blue"></img>
+
+// </>
+// )
+
+
+// export default TestForm

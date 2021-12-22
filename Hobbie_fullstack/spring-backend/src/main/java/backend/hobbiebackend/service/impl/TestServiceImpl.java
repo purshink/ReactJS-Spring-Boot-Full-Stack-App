@@ -1,6 +1,9 @@
 package backend.hobbiebackend.service.impl;
 
 
+import backend.hobbiebackend.model.entities.AppClient;
+import backend.hobbiebackend.model.entities.Hobby;
+import backend.hobbiebackend.model.entities.Test;
 import backend.hobbiebackend.model.repostiory.TestRepository;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.TestService;
@@ -9,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -25,6 +31,17 @@ public class TestServiceImpl implements TestService {
         this.modelMapper = modelMapper;
         this.userService = userService;
         this.hobbyService = hobbyService;
+    }
+
+    @Override
+    public void saveTestResults(Test results) {
+        this.testRepository.save(results);
+
+        AppClient currentUserAppClient = this.userService.findAppClientByUsername(results.getUsername());
+        currentUserAppClient.setTestResults(results);
+        Set<Hobby> hobbyMatches = this.hobbyService.findHobbyMatches(currentUserAppClient.getUsername());
+        currentUserAppClient.setHobby_matches(hobbyMatches);
+        this.userService.saveUpdatedUserClient(currentUserAppClient);
     }
 
 //    @Override

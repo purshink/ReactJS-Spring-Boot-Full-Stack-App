@@ -12,7 +12,7 @@ public class Hobby extends BaseEntity{
     private String intro;
     private String description;
     private Category category;
-    private BusinessOwner businessOwner;
+    private String creator;
     private BigDecimal price;
     private Location location;
     private String profileImgUrl;
@@ -76,13 +76,13 @@ public class Hobby extends BaseEntity{
         this.price = price;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    public BusinessOwner getBusinessOwner() {
-        return businessOwner;
+    @Column
+    public String getCreator() {
+        return creator;
     }
 
-    public void setBusinessOwner(BusinessOwner businessOwner) {
-        this.businessOwner = businessOwner;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     @ManyToOne

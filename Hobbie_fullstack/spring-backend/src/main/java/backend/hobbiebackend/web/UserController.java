@@ -4,8 +4,8 @@ package backend.hobbiebackend.web;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,13 +18,13 @@ public class UserController {
     //TODO CREATE POP UP THAT USER HAT SUCCESSFULLY SIGNED UP
     private final UserService userService;
     private final HobbyService hobbyService;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserService userService, HobbyService hobbyService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, HobbyService hobbyService) {
         this.userService = userService;
         this.hobbyService = hobbyService;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -51,13 +51,13 @@ public class UserController {
     }
 
 
-
-    @PostMapping("/login-error")
-    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-                                            String username) {
-
-        return "bad credentials";
-    }
+//
+//    @PostMapping("/login-error")
+//    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+//                                            String username) {
+//
+//        return "bad credentials";
+//    }
 
     @GetMapping("/account-info")
     public String showAccountInfo(){

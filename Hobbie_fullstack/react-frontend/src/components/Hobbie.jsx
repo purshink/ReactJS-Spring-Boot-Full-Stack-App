@@ -5,6 +5,7 @@ import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-fronte
 
 
 const Hobbie = () => {
+
     return (
 
         

@@ -1,12 +1,15 @@
 package backend.hobbiebackend.model.entities;
 
 import backend.hobbiebackend.model.entities.enums.GenderEnum;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_clients")
@@ -14,7 +17,7 @@ public class AppClient extends UserEntity implements Serializable {
     private String fullName;
     private GenderEnum gender;
     private Test testResults;
-    private List<Hobby> hobby_matches;
+    private Set<Hobby> hobby_matches;
     private List<Hobby> saved_hobbies;
 
 
@@ -45,12 +48,12 @@ public class AppClient extends UserEntity implements Serializable {
         this.gender = gender;
     }
 
-    @ManyToMany
-    public List<Hobby> getHobby_matches() {
+    @ManyToMany(fetch = FetchType.EAGER)
+    public Set<Hobby> getHobby_matches() {
         return hobby_matches;
     }
 
-    public void setHobby_matches(List<Hobby> hobby_matches) {
+    public void setHobby_matches(Set<Hobby> hobby_matches) {
         this.hobby_matches = hobby_matches;
     }
 

@@ -1,17 +1,18 @@
 package backend.hobbiebackend.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "business_owners")
 public class BusinessOwner extends UserEntity {
     private String businessName;
     private String address;
-    private List<Hobby> hobby_offers;
+    private Set<Hobby> hobby_offers;
 
 
 
@@ -42,12 +43,12 @@ public class BusinessOwner extends UserEntity {
         this.address = address;
     }
 
-    @OneToMany
-    public List<Hobby> getHobby_offers() {
+    @OneToMany(fetch = FetchType.EAGER)
+    public Set<Hobby> getHobby_offers() {
         return hobby_offers;
     }
 
-    public void setHobby_offers(List<Hobby> hobby_offers) {
+    public void setHobby_offers(Set<Hobby> hobby_offers) {
         this.hobby_offers = hobby_offers;
     }
 

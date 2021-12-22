@@ -6,11 +6,12 @@ import backend.hobbiebackend.model.entities.Hobby;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public interface HobbyService {
 //    Long createHobby(HobbyServiceModel hobbyServiceModel,  String fileName) throws IOException;
 
-    List<Hobby> getAllHobbyOffers();
+//    List<Hobby> getAllHobbyOffers();
 
     Hobby findHobbieById(Long id);
 
@@ -21,8 +22,8 @@ public interface HobbyService {
 
     List<Hobby> initHobbyOffers();
 
-    List<Hobby> findHobbyMatches(AppClient currentUserAppClient);
-    List<Hobby> getHobbyMatches(AppClient currentAppClient);
+    Set<Hobby> findHobbyMatches(String username);
+
 
 
     void saveHobbyForClient(Hobby hobby);
@@ -32,4 +33,11 @@ public interface HobbyService {
     boolean isHobbySaved(Long hobbyId);
     List<Hobby> findSavedHobbies(AppClient appClient);
 
+    //Just for learning
+    Set<Hobby> getAllHobbiesForBusiness(String username);
+
+
+    Set<Hobby> getAllHobbieMatchesForClient(String username);
+
+    void createHobby(Hobby offer);
 }

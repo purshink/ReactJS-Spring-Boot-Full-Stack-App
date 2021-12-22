@@ -1,33 +1,37 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import AuthenticationService from './AuthenticationService';
+import CreateOfferDataService from '../api/hobby/CreateOfferDataService';
+import { useState} from 'react'
 
 
 const CreateOffer = () => {
     let navigate = useNavigate();
+    let username = AuthenticationService.getLoggedInUser();
 
     const img_urls = [];
     const [info, setInfo] = useState({
-        profilePhoto: '',
-        hobbyName: '',
+        profileImgUrl: '',
+        name: '',
         slogan: '',
         category: '',
         intro: '',
         description: '',
         price: '',
-        lcation: '',
-        photo1: '',
-        photo2: '',
-        photo3: '',
-        photo4: '',
-        photo5: '',
-        photo6: '',
+        creator: username,
+        location: '',
+        galleryImgUrl1: '',
+        galleryImgUrl2: '',
+        galleryImgUrl3: '',
+        galleryImgUrl4: '',
+        galleryImgUrl5: '',
+        galleryImgUrl6: '',
         contactInfo: ''
 
     });
-
+   
     const [errors, setErrors] = useState({});
 
 
@@ -36,12 +40,12 @@ const CreateOffer = () => {
     
         //TODO something already exists?
 
-        if (!info.profilePhoto) {
-            errors.profilePhoto = 'Profile photo is required'
+        if (!info.profileImgUrl) {
+            errors.profileImgUrl = 'Profile photo is required'
         } 
-        if (!info.hobbyName) {
-            errors.hobbyName = 'Hobby name is required'
-        } else if (info.hobbyName.length < 3) {
+        if (!info.name) {
+            errors.name = 'Hobby name is required'
+        } else if (info.name.length < 3) {
         errors.username = 'Hobby name must be at least 3 characters long'
         }
     
@@ -77,24 +81,24 @@ const CreateOffer = () => {
     if (!info.location) {
         errors.location = "Location is required"
     }
-    if (!info.photo1) {
-        errors.photo1 = "You must upload 5 high quality photos"
+    if (!info.galleryImgUrl1) {
+        errors.galleryImgUrl1 = "You must upload 5 high quality photos"
     }
-    if (!info.photo2) {
-        errors.photo2 = "You must upload 5 high quality photos"
+    if (!info.galleryImgUrl2) {
+        errors.galleryImgUrl2 = "You must upload 5 high quality photos"
     }
-    if (!info.photo3) {
-        errors.photo3 = "You must upload 5 photos"
+    if (!info.galleryImgUrl3) {
+        errors.galleryImgUrl3 = "You must upload 5 photos"
     }
-       if (!info.photo4) {
-        errors.photo4 = "You must upload 5 photos"
+       if (!info.galleryImgUrl4) {
+        errors.galleryImgUrl4 = "You must upload 5 photos"
     }
-    if (!info.photo5) {
-        errors.photo5 = "You must upload 5 photos"
+    if (!info.galleryImgUrl5) {
+        errors.galleryImgUrl5 = "You must upload 5 photos"
     }
 
 
-    if (!info.contactInfo) {
+    if (!info.contactInfo) {    
         errors.contactInfo = "Contact info is required"
     } 
     // else if (info.contactInfo.length < 20 || info.contactInfo.length > 200) {
@@ -114,7 +118,7 @@ const CreateOffer = () => {
         
         if(Object.keys(errors).length === 0){
      
-          const files =  [info.profilePhoto, info.photo1,info.photo2,info.photo3, info.photo4, info.photo5 ];
+          const files =  [info.profileImgUrl, info.galleryImgUrl1,info.galleryImgUrl2,info.galleryImgUrl3, info.galleryImgUrl4, info.galleryImgUrl5 ];
       
 
             const uploaders = files.map(file => {
@@ -132,22 +136,38 @@ const CreateOffer = () => {
                 }).then(response => {
                   const data = response.data;
                   const fileURL = data.secure_url
-                  img_urls.push(fileURL) // You should store this URL for future references in your app
-                  console.log(data);
+                  img_urls.push(fileURL) 
+                  console.log(fileURL)// You should store this URL for future references in your app
+                //   console.log(data);
                 })
               });
-
+              let url =img_urls[0];
+              let url1 =img_urls[1];
+              let url2 =img_urls[2];
+              let url3 =img_urls[3];
+              let url4 =img_urls[4];
+              let url5 =img_urls[5];
+              let url6 =img_urls[6];
+            
       
               
               // Once all the files are uploaded 
               axios.all(uploaders).then(() => {
-                // ... perform after upload is successful operation
+                setInfo({...info, profileImgUrl : `${url}` });
+                setInfo({...info, galleryImgUrl1 : `${url1}`});
+                setInfo({...info, galleryImgUrl2 : `${url2}`});
+                setInfo({...info, galleryImgUrl3 : `${url3}`});
+                setInfo({...info, galleryImgUrl4 : `${url4}`});
+                setInfo({...info, galleryImgUrl5 : `${url5}`});
+                setInfo({...info, galleryImgUrl6 : `${url6}`});
               });
-        
+            
+
 
             console.log(info)
+            console.log(img_urls);
+            CreateOfferDataService(info);
 
-            console.log(img_urls)
              navigate("/business-owner")
         }
         else {
@@ -173,9 +193,9 @@ const CreateOffer = () => {
                             <span className="">Profile Photo</span>
                         </label>
                         <div className="button3">
-                        <p className="choose-file">  {info.profilePhoto ? 
+                        <p className="choose-file">  {info.profileImgUrl ? 
                        "Photo uploaded"  : "Choose a file" }</p> 
-                         <input  onChange={e => setInfo({...info, profilePhoto : e.target.files[0]})} type="file"  id="add-title-image" name="img"/> 
+                         <input  onChange={e => setInfo({...info, profileImgUrl : e.target.files[0]})} type="file"  id="add-title-image" name="img"/> 
                            
                         </div>
                      
@@ -192,7 +212,7 @@ const CreateOffer = () => {
                     <label forhtml="name" className="label-name">
                         <span className="">Hobbie Name</span>
                     </label>
-                    <input onChange={e => setInfo({...info, hobbyName : e.target.value})} placeholder="ex: Painting, Swimming classes etc.." className="h_n"   type="text" name="name" />
+                    <input onChange={e => setInfo({...info, name : e.target.value})} placeholder="ex: Painting, Swimming classes etc.." className="h_n"   type="text" name="name" />
 
                 </div>
                {errors.hobbyName && <small  className="errors_offer">{errors.hobbyName}</small>}
@@ -216,13 +236,13 @@ const CreateOffer = () => {
                     <select onChange={e => setInfo({...info, category : e.target.value})}className="custom-select"  id="category" name="category">
 
                     <option value="">Select category</option>
-                    <option value="Active">Active</option>
-                    <option  value="Social">Social</option>
-                    <option value="Fun">Fun</option>
-                    <option  value="Relax">Relax</option>
-                    <option  value="Intellectual">Intellectual</option>
-                    <option value="Creative">Creative</option>
-                    <option  value="Other">Other</option>
+                    <option value="ACTIVE">Active</option>
+                    <option  value="SOCIAL">Social</option>
+                    <option value="FUN">Fun</option>
+                    <option  value="RELAX">Relax</option>
+                    <option  value="INTELLECTUAL">Intellectual</option>
+                    <option value="CREATIVE">Creative</option>
+                    <option  value="OTHER">Other</option>
 
                 </select>
           {errors.category && <small className="errors_offer">{errors.category}</small>}  
@@ -270,11 +290,11 @@ const CreateOffer = () => {
             <span className="">Location</span>
                     <select onChange={e => setInfo({...info, location : e.target.value})} className="custom-select"  id="location" name="location">
                     <option value="">Select location</option>
-                    <option value="Zurich">Zurich</option>
-                    <option  value="Bern">Bern</option>
-                    <option  value="Zug">Zug</option>
-                    <option  value="Luzern">Luzern</option>
-                    <option  value="Other">Other</option>
+                    <option value="ZURICH">Zurich</option>
+                    <option  value="OTHER">Bern</option>
+                    <option  value="OTHER">Zug</option>
+                    <option  value="OTHER">Luzern</option>
+                    <option  value="OTHER">Other</option>
 
                 </select>
           {errors.location && <small className="errors_offer">{errors.location}</small> }  
@@ -288,38 +308,38 @@ const CreateOffer = () => {
                             <span className="">Gallery</span>
                         </label>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo1 ? 
+                          <p className="choose-file"> {info.galleryImgUrl1 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input  onChange={e => setInfo({...info, photo1 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input  onChange={e => setInfo({...info, galleryImgUrl1 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo2 ? 
+                          <p className="choose-file"> {info.galleryImgUrl2 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, photo2 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setInfo({...info, galleryImgUrl2 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo3 ? 
+                          <p className="choose-file"> {info.galleryImgUrl3 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, photo3 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setInfo({...info, galleryImgUrl3 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo4 ? 
+                          <p className="choose-file"> {info.galleryImgUrl4 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, photo4 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setInfo({...info, galleryImgUrl4 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo5 ? 
+                          <p className="choose-file"> {info.galleryImgUrl5 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, photo5 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setInfo({...info, galleryImgUrl5 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.photo6 ? 
+                          <p className="choose-file"> {info.galleryImgUrl6 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, photo6 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setInfo({...info, galleryImgUrl6 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
 
                     </div>
-                   {(errors.photo1 || errors.photo2 || errors.photo3 || errors.photo4 || errors.photo5) && <div  className="errors_offer" >
+                   {(errors.galleryImgUrl1 || errors.galleryImgUrl2 || errors.galleryImgUrl3 || errors.galleryImgUrl4 || errors.galleryImgUrl5) && <div  className="errors_offer" >
                    You must upload at least 5 high quality photos
                     </div>}
                 </div>

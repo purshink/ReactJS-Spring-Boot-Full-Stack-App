@@ -33,7 +33,7 @@ public class DBInit implements CommandLineRunner {
         this.locationService.initLocations();
 
         //TODO PHOTOS??
-        this.hobbyService.initHobbyOffers();
+            this.hobbyService.initHobbyOffers();
 
     }
 

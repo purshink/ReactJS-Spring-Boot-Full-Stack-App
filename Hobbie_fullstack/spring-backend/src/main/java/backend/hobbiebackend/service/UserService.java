@@ -12,9 +12,9 @@ public interface UserService {
     List<UserEntity> seedUsersAndUserRoles();
 
 //    AppClient register(SignUpServiceModel signUpServiceModel);
-    BusinessOwner findCurrentUserBusinessOwner();
-    AppClient findCurrentUserAppClient();
-    String findCurrentUsername();
+//    BusinessOwner findCurrentUserBusinessOwner();
+//    AppClient findCurrentUserAppClient();
+//    String findCurrentUsername();
 //    BusinessOwner registerBusiness(RegisterBusinessServiceModel map);
 
     BusinessOwner saveUpdatedUser(BusinessOwner businessOwner);
@@ -39,9 +39,11 @@ public interface UserService {
     AppClient findAppClientById(Long clientId);
 
     void findAndRemoveHobbyFromClientsRecords(Hobby hobby);
-    void expireUserSessions();
+//    void expireUserSessions();
 
     boolean businessExists(String businessName);
+
+    AppClient findAppClientByUsername(String username);
 }
 
 
