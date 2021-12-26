@@ -17,7 +17,7 @@ const TestResultsService = (test) => {
              .then(res => {
                  if(res.data != null){
                   // () => res.redirect('/user-home')
-                   alert("Thank you!")
+                  //  alert("Thank you!")
                  }
                }).catch(err => {
                  console.log(err.response);

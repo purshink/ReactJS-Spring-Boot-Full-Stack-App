@@ -4,16 +4,18 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import AuthenticationService from './AuthenticationService';
 import CreateOfferDataService from '../api/hobby/CreateOfferDataService';
-import { useState} from 'react'
+import { useState,useEffect} from 'react'
+
 
 
 const CreateOffer = () => {
     let navigate = useNavigate();
     let username = AuthenticationService.getLoggedInUser();
-
-    const img_urls = [];
+    let [uploaded,setUploaded] = useState(false);
+    let img_urls = [];
+    let fileURL = '';
+    const [files, setFiles] = useState({});
     const [info, setInfo] = useState({
-        profileImgUrl: '',
         name: '',
         slogan: '',
         category: '',
@@ -22,12 +24,10 @@ const CreateOffer = () => {
         price: '',
         creator: username,
         location: '',
+        profileImgUrl : '',
         galleryImgUrl1: '',
         galleryImgUrl2: '',
         galleryImgUrl3: '',
-        galleryImgUrl4: '',
-        galleryImgUrl5: '',
-        galleryImgUrl6: '',
         contactInfo: ''
 
     });
@@ -37,10 +37,9 @@ const CreateOffer = () => {
 
     const validate = () => {
         const errors = {};
-    
-        //TODO something already exists?
 
-        if (!info.profileImgUrl) {
+
+        if (!files.profileImgUrl) {
             errors.profileImgUrl = 'Profile photo is required'
         } 
         if (!info.name) {
@@ -81,21 +80,16 @@ const CreateOffer = () => {
     if (!info.location) {
         errors.location = "Location is required"
     }
-    if (!info.galleryImgUrl1) {
-        errors.galleryImgUrl1 = "You must upload 5 high quality photos"
+    if (!files.galleryImgUrl1) {
+        errors.galleryImgUrl1 = "You must upload 3 high quality photos"
     }
-    if (!info.galleryImgUrl2) {
-        errors.galleryImgUrl2 = "You must upload 5 high quality photos"
+    if (!files.galleryImgUrl2) {
+        errors.galleryImgUrl2 = "You must upload 3 high quality photos"
     }
-    if (!info.galleryImgUrl3) {
-        errors.galleryImgUrl3 = "You must upload 5 photos"
+    if (!files.galleryImgUrl3) {
+        errors.galleryImgUrl3 = "You must upload 3 high quality photos"
     }
-       if (!info.galleryImgUrl4) {
-        errors.galleryImgUrl4 = "You must upload 5 photos"
-    }
-    if (!info.galleryImgUrl5) {
-        errors.galleryImgUrl5 = "You must upload 5 photos"
-    }
+
 
 
     if (!info.contactInfo) {    
@@ -111,71 +105,64 @@ const CreateOffer = () => {
    
     const submitHandler= (event) =>{
         event.preventDefault();
-   
+    
     
         let errors = validate(info)
         setErrors(errors);
-        
         if(Object.keys(errors).length === 0){
+   
+            const filesToUpload =  [files.profileImgUrl, files.galleryImgUrl1,files.galleryImgUrl2,files.galleryImgUrl3 ];
+            alert("Loading... please wait")
+              const uploaders = filesToUpload.map(async file => {
+                  
+                  const formData = new FormData();
+                  formData.append("file", file);
+                  formData.append("tags", `dv6ktrxwv, hobbie`);
+                  formData.append("upload_preset", "vgf01lnc");
+             
+                  formData.append("timestamp", (Date.now() / 1000) | 0);
+       
+                   
+                       return await axios.post("https://api.cloudinary.com/v1_1/dv6ktrxwv/image/upload", formData, {
+                          headers: { "X-Requested-With": "XMLHttpRequest" },
+                        }).then(response => {
+                          const data = response.data;
+                           fileURL = data.secure_url
+                        img_urls.push(fileURL);
+                        });
      
-          const files =  [info.profileImgUrl, info.galleryImgUrl1,info.galleryImgUrl2,info.galleryImgUrl3, info.galleryImgUrl4, info.galleryImgUrl5 ];
-      
-
-            const uploaders = files.map(file => {
-                // Initial FormData
-                const formData = new FormData();
-                formData.append("file", file);
-                formData.append("tags", `dv6ktrxwv, hobbie`);
-                formData.append("upload_preset", "vgf01lnc"); // Replace the preset name with your own
-                // formData.append("api_key", "1234567"); // Replace API key with your own Cloudinary key
-                formData.append("timestamp", (Date.now() / 1000) | 0);
-                
-                // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-                return axios.post("https://api.cloudinary.com/v1_1/dv6ktrxwv/image/upload", formData, {
-                  headers: { "X-Requested-With": "XMLHttpRequest" },
-                }).then(response => {
-                  const data = response.data;
-                  const fileURL = data.secure_url
-                  img_urls.push(fileURL) 
-                  console.log(fileURL)// You should store this URL for future references in your app
-                //   console.log(data);
-                })
-              });
-              let url =img_urls[0];
-              let url1 =img_urls[1];
-              let url2 =img_urls[2];
-              let url3 =img_urls[3];
-              let url4 =img_urls[4];
-              let url5 =img_urls[5];
-              let url6 =img_urls[6];
+                });
+         
+  
+  
+                // Once all the files are uploaded 
+                axios.all(uploaders).then(() => {
+                    console.log(img_urls[0]);
+                  setInfo(prevState => ({...prevState, profileImgUrl : img_urls[0],galleryImgUrl1 : img_urls[1], galleryImgUrl2 : img_urls[2],
+                    galleryImgUrl3 : img_urls[3]}));
+                 setUploaded(true);
+             
+                });
             
-      
-              
-              // Once all the files are uploaded 
-              axios.all(uploaders).then(() => {
-                setInfo({...info, profileImgUrl : `${url}` });
-                setInfo({...info, galleryImgUrl1 : `${url1}`});
-                setInfo({...info, galleryImgUrl2 : `${url2}`});
-                setInfo({...info, galleryImgUrl3 : `${url3}`});
-                setInfo({...info, galleryImgUrl4 : `${url4}`});
-                setInfo({...info, galleryImgUrl5 : `${url5}`});
-                setInfo({...info, galleryImgUrl6 : `${url6}`});
-              });
-            
-
-
-            console.log(info)
-            console.log(img_urls);
-            CreateOfferDataService(info);
-
-             navigate("/business-owner")
-        }
-        else {
-            console.log(info);
-            
-            console.log(errors);
-        }
+          }
+          else {
+              console.log(errors);
+          }
+       
+        
     }
+    useEffect(() => {
+        const check_uploaded = () => {
+          if (uploaded) {   
+
+            CreateOfferDataService(info);
+            navigate("/business-owner")
+          }
+        }
+        check_uploaded()
+      }, [uploaded])
+ 
+    
     return (
    
 <div className="coBody">
@@ -193,9 +180,9 @@ const CreateOffer = () => {
                             <span className="">Profile Photo</span>
                         </label>
                         <div className="button3">
-                        <p className="choose-file">  {info.profileImgUrl ? 
+                        <p className="choose-file">  {files.profileImgUrl ? 
                        "Photo uploaded"  : "Choose a file" }</p> 
-                         <input  onChange={e => setInfo({...info, profileImgUrl : e.target.files[0]})} type="file"  id="add-title-image" name="img"/> 
+                         <input  onChange={e => setFiles({...files, profileImgUrl : e.target.files[0]})} type="file"  id="add-title-image" name="img"/> 
                            
                         </div>
                      
@@ -308,39 +295,39 @@ const CreateOffer = () => {
                             <span className="">Gallery</span>
                         </label>
                         <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl1 ? 
+                          <p className="choose-file"> {files.galleryImgUrl1 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input  onChange={e => setInfo({...info, galleryImgUrl1 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input  onChange={e => setFiles({...files, galleryImgUrl1 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl2 ? 
+                          <p className="choose-file"> {files.galleryImgUrl2 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, galleryImgUrl2 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setFiles({...files, galleryImgUrl2 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl3 ? 
+                          <p className="choose-file"> {files.galleryImgUrl3 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, galleryImgUrl3 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setFiles({...files, galleryImgUrl3 : e.target.files[0]})}type="file"  id="add-title-image" name="img" />
+                        </div>
+                        {/* <div className="button3">
+                          <p className="choose-file"> {files.galleryImgUrl4 ? 
+                       "Photo uploaded"  : "Choose a file" }</p>
+                            <input onChange={e => setFiles({...files, galleryImgUrl4 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl4 ? 
+                          <p className="choose-file"> {files.galleryImgUrl5 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, galleryImgUrl4 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
+                            <input onChange={e => setFiles({...files, galleryImgUrl5 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
                         <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl5 ? 
+                          <p className="choose-file"> {files.galleryImgUrl6 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, galleryImgUrl5 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
-                        </div>
-                        <div className="button3">
-                          <p className="choose-file"> {info.galleryImgUrl6 ? 
-                       "Photo uploaded"  : "Choose a file" }</p>
-                            <input onChange={e => setInfo({...info, galleryImgUrl6 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
-                        </div>
+                            <input onChange={e => setFiles({...files, galleryImgUrl6 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
+                        </div> */}
 
                     </div>
-                   {(errors.galleryImgUrl1 || errors.galleryImgUrl2 || errors.galleryImgUrl3 || errors.galleryImgUrl4 || errors.galleryImgUrl5) && <div  className="errors_offer" >
-                   You must upload at least 5 high quality photos
+                   {(errors.galleryImgUrl1 || errors.galleryImgUrl2 || errors.galleryImgUrl3 ) && <div  className="errors_offer" >
+                   You must upload at least 3  high quality photos
                     </div>}
                 </div>
             </div>
@@ -360,8 +347,7 @@ const CreateOffer = () => {
 
         
 
-      
-            <button  type="submit" className="button submit-offer">Submit</button>
+ <button  type="submit" className="button submit-offer">Submit</button>
   
     </form>
 

@@ -76,7 +76,7 @@ const BusinessOwner = () => {
  </div>
 
  { welcomeDiv.showDiv && <div>
-         <div className="introduction">
+         <div className="introduction-home">
           <div className="intro-text">
           <p> You have no offers. Plase fill in the form and create a new offer:</p>
                  <div className="cta">

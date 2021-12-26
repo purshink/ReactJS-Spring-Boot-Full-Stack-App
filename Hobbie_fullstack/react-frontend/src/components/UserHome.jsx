@@ -29,6 +29,7 @@ const UserHome = () => {
                 if(!unmounted){
                     setState(response.data);
                     setWelcomeDiv({showDiv:false})
+             
                 }
                 if (!Object.keys(response.data).length){
                     setWelcomeDiv({showDiv:true})
@@ -47,7 +48,7 @@ const UserHome = () => {
                 </div>
                 <hr className="home-hr"></hr>
                 <div className="user_home">
-            
+              
             
              {state.length !== undefined && <section className="cards">
                  {state.map(hobby =>  
@@ -71,11 +72,11 @@ const UserHome = () => {
              </div>
             
              { welcomeDiv.showDiv && <div>
-                     <div className="introduction">
+                     <div className="introduction-home">
                       <div className="intro-text">
                       <p> You have no hobbie matches. Plase fill in the form and create a new offer:</p>
                              <div className="cta">
-                                         <button className="cta_add" ><a className="cta_second_s" href="/test">Create new Offer</a></button>
+                                         <button className="cta_add" ><a className="cta_second_s" href="/test">Take the test</a></button>
                              </div>
                          </div>
                      </div>

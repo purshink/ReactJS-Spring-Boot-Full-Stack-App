@@ -19,9 +19,7 @@ public class Hobby extends BaseEntity{
     private String galleryImgUrl1;
     private String galleryImgUrl2;
     private String galleryImgUrl3;
-    private String galleryImgUrl4;
-    private String galleryImgUrl5;
-    private String galleryImgUrl6;
+
     private String contactInfo;
 
     //TODO HOBBY ADDRESS
@@ -37,7 +35,7 @@ public class Hobby extends BaseEntity{
         return profileImgUrl;
     }
 
-    public void setProfileImgUrl(String ProfileImgUrl) {
+    public void setProfileImgUrl(String profileImgUrl) {
         this.profileImgUrl = profileImgUrl;
     }
 
@@ -133,30 +131,7 @@ public class Hobby extends BaseEntity{
     public void setGalleryImgUrl3(String galleryImgUrl3) {
         this.galleryImgUrl3 = galleryImgUrl3;
     }
-    @Column(name = "gallery_image_url_4")
-    public String getGalleryImgUrl4() {
-        return galleryImgUrl4;
-    }
 
-    public void setGalleryImgUrl4(String galleryImgUrl4) {
-        this.galleryImgUrl4 = galleryImgUrl4;
-    }
-    @Column(name = "gallery_image_url_5")
-    public String getGalleryImgUrl5() {
-        return galleryImgUrl5;
-    }
-
-    public void setGalleryImgUrl5(String galleryImgUrl5) {
-        this.galleryImgUrl5 = galleryImgUrl5;
-    }
-    @Column(name = "gallery_image_url_6")
-    public String getGalleryImgUrl6() {
-        return galleryImgUrl6;
-    }
-
-    public void setGalleryImgUrl6(String galleryImgUrl6) {
-        this.galleryImgUrl6 = galleryImgUrl6;
-    }
     @Column(name = "contact_info")
     public String getContactInfo() {
         return contactInfo;

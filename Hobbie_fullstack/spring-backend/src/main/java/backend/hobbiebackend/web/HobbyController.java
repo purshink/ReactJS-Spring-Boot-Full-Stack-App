@@ -1,16 +1,16 @@
 package backend.hobbiebackend.web;
 
 
+import backend.hobbiebackend.model.dto.HobbyInfoDto;
+import backend.hobbiebackend.model.entities.Category;
 import backend.hobbiebackend.model.entities.Hobby;
-import backend.hobbiebackend.model.entities.Test;
+import backend.hobbiebackend.model.entities.Location;
+import backend.hobbiebackend.service.CategoryService;
 import backend.hobbiebackend.service.HobbyService;
-import backend.hobbiebackend.service.UserService;
+import backend.hobbiebackend.service.LocationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -20,22 +20,32 @@ public class HobbyController {
 
 
     private final HobbyService hobbyService;
-    private final UserService userService;
+    private final CategoryService categoryService;
+    private final LocationService locationService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public HobbyController(ModelMapper modelMapper, HobbyService hobbyService,UserService userService) {
+    public HobbyController(HobbyService hobbyService, CategoryService categoryService, LocationService locationService, ModelMapper modelMapper) {
 
         this.hobbyService = hobbyService;
-        this.userService = userService;
+        this.categoryService = categoryService;
+        this.locationService = locationService;
+        this.modelMapper = modelMapper;
     }
 
 
 
 
     @PostMapping("/create-offer")
-    public  void saveHobby(@RequestBody Hobby offer,List<String> urls){
-     
-            this.hobbyService.createHobby(offer);
+    public  void saveHobby(@RequestBody HobbyInfoDto info){
+
+        Hobby offer = this.modelMapper.map(info, Hobby.class);
+        Category category = this.categoryService.findByName(info.getCategory());
+        Location location = this.locationService.getLocationByName(info.getLocation());
+        offer.setLocation(location);
+        offer.setCategory(category);
+
+        this.hobbyService.createHobby(offer);
 
     }
 //
@@ -117,4 +127,6 @@ public class HobbyController {
 }
 
 
-
+//
+//    String  profileImgUrl,
+//    String name, String  slogan, CategoryNameEnum category, String intro, String description, String price, String  creator, LocationEnum  location, String    galleryImgUrl1, String    galleryImgUrl2, String   galleryImgUrl3, String  galleryImgUrl4, String  galleryImgUrl5, String  galleryImgUrl6, String  contactInfo,

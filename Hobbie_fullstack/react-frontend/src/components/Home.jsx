@@ -9,35 +9,12 @@ import { useState } from 'react'
 
 
 const Home = () => {
-    const [state, setState] = useState({
-        backendMessage: ''
-    })
-    
-    const retriveBackendMesage = () =>{
-        HomeService()
-        .then(response => handleSuccessfulResponse(response))
-        // .catch()
-    }
-    
-    const handleSuccessfulResponse = (response) =>{
-        setState({backendMessage: response.data})
-    }
+
     
     return (
         
         <div className="main">
-            {/* <div className="cta" >
-        
-        <button  className="cta_second" onClick={retriveBackendMesage}> 
-        Tack to backend
-        </button>
 
-            </div>
-
-            <div className="cta" >
-                <p>{state.backendMessage}</p>
-
-            </div> */}
 <Presentation/>
 
 <footer className="footer bg-transparent  py-2">

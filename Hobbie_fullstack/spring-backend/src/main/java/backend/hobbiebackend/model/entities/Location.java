@@ -13,6 +13,7 @@ public class Location extends BaseEntity{
         this.name = locationEnum;
     }
 
+
     public Location() {
     }
 

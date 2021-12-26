@@ -1,12 +1,11 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import { useNavigate } from 'react-router';
 import TestResultsService from '../api/hobby/TestResultsService';
 import AuthenticationService from './AuthenticationService';
-import { useState, useEffect} from 'react'
+import { useState} from 'react'
 
 const TestForm = () => {
-    let navigate = useNavigate();
+
 	let key = 1;
 	let username = AuthenticationService.getLoggedInUser();
 
@@ -117,17 +116,12 @@ const handleAnswerOptionClick = (answer) => {
 	if (nextQuestion === questions.length) {
 
  		TestResultsService(test);
-		 navigate("/user-home")
+		//  navigate("/user-home")
 	
 
 	} 
 };
 
-const handleSubmit =()=> {
-	console.log(test)
-	TestResultsService(test);
-
-}
 
 
 
@@ -136,7 +130,7 @@ const handleSubmit =()=> {
 		<div>
 		<div className="test-content">
         <div className='test-form'>
-
+		{currentQuestion === questions.length   &&  <span>Thank you! Please visit your homepage to discover your new hobby!</span>  }
         
           <>
                 <div className='question-section'>

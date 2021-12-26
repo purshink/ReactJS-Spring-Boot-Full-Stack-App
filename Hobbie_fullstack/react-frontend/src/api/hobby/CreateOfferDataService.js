@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 const CreateOfferDataService = (info,img_urls) => {
+  
         let axiosConfig = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -12,7 +13,6 @@ const CreateOfferDataService = (info,img_urls) => {
     
         return (
        
-        
             axios.post(`http://localhost:8080/hobbies/create-offer`, info, axiosConfig)
                  .then(res => {
                      if(res.data != null){

@@ -132,6 +132,12 @@ a {
 
   align-items: center;
 }
+.introduction-home {
+  margin: auto;
+  width: 50%;
+
+  align-items: center;
+}
 
 .cover {
   flex: 1;
@@ -1210,3 +1216,18 @@ b{
     margin-top: 30px;
   }
    /*End of Test form CSS */
+
+   /* Create offer css */
+   #loadingDiv.animate {
+    opacity: 0;
+    animation: fadeInOut 1s infinite;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  #loadingDiv.text-center {
+    margin: auto;
+  }
