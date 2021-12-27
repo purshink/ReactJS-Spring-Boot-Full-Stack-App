@@ -2,11 +2,12 @@ import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import RegisterBusinessService from '../api/hobby/RegisterBusinessService'
 
 const RegisterBusiness = () => {
     let navigate = useNavigate();
 
-   
+    const [error, setError] = useState(false);
     const [info, setInfo] = useState({
         username: '',
         businessName: '',
@@ -22,7 +23,6 @@ const RegisterBusiness = () => {
     const validate = () => {
         const errors = {};
     
-        //TODO username or email already exists?
 
         if (!info.username) {
             errors.username = 'Username is required'
@@ -64,14 +64,21 @@ const RegisterBusiness = () => {
 
 
   
-    const submitHandler= (event) =>{
+    const submitHandler= async event =>{
         event.preventDefault();
         let errors = validate(info)
         setErrors(errors);
         
         if(Object.keys(errors).length === 0){
             console.log(info)
-            navigate("/business-owner")
+            const response = await RegisterBusinessService(info);
+            console.log(response);  
+            if (response.status !== 201) {
+                    setError(true)
+            } else {
+                navigate("/business-owner")
+            }
+      
         }
         else {
             console.log(errors);
@@ -83,10 +90,10 @@ const RegisterBusiness = () => {
         <div>
             <div className="test">
     <h2>Register your business</h2>
-{/*  
-    {registerState.userNameOrEmailExist &&  <div className="errors" >
+ 
+    {error &&  <div className="errors" >
          This username, business name or email already exist.
-     </div>} */}
+     </div>}
     <form onSubmit={submitHandler}>
 
   <div className="row">

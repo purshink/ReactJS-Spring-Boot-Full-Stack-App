@@ -4,7 +4,7 @@ import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
-import AuthenticationService from './AuthenticationService'
+import AuthenticationService from '../api/hobby/AuthenticationService'
 
 
 

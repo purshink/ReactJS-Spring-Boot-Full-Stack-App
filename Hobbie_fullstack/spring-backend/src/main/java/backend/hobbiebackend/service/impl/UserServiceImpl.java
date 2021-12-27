@@ -2,6 +2,8 @@ package backend.hobbiebackend.service.impl;
 
 
 import backend.hobbiebackend.handler.NotFoundException;
+import backend.hobbiebackend.model.dto.AppClientSignUpDto;
+import backend.hobbiebackend.model.dto.BusinessRegisterDto;
 import backend.hobbiebackend.model.entities.*;
 import backend.hobbiebackend.model.entities.enums.GenderEnum;
 import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
@@ -14,7 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
@@ -36,11 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
-                         AppClientRepository appClientRepository,
+                           PasswordEncoder passwordEncoder, AppClientRepository appClientRepository,
                            BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
@@ -104,27 +106,27 @@ public class UserServiceImpl implements UserService {
         return seededUsers;
     }
 
-//    @Override
-//    public AppClient register(SignUpServiceModel signUpServiceModel) {
-//
-//            UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
-//            AppClient appClient = this.modelMapper.map(signUpServiceModel, AppClient.class);
-//            appClient.setRoles(List.of(userRole));
-//                appClient.setPassword(this.passwordEncoder.encode(signUpServiceModel.getPassword()));
-//        return     appClientRepository.save(appClient);
-//    }
-//
-//    @Override
-//    public BusinessOwner registerBusiness(RegisterBusinessServiceModel registerBusinessServiceModel) {
-//
-//            UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
-//            BusinessOwner businessOwner = this.modelMapper.map(registerBusinessServiceModel, BusinessOwner.class);
-//            businessOwner.setRoles(List.of(businessUserRole));
-//            businessOwner.setPassword(this.passwordEncoder.encode(registerBusinessServiceModel.getPassword()));
-//           return businessOwnerRepository.save(businessOwner);
-//
-//
-//    }
+    @Override
+    public AppClient register(AppClientSignUpDto user) {
+
+            UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
+            AppClient appClient = this.modelMapper.map(user, AppClient.class);
+            appClient.setRoles(List.of(userRole));
+            appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        return  appClientRepository.save(appClient);
+    }
+
+    @Override
+    public BusinessOwner registerBusiness(BusinessRegisterDto business) {
+
+            UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
+            BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
+            businessOwner.setRoles(List.of(businessUserRole));
+            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
+           return businessOwnerRepository.save(businessOwner);
+
+
+    }
 
     @Override
     public BusinessOwner saveUpdatedUser(BusinessOwner businessOwner) {

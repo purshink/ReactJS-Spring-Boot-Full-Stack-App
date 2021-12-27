@@ -2,7 +2,7 @@ import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import AuthenticationService from './AuthenticationService';
+import AuthenticationService from '../api/hobby/AuthenticationService'
 import CreateOfferDataService from '../api/hobby/CreateOfferDataService';
 import { useState,useEffect} from 'react'
 
@@ -160,7 +160,7 @@ const CreateOffer = () => {
           }
         }
         check_uploaded()
-      }, [uploaded])
+      }, [uploaded,info,navigate])
  
     
     return (

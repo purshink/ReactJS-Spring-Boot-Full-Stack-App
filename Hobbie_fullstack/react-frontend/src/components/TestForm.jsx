@@ -1,7 +1,7 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import TestResultsService from '../api/hobby/TestResultsService';
-import AuthenticationService from './AuthenticationService';
+import AuthenticationService from '../api/hobby/AuthenticationService';
 import { useState} from 'react'
 
 const TestForm = () => {

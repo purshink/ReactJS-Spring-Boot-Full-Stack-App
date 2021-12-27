@@ -2,6 +2,7 @@ import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
+import SignUpAppClientService from '../api/hobby/SignUpAppClientService';
 
 
 
@@ -10,9 +11,10 @@ import {useNavigate} from 'react-router-dom'
 const SignUp = () => {
     let navigate = useNavigate();
     const [checked, setCheckBoxChecked] = useState("other");
+    const [error, setError] = useState(false);
     const [info, setInfo] = useState({
         username: '',
-        fullname: '',
+        fullName: '',
         gender: '',
         email: '',
         password: '',
@@ -33,10 +35,10 @@ const SignUp = () => {
         errors.username = 'Username must be at least 5 characters long'
         }
     
-        if (!info.fullname) {
-            errors.fullname = "Fullname is required"
-        } else if (info.fullname.length < 2 || info.fullname.length > 20) {
-            errors.fullname = "Text has to be between 2 and 20 characters long"
+        if (!info.fullName) {
+            errors.fullName = "Fullname is required"
+        } else if (info.fullName.length < 2 || info.fullName.length > 20) {
+            errors.fullName = "Text has to be between 2 and 20 characters long"
         }
         
      if (!info.email) {
@@ -63,14 +65,22 @@ const SignUp = () => {
 
 
   
-    const submitHandler= (event) =>{
+    const submitHandler= async event =>{
         event.preventDefault();
         let errors = validate(info)
         setErrors(errors);
         
         if(Object.keys(errors).length === 0){
             console.log(info)
-             navigate("/test")
+            const response = await SignUpAppClientService(info);
+            console.log(response);  
+            if (response.status !== 201) {
+                    setError(true)
+            } else {
+                
+                navigate("/test")
+            }
+           
         }
         else {
             console.log(errors);
@@ -82,9 +92,9 @@ const SignUp = () => {
         <div>
             <div className="test">
     <h2>Sign up</h2>
-  {/* {signUpState.userNameOrEmailExist &&  <div className="errors" >
+  {error &&  <div className="errors" >
          This username or email already exist.
-     </div>} */}
+     </div>}
     
     <form id="userInfo" onSubmit={submitHandler}> 
   <div className="row">
@@ -102,11 +112,11 @@ const SignUp = () => {
     <div className="row">
         <div className="form-field">
           <div className="name-section">
-              <input  type="text" name="name" onChange={e => setInfo({...info, fullname : e.target.value})} 
+              <input  type="text" name="name" onChange={e => setInfo({...info, fullName : e.target.value})} 
         />
               <label htmlFor="name" className="label-name">
                   <span className="content-name">Full Name</span>
-                {errors.fullname && <small className="errors">Invalid Full Name</small>}  
+                {errors.fullName && <small className="errors">Invalid Full Name</small>}  
               </label>
           </div>
           </div>
@@ -121,15 +131,15 @@ const SignUp = () => {
             </label>
         </div>
         <div  className="checkbox-choice-section">
-            <input onClick={() =>setCheckBoxChecked("male")} onChange={e => setInfo({...info, gender : "male"})} 
+            <input onClick={() =>setCheckBoxChecked("male")} onChange={e => setInfo({...info, gender : "MALE"})} 
         checked={checked === "male"}  
         type="checkbox" id="checkbox1" />
             <label  className="checkbox" htmlFor="checkbox1">Male</label>
-            <input   onClick={() =>setCheckBoxChecked("female")} onChange={e => setInfo({...info, gender : "female"})}
+            <input   onClick={() =>setCheckBoxChecked("female")} onChange={e => setInfo({...info, gender : "FEMALE"})}
         checked={checked === "female"}
                 type="checkbox"  id="checkbox2" />
             <label className="checkbox" htmlFor="checkbox1">Female</label>
-            <input  onClick={() => setCheckBoxChecked("other")} onChange={e => setInfo({...info, gender : "other"})}
+            <input  onClick={() => setCheckBoxChecked("other")} onChange={e => setInfo({...info, gender : "OTHER"})}
          checked={checked ==="other"}
                 type="checkbox"  id="checkbox3"     />
             <label className="checkbox" htmlFor="checkbox1">Other</label>

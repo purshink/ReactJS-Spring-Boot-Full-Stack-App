@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import AuthenticationService  from '../../components/AuthenticationService'
+import AuthenticationService from './AuthenticationService';
 
 const HobbyDataService = () => {
     let username = AuthenticationService.getLoggedInUser();

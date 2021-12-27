@@ -2,7 +2,7 @@ import React from 'react'
 
 import logo from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/logo.svg'
 import { Link } from 'react-router-dom'
-import AuthenticationService from './AuthenticationService';
+import AuthenticationService from '../api/hobby/AuthenticationService';
 
 const Logo = () => {
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();

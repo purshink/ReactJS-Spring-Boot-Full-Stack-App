@@ -1,53 +1,67 @@
 package backend.hobbiebackend.web;
 
 
+import backend.hobbiebackend.model.dto.AppClientSignUpDto;
+import backend.hobbiebackend.model.dto.BusinessRegisterDto;
+import backend.hobbiebackend.model.entities.AppClient;
+import backend.hobbiebackend.model.entities.BusinessOwner;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 
     //TODO CREATE POP UP THAT USER HAT SUCCESSFULLY SIGNED UP
     private final UserService userService;
     private final HobbyService hobbyService;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(UserService userService, HobbyService hobbyService) {
+    public UserController(UserService userService, HobbyService hobbyService, ModelMapper modelMapper,PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.hobbyService = hobbyService;
-//        this.passwordEncoder = passwordEncoder;
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
 
     @PostMapping("/signup")
-    public String signup(){
+    public ResponseEntity<?> signup(@RequestBody AppClientSignUpDto user){
 
-//        this.userService.userExists())
+        if( this.userService.userExists(user.getUsername(), user.getEmail())) {
+            throw new RuntimeException("Username or email address already in use.");
+        }
 
-//            this.userService.register();
-            return "user_data";
+        AppClient client = this.userService.register(user);
+        return new ResponseEntity<AppClient>(client, HttpStatus.CREATED);
     }
 
 
     @PostMapping("/register-business")
-    public String registerBusiness(){
+    public ResponseEntity<?> registerBusiness(@RequestBody BusinessRegisterDto business){
 
 
-//        this.userService.businessExists()
+    if(this.userService.businessExists(business.getBusinessName() ) || this.userService.userExists(business.getUsername(), business.getEmail())){
+        throw new RuntimeException("Username or email address already in use.");
+    }
 
-//        this.userService.registerBusiness();
+        BusinessOwner businessOwner = this.userService.registerBusiness(business);
 
-        return "business_data";
+        return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
     }
 
 
@@ -59,20 +73,6 @@ public class UserController {
 //        return "bad credentials";
 //    }
 
-    @GetMapping("/account-info")
-    public String showAccountInfo(){
-
-//            "client", this.userService.findCurrentUserAppClient();
-            return "account-info";
-
-    }
-
-    @GetMapping("/business-account-info")
-    public String showBusinessAccountInfo() {
-
-//        "business", this.userService.findCurrentUserBusinessOwner();
-        return "business-account-info";
-    }
 
 
 

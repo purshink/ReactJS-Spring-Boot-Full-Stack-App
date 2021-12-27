@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import AuthenticationService from './AuthenticationService';
+import AuthenticationService from '../api/hobby/AuthenticationService';
 
 
 const Navbar = () => {
