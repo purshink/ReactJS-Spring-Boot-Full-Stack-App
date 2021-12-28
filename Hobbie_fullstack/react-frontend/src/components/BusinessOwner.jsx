@@ -15,7 +15,6 @@ const BusinessOwner = () => {
     const [welcomeDiv, setWelcomeDiv] = useState({showDiv: false})
 
 
-    
     useLayoutEffect(() => {
         let unmounted = false;
 

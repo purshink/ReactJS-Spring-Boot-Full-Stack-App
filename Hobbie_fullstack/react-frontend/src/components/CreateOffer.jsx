@@ -157,6 +157,7 @@ const CreateOffer = () => {
 
             CreateOfferDataService(info);
             navigate("/business-owner")
+            window.location.reload(false)
           }
         }
         check_uploaded()
