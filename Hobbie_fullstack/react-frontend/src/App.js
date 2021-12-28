@@ -30,19 +30,21 @@ function App() {
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/register-business' element={<RegisterBusiness/>}/>
       <Route path='/login' element={<Login/>}/>
-      <Route path='/hobbie'  element={<Hobbie/>}/>
+    
 
       <Route element={<ProtectedRoutes/>}>
       <Route path='/user-home'  element={<UserHome/>}/>
       <Route path='/account-user' element={<AccountUser/>}/>
       <Route path='/test'  element={<TestForm/>}/>
       <Route path='/my-hobbies'  element={<MyHobbies/>}/>
+      <Route path='/hobbie'  element={<Hobbie/>}/>
       </Route>
 
    <Route element={<ProtectedRoutesBusiness/>}>
       <Route path='/business-owner' element={<BusinessOwner/>}/>
       <Route path='/account-business'  element={<AccountBusiness/>}/>
       <Route path='/create-offer'  element={<CreateOffer/>}/>
+      <Route path='/hobbie'  element={<Hobbie/>}/>
       </Route>
    </Routes>
 

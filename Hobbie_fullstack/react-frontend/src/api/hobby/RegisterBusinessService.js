@@ -1,24 +1,35 @@
 import React from 'react'
 import axios from 'axios';
 
+
 const RegisterBusinessService = (user) => {
+
+  let username = 'user';
+  let password = '123';
+  let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
     let axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*",
+
+            'Authorization' : basicAuthHeader,
         }
       };
 
     return (
    
-        axios.post(`http://localhost:8080/users//register-business`, user, axiosConfig)
+        axios.post(`http://localhost:8080/users/register-business`, user,axiosConfig)
              .then(res => {
                  if(res.data != null){
                   // () => res.redirect('/user-home')
                     return res;
                  }
                }) .catch(err => {
-                 return err.response;
+                let error = '';
+
+                if(err.response){
+                  error += err.response;
+                }
+                return error;
                }));
 }
 

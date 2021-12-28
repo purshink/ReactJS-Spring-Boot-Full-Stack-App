@@ -1,16 +1,23 @@
+import axios from "axios"
+
+
 class AuthenticationService {
+    
+
 
     registerSuccessfulLoginBusiness(username){
     
         sessionStorage.setItem('authenticatedUser', username)
         sessionStorage.setItem('role', 'business')
         console.log('Successful login')
+ 
     }
     registerSuccessfulLoginUser(username){
     
         sessionStorage.setItem('authenticatedUser', username)
         sessionStorage.setItem('role', 'user')
         console.log('Successful login')
+     
     }
 
 
@@ -47,6 +54,34 @@ class AuthenticationService {
             return username;
         }
        }
+
+     
+
+       //todo: DOES NOT UPDATE ON BROWSER REFRESH 
+    //    setUpAxiosInterseptors(){
+    //     console.log("Setting up interceptors.")
+    //     let username = 'user';
+    //     let password = '123';
+    //     let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
+        
+     
+        
+    //     axios.interceptors.request.use(
+          
+    //             (config) => {
+    //                 if(this.isUserLoggedIn){
+    //                 config.headers['Authorization'] = basicAuthHeader;
+    //                 }
+    //                     console.log("Success");
+    //                 return config;
+    //             }
+    //         )
+    //    }
+
+       
+
+    
 }
+
 
 export default  new AuthenticationService()

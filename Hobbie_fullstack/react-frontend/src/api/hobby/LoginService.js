@@ -1,17 +1,17 @@
+import axios from 'axios';
 import React from 'react'
-import axios from 'axios'
 
 
-
-const SignUpAppClientService = (user) => {
-
- 
-
+const LoginService = (username, password) => {
     return (
    
-        axios.post(`http://localhost:8080/users/signup`, user)
+        axios.post(`http://localhost:8080/users/login`, null, { params: {
+            username,
+            password
+          }})
              .then(res => {
-                 if(res.data != null){
+                 if(res != null){
+                     console.log(res);
                   // () => res.redirect('/user-home')
                     return res;
                  }
@@ -25,4 +25,4 @@ const SignUpAppClientService = (user) => {
                }));
 }
 
-export default SignUpAppClientService
+export default LoginService

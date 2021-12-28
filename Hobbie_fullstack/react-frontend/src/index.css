@@ -191,12 +191,13 @@ a {
 }
 .cta_second_s {
   color: #c36cbb;
-  background: #fefefe;
+  background:  #c36cbb;
   width: 150px;
   height: 50px;
   cursor: pointer ;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
+  border: 2px solid #c36cbb;
 }
 
 .drawing{
@@ -1101,6 +1102,15 @@ b{
     align-content: center;
     justify-content: space-between;
   }
+
+  .test-end {
+ 
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 200%;
+  }
+
   .test-form {
     margin: 100px auto;
     background: linear-gradient(to right,#696989, #dcdce6);

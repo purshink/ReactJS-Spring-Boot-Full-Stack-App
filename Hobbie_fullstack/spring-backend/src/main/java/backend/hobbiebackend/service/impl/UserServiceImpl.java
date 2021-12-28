@@ -16,7 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
@@ -38,11 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
-                           PasswordEncoder passwordEncoder, AppClientRepository appClientRepository,
+                            AppClientRepository appClientRepository,
                            BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
             UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
             AppClient appClient = this.modelMapper.map(user, AppClient.class);
             appClient.setRoles(List.of(userRole));
-            appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
+    //            appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
         return  appClientRepository.save(appClient);
     }
 
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
             UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
             BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
             businessOwner.setRoles(List.of(businessUserRole));
-            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
+//            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
            return businessOwnerRepository.save(businessOwner);
 
 

@@ -5,6 +5,9 @@ import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
 import backend.hobbiebackend.model.entities.AppClient;
 import backend.hobbiebackend.model.entities.BusinessOwner;
+import backend.hobbiebackend.model.entities.UserEntity;
+import backend.hobbiebackend.model.entities.UserRoleEntity;
+import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -13,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,15 +31,15 @@ public class UserController {
     //TODO CREATE POP UP THAT USER HAT SUCCESSFULLY SIGNED UP
     private final UserService userService;
     private final HobbyService hobbyService;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(UserService userService, HobbyService hobbyService, ModelMapper modelMapper,PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, HobbyService hobbyService, ModelMapper modelMapper) {
         this.userService = userService;
         this.hobbyService = hobbyService;
         this.modelMapper = modelMapper;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
 
@@ -142,6 +147,19 @@ public class UserController {
                 return "deleted_business";
     }
 
+    @PostMapping("/login")
+    public String logInUser(@RequestParam String username ) {
+        UserEntity userByUsername = this.userService.findUserByUsername(username);
+        if (userByUsername.getRoles().stream()
+                .anyMatch(u-> u.getRole().equals(UserRoleEnum.USER))) {
+            return  "USER";
+        }
+        else if(userByUsername.getRoles().stream()
+                .anyMatch(u-> u.getRole().equals(UserRoleEnum.BUSINESS_USER))){
+            return  "BUSINESS_USER";
+        }
+        return null;
+    }
 }
 
 

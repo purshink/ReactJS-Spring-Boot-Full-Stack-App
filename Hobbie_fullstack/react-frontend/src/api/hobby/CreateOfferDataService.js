@@ -2,12 +2,16 @@ import React from 'react'
 import axios from 'axios'
 
 
-const CreateOfferDataService = (info,img_urls) => {
-  
+
+const CreateOfferDataService = (info) => {
+let username = 'user';
+let password = '123';
+let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);  
         let axiosConfig = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
                 "Access-Control-Allow-Origin": "*",
+                'Authorization' : basicAuthHeader,
             }
           };
     
@@ -20,7 +24,12 @@ const CreateOfferDataService = (info,img_urls) => {
                        alert("Thank you!")
                      }
                    }).catch(err => {
-                     console.log(err.response);
+                    let error = '';
+
+                    if(err.response){
+                      error += err.response;
+                    }
+                    return error;
                    }));
     
 }

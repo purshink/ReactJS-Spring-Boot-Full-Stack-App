@@ -130,7 +130,7 @@ const handleAnswerOptionClick = (answer) => {
 		<div>
 		<div className="test-content">
         <div className='test-form'>
-		{currentQuestion === questions.length   &&  <span>Thank you! Please visit your homepage to discover your new hobby!</span>  }
+		{currentQuestion === questions.length   &&  <span class="test-end">Thank you! Please visit your homepage to discover your new hobby!</span>  }
         
           <>
                 <div className='question-section'>

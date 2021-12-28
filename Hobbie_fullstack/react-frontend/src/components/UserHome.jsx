@@ -8,6 +8,7 @@ import ImgFive from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend
 import ImgSix from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/6.jpg'
 import HobbyDataService from '../api/hobby/HobbyDataService'
 import { useState, useLayoutEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 const UserHome = () => {
     let key = 1;
@@ -76,7 +77,7 @@ const UserHome = () => {
                       <div className="intro-text">
                       <p> You have no hobbie matches. Plase fill in the form and create a new offer:</p>
                              <div className="cta">
-                                         <button className="cta_add" ><a className="cta_second_s" href="/test">Take the test</a></button>
+                                         <button className="cta_second_s" ><Link to='/test' className="cta_second">Take the test</Link></button>
                              </div>
                          </div>
                      </div>
