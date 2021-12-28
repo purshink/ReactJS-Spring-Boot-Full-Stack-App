@@ -26,7 +26,7 @@ const AccountBusiness = () => {
                     
                     
         <div className="account-buttons">     
-        <a  className="add-crt-edit">Edit</a>
+        {/* <a  className="add-crt-edit">Edit</a> */}
         
         <a className="add-crt-edit" >Delete profile</a>
                 </div>

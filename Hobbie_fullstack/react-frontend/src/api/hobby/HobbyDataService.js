@@ -8,14 +8,14 @@ const HobbyDataService = () => {
 
 let username1 = 'user';
 let password = '123';
-let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
+let basicAuthHeader = 'Basic ' + window.btoa(username1 + ":" + password);
     let axiosConfig = {
       headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           "Access-Control-Allow-Origin": "*",
           'Authorization' : basicAuthHeader,
       }
-    };
+    };  
 
          return (
      

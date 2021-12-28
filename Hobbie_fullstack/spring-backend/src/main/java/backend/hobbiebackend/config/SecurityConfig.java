@@ -1,5 +1,6 @@
 package backend.hobbiebackend.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,10 +16,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+//    private final HobbieUserDetailsService hobbieUserDetailsService;
+//
+//
+//    @Autowired
+//    public SecurityConfig(HobbieUserDetailsService hobbieUserDetailsService) {
+//        this.hobbieUserDetailsService = hobbieUserDetailsService;
+//
+//    }
 
-    @Autowired
+
     public SecurityConfig() {
-
     }
 
     @Override

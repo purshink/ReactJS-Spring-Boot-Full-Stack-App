@@ -28,7 +28,7 @@ const AccountUser = () => {
 
                     <div class="">
 
-                        <span><a className="add-crt-edit">Edit</a> <span></span></span>
+                        {/* <span><a className="add-crt-edit">Edit</a> <span></span></span> */}
                         <span><a className="add-crt-edit">Delete profile</a><span></span></span>
                     </div>
                 </div>

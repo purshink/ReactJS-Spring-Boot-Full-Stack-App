@@ -25,6 +25,8 @@ const Login = () => {
     
     const loginClicked= async event=>{
         event.preventDefault();
+
+
         const response = await LoginService(credentials.username, credentials.password);
             console.log(response);  
             if (response.status !== 200) {

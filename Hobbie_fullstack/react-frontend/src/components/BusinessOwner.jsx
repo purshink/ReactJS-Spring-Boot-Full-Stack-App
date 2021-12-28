@@ -1,19 +1,13 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
-import ImgTwo from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
 import ImgThree from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/3.jpg'
-import ImgFour from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/4.jpg'
-import ImgFive from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/5.jpg'
-import ImgSix from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/6.jpg'
 import { useState, useLayoutEffect} from 'react'
 import OffersDataService from '../api/hobby/OffersDataService'
-
-
-
+import { Link } from 'react-router-dom'
+import DeleteHobbyService from '../api/hobby/DeleteHobbyService'
 
 const BusinessOwner = () => {
-    let key = 1;
+   
     const [state, setState] = useState({
         hobbies: []
     })
@@ -56,9 +50,9 @@ const BusinessOwner = () => {
 
  {state.length !== undefined && <section className="cards">
      {state.map(hobby =>  
-        <a key={key++} className="card">
+         <a key={hobby.id} className="card">
         <div className="card_image-container">
-            <img  src={ImgThree} alt="Hobby picture" />
+            <img  src={hobby.profileImgUrl} alt="Hobby picture" />
         </div>
 
         <div   className="card_content">
@@ -67,10 +61,11 @@ const BusinessOwner = () => {
             </p>
             <div className="card_info">
                 <p  className="text_medium">Find out more...</p>
-                <p className="card_price text_medium">{hobby.price}</p>
+                <p className="card_price text_medium">{hobby.price} CHF</p>
             </div>
         </div>
-    </a>) 
+    </a>
+    ) 
  }
  </section>}
  </div>
@@ -79,9 +74,9 @@ const BusinessOwner = () => {
          <div className="introduction-home">
           <div className="intro-text">
           <p> You have no offers. Plase fill in the form and create a new offer:</p>
-                 <div className="cta">
-                             <button className="cta_add" ><a className="cta_second_s" href="/test">Create new Offer</a></button>
-                 </div>
+          <div className="cta">
+ <button className="cta_second_s" ><Link to='/create-offer' className="cta_second">Create new offer</Link></button>
+                             </div>
              </div>
          </div>
 

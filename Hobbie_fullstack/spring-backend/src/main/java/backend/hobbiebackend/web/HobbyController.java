@@ -84,13 +84,10 @@ public class HobbyController {
 //    }
 //
 //    @GetMapping("/remove-hobby/{id}")
-//    public String removeHobby(){
+//    public void removeHobby(@RequestParam(value = "id") Long id){
 //
-////            Hobby hobby = this.hobbyService.findHobbieById(id);
-////            this.hobbyService.removeHobbyForClient(hobby);
-////
-////            "isSaved", this.hobbyService.isHobbySaved(id));
-//            return "hobbie-details";
+//            Hobby hobby = this.hobbyService.findHobbieById(id);
+//            this.hobbyService.removeHobbyForClient(hobby);
 //
 //    }
 //

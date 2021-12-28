@@ -3,6 +3,7 @@ import axios from "axios"
 
 class AuthenticationService {
     
+    
 
 
     registerSuccessfulLoginBusiness(username){
@@ -57,7 +58,6 @@ class AuthenticationService {
 
      
 
-       //todo: DOES NOT UPDATE ON BROWSER REFRESH 
     //    setUpAxiosInterseptors(){
     //     console.log("Setting up interceptors.")
     //     let username = 'user';

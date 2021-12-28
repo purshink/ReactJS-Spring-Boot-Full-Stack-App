@@ -17,6 +17,7 @@ public class DBInit implements CommandLineRunner {
     private final HobbyService hobbyService;
     private final LocationService locationService;
 
+
     @Autowired
     public DBInit(UserService userService, CategoryService categoryService, HobbyService hobbyService, LocationService locationService) {
         this.userService = userService;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+
 
 
 const LoginService = (username, password) => {
@@ -12,10 +12,9 @@ const LoginService = (username, password) => {
              .then(res => {
                  if(res != null){
                      console.log(res);
-                  // () => res.redirect('/user-home')
                     return res;
                  }
-               }) .catch(err => {
+               }).catch(err => {
                  let error = '';
 
                  if(err.response){

@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 
 
@@ -15,7 +14,7 @@ const SignUpAppClientService = (user) => {
                   // () => res.redirect('/user-home')
                     return res;
                  }
-               }) .catch(err => {
+               }).catch(err => {
                  let error = '';
 
                  if(err.response){

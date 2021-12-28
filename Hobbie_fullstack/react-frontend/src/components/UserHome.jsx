@@ -1,17 +1,12 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
-import ImgTwo from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
 import ImgThree from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/3.jpg'
-import ImgFour from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/4.jpg'
-import ImgFive from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/5.jpg'
-import ImgSix from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/6.jpg'
 import HobbyDataService from '../api/hobby/HobbyDataService'
 import { useState, useLayoutEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 const UserHome = () => {
-    let key = 1;
+   
     const [state, setState] = useState({
         hobbies: []
     })
@@ -53,9 +48,9 @@ const UserHome = () => {
             
              {state.length !== undefined && <section className="cards">
                  {state.map(hobby =>  
-                    <a key={key++} className="card">
+                    <a to='/hobbie' className="card">
                     <div className="card_image-container">
-                        <img  src={ImgThree} alt="Hobby picture" />
+                        <img  src={hobby.profileImgUrl} alt="Hobby picture" />
                     </div>
             
                     <div   className="card_content">
@@ -64,7 +59,7 @@ const UserHome = () => {
                         </p>
                         <div className="card_info">
                             <p  className="text_medium">Find out more...</p>
-                            <p className="card_price text_medium">{hobby.price}</p>
+                            <p className="card_price text_medium">{hobby.price} CHF</p>
                         </div>
                     </div>
                 </a>) 

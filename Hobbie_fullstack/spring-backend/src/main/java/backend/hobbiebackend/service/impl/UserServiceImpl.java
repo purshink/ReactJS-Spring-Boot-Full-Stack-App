@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,6 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-//    private final PasswordEncoder passwordEncoder;
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService {
                            BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-//        this.passwordEncoder = passwordEncoder;
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
             AppClient user = new AppClient();
             user.setUsername("user");
             user.setEmail("n13@gmail.com");
-//            user.setPassword(this.passwordEncoder.encode("topsecret"));
+//            user.setPassword(this.passwordEncoder.encode("123"));
             user.setPassword("123");
             user.setRoles(List.of(userRole));
             user.setFullName("Nikoleta Doykova");
