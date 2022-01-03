@@ -35,10 +35,15 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void saveTestResults(Test results) {
-        this.testRepository.save(results);
+
 
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(results.getUsername());
+        if (currentUserAppClient.getTestResults() != null) {
+            results.setId(currentUserAppClient.getTestResults().getId());
+        }
+        this.testRepository.save(results);
         currentUserAppClient.setTestResults(results);
+
         Set<Hobby> hobbyMatches = this.hobbyService.findHobbyMatches(currentUserAppClient.getUsername());
         currentUserAppClient.setHobby_matches(hobbyMatches);
         this.userService.saveUpdatedUserClient(currentUserAppClient);

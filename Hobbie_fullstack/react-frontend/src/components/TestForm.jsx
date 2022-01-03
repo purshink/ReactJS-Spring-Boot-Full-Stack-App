@@ -3,11 +3,16 @@ import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend
 import TestResultsService from '../api/hobby/TestResultsService';
 import AuthenticationService from '../api/hobby/AuthenticationService';
 import { useState} from 'react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TestForm = () => {
 
 	let key = 1;
 	let username = AuthenticationService.getLoggedInUser();
+	let[loading, setLoading] = useState(true);
+	let navigate = useNavigate();
 
     const questions = [
 		{
@@ -95,7 +100,7 @@ const TestForm = () => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [test, setTest] = useState(	{
 		username: username,
-		location: "ZURICH"
+		// location: "ZURICH"
 
 });
 
@@ -115,14 +120,21 @@ const handleAnswerOptionClick = (answer) => {
 	setCurrentQuestion(nextQuestion)
 	if (nextQuestion === questions.length) {
 
- 		TestResultsService(test);
-		//  navigate("/user-home")
+		setLoading(false);
 	
-
+ 
 	} 
 };
 
-
+useEffect(() => {
+	const check_uploaded = () => {
+	  if (!loading) { 
+		TestResultsService(test);
+		
+	  }
+	}
+	check_uploaded()
+  }, [loading,test,navigate])
 
 
     return (
@@ -130,11 +142,11 @@ const handleAnswerOptionClick = (answer) => {
 		<div>
 		<div className="test-content">
         <div className='test-form'>
-		{currentQuestion === questions.length   &&  <span class="test-end">Thank you! Please visit your homepage to discover your new hobby!</span>  }
+		{currentQuestion === questions.length   &&  <div class="test-end">Thank you! Please visit your homepage to discover your new hobby! <button  type="submit" className="button submit-offer"><Link to='/user-home'className='link-home' >Discover</Link></button></div>
+		  }
         
           <>
                 <div className='question-section'>
-							{/* {currentQuestion === questions.length  && handleSubmit()}  */}
 		 {currentQuestion !== questions.length   &&     <div className='question-count'>
                         <span>Question {currentQuestion +1}</span>
                     </div>}
@@ -167,73 +179,3 @@ const handleAnswerOptionClick = (answer) => {
 }
 
 export default TestForm
-
-// let currentQuestion = 0;
-// const [test, setTest] = useState(	{
-// 	username: username,
-// 	// location: "Zurich"
-
-// });
-
-
-// const handleAnswerOptionClick = (answer) => {
-
-
-// // console.log(questions[currentQuestion].value);
-// // console.log(answer);
-
-
-
-// // setTest(test => ({...test,[questions[currentQuestion].value]: answer  }));
-
-
-// 	 // TestResultsService(test);
-// 	 console.log(test)
-// 	 navigate("/user-home")
-
-
-// } 
-// };
-
-
-// return (
-// 	<>
-// 	<div className="test-content">
-// 	<div className='test-form'>
-// 			<div className='question-section'>
-// 			{currentQuestion === questions.length  &&  <div className='question-count'>
-// 			<button  className="test-button" onClick={handleAnswerOptionClick()} >Submit</button>
-// 		 </div>} 
-// 			{currentQuestion !== questions.length &&  <div className='question-count'>
-// 					<span>Question {currentQuestion++}</span>
-// 				</div>}
-				
-// 				{currentQuestion !== questions.length && 
-// 				<div className='question-text'>{questions[currentQuestion++].questionText}</div>}
-
-// 			</div>
-// 			<div className='answer-section'>
-// { questions[currentQuestion].answerOptions.map((answerOption) => (
-// 						<button key={key++} className="test-button"  name= {answerOption.value} value={answerOption.category}
-// 						onChange={e => setTest({...test, [e.target.name] : e.target.value})} >{answerOption.answerText}</button>
-// 					))}
-// 			</div>
-	
-// 	</div>
-// </div>
-// <footer className="footer bg-transparent  py-2">
-// 	<div className="container-fluid text-center">
-// 		<div className="footer-background h5 text-white">
-// 			&copy; Hobbie 2021. All rights reserved.
-// 		</div>
-// 	</div>
-// 	</footer>
-// 	   <img className="blueImg3" src={blueImg} alt="blueImg3"/>
-// <img className="blueImg4" src={blueImg} alt="blueImg4"/>
-// <img className="blue" src={blueImg} alt="blue"></img>
-
-// </>
-// )
-
-
-// export default TestForm

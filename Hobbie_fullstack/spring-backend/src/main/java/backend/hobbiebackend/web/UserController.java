@@ -148,7 +148,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String logInUser(@RequestParam String username ) {
+    public String logInUser(@RequestParam String username) {
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()
                 .anyMatch(u-> u.getRole().equals(UserRoleEnum.USER))) {

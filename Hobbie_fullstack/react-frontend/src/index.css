@@ -1241,3 +1241,8 @@ b{
   #loadingDiv.text-center {
     margin: auto;
   }
+
+  .link-home{
+    color: white;
+    margin: auto;
+  }

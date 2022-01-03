@@ -60,6 +60,7 @@ const UserHome = () => {
                         <div className="card_info">
                             <p  className="text_medium">Find out more...</p>
                             <p className="card_price text_medium">{hobby.price} CHF</p>
+                          
                         </div>
                     </div>
                 </a>) 
@@ -70,7 +71,7 @@ const UserHome = () => {
              { welcomeDiv.showDiv && <div>
                      <div className="introduction-home">
                       <div className="intro-text">
-                      <p> You have no hobbie matches. Plase fill in the form and create a new offer:</p>
+                      <p> You have no hobby matches.</p>
                              <div className="cta">
                                          <button className="cta_second_s" ><Link to='/test' className="cta_second">Take the test</Link></button>
                              </div>
