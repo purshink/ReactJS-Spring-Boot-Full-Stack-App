@@ -37,14 +37,14 @@ function App() {
       <Route path='/account-user' element={<AccountUser/>}/>
       <Route path='/test'  element={<TestForm/>}/>
       <Route path='/my-hobbies'  element={<MyHobbies/>}/>
-      <Route path='/hobbie'  element={<Hobbie/>}/>
+      <Route path='/hobbie/:id'  element={<Hobbie/>}/>
       </Route>
 
    <Route element={<ProtectedRoutesBusiness/>}>
       <Route path='/business-owner' element={<BusinessOwner/>}/>
       <Route path='/account-business'  element={<AccountBusiness/>}/>
       <Route path='/create-offer'  element={<CreateOffer/>}/>
-      <Route path='/hobbie'  element={<Hobbie/>}/>
+      <Route path='/account-business'  element={<AccountBusiness/>}/>
       </Route>
    </Routes>
 

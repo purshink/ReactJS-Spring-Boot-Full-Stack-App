@@ -1,17 +1,26 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
-import ImgThree from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/3.jpg'
 import HobbyDataService from '../api/hobby/HobbyDataService'
 import { useState, useLayoutEffect} from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const UserHome = () => {
    
+    let navigate = useNavigate();
+
     const [state, setState] = useState({
         hobbies: []
     })
 
     const [welcomeDiv, setWelcomeDiv] = useState({showDiv: false})
+
+      const  handleSort = value => event => {
+          event.preventDefault();
+          let path = '/hobbie/' + value;
+          navigate(path, {state :{ id: value } } );
+      
+      }
 
 
     
@@ -48,7 +57,8 @@ const UserHome = () => {
             
              {state.length !== undefined && <section className="cards">
                  {state.map(hobby =>  
-                    <a to='/hobbie' className="card">
+
+                    <Link to='#' onClick={handleSort(hobby.id)} className="card" key={hobby.id} id={hobby.id}>
                     <div className="card_image-container">
                         <img  src={hobby.profileImgUrl} alt="Hobby picture" />
                     </div>
@@ -63,7 +73,7 @@ const UserHome = () => {
                           
                         </div>
                     </div>
-                </a>) 
+                </Link>) 
              }
              </section>}
              </div>

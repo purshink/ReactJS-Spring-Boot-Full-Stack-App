@@ -1,10 +1,56 @@
 import React from 'react'
 import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
 import hikingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/1.jpg'
+import { useState, useLayoutEffect} from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import HobbyDetailsDataService from '../api/hobby/HobbyDetailsDataService'
+import { useLocation } from 'react-router-dom'
 
 
 
-const Hobbie = () => {
+const Hobbie = (props) => {
+    let navigate = useNavigate();
+    let params = useParams();
+
+    const id  = params.id;
+  
+    const [hobby, setHobby] = useState({name: '',
+    slogan: '',
+    intro: '',
+    description: '',
+    price: '',
+    profileImgUrl : '',
+    galleryImgUrl1: '',
+    galleryImgUrl2: '',
+    galleryImgUrl3: '',
+    contactInfo: ''
+})
+
+    const [welcomeDiv, setWelcomeDiv] = useState({showDiv: false})
+    
+
+    
+    useLayoutEffect(() => {
+        let unmounted = false;
+
+        // Update the document using the browser API
+      
+        HobbyDetailsDataService(id).then(
+            response => {
+                if(!unmounted){
+                    setHobby(response.data);
+                    setWelcomeDiv({showDiv:false})
+             
+                }
+                if (!Object.keys(response.data).length){
+                    setWelcomeDiv({showDiv:true})
+                }
+                 })
+                 return () => { unmounted = true  };
+                 
+                }, []);
+    
 
     return (
 
@@ -12,10 +58,10 @@ const Hobbie = () => {
    <div className="hobbie-main" >
     <div className="hobbie-container">
     
-        <div className="hobbie-content">
+    {hobby !== undefined && <div className="hobbie-content">
         <div className="hobbie-cover"  >
-<img className="hobbie-cover" src={hikingImg} alt="hiking"/></div>
-            <div className="hobbie-content-body">
+            <img className="hobbie-cover" src={hobby.profileImgUrl} alt="hiking"/></div>
+             <div className="hobbie-content-body">
                 <div className="hobbie-pages">
                     <span className="hobbie-active"><b>01</b></span>
                     <span>02</span>
@@ -23,17 +69,9 @@ const Hobbie = () => {
                     <span>04</span>
                 </div>
                 <div className="hobbie-lable">
-                    <span className="hobbie-title"><b>Title</b></span>
+                    <span className="hobbie-title"><b>{hobby.name}</b></span>
                     <p >
-                        Bouldering at an indoors bouldering centre in Pasila, Helsinki, Finland
-                        Climbing activities include:
-                        Bouldering: Ascending boulders or small outcrops, often with climbing shoes and a chalk bag or bucket. Usually, instead of using a safety rope from above, injury is avoided using a crash pad and a human spotter (to direct a falling climber on to the pad. They can also give beta, or advice)[2]
-                        Buildering: Ascending the exterior skeletons of buildings, typically without protective equipment.
-                        Canyoneering: Climbing along canyons for sport or recreation.
-                        Chalk climbing: Ascending chalk cliffs uses some of the same techniques as ice climbing.
-                        Competition climbing: A formal, competitive sport of recent origins, normally practiced on artificial walls that resemble natural formations. The International Federation of Sport Climbing (IFSC) is the official organization governing competition rock climbing worldwide and is recognized by the IOC and GAISF and is a member of the International World Games Association (IWGA). The UIAA is the official organization governing competition ice climbing worldwide. Competition climbing has three major disciplines: Lead, Bouldering and Speed.
-
-                        Pole climbing: Climbing poles and masts without equipment. </p>
+                      {hobby.description} </p>
                     <div className="prix">
             
 
@@ -45,13 +83,20 @@ const Hobbie = () => {
 
                 </div>
             </div>
-        </div>
-        </div>
+        </div>}
+        </div> 
        
+        { welcomeDiv.showDiv && <div>
+                     <div className="introduction-home">
+                      <div className="intro-text">
+                      <p> This hobby does not exist.</p>
+                         </div>
+                     </div>
+            
+                 </div>}
 
-
-<img class="blueImg3" src={blueImg} alt="blueImg"/>
-<img class="blueImg4" src={blueImg} alt="blueImg"/>
+<img className="blueImg3" src={blueImg} alt="blueImg"/>
+<img className="blueImg4" src={blueImg} alt="blueImg"/>
 <footer className="footer-hobbie bg-transparent  py-2">
         <div className="container-fluid text-center">
             <div className="footer-background h5 text-white">

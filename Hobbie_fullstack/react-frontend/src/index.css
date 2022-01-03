@@ -889,7 +889,8 @@ textarea{ font-family: 'Poppins', sans-serif;}
 }
 
 .hobbie-cover{
-  width: 500px;
+  margin: 20px auto;
+  width:550px;
   height: 750px;
   /* grid-area: cover; */
 

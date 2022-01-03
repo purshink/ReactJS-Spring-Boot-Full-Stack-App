@@ -48,18 +48,17 @@ public class HobbyController {
         this.hobbyService.createHobby(offer);
 
     }
-//
-//    @GetMapping("/hobbie-details/{id}")
-//    public String getHobbyDetails(){
-//
-////            Hobby hobby = this.hobbyService.findHobbieById(id);
-//
-////          "isSaved", this.hobbyService.isHobbySaved(id));
-//
-//
-//            return "hobbie-details-by-id";
-//
-//    }
+
+    @GetMapping(value ="/hobbie-details/{id}")
+    public Hobby getHobbyDetails(@PathVariable Long id){
+
+//          "isSaved", this.hobbyService.isHobbySaved(id));
+
+
+            return this.hobbyService.findHobbieById(id);
+
+
+    }
 //
 //    @GetMapping("/offer-details/{id}")
 //    public String showOffer(){

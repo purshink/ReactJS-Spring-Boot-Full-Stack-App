@@ -168,7 +168,7 @@ public class HobbyServiceImpl implements HobbyService {
             yoga.setCategory(this.categoryService.findByName(CategoryNameEnum.RELAX));
             yoga.setCreator("business");
             yoga.setPrice(new BigDecimal("52.40"));
-            yoga.setProfileImgUrl("https://res.cloudinary.com/dv6ktrxwv/image/upload/v1640706607/i5gfpc0gesnyp4whkvul.jpg");
+            yoga.setProfileImgUrl("https://res.cloudinary.com/dv6ktrxwv/image/upload/v1640762666/eflbtmfo49w5bxqhagna.jpg");
             yoga.setLocation(this.locationService.getLocationByName(LocationEnum.ZURICH));
             offers.add(yoga);
             this.hobbyRepository.save(yoga);

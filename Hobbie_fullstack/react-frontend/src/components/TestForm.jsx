@@ -4,7 +4,6 @@ import TestResultsService from '../api/hobby/TestResultsService';
 import AuthenticationService from '../api/hobby/AuthenticationService';
 import { useState} from 'react'
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const TestForm = () => {
@@ -12,7 +11,7 @@ const TestForm = () => {
 	let key = 1;
 	let username = AuthenticationService.getLoggedInUser();
 	let[loading, setLoading] = useState(true);
-	let navigate = useNavigate();
+
 
     const questions = [
 		{
@@ -134,7 +133,7 @@ useEffect(() => {
 	  }
 	}
 	check_uploaded()
-  }, [loading,test,navigate])
+  }, [loading,test])
 
 
     return (
