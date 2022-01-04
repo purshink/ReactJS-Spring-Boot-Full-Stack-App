@@ -17,6 +17,8 @@ code {
 }
 
 
+
+
 .testBody{
   font-family: 'Poppins', sans-serif;
   height: 135vh;
@@ -530,10 +532,21 @@ input[type=checkbox]:checked:after {
   width: 100%;
 }
 
+.footer-hobbie-details  {
+  position: absolute;
+  bottom: -130px;
+  left: 240px;
+  background:transparent;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+  zoom: 1;
+  margin: 0 auto;
+  width: 90%;
+  color: #494969;
+}
 
 .footer {
   position:absolute;
-  bottom:0;
+  bottom:0px;
   background:transparent;
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
   zoom: 1;
@@ -860,6 +873,8 @@ textarea{ font-family: 'Poppins', sans-serif;}
 
 .hobbie-main {
   margin:  auto 100px;
+
+
 }
 .account-main{
   width: 50%;
@@ -868,12 +883,14 @@ textarea{ font-family: 'Poppins', sans-serif;}
 .hobbie-container{
   padding: 60px;
   width: 90%;
+  height: 1000px;
   margin: auto;
   display: flex;
   /* display: grid;
   grid-template-columns: 40% 60%;
   grid-template-areas: "cover content"; */
   box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
+  position: relative;
 
 
 }
@@ -889,9 +906,9 @@ textarea{ font-family: 'Poppins', sans-serif;}
 }
 
 .hobbie-cover{
-  margin: 20px auto;
+
   width:550px;
-  height: 750px;
+  height: auto;
   /* grid-area: cover; */
 
   /* background-image: url();
@@ -909,14 +926,13 @@ textarea{ font-family: 'Poppins', sans-serif;}
 }
 
 .hobbie-content{
-  grid-area: content;
-  height:auto;
+  height:100%;
+  width: 100%;
   
   background-color: #fefefe;
   display: flex;
+  flex-wrap: 2 1 ;
 
-  align-content: center;
-  justify-content: space-between;
 
 }
 
@@ -930,9 +946,14 @@ textarea{ font-family: 'Poppins', sans-serif;}
 
 .hobbie-content-body{
   display: flex;
-  flex-direction: row;
-  padding-top: 60px;
+  flex-wrap: 0;
+  width: 100%;
+  flex:1 2 auto;
+  padding: 30px;
   padding-bottom: 10px;
+ 
+ 
+
 }
 
 .account-content-body{
@@ -941,7 +962,7 @@ textarea{ font-family: 'Poppins', sans-serif;}
 
 
 .hobbie-pages{
-  width: 150%;
+
   height: 40%;
   display: flex;
   color:gray;
@@ -951,6 +972,10 @@ textarea{ font-family: 'Poppins', sans-serif;}
   /* position: relative; */
   transform: translateY(38px);
   margin-top: 70px;
+  margin-left: 20px;
+  margin-right: 40px;
+  cursor: pointer;
+  padding: 10px;
 
 }
 
@@ -958,16 +983,21 @@ textarea{ font-family: 'Poppins', sans-serif;}
   margin-top: 40px;
 
 }
-.hoobie-lable{
-  width: 80%  ;
+.hobbie-lable{
+  width: 100%;
+  height: auto;
+
+
 }
 
 .hobbie-lable p {
+  
   padding-top: 40px;
   font-size: 16px;
   width: 85%;
   color: gray;
   padding-bottom: 10px;
+  /* position: relative; */
 }
 
 .hobbie-title{
@@ -986,13 +1016,18 @@ textarea{ font-family: 'Poppins', sans-serif;}
 
 .prix{
   margin: 50px 0px;
-  width: 45%;
+  /* width: 65%; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   border-left: 4px solid rgb(255,177,33);
   background: linear-gradient(to right, #494969,#696989);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: absolute;
+  left: 750px;
+  bottom: 80px;
+ 
+
 
 }
 .account-buttons{
@@ -1019,7 +1054,10 @@ textarea{ font-family: 'Poppins', sans-serif;}
   background: linear-gradient(to right, #494969,#696989);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: bold;  
 }
+
+
 .hobbie-active::before{
   position: absolute;
   content: "";
@@ -1028,7 +1066,7 @@ textarea{ font-family: 'Poppins', sans-serif;}
   right: 137%;
   top: 45%;
   background-color: #555;
-
+  cursor: pointer;
   min-height: 1px;
   z-index: 1;
 }
@@ -1056,6 +1094,16 @@ b{
   margin: auto;
 }
 
+  .slogan {
+    color: rgb(247, 199, 110);
+    background: linear-gradient(to right, #6b6b88,#696989);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: none;
+    position: relative;
+    bottom:10px;
+    width: 80%;
+  }
 
   .account-label p {
 
@@ -1067,6 +1115,7 @@ b{
 }
   .hobbie-lable p {
       white-space:pre-wrap;
+      
   }
 
   .edit-offer{   color: rgb(255,177,33);
@@ -1247,3 +1296,64 @@ b{
     color: white;
     margin: auto;
   }
+  
+
+  /* GALLERY */
+
+  .gallery{
+    /* overflow: hidden; */
+
+    width: 1000px;
+    margin: 50px auto;
+    margin-left: 100px;
+     position: relative;
+     top: 100px;
+     left: -50px;
+
+  }
+
+.gallery__photo{
+  overflow: hidden;
+  margin: 5px;
+  width: 250px;
+  height: 250px;
+  border-radius: 2px;
+  box-shadow: 0 20px 20px rgba(87, 85, 85, 0.75);
+  object-fit: cover;
+  position: absolute;
+  z-index: 10;
+  outline-offset: 20px;
+  transition: all 0.2s;
+  display: inline;
+}
+.gallery__photo:hover{
+  outline: 15px solid #26c6f7;
+  transform: scale(1.05) translateY(-20px);
+  z-index: 20;
+
+}
+
+.gallery__photo--1{
+  top:0;
+  left: 0;
+}
+.gallery__photo--2{
+  top:0;
+  right: 0;
+  z-index: 1;
+}
+.gallery__photo--3{
+  top:40px;
+  left: 20%;
+}
+
+.gallery__photo--4{
+  top: 60px;
+  left: 40%;
+}
+
+.gallery__photo--5{
+  top: 40px;
+  left: 60%;
+  z-index: 2;
+}

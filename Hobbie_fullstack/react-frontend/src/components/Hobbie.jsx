@@ -14,6 +14,7 @@ const Hobbie = (props) => {
     let params = useParams();
 
     const id  = params.id;
+    const [currentPage, setCurrentPage] = useState('01');
   
     const [hobby, setHobby] = useState({name: '',
     slogan: '',
@@ -51,6 +52,10 @@ const Hobbie = (props) => {
                  
                 }, []);
     
+               const changePage =(page)=> {
+                   setCurrentPage(page);
+                }
+    
 
     return (
 
@@ -59,29 +64,48 @@ const Hobbie = (props) => {
     <div className="hobbie-container">
     
     {hobby !== undefined && <div className="hobbie-content">
-        <div className="hobbie-cover"  >
-            <img className="hobbie-cover" src={hobby.profileImgUrl} alt="hiking"/></div>
+      {currentPage !== '03' &&  <div className="hobbie-cover"  >
+            <img className="hobbie-cover" src={hobby.profileImgUrl} alt="hiking"/></div>}
              <div className="hobbie-content-body">
                 <div className="hobbie-pages">
-                    <span className="hobbie-active"><b>01</b></span>
-                    <span>02</span>
-                    <span>03</span>
-                    <span>04</span>
+                    <span onClick={() =>changePage('01')} className={currentPage === '01' ? "hobbie-active" : ""} >01</span>
+                    <span onClick={() =>changePage('02')} className={currentPage === '02' ? "hobbie-active" : ""}>02</span>
+                    <span onClick={() =>changePage('03')} className={currentPage === '03' ? "hobbie-active" : ""}>03</span>
+                    <span onClick={() =>changePage('04')} className={currentPage === '04' ? "hobbie-active" : ""}>04</span>
                 </div>
-                <div className="hobbie-lable">
-                    <span className="hobbie-title"><b>{hobby.name}</b></span>
-                    <p >
-                      {hobby.description} </p>
-                    <div className="prix">
-            
-
+               <div className="hobbie-lable">
+              
+               <span className="hobbie-title"><b>{hobby.name}</b></span>
+               <h4 className='slogan'> {hobby.slogan} </h4>
+               {currentPage === '01'&& <div>
+                    
+                   <p> {hobby.intro} </p>
+                   </div>}
+                   {currentPage === '02'&& <div>
+                   <p> {hobby.description} </p>
+                   </div>}
+                   {currentPage === '03'&& 
+                    <div class="gallery">
+                        <img  src={hobby.galleryImgUrl1}className="gallery__photo gallery__photo--1" alt="photo-1"/>
+                        <img  src={hobby.galleryImgUrl2}className="gallery__photo gallery__photo--2" alt="photo-2"/>
+                        <img  src={hobby.galleryImgUrl3}className="gallery__photo gallery__photo--3" alt="photo-3"/>
+                        <img  src={hobby.galleryImgUrl1}className="gallery__photo gallery__photo--4" alt="photo-1"/>
+                        <img  src={hobby.galleryImgUrl2}className="gallery__photo gallery__photo--5" alt="photo-2"/>
                        
-                            <span ><a  className="add-crt-edit">Remove</a></span>
-                            <span ><a className="add-crt-edit" >Save</a></span>
-                      
                     </div>
 
+                  }
+                   
+                   {currentPage === '04'&& <div>
+                   
+                   <p> {hobby.contactInfo} </p>
+                   </div>}
+                   {currentPage !== '03' && <div className="prix">
+                            <span ><a  className="add-crt-edit">Remove</a></span>
+                            <span ><a className="add-crt-edit" >Save</a></span>
+                    </div>} 
                 </div>
+                 
             </div>
         </div>}
         </div> 
@@ -97,7 +121,7 @@ const Hobbie = (props) => {
 
 <img className="blueImg3" src={blueImg} alt="blueImg"/>
 <img className="blueImg4" src={blueImg} alt="blueImg"/>
-<footer className="footer-hobbie bg-transparent  py-2">
+<footer className="footer-hobbie-details">
         <div className="container-fluid text-center">
             <div className="footer-background h5 text-white">
                 &copy; Hobbie 2021. All rights reserved.

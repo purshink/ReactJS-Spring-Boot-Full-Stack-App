@@ -135,7 +135,7 @@ const SignUp = () => {
         checked={checked === "male"}  
         type="checkbox" id="checkbox1" />
             <label  className="checkbox" htmlFor="checkbox1">Male</label>
-            <input   onClick={() =>setCheckBoxChecked("female")} onChange={e => setInfo({...info, gender : "FEMALE"})}
+            <input onClick={() =>setCheckBoxChecked("female")} onChange={e => setInfo({...info, gender : "FEMALE"})}
         checked={checked === "female"}
                 type="checkbox"  id="checkbox2" />
             <label className="checkbox" htmlFor="checkbox1">Female</label>

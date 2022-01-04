@@ -100,10 +100,11 @@ public class Hobby extends BaseEntity{
         this.slogan = slogan;
     }
 
+    @Column(columnDefinition = "TEXT")
     public String getIntro() {
         return intro;
     }
-    @Column(name = "intro")
+
     public void setIntro(String intro) {
         this.intro = intro;
     }
