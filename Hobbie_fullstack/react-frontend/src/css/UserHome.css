@@ -1,0 +1,229 @@
+.hobby_details_page{
+    position: relative;
+  }
+
+.hobbie-main {
+    margin:  auto 100px;
+  }
+
+.hobbie-container-home{
+    padding: 60px;
+    width: 70%;
+    height: auto;
+    margin: auto auto 50px auto;
+    box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
+    position: relative;
+  }
+
+  .hobbie-home-content{
+    height:100%;
+    width: 100%;
+    background-color: #fefefe;
+  }
+
+  .user_home{
+    display:grid;
+    grid-template-columns: 1fr repeat(11, minmax(auto, 60px)) 1fr;
+    grid-gap: 40px;
+    padding: 30px 0px ;
+  }
+
+  .cards{
+    grid-column: 2/ span 11;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(auto, 60px));
+    position: relative;
+    grid-gap: 20px;
+    margin: auto;
+  }
+
+  .card{
+    grid-column-end: span 4;
+    display:  flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.5 ease 0s;
+    background: linear-gradient(to right, #494969,#696989);
+    width: auto;
+  }
+
+  .card_image-container{
+    padding-top: 56.25%;
+    overflow: hidden;
+    position: relative;
+  }
+  .card_image-container img{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .text_medium{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color:white   ;
+  }
+  
+  .card_content{
+    padding: 20px;
+  }
+  
+  .card_title{
+    margin-bottom: 20px;
+  }
+  .card_info{
+    display: flex;
+    align-self: end;
+    align-items: center;
+  }
+  .card_price{
+    margin-left:auto;
+    padding: 5px, 20px;
+    
+    font-size: 16px;
+  
+  }
+  
+  .card:hover{
+    transform: translateY(-7px);
+  }
+
+  .introduction-home {
+    margin: auto;
+    width: 50%;
+    align-items: center;
+  }
+
+  .intro-text h1{
+    font-size: 44px;
+    font-weight: 900;
+    background: linear-gradient(to right, #494969,#696989);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .intro-text p {
+    margin-top: 5px;
+    font-size: 22px;
+    color: #585772;
+  }
+
+  /* .cta */
+.buttuns {
+    padding: 50px 0px 0px 0px;
+  }
+  /* .cta_second */
+.btn{
+    border: 2px solid #c36cbb;
+    background:  #c36cbb;
+    color: white;
+    width: 150px;
+    height: 50px;
+    cursor: pointer ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+  }
+
+  /* .cta_second_s */
+.link {
+    color: #c36cbb;
+    background:  #c36cbb;
+    width: 150px;
+    height: 50px;
+    cursor: pointer ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border: 2px solid #c36cbb;
+  } 
+  
+  
+
+
+@media only screen and (max-width: 1590px) {
+    .discover {
+  
+      padding-top: 30px;
+      margin-left: 40px;
+    }
+    
+    .user_home{
+      grid-gap: 20px;
+  }
+  .nav-links{display: none;}
+  .cards{ margin: auto;
+    grid-template-columns: repeat(12, minmax(auto, 60px));}
+  .card{grid-column-end: span 6;}
+  
+  }
+  
+  
+  @media only screen and (max-width: 1155px) {
+    .user_home{
+      grid-template-columns: 10px repeat(6, 1fr) 10px;
+      grid-gap: 10px;
+  }
+  
+  .cards{
+      margin: auto;
+      grid-column: 2/ span 6;
+      grid-template-columns: repeat(6,1fr);
+      grid-gap: 20px;
+     
+   
+  }
+  .card{
+    width: 350px;
+    grid-column-end: span 6;
+    margin: auto;
+  
+  }
+  }
+  
+  
+  @media only screen and (max-width: 948px) { 
+    .user_home{
+        grid-template-columns: 10px repeat(6, 1fr) 10px;
+        grid-gap: 10px;
+    }
+    .nav-links{display: none;}
+    .cards{
+        margin: auto;
+        grid-column: 2/ span 6;
+        grid-template-columns: repeat(6,1fr);
+        grid-gap: 20px;
+    }
+    .card{
+      width: 300px;
+      height: 100%;
+      font-size: auto;
+      /* grid-column-end: span 6; */
+      margin: auto;
+    }
+  } 
+  
+  
+  @media only screen and (max-width: 800px) { 
+    .user_home{
+        grid-template-columns: 10px repeat(6, 1fr) 10px;
+        grid-gap: 10px;
+    }
+    .nav-links{display: none;}
+    .cards{
+        margin: auto;
+        grid-column: 2/ span 6;
+        grid-template-columns: repeat(6,1fr);
+        grid-gap: 20px;
+    }
+    .card{
+      width: 300px;
+      height: 100%;
+      font-size: auto;
+      /* grid-column-end: span 6; */
+      margin: auto;
+    }
+  } 
+
+  

@@ -11,16 +11,16 @@ const OffersDataService = () => {
     let axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            
-            'Authorization' : basicAuthHeader,
+
+            'Authorization': basicAuthHeader,
         }
-      };
+    };
     let username = AuthenticationService.getLoggedInUser();
-        return (
-     
-            axios.get(`http://localhost:8080/business-owner/${username}`, axiosConfig)
-        )
-   
+    return (
+
+        axios.get(`http://localhost:8080/business-owner/${username}`, axiosConfig)
+    )
+
 
 }
 

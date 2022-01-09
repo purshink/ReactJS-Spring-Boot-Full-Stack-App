@@ -1,0 +1,167 @@
+/* .coBody */
+.offer_body{
+    font-family: 'Poppins', sans-serif;
+    height: auto;
+  }
+
+  /* .offer_body */
+  .offer_main{
+    margin: auto;
+    background: linear-gradient(to right,#696989, #dcdce6);
+    color: white;
+    width: 50%;
+    min-height: 500px;
+    height: min-content;
+    border-radius: 15px;
+    padding: 80px;
+    box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
+  }
+
+  .create_offer{
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+
+  .title_offer{
+    color: white;
+    margin-bottom: 50px;
+    margin: auto;
+  }
+
+  .form-offer{
+    width: 100%;
+  }
+
+  .offer-row{
+    width: 100%;
+  }
+  
+  .form-field-photos{
+    display: flex;
+    margin-top: 30px;
+  }
+
+  .row_upload{
+    padding-top: 10px;
+  }
+
+
+.form-field input:focus + .label-name  .content-name,
+.form-field input:valid + .lable-name .content-name{
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #5fa8d3;
+}
+
+.form-field input:focus + .label-name::after,
+.form-field input:valid + .label-name::after{
+  transform: translateX(0%);
+}
+
+.button3 {
+    margin-top: 15px;
+    border: 1px solid white;
+    border-radius: 15%;
+    width: 200px;
+    overflow: hidden;
+}
+
+.choose-file{
+    padding-left: 18%;
+    position: relative;
+    top: 10px;
+  }
+
+.errors_offer{
+    font-size: 14px;
+    color: #c24564;
+    margin-left: 5px;
+    margin-top: 10px;
+    float: right;
+  }
+
+  .form-field2{
+    margin: 20px 0 20px 0;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .form-field2 .h_n{
+    background-color: white;
+    padding: 20px 20px 20px 20px;
+    content: " ";
+    background-color: #fff;
+    display: inline-block;
+    color: #595f6e;
+    width: 100%;
+    visibility: visible;
+    border: 1px solid white;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+
+  .custom-select select {
+    display: none; 
+  }
+  .custom-select option {
+    margin-right: 10px;
+  }
+  .custom-select{
+    padding: 5px;
+    font-size: 16px;
+    height: 34px;
+    background: url(/home/nix/my-app/src/img/down-arrow.png) no-repeat right #ddd;
+    -webkit-appearance: none;
+    background-position: bottom 15px right 20px;
+    content: " ";
+    background-color: #fff;
+    display: inline-block;
+    padding: 15px;
+    color:   #595f6e;
+    height: 60px;
+    visibility: visible;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+    padding-right: 10%;
+  }
+  
+  .custom-select select{
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    background-color: #2f922f;
+  }
+
+  .submit-offer{
+    padding: 10px 10px 10px 10px;
+  content: " ";
+  font-size: 1em;
+  background-color: transparent;
+  display: inline-block;
+  margin-left: 10px;
+  color: white;
+  width: 100px;
+  height: 50px;
+  visibility: visible;
+  border: 1px solid white;
+  padding-left: 3px;
+  border-radius: 5px;
+  margin-bottom: 60px;
+    margin-top: 30px;
+  }     
+
+
+input[type="file"] {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor:pointer
+  }
+
+textarea{ font-family: 'Poppins', sans-serif;}

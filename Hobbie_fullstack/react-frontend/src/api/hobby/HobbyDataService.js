@@ -6,21 +6,21 @@ import AuthenticationService from './AuthenticationService';
 const HobbyDataService = () => {
     let username = AuthenticationService.getLoggedInUser();
 
-let username1 = 'user';
-let password = '123';
-let basicAuthHeader = 'Basic ' + window.btoa(username1 + ":" + password);
+    let username1 = 'user';
+    let password = '123';
+    let basicAuthHeader = 'Basic ' + window.btoa(username1 + ":" + password);
     let axiosConfig = {
-      headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          "Access-Control-Allow-Origin": "*",
-          'Authorization' : basicAuthHeader,
-      }
-    };  
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            'Authorization': basicAuthHeader,
+        }
+    };
 
-         return (
-     
-            axios.get(`http://localhost:8080/user-home/${username}`,axiosConfig)
-         )
+    return (
+
+        axios.get(`http://localhost:8080/user-home/${username}`, axiosConfig)
+    )
 
 
 }

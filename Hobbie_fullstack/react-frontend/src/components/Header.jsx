@@ -1,15 +1,14 @@
-import React from "react"; 
+import React from "react";
 import Logo from "./Logo"
 
 import Navbar from "./Navbar"
 
 const Header = () => {
 
-    return ( 
-            <div className="header">
-            <Logo/>
-           
-            <Navbar/>
+    return (
+        <div className="header">
+            <Logo />
+            <Navbar />
         </div>
     )
 }
@@ -17,4 +16,3 @@ const Header = () => {
 export default Header
 
 
-//rafce

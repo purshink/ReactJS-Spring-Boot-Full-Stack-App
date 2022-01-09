@@ -45,6 +45,7 @@ function App() {
       <Route path='/account-business'  element={<AccountBusiness/>}/>
       <Route path='/create-offer'  element={<CreateOffer/>}/>
       <Route path='/account-business'  element={<AccountBusiness/>}/>
+      <Route path='/offer/:id'  element={<Hobbie/>}/>
       </Route>
    </Routes>
 

@@ -1,0 +1,55 @@
+.presentation {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    min-height: 80vh;
+    align-items: center;
+  }
+
+.introduction {
+    width: 50%;
+    align-items: center;
+  }
+
+.intro-text h1{
+    font-size: 44px;
+    font-weight: 900;
+    background: linear-gradient(to right, #494969,#696989);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+.intro-text p {
+    margin-top: 5px;
+    font-size: 22px;
+    color: #585772;
+  }
+
+  /* .cta */
+.buttons {
+    padding: 50px 0px 0px 0px;
+  }
+
+  /* .cta_second */
+ .btn-first{
+    border: 2px solid #c36cbb;
+    background:  #c36cbb;
+    color: white;
+    width: 150px;
+    height: 50px;
+    cursor: pointer ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+  }
+
+  /* .btn-second {
+    border: 2px solid #c36cbb;
+    background: transparent;
+    color: #c36cbb;
+    width: 150px;
+    height: 50px;
+    cursor: pointer ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    margin: 30px 30px 0px 0px;
+  } */

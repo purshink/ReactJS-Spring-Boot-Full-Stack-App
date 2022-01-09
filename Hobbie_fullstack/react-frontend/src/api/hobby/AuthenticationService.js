@@ -2,43 +2,42 @@ import axios from "axios"
 
 
 class AuthenticationService {
-    
-    
 
+    registerSuccessfulLoginBusiness(username) {
 
-    registerSuccessfulLoginBusiness(username){
-    
         sessionStorage.setItem('authenticatedUser', username)
         sessionStorage.setItem('role', 'business')
         console.log('Successful login')
- 
+
     }
-    registerSuccessfulLoginUser(username){
-    
+
+    registerSuccessfulLoginUser(username) {
+
         sessionStorage.setItem('authenticatedUser', username)
         sessionStorage.setItem('role', 'user')
         console.log('Successful login')
-     
+
     }
 
 
-    logout(){
-     sessionStorage.clear();
-     window.location.reload(false)
+    logout() {
+        sessionStorage.clear();
+        window.location.reload(false)
     }
 
-    isUserLoggedIn(){
+    isUserLoggedIn() {
         let role = sessionStorage.getItem('role');
-        if (role !== 'user'){
+        if (role !== 'user') {
             return false;
         }
         else {
             return true;
         }
     }
-    isBusinessLoggedIn(){
+    
+    isBusinessLoggedIn() {
         let role = sessionStorage.getItem('role');
-        if (role !== 'business'){
+        if (role !== 'business') {
             return false;
         }
         else {
@@ -46,28 +45,28 @@ class AuthenticationService {
         }
     }
 
-    getLoggedInUser(){
+    getLoggedInUser() {
         let username = sessionStorage.getItem('authenticatedUser');
-        if (username == null){
+        if (username == null) {
             return '';
         }
         else {
             return username;
         }
-       }
+    }
 
-     
+
 
     //    setUpAxiosInterseptors(){
     //     console.log("Setting up interceptors.")
     //     let username = 'user';
     //     let password = '123';
     //     let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
-        
-     
-        
+
+
+
     //     axios.interceptors.request.use(
-          
+
     //             (config) => {
     //                 if(this.isUserLoggedIn){
     //                 config.headers['Authorization'] = basicAuthHeader;
@@ -78,10 +77,10 @@ class AuthenticationService {
     //         )
     //    }
 
-       
 
-    
+
+
 }
 
 
-export default  new AuthenticationService()
+export default new AuthenticationService()

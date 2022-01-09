@@ -5,7 +5,7 @@ const HomeService = () => {
 
     return (
         axios.get('http://localhost:8080/')
-      
+
     )
 }
 

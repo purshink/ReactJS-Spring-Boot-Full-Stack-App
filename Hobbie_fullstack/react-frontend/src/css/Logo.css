@@ -1,0 +1,17 @@
+.logo-container{
+    display:flex;
+  }
+  
+  .logo {
+    font-weight: 400px;
+    margin: 1px;
+    color: #494969;
+  }
+
+  .imgHeader{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 30px;
+    padding: 0%;
+    margin: 0%;
+  }

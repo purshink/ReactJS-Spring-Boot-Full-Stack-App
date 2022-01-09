@@ -1,0 +1,32 @@
+.blueImg3{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    color: #494969;
+    z-index: -1;
+    opacity: 0.2;
+  }
+
+  .blueImg4{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    bottom: 0px;
+    height: 100%;
+    color: #494969;
+    z-index: -1;
+    opacity: 0.1;
+  }
+  
+  .blue {
+    opacity: 0.0;
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 100%;
+  }
