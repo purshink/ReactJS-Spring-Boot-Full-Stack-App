@@ -1,14 +1,23 @@
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import AuthenticationService from '../api/hobby/AuthenticationService'
+import FooterHome from './FooterHome'
+import BackgroundHome from './BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import HobbyDetailsDataService from '../api/hobby/HobbyDetailsDataService'
 import useMediaQuery from '../hooks/useMediaQuery'
+import styles from '../css/Hobbie.module.css'
+import '@ionic/react/css/core.css';
+import { IonIcon } from '@ionic/react';
+import {expand} from 'ionicons/icons';
+
 
 
 
 const Hobbie = () => {
+    const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+    const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
     let navigate = useNavigate();
     let params = useParams();
 
@@ -64,74 +73,87 @@ const Hobbie = () => {
 
     return (
 
-        <div className='hobby_details_page'>
+        <div className={styles.hobby_details_page}>
 
-            <img className="blueImg3" src={blueImg} alt="blueImg" />
-            <img className="blueImg4" src={blueImg} alt="blueImg" />
+            <BackgroundHome />
 
-            <div className={isColumnBasedSmall ? "hobbie-main-small" : "hobbie-main"}>
-                {isColumnBasedSmall && <div> <span className="hobbie-title-small"><b>{hobby.name}</b></span> <h4 className='slogan-small'> {hobby.slogan} </h4></div>}
-                <div className={isColumnBasedSmall ? "hobbie-container-small" : "hobbie-container"}>
+            <div className={isColumnBasedSmall ? styles.hobbie_main_small : styles.hobbie_main}>
+                {isColumnBasedSmall && <div> <span className={styles.hobbie_title_small}><b>{hobby.name}</b></span> <h4 className={styles.slogan_small}> {hobby.slogan} </h4></div>}
+                <div className={isColumnBasedSmall ? styles.hobbie_container_small : styles.hobbie_container}>
 
-                    {hobby !== undefined && <div className={isColumnBasedSmall ? "hobbie-content-small" : "hobbie-content"}>
-                        {currentPage !== '03' && <div className="hobbie-cover"  >
-                            <img className="hobbie-cover" src={hobby.profileImgUrl} alt="hiking" /></div>}
-                        <div className={isColumnBasedSmall ? "hobbie-content-body-samll" : "hobbie-content-body"}>
+                    {hobby !== undefined && <div className={isColumnBasedSmall ? styles.hobbie_content_small : styles.hobbie_content}>
+                        {currentPage !== '03' && <div className={styles.hobbie_cover}  >
+                            <img className={styles.hobbie_cover} src={hobby.profileImgUrl} alt="hiking" /></div>}
+                        <div className={isColumnBasedSmall ? styles.hobbie_content_body_samll : styles.hobbie_content_body}>
 
-                            {!isColumnBasedSmall && <div className="hobbie-pages">
-                                <span onClick={() => changePage('01')} className={currentPage === '01' ? "hobbie-active" : ""} >01</span>
-                                <span onClick={() => changePage('02')} className={currentPage === '02' ? "hobbie-active" : ""}>02</span>
-                                <span onClick={() => changePage('03')} className={currentPage === '03' ? "hobbie-active" : ""}>03</span>
-                                <span onClick={() => changePage('04')} className={currentPage === '04' ? "hobbie-active" : ""}>04</span>
+                            {!isColumnBasedSmall && <div className={styles.hobbie_pages}>
+                                <span onClick={() => changePage('01')} className={currentPage === '01' ? styles.hobbie_active : ""} >01</span>
+                                <span onClick={() => changePage('02')} className={currentPage === '02' ? styles.hobbie_active : ""}>02</span>
+                                <span onClick={() => changePage('03')} className={currentPage === '03' ? styles.hobbie_active : ""}>03</span>
+                                <span onClick={() => changePage('04')} className={currentPage === '04' ? styles.hobbie_active : ""}>04</span>
                             </div>}
 
-                            {isColumnBasedSmall && <div className="hobbie-pages-horizontal">
-                                <span onClick={() => changePage('01')} className={currentPage === '01' ? "hobbie-active-small" : "hobbie-small"} >01</span>
-                                <span onClick={() => changePage('02')} className={currentPage === '02' ? "hobbie-active-small" : "hobbie-small"}>02</span>
-                                <span onClick={() => changePage('03')} className={currentPage === '03' ? "hobbie-active-small" : "hobbie-small"}>03</span>
-                                <span onClick={() => changePage('04')} className={currentPage === '04' ? "hobbie-active-small" : "hobbie-small"}>04</span>
+                            {isColumnBasedSmall && <div className={styles.hobbie_pages_horizontal}>
+                                <span onClick={() => changePage('01')} className={currentPage === '01' ? styles.hobbie_active_small : styles.hobbie_small} >01</span>
+                                <span onClick={() => changePage('02')} className={currentPage === '02' ? styles.hobbie_active_small : styles.hobbie_small}>02</span>
+                                <span onClick={() => changePage('03')} className={currentPage === '03' ? styles.hobbie_active_small : styles.hobbie_small}>03</span>
+                                <span onClick={() => changePage('04')} className={currentPage === '04' ? styles.hobbie_active_small : styles.hobbie_small}>04</span>
                             </div>}
 
-                            <div className="hobbie-lable">
-                                {!isColumnBasedSmall && <div> <span className="hobbie-title"><b>{hobby.name}</b></span> <h4 className='slogan'> {hobby.slogan} </h4></div>}
+                            <div className={styles.hobbie_lable}>
+                                {!isColumnBasedSmall && <div> <span className={styles.hobbie_title}><b>{hobby.name}</b></span> <h4 className={styles.slogan}> {hobby.slogan} </h4></div>}
                                 {currentPage === '01' && <div>
                                     <p> {hobby.intro} </p>
                                 </div>}
                                 {currentPage === '02' && <div>
                                     <p> {hobby.description} </p>
-                                </div>}
+                                </div>} 
                                 {currentPage === '03' &&
-                                    <div className={isColumnBased ? "gallery__media" : "gallery"} >
-                                        <img src={hobby.galleryImgUrl1} className={(isColumnBasedSmall && "gallery__photo__media") || (isColumnBasedSmaller && "gallery__photo__media__medium") || (isColumnBased && "gallery__photo__media") || ("gallery__photo gallery__photo--1")} alt="photo-1" />
-                                        <img src={hobby.galleryImgUrl2} className={(isColumnBasedSmall && "gallery__photo__media") || (isColumnBasedSmaller && "gallery__photo__media__medium") || (isColumnBased && "gallery__photo__media") || ("gallery__photo gallery__photo--2")} alt="photo-2" />
-                                        <img src={hobby.galleryImgUrl3} className={(isColumnBasedSmall && "gallery__photo__media") || (isColumnBasedSmaller && "gallery__photo__media__medium") || (isColumnBased && "gallery__photo__media") || ("gallery__photo gallery__photo--3")} alt="photo-3" />
-                                        <img src={hobby.galleryImgUrl1} className={(isColumnBasedSmall && "gallery__photo__media") || (isColumnBasedSmaller && "gallery__photo__media__medium") || (isColumnBased && "gallery__photo__media") || ("gallery__photo gallery__photo--4")} alt="photo-1" />
-                                        <img src={hobby.profileImgUrl} className={(isColumnBasedSmall && "gallery__photo__media") || (isColumnBasedSmaller && "gallery__photo__media__medium") || (isColumnBased && "gallery__photo__media") || ("gallery__photo gallery__photo--5")} alt="photo-2" />
+                                    <div className={styles.container}>
+                                         <div className={styles.img_gallery}>
+                               
+                                        <Link to={hobby.profileImgUrl} className={styles.img_1}  alt="hiking">
+                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
+                                        </Link>
+                                        <Link to={hobby.galleryImgUrl1} className={styles.img_2}  alt="hiking">
+                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
+                                        </Link>
+                                        <Link to={hobby.galleryImgUrl2} className={styles.img_3}  alt="hiking">
+                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
+                                        </Link>
+                                        <Link to={hobby.galleryImgUrl3} className={styles.img_4}  alt="hiking">
+                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
+                                        </Link>
+                                      
+                                        </div>
                                     </div>
                                 }
                                 {currentPage === '04' && <div>
                                     <p> {hobby.contactInfo} </p>
                                 </div>}
-                                {currentPage !== '03' && <div className="prix">
-                                    <span ><a className="add-crt-edit">Remove</a></span>
-                                    <span ><a className="add-crt-edit" >Save</a></span>
+                                {currentPage !== '03' && <div className={styles.buttons}>
+                                    {isBusinessLoggedIn && <div><span className={styles.btn}>Edit </span>
+                                        <span className={styles.btn}>Delete </span> </div>}
+                                    {isUserLoggedIn && <div><span className={styles.btn}>Save</span>
+                                        <span className={styles.btn}>Remove</span> </div>}
                                 </div>}
                             </div>
 
                         </div>
                     </div>}
                     {welcomeDiv.showDiv && <div>
-                        <div className="introduction-home">
-                            <div className="intro-text">
+                        <div className={styles.error_message}>
+                            <div className={styles.error_text}>
                                 <p> This hobby does not exist.</p>
                             </div>
                         </div>
                     </div>}
                 </div>
             </div>
-            <footer className="footer-hobbie-details">
-                &copy; Hobbie 2021. All rights reserved.
-            </footer>
+            <FooterHome />
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
         </div>
     )
 };

@@ -2,11 +2,11 @@
     position: relative;
   }
 
-.hobbie-main {
+.hobbie_main {
     margin:  auto 100px;
   }  
 
-.hobbie-title{
+.hobbie_title{
     font-size: 64px;
     background: linear-gradient(to right, #494969,#696989);
     -webkit-background-clip: text;
@@ -14,7 +14,7 @@
   
   }
   
-.hobbie-title-small{
+.hobbie_title_small{
     margin-bottom: 30px;
     margin: auto;
     font-size: 46px;
@@ -34,7 +34,7 @@
     width: 80%;
   }
 
-.slogan-small{
+.slogan_small{
     margin: auto;
     background: linear-gradient(to right, #6b6b88,#696989);
     -webkit-background-clip: text;
@@ -44,7 +44,7 @@
     width: 80%;
   }
   
-.hobbie-container{
+.hobbie_container{
     padding: 60px;
     width: 90%;
     height: auto;
@@ -53,11 +53,11 @@
     position: relative;
   }
   
-.hobbie-container-small{
+.hobbie_container_small{
     background-color: white;
 }
 
-.hobbie-content{
+.hobbie_content{
     height:100%;
     width: 100%;
     background-color: #fefefe;
@@ -65,17 +65,17 @@
     flex-wrap: 2 1 ;
   }
 
-.hobbie-content-small{
+.hobbie_content_small{
     height:100%;
     width: 100%;
   }
 
-.hobbie-cover{
+.hobbie_cover{
     width:550px;
     height: auto;
   }
 
-.hobbie-content-body{
+.hobbie_content_body{
     display: flex;
     flex-wrap: 0;
     width: 100%;
@@ -84,7 +84,7 @@
     padding-bottom: 10px;
   }
 
-  .hobbie-pages{
+  .hobbie_pages{
     height: 40%;
     display: flex;
     color:gray;
@@ -98,8 +98,11 @@
     cursor: pointer;
     padding: 10px;
   }
+  .hobbie_pages span{
+    margin-top: 40px;
+  }
 
-.hobbie-pages-horizontal{
+.hobbie_pages_horizontal{
     color:gray;
     display: flex;
     justify-content: space-around;
@@ -109,8 +112,21 @@
     cursor: pointer;
     padding: 10px;
   }
+
+.hobbie_active::before{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 37px;
+    right: 137%;
+    top: 45%;
+    background-color: #555;
+    cursor: pointer;
+    min-height: 1px;
+    z-index: 1;
+  }
   
-.hobbie-active{
+.hobbie_active{
     color: black;
     position: relative;
     transform: translateX(10px);
@@ -120,7 +136,7 @@
     font-weight: bold;  
   }
   
-.hobbie-active-small{
+.hobbie_active_small{
     color: black;
     position: relative;
     transform: translateX(3px);
@@ -131,16 +147,16 @@
     border-bottom: 2px solid  #494969;
   }  
 
-.hobbie-small{
+.hobbie_small{
     padding: 10px;
   }
 
-.hobbie-lable{
+.hobbie_lable{
     width: 100%;
     height: auto;
   }
   
-.hobbie-lable p {
+.hobbie_lable p {
     padding-top: 40px;
     font-size: 16px;
     width: 85%;
@@ -148,147 +164,40 @@
     padding-bottom: 10px;
   }
 
-
-  .gallery__media{
-    margin: auto;
-    width: 90%;
-    margin: auto 5%;
-  }
-
-  .gallery{
-    /* overflow: hidden; */
-    width: 900px;
-    height: 500px;
-    margin: 50px auto;
-    margin-left: 100px;
-     position: relative;
-     top: 70px;
-  }
-
-  .gallery__photo{
-    overflow: hidden;
-    margin: 5px;
-    width: 250px;
-    height: 250px;
-    border-radius: 2px;
-    box-shadow: 0 20px 20px rgba(87, 85, 85, 0.75);
-    object-fit: cover;
-    position: absolute;
-    z-index: 10;
-    outline-offset: 20px;
-    transition: all 0.2s;
-    display: inline;
-  }
-  .gallery__photo:hover{
-    outline: 15px solid #bbdff0;
-      
-    transform: scale(1.05) translateY(-20px);
-    z-index: 20;
-  
-  }
-  
-  .gallery__photo--1{
-    top:0;
-    left: 0;
-  }
-
-  .gallery__photo--2{
-    top:0;
-    right: 0;
-    z-index: 1;
-  }
-
-  .gallery__photo--3{
-    top:40px;
-    left: 20%;
-  }
-  
-  .gallery__photo--4{
-    top: 60px;
-    left: 40%;
-  }
-  
-  .gallery__photo--5{
-    top: 40px;
-    left: 60%;
-    z-index: 2;
-  }
-  
-  .gallery__media{
-    margin: auto;
-    width: 90%;
-    margin: auto 5%;
-  }
-  
-  .gallery__photo__media__grid{
-    overflow: hidden;
-    margin-right: 8px;
-    width: 250px;
-    height: 250px;
-    border-radius: 2px;
-    box-shadow: 0 20px 20px rgba(87, 85, 85, 0.75);
-    object-fit: cover;
-    outline-offset: 20px;
-    transition: all 0.2s;
-  }
-  
-  .gallery__photo__media{
-    overflow: hidden;
-    margin-top: 50px;
-    width: 450px;
-    height: 250px;
-    border-radius: 2px;
-    box-shadow: 0 20px 20px rgba(87, 85, 85, 0.75);
-    object-fit: cover;
-    outline-offset: 20px;
-    transition: all 0.2s;
-  }
-
-  .gallery__photo__media__medium{
-    overflow: hidden;
-    margin-top: 50px;
-    width: 250px;
-    height: 250px;
-    border-radius: 2px;
-    box-shadow: 0 20px 20px rgba(87, 85, 85, 0.75);
-    object-fit: cover;
-    outline-offset: 20px;
-    transition: all 0.2s;
-    display: inline;
-  }
-
   /* .prix */
 .buttons{
-    margin: 50px 0px;
-    /* width: 65%; */
-    display: flex;
-    /* justify-content: space-between; */
-    border-left: 4px solid rgb(255,177,33);
-    background: linear-gradient(to right, #494969,#696989);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: absolute;
-    left: 750px;
-    bottom: 80px;
+  margin: 50px 0px;
+  display: flex;
+  padding-left: 10px;
+  border-left: 4px solid rgb(255,177,33);
+  background: linear-gradient(to right, #494969,#696989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  left: 750px;
+  bottom: 80px;
+  
   }
 
   /* .add-crt-edit */
- .gallery-btn{
+ .btn{
     color: rgb(255,177,33);
     left: 2px;
     border-bottom: 1px solid rgb(177,177,177);
     margin-right: 50px;
     text-align: center;
   }
+
   /* .introduction-home */
- .error-message {
+ .error_message {
     margin: auto;
     width: 50%;
     align-items: center;
   }
   /* .intro-text p  */
-  .error-text p {
+  .error_text p {
     margin-top: 5px;
     font-size: 22px;
     color: #585772;
   }
+

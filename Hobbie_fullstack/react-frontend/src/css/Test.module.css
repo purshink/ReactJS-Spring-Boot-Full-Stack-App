@@ -1,0 +1,94 @@
+.test_content{
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    padding: 40px;
+    grid-area: content;
+    align-content: center;
+    justify-content: space-between;
+  }
+
+.test_form {
+    margin: 100px auto;
+    background: linear-gradient(to right,#696989, #dcdce6);
+    color: white;
+    width: 800px;
+    min-height: 500px;
+    height: min-content;
+    border-radius: 15px;
+    padding: 80px;
+    box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
+    display: flex;
+    justify-content: space-evenly;
+  } 
+
+.test_end {
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 200%;
+  } 
+
+  /* .submit-offer */
+.button{
+    padding: 10px 10px 10px 10px;
+  content: " ";
+  font-size: 1em;
+  background-color: transparent;
+  display: inline-block;
+  margin-left: 10px;
+  color: white;
+  width: 100px;
+  height: 50px;
+  visibility: visible;
+  border: 1px solid white;
+  padding-left: 3px;
+  border-radius: 5px;
+  margin-bottom: 60px;
+    margin-top: 30px;
+  } 
+
+.link_home{
+    color: white;
+
+  } 
+
+.question_section {
+    width: 100%;
+    position: relative;
+    padding-right: 30px;
+  }
+    
+.question_count {
+    margin-bottom: 10px;
+  }
+  
+.question_count span {
+    font-size: 28px;
+  } 
+  
+.question_text {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }  
+
+.answer_section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+.test_button {
+    width: 100%;
+    font-size: 16px;
+    color: #ffffff;
+    background: linear-gradient(to right,#696989, #494969);
+    border-radius: 15px;
+    display: flex;
+    padding: 15px 20px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 5px solid transparent;
+    cursor: pointer;
+  }  

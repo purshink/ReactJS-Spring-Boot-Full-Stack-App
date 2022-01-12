@@ -1,8 +1,3 @@
-/* .coBody */
-.offer_body{
-    font-family: 'Poppins', sans-serif;
-    height: auto;
-  }
 
   /* .offer_body */
   .offer_main{
@@ -18,7 +13,7 @@
   }
 
   .create_offer{
-    margin-top: 70px;
+    padding-top: 70px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -32,15 +27,15 @@
     margin: auto;
   }
 
-  .form-offer{
+  .form_offer{
     width: 100%;
   }
 
-  .offer-row{
+  .offer_row{
     width: 100%;
   }
   
-  .form-field-photos{
+  .form_field_photos{
     display: flex;
     margin-top: 30px;
   }
@@ -50,15 +45,15 @@
   }
 
 
-.form-field input:focus + .label-name  .content-name,
-.form-field input:valid + .lable-name .content-name{
+.form_field input:focus + .label_name  .content_name,
+.form_field input:valid + .lable_name .content_name{
   transform: translateY(-150%);
   font-size: 14px;
   color: #5fa8d3;
 }
 
-.form-field input:focus + .label-name::after,
-.form-field input:valid + .label-name::after{
+.form_field input:focus + .label_name::after,
+.form_field input:valid + .label_name::after{
   transform: translateX(0%);
 }
 
@@ -70,7 +65,7 @@
     overflow: hidden;
 }
 
-.choose-file{
+.choose_file{
     padding-left: 18%;
     position: relative;
     top: 10px;
@@ -84,14 +79,14 @@
     float: right;
   }
 
-  .form-field2{
+  .form_field_2{
     margin: 20px 0 20px 0;
     padding: 0px;
     width: 100%;
     height: 100%;
   }
   
-  .form-field2 .h_n{
+  .form_field_2 .h_n{
     background-color: white;
     padding: 20px 20px 20px 20px;
     content: " ";
@@ -105,13 +100,13 @@
     border-radius: 5px;
   }
 
-  .custom-select select {
+  .custom_select select {
     display: none; 
   }
-  .custom-select option {
+  .custom_select option {
     margin-right: 10px;
   }
-  .custom-select{
+  .custom_select{
     padding: 5px;
     font-size: 16px;
     height: 34px;
@@ -132,13 +127,13 @@
     padding-right: 10%;
   }
   
-  .custom-select select{
+  .custom_select select{
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
     background-color: #2f922f;
   }
 
-  .submit-offer{
+  .submit_offer{
     padding: 10px 10px 10px 10px;
   content: " ";
   font-size: 1em;
@@ -164,4 +159,34 @@ input[type="file"] {
     cursor:pointer
   }
 
-textarea{ font-family: 'Poppins', sans-serif;}
+#category {
+    margin-top: 20px;
+  }
+
+#category::after{
+    padding-left: 10px;
+  }
+  
+.column {
+    float: right;
+    width: 80%;
+  }
+
+.row_upload{
+    padding-top: 10px;
+  }
+
+textarea{ 
+  font-family: 'Poppins', sans-serif;
+  background-color: #00BFF0;
+  padding: 20px 20px 20px 20px;
+  content: " ";
+  background-color: #fff;
+  display: inline-block;
+  color: #595f6e;
+  width: 100%;
+  height: 200px;
+  visibility: visible;
+  border: 1px solid white;
+  margin-top: 20px;
+  border-radius: 5px;}

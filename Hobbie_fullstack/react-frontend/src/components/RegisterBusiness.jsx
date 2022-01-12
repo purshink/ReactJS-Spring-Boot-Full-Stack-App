@@ -1,8 +1,11 @@
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import Footer from './Footer'
+import Background from './Background'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import RegisterBusinessService from '../api/hobby/RegisterBusinessService'
+import styles from '../css/Forms.module.css'
+
 
 const RegisterBusiness = () => {
     let navigate = useNavigate();
@@ -88,75 +91,79 @@ const RegisterBusiness = () => {
 
     return (
         <div>
-            <div className="test">
+            <div className={styles.form_style}>
                 <h2>Register your business</h2>
 
-                {error && <div className="errors" >
+                {error && <div className={styles.errors} >
                     This username, business name or email already exist.
                 </div>}
                 <form onSubmit={submitHandler}>
 
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
-                                <input type="text" name="USERname" onChange={e => setInfo({ ...info, username: e.target.value })} />
-                                <label id="USERname" className="label-name">
-                                    <span className="content-name">Username</span>
-                                    {errors.username && <small className="errors">{errors.username}</small>}
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
+                                <input type="text" name="username" onChange={e => setInfo({ ...info, username: e.target.value })} />
+                                <label id="username" className={styles.label_name}>
+                                    <span className={styles.content_name}>Username</span>
+                                    {errors.username && <small className={styles.errors}>{errors.username}</small>}
                                 </label>
                             </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
-                                <input type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
-                                <label forhtml="businessName" className="label-name">
-                                    <span className="content-name">Business Name</span>
-                                    {errors.businessName && <small className="errors">{errors.businessName}</small>}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="form-field">
-                        <div className="name-section">
-                            <input type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
-                            <label forhtml="address" className="label-name">
-                                <span className="content-name">Address</span>
-                                {errors.address && <small className="errors">{errors.address}</small>}
-                            </label>
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
+                                <input type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
+                                <label forhtml="businessName" className={styles.label_name}>
+                                    <span className={styles.content_name}>Business Name</span>
+                                    {errors.businessName && <small className={styles.errors}>{errors.businessName}</small>}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
+                                <input type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
+                                <label forhtml="address" className={styles.label_name}>
+                                    <span className={styles.content_name}>Address</span>
+                                    {errors.address && <small className={styles.errors}>{errors.address}</small>}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
                                 <input type="email" name="enail" onChange={e => setInfo({ ...info, email: e.target.value })} />
-                                <label forhtml="email" className="label-name">
-                                    <span className="content-name">Email</span>
-                                    {errors.email && <small className="errors">{errors.email}</small>}
+                                <label forhtml="email" className={styles.label_name}>
+                                    <span className={styles.content_name}>Email</span>
+                                    {errors.email && <small className={styles.errors}>{errors.email}</small>}
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
                                 <input type="password" id="password" name="password" onChange={e => setInfo({ ...info, password: e.target.value })} />
-                                <label forhtml="password" className="label-name">
-                                    <span className="content-name">Password</span>
-                                    {errors.password && <small className="errors">{errors.password}</small>}
+                                <label forhtml="password" className={styles.label_name}>
+                                    <span className={styles.content_name}>Password</span>
+                                    {errors.password && <small className={styles.errors}>{errors.password}</small>}
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
+                    <div className={styles.row}>
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
                                 <input type="password" name="repeatpassword" id="repeatpassword" onChange={e => setInfo({ ...info, repeatpassword: e.target.value })} />
-                                <label forhtml="repeatpassword" className="label-name">
-                                    <span className="content-name">{errors.repeatpassword}</span>
-                                    {errors.repeatpassword && <small className="errors" >
+                                <label forhtml="repeatpassword" className={styles.label_name}>
+                                    <span className={styles.content_name}>Repeat Password</span>
+                                    {errors.repeatpassword && <small className={styles.errors}>
                                         {errors.repeatpassword}
                                     </small>}
                                 </label>
@@ -164,14 +171,13 @@ const RegisterBusiness = () => {
                         </div>
                     </div>
 
-                    <div className="form-field">
-                        <button type="submit" className="button button2">Sign up</button>
+                    <div className={styles.form_field}>
+                        <button type="submit" className={styles.button}>Sign up</button>
                     </div>
                 </form>
-
             </div>
-
-            <img className="blueImg2" src={blueImg} alt="blueImg2"></img>
+            <Footer />
+            <Background />
         </div>
     )
 }

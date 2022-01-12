@@ -2,11 +2,11 @@
     position: relative;
   }
 
-.hobbie-main {
+.hobbie_main {
     margin:  auto 100px;
   }
 
-.hobbie-container-home{
+.hobbie_container_home{
     padding: 60px;
     width: 70%;
     height: auto;
@@ -15,7 +15,7 @@
     position: relative;
   }
 
-  .hobbie-home-content{
+  .hobbie_home_content{
     height:100%;
     width: 100%;
     background-color: #fefefe;
@@ -47,12 +47,12 @@
     width: auto;
   }
 
-  .card_image-container{
+  .card_image_container{
     padding-top: 56.25%;
     overflow: hidden;
     position: relative;
   }
-  .card_image-container img{
+  .card_image_container img{
     width: 100%;
     position: absolute;
     top: 50%;
@@ -61,7 +61,7 @@
   }
 
   .text_medium{
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     font-weight: 400;
     color:white   ;
@@ -70,9 +70,17 @@
   .card_content{
     padding: 20px;
   }
+
+  .card_content p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
   
   .card_title{
-    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color:white   ;
   }
   .card_info{
     display: flex;
@@ -82,22 +90,23 @@
   .card_price{
     margin-left:auto;
     padding: 5px, 20px;
-    
-    font-size: 16px;
-  
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color:white   ;  
   }
   
   .card:hover{
     transform: translateY(-7px);
   }
 
-  .introduction-home {
+  .introduction_home {
     margin: auto;
     width: 50%;
     align-items: center;
   }
 
-  .intro-text h1{
+  .intro_text h1{
     font-size: 44px;
     font-weight: 900;
     background: linear-gradient(to right, #494969,#696989);
@@ -105,7 +114,7 @@
     -webkit-text-fill-color: transparent;
   }
   
-  .intro-text p {
+  .intro_text p {
     margin-top: 5px;
     font-size: 22px;
     color: #585772;
@@ -152,7 +161,7 @@
     .user_home{
       grid-gap: 20px;
   }
-  .nav-links{display: none;}
+  .nav_links{display: none;}
   .cards{ margin: auto;
     grid-template-columns: repeat(12, minmax(auto, 60px));}
   .card{grid-column-end: span 6;}
@@ -188,7 +197,7 @@
         grid-template-columns: 10px repeat(6, 1fr) 10px;
         grid-gap: 10px;
     }
-    .nav-links{display: none;}
+    .nav_links{display: none;}
     .cards{
         margin: auto;
         grid-column: 2/ span 6;
@@ -210,7 +219,8 @@
         grid-template-columns: 10px repeat(6, 1fr) 10px;
         grid-gap: 10px;
     }
-    .nav-links{display: none;}
+    .nav_links{display: none;}
+
     .cards{
         margin: auto;
         grid-column: 2/ span 6;

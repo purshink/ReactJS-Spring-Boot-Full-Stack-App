@@ -1,10 +1,12 @@
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import FooterHome from './FooterHome'
+import Background from './Background'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import AuthenticationService from '../api/hobby/AuthenticationService'
 import CreateOfferDataService from '../api/hobby/CreateOfferDataService';
 import { useState, useEffect } from 'react'
+import styles from '../css/CreateOffer.module.css'
 
 
 
@@ -44,7 +46,7 @@ const CreateOffer = () => {
         if (!info.name) {
             errors.name = 'Hobby name is required'
         } else if (info.name.length < 3) {
-            errors.username = 'Hobby name must be at least 3 characters long'
+            errors.name = 'Hobby name must be at least 3 characters long'
         }
 
         if (!info.slogan) {
@@ -159,186 +161,181 @@ const CreateOffer = () => {
 
 
     return (
+        <div>
+                    <div className={styles.create_offer}>
+                        <div className={styles.offer_main}>
+                            <h1 className={styles.title_offer}>Create offer</h1>
+                            <form className={styles.form_offer} onSubmit={submitHandler}>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_photos}>
+                                        <div>
+                                            <div className={styles.row_upload}>
+                                                <label id="photo" className={styles.label_name}>
+                                                    <span>Profile Photo</span>
+                                                </label>
+                                                <div className={styles.button3}>
+                                                    <p className={styles.choose_file}>  {files.profileImgUrl ?
+                                                        "Photo uploaded" : "Choose a file"}</p>
+                                                    <input onChange={e => setFiles({ ...files, profileImgUrl: e.target.files[0] })} type="file" id="add-title-image" name="img" />
 
-        <div className="coBody">
-            <div className="create_offer">
-                <div className="offer_body">
-                    <h1 className="title_offer">Create offer</h1>
+                                                </div>
 
-                    <form className="form-offer" onSubmit={submitHandler}>
-                        <div className="offer-row">
-                            <div className="form-field-photos">
-                                <div className="">
-
-                                    <div className="row_upload">
-                                        <label id="photo" className="label-name">
-                                            <span className="">Profile Photo</span>
-                                        </label>
-                                        <div className="button3">
-                                            <p className="choose-file">  {files.profileImgUrl ?
-                                                "Photo uploaded" : "Choose a file"}</p>
-                                            <input onChange={e => setFiles({ ...files, profileImgUrl: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                                {errors.profilePhoto && <div className={styles.errors_offer} >
+                                                    {errors.profilePhoto}</div>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label forhtml="name" className={styles.label_name}>
+                                                <span>Hobbie Name</span>
+                                            </label>
+                                            <input onChange={e => setInfo({ ...info, name: e.target.value })} placeholder="ex: Painting, Swimming classes etc.." className={styles.h_n} type="text" name="name" />
 
                                         </div>
-
-                                        {errors.profilePhoto && <div className="errors_offer" >
-                                            {errors.profilePhoto}</div>}
+                                        {errors.name && <small className={styles.errors_offer}>{errors.name}</small>}
+                                    </div>
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label htmlFor="slogan" className={styles.label_name}>
+                                                <span className="">Slogan</span>
+                                            </label>
+                                            <input onChange={e => setInfo({ ...info, slogan: e.target.value })} placeholder="your offer in one sentence..." className={styles.h_n} type="text" name="slogan" />
+                                        </div>
+                                        {errors.slogan && <small className={styles.errors_offer}>{errors.slogan}</small>}
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label forhtml="name" className="label-name">
-                                        <span className="">Hobbie Name</span>
-                                    </label>
-                                    <input onChange={e => setInfo({ ...info, name: e.target.value })} placeholder="ex: Painting, Swimming classes etc.." className="h_n" type="text" name="name" />
-
+                                <div className={styles.offer_row}>
+                                    <span>Category</span>
+                                    <select onChange={e => setInfo({ ...info, category: e.target.value })} className={styles.custom_select} id="category" name="category">
+                                        <option value="">Select category</option>
+                                        <option value="ACTIVE">Active</option>
+                                        <option value="SOCIAL">Social</option>
+                                        <option value="FUN">Fun</option>
+                                        <option value="RELAX">Relax</option>
+                                        <option value="INTELLECTUAL">Intellectual</option>
+                                        <option value="CREATIVE">Creative</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                    {errors.category && <small className={styles.errors_offer}>{errors.category}</small>}
                                 </div>
-                                {errors.hobbyName && <small className="errors_offer">{errors.hobbyName}</small>}
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label htmlFor="slogan" className="label-name">
-                                        <span className="">Slogan</span>
-                                    </label>
-                                    <input onChange={e => setInfo({ ...info, slogan: e.target.value })} placeholder="your offer in one sentence..." className="h_n" type="text" name="slogan" />
-                                </div>
-                                {errors.slogan && <small className="errors_offer">{errors.slogan}</small>}
-                            </div>
-                        </div>
-
-                        <div className="offer-row">
-                            <span className="">Category</span>
-                            <select onChange={e => setInfo({ ...info, category: e.target.value })} className="custom-select" id="category" name="category">
-                                <option value="">Select category</option>
-                                <option value="ACTIVE">Active</option>
-                                <option value="SOCIAL">Social</option>
-                                <option value="FUN">Fun</option>
-                                <option value="RELAX">Relax</option>
-                                <option value="INTELLECTUAL">Intellectual</option>
-                                <option value="CREATIVE">Creative</option>
-                                <option value="OTHER">Other</option>
-                            </select>
-                            {errors.category && <small className="errors_offer">{errors.category}</small>}
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label id="intro" className="label-name">
-                                        <span className="">Intro</span>
-                                    </label>
-                                    <textarea onChange={e => setInfo({ ...info, intro: e.target.value })} className="label-name" type="text" name="intro" ></textarea>
-                                </div>
-                                {errors.intro && <small className="errors_offer">{errors.intro}</small>}
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label id="description" className="label-name">
-                                        <span className="">Class description</span>
-                                    </label>
-                                    <textarea onChange={e => setInfo({ ...info, description: e.target.value })} className="label-name" type="text" name="name" ></textarea>
-                                </div>
-                                {errors.description && <small className="errors_offer">{errors.description}</small>}
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label htmlFor="price" className="label-name">
-                                        <span className="">Price per entry</span>
-                                    </label>
-                                    <input onChange={e => setInfo({ ...info, price: e.target.value })} className="h_n" type="number" name="price" id="price" />
-                                </div>
-                                {errors.price && <small className="errors_offer">{errors.price}</small>}
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <span className="">Location</span>
-                            <select onChange={e => setInfo({ ...info, location: e.target.value })} className="custom-select" id="location" name="location">
-                                <option value="">Select location</option>
-                                <option value="ZURICH">Zurich</option>
-                                <option value="OTHER">Bern</option>
-                                <option value="OTHER">Zug</option>
-                                <option value="OTHER">Luzern</option>
-                                <option value="OTHER">Other</option>
-                            </select>
-                            {errors.location && <small className="errors_offer">{errors.location}</small>}
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field-photos">
-                                <div className="">
-                                    <div className="row_upload">
-                                        <label id="photo" className="label-name">
-                                            <span className="">Gallery</span>
-                                        </label>
-                                        <div className="button3">
-                                            <p className="choose-file"> {files.galleryImgUrl1 ?
-                                                "Photo uploaded" : "Choose a file"}</p>
-                                            <input onChange={e => setFiles({ ...files, galleryImgUrl1: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label id="intro" className={styles.label_name}>
+                                                <span>Intro</span>
+                                            </label>
+                                            <textarea onChange={e => setInfo({ ...info, intro: e.target.value })} className={styles.label_name} type="text" name="intro" ></textarea>
                                         </div>
-                                        <div className="button3">
-                                            <p className="choose-file"> {files.galleryImgUrl2 ?
-                                                "Photo uploaded" : "Choose a file"}</p>
-                                            <input onChange={e => setFiles({ ...files, galleryImgUrl2: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                        {errors.intro && <small className={styles.errors_offer}>{errors.intro}</small>}
+                                    </div>
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label id="description" className={styles.label_name}>
+                                                <span>Class description</span>
+                                            </label>
+                                            <textarea onChange={e => setInfo({ ...info, description: e.target.value })} className={styles.label_name} type="text" name="name" ></textarea>
                                         </div>
-                                        <div className="button3">
-                                            <p className="choose-file"> {files.galleryImgUrl3 ?
-                                                "Photo uploaded" : "Choose a file"}</p>
-                                            <input onChange={e => setFiles({ ...files, galleryImgUrl3: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                        {errors.description && <small className={styles.errors_offer}>{errors.description}</small>}
+                                    </div>
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label htmlFor="price" className={styles.label_name}>
+                                                <span>Price per entry</span>
+                                            </label>
+                                            <input onChange={e => setInfo({ ...info, price: e.target.value })} className={styles.h_n} type="number" name="price" id="price" />
                                         </div>
-                                        {/* <div className="button3">
-                          <p className="choose-file"> {files.galleryImgUrl4 ? 
+                                        {errors.price && <small className={styles.errors_offer}>{errors.price}</small>}
+                                    </div>
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <span>Location</span>
+                                    <select onChange={e => setInfo({ ...info, location: e.target.value })} className={styles.custom_select} id="location" name="location">
+                                        <option value="">Select location</option>
+                                        <option value="ZURICH">Zurich</option>
+                                        <option value="OTHER">Bern</option>
+                                        <option value="OTHER">Zug</option>
+                                        <option value="OTHER">Luzern</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                    {errors.location && <small className={styles.errors_offer}>{errors.location}</small>}
+                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_photos}>
+                                        <div>
+                                            <div className={styles.row_upload}>
+                                                <label id="photo" className={styles.label_name}>
+                                                    <span className="">Gallery</span>
+                                                </label>
+                                                <div className={styles.button3}>
+                                                    <p className={styles.choose_file}> {files.galleryImgUrl1 ?
+                                                        "Photo uploaded" : "Choose a file"}</p>
+                                                    <input onChange={e => setFiles({ ...files, galleryImgUrl1: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                                </div>
+                                                <div className={styles.button3}>
+                                                    <p className={styles.choose_file}> {files.galleryImgUrl2 ?
+                                                        "Photo uploaded" : "Choose a file"}</p>
+                                                    <input onChange={e => setFiles({ ...files, galleryImgUrl2: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                                </div>
+                                                <div className={styles.button3}>
+                                                    <p className={styles.choose_file}> {files.galleryImgUrl3 ?
+                                                        "Photo uploaded" : "Choose a file"}</p>
+                                                    <input onChange={e => setFiles({ ...files, galleryImgUrl3: e.target.files[0] })} type="file" id="add-title-image" name="img" />
+                                                </div>
+                                                {/*  <div className={styles.button3}>
+                          <p className={styles.choose_file}> {files.galleryImgUrl4 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
                             <input onChange={e => setFiles({...files, galleryImgUrl4 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
-                        <div className="button3">
-                          <p className="choose-file"> {files.galleryImgUrl5 ? 
+                        <div className={styles.button3}>
+                          <p className={styles.choose_file}> {files.galleryImgUrl5 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
                             <input onChange={e => setFiles({...files, galleryImgUrl5 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div>
-                        <div className="button3">
-                          <p className="choose-file"> {files.galleryImgUrl6 ? 
+                      <div className={styles.button3}>
+                          <p className={styles.choose_file}> {files.galleryImgUrl6 ? 
                        "Photo uploaded"  : "Choose a file" }</p>
                             <input onChange={e => setFiles({...files, galleryImgUrl6 : e.target.files[0]})} type="file"  id="add-title-image" name="img" />
                         </div> */}
 
+                                            </div>
+                                            {(errors.galleryImgUrl1 || errors.galleryImgUrl2 || errors.galleryImgUrl3) && <div className={styles.errors_offer} >
+                                                You must upload at least 3  high quality photos
+                                            </div>}
+                                        </div>
                                     </div>
-                                    {(errors.galleryImgUrl1 || errors.galleryImgUrl2 || errors.galleryImgUrl3) && <div className="errors_offer" >
-                                        You must upload at least 3  high quality photos
-                                    </div>}
                                 </div>
-                            </div>
-                        </div>
-                        <div className="offer-row">
-                            <div className="form-field2">
-                                <div className="name-section">
-                                    <label id="contact" className="label-name">
-                                        <span className="">Contact info</span>
-                                    </label>
-                                    <textarea onChange={e => setInfo({ ...info, contactInfo: e.target.value })} placeholder="ex: Venue Address, Website, Phone number etc.." className="label-name" type="text" name="contact" ></textarea>
-                                </div>
+                                <div className={styles.offer_row}>
+                                    <div className={styles.form_field_2}>
+                                        <div className={styles.name_section}>
+                                            <label id="contact" className={styles.label_name}>
+                                                <span>Contact info</span>
+                                            </label>
+                                            <textarea onChange={e => setInfo({ ...info, contactInfo: e.target.value })} placeholder="ex: Venue Address, Website, Phone number etc.." className={styles.label_name} type="text" name="contact" ></textarea>
+                                        </div>
 
-                                {errors.contactInfo && <small className="errors_offer">{errors.contactInfo}</small>}
-                            </div>
+                                        {errors.contactInfo && <small className={styles.errors_offer}>{errors.contactInfo}</small>}
+                                    </div>
+                                </div>
+                                <button type="submit" className={styles.submit_offer}>Submit</button>
+                            </form>
                         </div>
-                        <button type="submit" className="button submit-offer">Submit</button>
-                    </form>
+              
+                    <FooterHome />
+                    <Background />
+                   
                 </div>
-
-                <img className="blueImg3" src={blueImg} alt="blueImg" />
-                <img className="blueImg4" src={blueImg} alt="blueImg" />
-                <footer className="footer-hobbie-details">
-                    &copy; Hobbie 2021. All rights reserved.
-                </footer>
             </div>
-        </div>
+
     )
 }
 

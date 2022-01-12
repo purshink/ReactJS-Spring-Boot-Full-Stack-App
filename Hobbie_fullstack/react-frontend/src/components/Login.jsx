@@ -1,11 +1,13 @@
 
 
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import Footer from './Footer'
+import Background from './Background'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthenticationService from '../api/hobby/AuthenticationService'
 import LoginService from '../api/hobby/LoginService'
+import styles from '../css/Forms.module.css'
 
 
 
@@ -52,42 +54,42 @@ const Login = () => {
 
     return (
         <div>
-            <form className="test">
-                <div className="loginh1"><h1 >Login</h1></div>
-                <div className="login" >
-                    <div className="row">
+            <form className={styles.form_style}>
+                <div className={styles.loginh1}><h1 >Login</h1></div>
+                <div className={styles.login} >
+                    <div className={styles.row}>
 
-                        {loginState.hasLoginFailed && <div className="midErrors" > Invalid credentials</div>}
-                        {loginState.showSuccessMessage && <div className="midErrors">Login successful</div>}
+                        {loginState.hasLoginFailed && <div className={styles.midErrors} > Invalid credentials</div>}
+                        {loginState.showSuccessMessage && <div className={styles.midErrors}>Login successful</div>}
 
 
-                        <div className="form-field">
-                            <div className="name-section">
+                        <div className={styles.form_field}>
+                            <div className={styles.name_section}>
                                 <input type="text" name="username" onChange={e => setCredentials({ ...credentials, username: e.target.value })} required />
-                                <label id="name" className="label-name">
-                                    <span className="content-name">Username</span>
+                                <label id="name" className={styles.label_name}>
+                                    <span className={styles.content_name}>Username</span>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="form-field">
-                            <div className="name-section">
+                    <div className={styles.row}>
+                    <div className={styles.form_field}>
+                            <div className={styles.name_section}>
                                 <input type="password" name="password" onChange={e => setCredentials({ ...credentials, password: e.target.value })} required />
-                                <label htmlFor="password" className="label-name">
-                                    <span className="content-name">Password</span>
+                                <label htmlFor="password" className={styles.label_name}>
+                                    <span className={styles.content_name}>Password</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div className="form-field">
-                        <button className="button button2" onClick={loginClicked}>Login</button>
+                    <div className={styles.form_field}>
+                        <button className={styles.button} onClick={loginClicked}>Login</button>
                     </div>
                 </div>
             </form>
-
-            <img className="blueImg2" src={blueImg} alt="blueImg"></img>
+            <Footer/>
+            <Background/>
         </div>
     )
 }

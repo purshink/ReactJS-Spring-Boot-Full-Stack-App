@@ -1,7 +1,9 @@
 import React from 'react'
+import Footer from './Footer'
+import BackgroundCover from './BackgroundCover'
 import Presentation from './Presentation'
-import cover from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/coverImg.png'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import Cover from './Cover'
+
 
 
 
@@ -13,11 +15,9 @@ const Home = () => {
     return (
         <div>
             <Presentation />
-            <footer className="footer">
-                &copy; Hobbie 2021. All rights reserved.
-            </footer>
-            <img className="drawing" src={cover} alt="coverImg" />
-            <img className="blueImg" src={blueImg} alt="blueImg" />
+             <Footer/>
+             <Cover/>
+             <BackgroundCover/>
         </div>
     )
 }

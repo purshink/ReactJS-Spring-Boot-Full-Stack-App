@@ -11,7 +11,7 @@
     align-items: center;
   }
 
-.intro-text h1{
+.intro_text h1{
     font-size: 44px;
     font-weight: 900;
     background: linear-gradient(to right, #494969,#696989);
@@ -19,7 +19,7 @@
     -webkit-text-fill-color: transparent;
   }
   
-.intro-text p {
+.intro_text p {
     margin-top: 5px;
     font-size: 22px;
     color: #585772;
@@ -31,7 +31,7 @@
   }
 
   /* .cta_second */
- .btn-first{
+ .btn_first{
     border: 2px solid #c36cbb;
     background:  #c36cbb;
     color: white;
@@ -42,7 +42,7 @@
     font-size: 16px;
   }
 
-  /* .btn-second {
+  /* .btn_second {
     border: 2px solid #c36cbb;
     background: transparent;
     color: #c36cbb;

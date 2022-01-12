@@ -1,5 +1,7 @@
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import FooterHome from './FooterHome'
+import styles from '../css/UserHome.module.css'
+import BackgroundHome from './BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
@@ -39,34 +41,29 @@ const MyHobbies = () => {
 
     }, []);
     return (
-        <div className='hobby_details_page'>
-            <img className="blueImg3" src={blueImg} alt="blueImg" />
-            <img className="blueImg4" src={blueImg} alt="blueImg" />
-            <div className="hobbie-main">
-                <div className="hobbie-container-home">
-                    <div className="hobbie-home-content">
-                        <div >
-                        </div>
+        <div className={styles.hobby_details_page}>
+        <BackgroundHome/>
+            <div className={styles.hobbie_main}>
 
+                <div className={styles.hobbie_container_home}>
+                    <div className={styles.hobbie_home_content}>
                         <div>
-
-                            <div className="user_home">
-                                {state.length !== undefined && <section className="cards">
+                            <div className={styles.user_home}>
+                                {state.length !== undefined && <section className={styles.cards}>
                                     {state.map(hobby =>
 
-                                        <Link to='#' onClick={handleSort(hobby.id)} className="card" key={hobby.id} id={hobby.id}>
-                                            <div className="card_image-container">
+                                        <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} key={hobby.id} id={hobby.id}>
+                                            <div className={styles.card_image_container}>
                                                 <img src={hobby.profileImgUrl} alt="Hobby picture" />
                                             </div>
 
-                                            <div className="card_content">
-                                                <p className="cart_title text_medium">
+                                            <div className={styles.card_content}>   
+                                                <p className={styles.card_title}>
                                                     {hobby.name}
                                                 </p>
-                                                <div className="card_info">
-                                                    <p className="text_medium">Find out more...</p>
-                                                    <p className="card_price text_medium">{hobby.price} CHF</p>
-
+                                                <div className={styles.card_info}>
+                                                    <p className={styles.text_medium}> Find out more...</p>
+                                                    <p className={styles.card_price}  >{hobby.price} CHF</p>
                                                 </div>
                                             </div>
                                         </Link>)
@@ -75,23 +72,22 @@ const MyHobbies = () => {
                             </div>
 
                             {welcomeDiv.showDiv && <div>
-                                <div className="introduction-home">
-                                    <div className="intro-text">
-                                        <p> You have no saved hobbies.</p>
-                                        <div className="cta">
-                                            <button className="cta_second_s" ><Link to='/user-home' className="cta_second">Go home.</Link></button>
+                                <div className={styles.introduction_home}>
+                                    <div className={styles.intro_text}>
+                                        <p>You have no offers. Plase fill in the form and create a new offer:.</p>
+                                        <div className={styles.buttuns}>
+                                            <button className={styles.link} >
+                                                <Link to='/user-home' className={styles.btn}>You have no saved hobbies.</Link>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>}
                         </div>
                     </div>
                 </div>
             </div>
-            <footer className="footer-hobbie-details">
-                &copy; Hobbie 2021. All rights reserved.
-            </footer>
+            <FooterHome/>
         </div>
     )
 }

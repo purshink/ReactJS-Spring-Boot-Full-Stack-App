@@ -1,4 +1,4 @@
-.footer-hobbie-details  {
+.footer_hobbie_details  {
     background:transparent;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
     zoom: 1;
@@ -9,11 +9,13 @@
 
   .footer {
     position:absolute;
+    height : 40px;
+    margin-top : 40px;
+    margin-left: 5%;
     bottom:0px;
     background:transparent;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
     zoom: 1;
-    margin: 0 auto;
     width: 90%;
     color: #494969;
   }

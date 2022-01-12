@@ -1,10 +1,12 @@
 import React from 'react'
-import blueImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/blueImg.png'
+import FooterHome from './FooterHome';
+import Background from './Background';
 import TestResultsService from '../api/hobby/TestResultsService';
 import AuthenticationService from '../api/hobby/AuthenticationService';
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styles from '../css/Test.module.css'
 
 const TestForm = () => {
 
@@ -136,40 +138,29 @@ const TestForm = () => {
 
 	return (
 
-		<div>
-			<div className="test-content">
-				<div className='test-form'>
-					{currentQuestion === questions.length && <div class="test-end">Thank you! Please visit your homepage to discover your new hobby! <button type="submit" className="button submit-offer"><Link to='/user-home' className='link-home' >Discover</Link></button></div>
-					}
 
-					<>
-						<div className='question-section'>
-							{currentQuestion !== questions.length && <div className='question-count'>
-								<span>Question {currentQuestion + 1}</span>
-							</div>}
+		<div className={styles.test_content}>
+			<div className={styles.test_form}>
+				{currentQuestion === questions.length && <div className={styles.test_end}>Thank you! Please visit your homepage to discover your new hobby! <button type="submit" className={styles.button} ><Link to='/user-home'className={styles.link_home} >Discover</Link></button></div>
+				}
+				<>
+					<div className={styles.question_section}>
+						{currentQuestion !== questions.length && <div className={styles.question_count}>
+							<span>Question {currentQuestion + 1}</span>
+						</div>}
 
-							{currentQuestion !== questions.length && <div className='question-text'>{questions[currentQuestion].questionText}</div>
-							}
-						</div>
-						<div className='answer-section'>
-							{currentQuestion !== questions.length && questions[currentQuestion].answerOptions.map((answerOption) => (
-								<button key={key++} className="test-button" onClick={() => handleAnswerOptionClick(answerOption.category)}>{answerOption.answerText}</button>
-							))}
-						</div>
-					</>
-
-				</div>
-			</div>
-			<footer className="footer bg-transparent  py-2">
-				<div className="container-fluid text-center">
-					<div className="footer-background h5 text-white">
-						&copy; Hobbie 2021. All rights reserved.
+						{currentQuestion !== questions.length && <div className={styles.question_text}>{questions[currentQuestion].questionText}</div>
+						}
 					</div>
-				</div>
-			</footer>
-			<img className="blueImg3" src={blueImg} alt="blueImg3" />
-			<img className="blueImg4" src={blueImg} alt="blueImg4" />
-			<img className="blue" src={blueImg} alt="blue"></img>
+					<div className={styles.answer_section}>
+						{currentQuestion !== questions.length && questions[currentQuestion].answerOptions.map((answerOption) => (
+							<button key={key++} className={styles.test_button} onClick={() => handleAnswerOptionClick(answerOption.category)}>{answerOption.answerText}</button>
+						))}
+					</div>
+				</>
+			</div>
+			<FooterHome/>
+			<Background/>
 		</div>
 
 	)

@@ -1,9 +1,9 @@
-.account-main{
+.account_main{
     width: 50%;
     margin: auto;
   }
 
-.account-container{
+.account_container{
     padding: 60px;
     width: 90%;
     margin: auto;
@@ -12,7 +12,7 @@
   }
 
 
-.account-cover{
+.account_cover{
     grid-area: cover;
     height: auto;
     margin: auto;
@@ -20,41 +20,49 @@
     max-height: 100%;
   }
 
-.account-content{
+.account_content{
     margin-top: 20px;
     grid-area: content;
     height:auto;
     background-color: #fefefe;
   }
 
-.account-content-body{
+.account_content_body{
     padding: 30px;
   }
 
-.account-label{
+.account_label{
     margin: auto;
   }
 
-.account-title {
+.account_title {
     background: linear-gradient(to right, #494969,#696989);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: auto;
   }
 
-.account-hr {
+.account_hr {
     margin-bottom: 10px;
     transition: all 0.5 ease 0s;
     background: linear-gradient(to right, #494969,#696989);
   } 
 
   /* add-crt-edit */
-.account-btn{
+.account_btn{
     color: rgb(255,177,33);
     left: 2px;
     border-bottom: 1px solid rgb(177,177,177);
     margin-right: 50px;
     text-align: center;
+  }
+
+  .account_label p {
+    font-size: 16px;
+    width: 100%;
+    color: gray;
+    white-space:pre-wrap;
+  
   }
 
  

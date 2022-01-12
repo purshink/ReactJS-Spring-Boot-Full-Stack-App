@@ -1,0 +1,10 @@
+.cover_style{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    color: #494969;
+    z-index: -1;
+    width: 72%;
+  }
