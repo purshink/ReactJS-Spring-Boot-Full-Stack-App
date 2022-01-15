@@ -10,10 +10,11 @@
     border-radius: 15px;
     padding: 80px;
     box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
+    margin-bottom: 50px;
   }
 
   .create_offer{
-    padding-top: 70px;
+    padding-top: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;

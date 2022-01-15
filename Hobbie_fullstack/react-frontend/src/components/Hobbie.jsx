@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import HobbyDetailsDataService from '../api/hobby/HobbyDetailsDataService'
 import useMediaQuery from '../hooks/useMediaQuery'
 import styles from '../css/Hobbie.module.css'
-import '@ionic/react/css/core.css';
-import { IonIcon } from '@ionic/react';
-import {expand} from 'ionicons/icons';
+import gallery_styles from '../css/Gallery.module.css'
+import Background from './Background'
+
 
 
 
@@ -20,6 +20,7 @@ const Hobbie = () => {
     const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
     let navigate = useNavigate();
     let params = useParams();
+
 
     const id = params.id;
     const [currentPage, setCurrentPage] = useState('01');
@@ -74,8 +75,7 @@ const Hobbie = () => {
     return (
 
         <div className={styles.hobby_details_page}>
-
-            <BackgroundHome />
+                <BackgroundHome/>
 
             <div className={isColumnBasedSmall ? styles.hobbie_main_small : styles.hobbie_main}>
                 {isColumnBasedSmall && <div> <span className={styles.hobbie_title_small}><b>{hobby.name}</b></span> <h4 className={styles.slogan_small}> {hobby.slogan} </h4></div>}
@@ -83,6 +83,7 @@ const Hobbie = () => {
 
                     {hobby !== undefined && <div className={isColumnBasedSmall ? styles.hobbie_content_small : styles.hobbie_content}>
                         {currentPage !== '03' && <div className={styles.hobbie_cover}  >
+
                             <img className={styles.hobbie_cover} src={hobby.profileImgUrl} alt="hiking" /></div>}
                         <div className={isColumnBasedSmall ? styles.hobbie_content_body_samll : styles.hobbie_content_body}>
 
@@ -107,26 +108,26 @@ const Hobbie = () => {
                                 </div>}
                                 {currentPage === '02' && <div>
                                     <p> {hobby.description} </p>
-                                </div>} 
+                                </div>}
                                 {currentPage === '03' &&
-                                    <div className={styles.container}>
-                                         <div className={styles.img_gallery}>
-                               
-                                        <Link to={hobby.profileImgUrl} className={styles.img_1}  alt="hiking">
-                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
-                                        </Link>
-                                        <Link to={hobby.galleryImgUrl1} className={styles.img_2}  alt="hiking">
-                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
-                                        </Link>
-                                        <Link to={hobby.galleryImgUrl2} className={styles.img_3}  alt="hiking">
-                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
-                                        </Link>
-                                        <Link to={hobby.galleryImgUrl3} className={styles.img_4}  alt="hiking">
-                                        <IonIcon className={styles.expand} icon={expand}></IonIcon>
-                                        </Link>
-                                      
+                                  
+                                       
+                                        <div className={gallery_styles.gallery}>
+                                   
+                                            <div class={gallery_styles.row}>
+                                                <div class={gallery_styles.column}>
+                                                    <img className={gallery_styles.img} src={hobby.profileImgUrl} />
+                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl1} />
+
+                                                </div>
+
+                                                <div class={gallery_styles.column}>
+                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl2} />
+                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl3} />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                 
                                 }
                                 {currentPage === '04' && <div>
                                     <p> {hobby.contactInfo} </p>
@@ -151,8 +152,6 @@ const Hobbie = () => {
                 </div>
             </div>
             <FooterHome />
-            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
         </div>
     )

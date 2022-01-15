@@ -4,12 +4,13 @@
 
 .hobbie_main {
     margin:  auto 100px;
+    height: 100vh;
   }
 
 .hobbie_container_home{
     padding: 60px;
     width: 70%;
-    height: auto;
+    height: 93vh;
     margin: auto auto 50px auto;
     box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
     position: relative;
@@ -33,8 +34,18 @@
     display: grid;
     grid-template-columns: repeat(12, minmax(auto, 60px));
     position: relative;
-    grid-gap: 20px;
-    margin: auto;
+    grid-gap: 15px;
+    margin: 10px auto;
+  }
+
+  .rapper {
+    box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    grid-column-end: span 4;
+    display:  flex;
+    flex-direction: column;
   }
 
   .card{
@@ -45,6 +56,8 @@
     transition: all 0.5 ease 0s;
     background: linear-gradient(to right, #494969,#696989);
     width: auto;
+    box-shadow: -2px 0px 33px 0px rgb(0 0 0 / 15%);
+    /* padding: 10px; */
   }
 
   .card_image_container{

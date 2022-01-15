@@ -48,7 +48,7 @@ const UserHome = () => {
 
     return (
         <div className={styles.hobby_details_page}>
-        <BackgroundHome/>
+            <BackgroundHome />
             <div className={styles.hobbie_main}>
 
                 <div className={styles.hobbie_container_home}>
@@ -57,22 +57,23 @@ const UserHome = () => {
                             <div className={styles.user_home}>
                                 {state.length !== undefined && <section className={styles.cards}>
                                     {state.map(hobby =>
-
-                                        <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} key={hobby.id} id={hobby.id}>
-                                            <div className={styles.card_image_container}>
-                                                <img src={hobby.profileImgUrl} alt="Hobby picture" />
-                                            </div>
-
-                                            <div className={styles.card_content}>   
-                                                <p className={styles.card_title}>
-                                                    {hobby.name}
-                                                </p>
-                                                <div className={styles.card_info}>
-                                                    <p className={styles.text_medium}> Find out more...</p>
-                                                    <p className={styles.card_price}  >{hobby.price} CHF</p>
+                                        <div className={styles.rapper}>
+                                            <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} key={hobby.id} id={hobby.id}>
+                                                <div className={styles.card_image_container}>
+                                                    <img src={hobby.profileImgUrl} alt="Hobby picture" />
                                                 </div>
-                                            </div>
-                                        </Link>)
+
+                                                <div className={styles.card_content}>
+                                                    <p className={styles.card_title}>
+                                                        {hobby.name}
+                                                    </p>
+                                                    <div className={styles.card_info}>
+                                                        <p className={styles.text_medium}> Find out more...</p>
+                                                        <p className={styles.card_price}  >{hobby.price} CHF</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>)
                                     }
                                 </section>}
                             </div>
@@ -93,7 +94,7 @@ const UserHome = () => {
                     </div>
                 </div>
             </div>
-            <FooterHome/>
+            <FooterHome />
         </div>
     )
 
