@@ -1,27 +1,53 @@
 
   .navbar{
-    width: 50%;
+    width: 40%;
+    padding: 5px;
   }
   
   .nav_links{
     display:flex;
     justify-content: space-around;
     list-style: none;
+    
   }
   
   .nav_link{
     color: #5f5f79;
     font-size: 18px;
     text-decoration: none;
-    padding: 5px;
+
   }
 
 
 
+  @media only screen and (min-width: 900px) { 
+
+    .menu {
+      display: none;
+    }
+  
+    .nav_link{
+      font-size: 14px;
+  
+    }
+  } 
 
 
-@media only screen and (max-width: 1500px) { 
 
+@media only screen and (max-width: 900px) { 
+
+  .menu{
+    float: right;
+    padding-right: 20px;
+    top: -10px;
+    font-size: 32px;
+    color: rgb(135, 158, 187);
+    cursor: pointer;
+    font-weight:200;
+    position: relative;
+    top: 0px;
+    right: 10px;
+  }
   .nav_links{display: none;}
 
 
