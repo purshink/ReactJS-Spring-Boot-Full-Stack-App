@@ -1,48 +1,50 @@
 .hobby_details_page{
-    position: relative;
+    /* position: relative; */
+    width: 100%;
   }
 
 .hobbie_main {
-    margin:  auto 100px;
-    height: 100vh;
+    /* margin:  auto 100px; */
+    height: auto;
+    width: 100%;
+    margin-bottom: 2%;
   }
 
 .hobbie_container_home{
-    padding: 60px;
-    width: 70%;
-    height: 93vh;
-    margin: auto auto 50px auto;
+    padding: 50px;
+    width: 1000px;
+    height: 100%;
+    margin: 60px auto;
     box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
     position: relative;
   }
 
-  .hobbie_home_content{
-    height:100%;
-    width: 100%;
-    background-color: #fefefe;
-  }
+  
 
   .user_home{
-    display:grid;
-    grid-template-columns: 1fr repeat(11, minmax(auto, 60px)) 1fr;
-    grid-gap: 40px;
-    padding: 30px 0px ;
+    width: 100%;
+    margin: auto;
+    /* display:grid; */
+    grid-template-columns: 1fr repeat(9, minmax(auto, 100px)) 1fr;
+    grid-gap: 20px;
+    padding: 30px  ;
   }
 
   .cards{
+    width: 100%;
     grid-column: 2/ span 11;
     display: grid;
     grid-template-columns: repeat(12, minmax(auto, 60px));
     position: relative;
     grid-gap: 15px;
-    margin: 10px auto;
+    /* margin: 10px auto; */
   }
 
   .rapper {
     box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
     padding: 20px;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     grid-column-end: span 4;
     display:  flex;
     flex-direction: column;
@@ -161,32 +163,74 @@
     border: 2px solid #c36cbb;
   } 
   
+ 
+  @media all and (max-width: 950px) {
   
-
-
-@media only screen and (max-width: 1590px) {
-    .discover {
-  
-      padding-top: 30px;
-      margin-left: 40px;
+    .hobbie_container_home{
+      width: auto;
+      padding: 0;
     }
-    
-    .user_home{
-      grid-gap: 20px;
+
   }
-  .nav_links{display: none;}
-  .cards{ margin: auto;
-    grid-template-columns: repeat(12, minmax(auto, 60px));}
-  .card{grid-column-end: span 6;}
-  
+
+
+/* 
+@media all and (max-width: 1600px) {
+
+
+
+  .text_medium{
+    font-size: auto;
+  } 
+
+  .card_price{
+    font-size: auto;
+    padding-left: 5px;
   }
-  
-  
-  @media only screen and (max-width: 1155px) {
+
     .user_home{
       grid-template-columns: 10px repeat(6, 1fr) 10px;
       grid-gap: 10px;
   }
+  .cards{ margin: auto;
+    grid-template-columns: repeat(9, minmax(auto, 100px));}
+
+    .hobbie_container_home {
+
+      height:auto;
+    }
+
+    .hobbie_main{
+      height: auto;
+      margin-bottom: 5%;
+    }
+
+    
+  
+  }
+  
+  
+  @media all and (max-width: 1200px) {
+    .hobbie_main{
+      margin:   0%;
+      height: auto;
+      margin-bottom: 5%;
+      width: 100%;
+    }
+  
+    .hobbie_container_home {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height:auto;
+    }
+
+   
+    .hobbie_home_content{
+      background-color: transparent;
+      height: auto;
+      margin: 0;
+    }
   
   .cards{
       margin: auto;
@@ -196,57 +240,53 @@
      
    
   }
-  .card{
-    width: 350px;
+  .rapper{
+    width: 450px;
     grid-column-end: span 6;
     margin: auto;
   
   }
-  }
+  } */
+
+ 
   
+  @media all and (max-width: 850px) { 
+
+    .hobbie_main{
+      margin:   0%;
+      margin-bottom: 5%;
+    }
   
-  @media only screen and (max-width: 948px) { 
-    .user_home{
-        grid-template-columns: 10px repeat(6, 1fr) 10px;
-        grid-gap: 10px;
+    .hobbie_container_home {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
     }
-    .nav_links{display: none;}
-    .cards{
-        margin: auto;
-        grid-column: 2/ span 6;
-        grid-template-columns: repeat(6,1fr);
-        grid-gap: 20px;
+
+   
+    .hobbie_home_content{
+      background-color: transparent;
+      margin: 0;
     }
-    .card{
-      width: 300px;
-      height: 100%;
-      font-size: auto;
-      /* grid-column-end: span 6; */
+
+    .rapper{
+      width: 400px;
       margin: auto;
     }
-  } 
-  
-  
-  @media only screen and (max-width: 800px) { 
-    .user_home{
-        grid-template-columns: 10px repeat(6, 1fr) 10px;
-        grid-gap: 10px;
-    }
-    .nav_links{display: none;}
+   
+    .text_medium{
+      font-size: 14px;
+    } 
 
-    .cards{
-        margin: auto;
-        grid-column: 2/ span 6;
-        grid-template-columns: repeat(6,1fr);
-        grid-gap: 20px;
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 20px;
     }
-    .card{
-      width: 300px;
-      height: 100%;
-      font-size: auto;
-      /* grid-column-end: span 6; */
-      margin: auto;
+
+    .card_price{
+      font-size: 14px;
+      padding-left: 5px;
     }
   } 
-
   

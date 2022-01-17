@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import FooterHome from './FooterHome'
 import styles from '../css/UserHome.module.css'
 
+
+
 const UserHome = () => {
 
     let navigate = useNavigate();
@@ -81,7 +83,7 @@ const UserHome = () => {
                             {welcomeDiv.showDiv && <div>
                                 <div className={styles.introduction_home}>
                                     <div className={styles.intro_text}>
-                                        <p>You have no offers. Plase fill in the form and create a new offer:.</p>
+                                        <p>You have no hobby matches.</p>
                                         <div className={styles.buttuns}>
                                             <button className={styles.link} >
                                                 <Link to='/test' className={styles.btn}>Take the test</Link>
