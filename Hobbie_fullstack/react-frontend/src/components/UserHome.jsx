@@ -4,8 +4,8 @@ import HobbyDataService from '../api/hobby/HobbyDataService'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import FooterHome from './FooterHome'
 import styles from '../css/UserHome.module.css'
+import FooterDetails from './FooterDetails'
 
 
 
@@ -96,7 +96,7 @@ const UserHome = () => {
                     </div>
                 </div>
             </div>
-            <FooterHome />
+            <FooterDetails />
         </div>
     )
 

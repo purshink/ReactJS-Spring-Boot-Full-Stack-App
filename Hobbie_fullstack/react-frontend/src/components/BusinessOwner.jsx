@@ -1,5 +1,5 @@
 import React from 'react'
-import FooterHome from './FooterHome'
+import FooterDetails from './FooterDetails'
 import styles from '../css/UserHome.module.css'
 import BackgroundHome from './BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
@@ -93,7 +93,7 @@ const BusinessOwner = () => {
                     </div>
                 </div>
             </div>
-            <FooterHome />
+            <FooterDetails />
         </div>
     )
 

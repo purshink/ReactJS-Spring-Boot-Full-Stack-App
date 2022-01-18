@@ -23,7 +23,7 @@ const Navbar = () => {
       <ul className={styles.nav_links}>
         {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='/user-home'>Home</NavLink></li>}
         {isBusinessLoggedIn && <li className={styles.nav_link}><NavLink to='/business-owner'>Home</NavLink></li>}
-        {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='/test'>Take the test</NavLink></li>}
+        {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='/test'>Test</NavLink></li>}
         {!isBusinessLoggedIn && !isUserLoggedIn && <li className={styles.nav_link}><NavLink to='register-business'>Register business</NavLink></li>}
         {isBusinessLoggedIn && <li className={styles.nav_link}><NavLink to='create-offer'>Create offer</NavLink></li>}
         {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='my-hobbies' className="nav-link">My hobbies</NavLink></li>}

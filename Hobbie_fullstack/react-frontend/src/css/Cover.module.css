@@ -8,3 +8,17 @@
     z-index: -1;
     width: 72%;
   }
+
+  @media all and (max-width: 1400px) {
+    .cover_style{
+      position: absolute;
+      top:90px;
+      right: 0px;
+      bottom: 0px;
+      height: 90%;
+      color: #494969;
+      width: 100%;
+      object-fit: cover;
+    }
+  
+  }

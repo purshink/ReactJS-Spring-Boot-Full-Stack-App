@@ -15,8 +15,8 @@ const Home = () => {
     return (
         <div>
             <Presentation />
-             <Footer/>
              <Cover/>
+             <Footer/>
              <BackgroundCover/>
         </div>
     )
