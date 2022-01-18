@@ -1,17 +1,15 @@
 .account_main{
     width: 50%;
     margin: auto;
+
   }
 
 .account_container{
-    padding: 60px;
-    width: 90%;
     margin: auto;
     display: block;
     box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
 
   }
-
 
 .account_cover{
     grid-area: cover;
@@ -60,14 +58,23 @@
   }
 
   .account_label p {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 25px;
     width: 100%;
     color: gray;
     white-space:pre-wrap;
   
   }
 
- 
+  @media all and (max-width: 700px) {
+    .account_container{
+      padding: 20px;
+    }
+    .account_main{
+    
+      width: 90%;
+    }
+  }
 
 
   

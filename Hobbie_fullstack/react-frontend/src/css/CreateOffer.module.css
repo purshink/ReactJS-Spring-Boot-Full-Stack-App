@@ -4,7 +4,7 @@
     margin: auto;
     background: linear-gradient(to right,#696989, #dcdce6);
     color: white;
-    width: 50%;
+    width: 800px;
     min-height: 500px;
     height: min-content;
     border-radius: 15px;
@@ -14,7 +14,7 @@
   }
 
   .create_offer{
-    padding-top: 50px;
+    padding-top: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -191,3 +191,18 @@ textarea{
   border: 1px solid white;
   margin-top: 20px;
   border-radius: 5px;}
+
+  @media all and (max-width: 850px) {
+    .offer_main{
+      width: 90%;
+    }
+    .create_offer{
+      padding-top: 100px;
+      margin-top: 90px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      padding-top: 0;
+      z-index: -1;
+    }
+  }

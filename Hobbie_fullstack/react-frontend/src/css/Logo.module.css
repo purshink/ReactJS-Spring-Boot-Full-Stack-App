@@ -18,9 +18,18 @@
   }
 
 
-@media only screen and (max-width: 900px){
+@media all and (max-width: 900px){
   .logo_container{
     position: relative;
     left: 30px;
   }
 }
+
+  /* @media all and (max-width: 850px){
+    .logo{
+      font-size: 14px;
+      position: relative;
+      top: 5px;
+      left: 1px;
+    }
+} */

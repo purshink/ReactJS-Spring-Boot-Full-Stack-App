@@ -1,5 +1,5 @@
 .test_content{
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
     margin: auto;
     padding: 40px;
@@ -9,7 +9,7 @@
   }
 
 .test_form {
-    margin: 100px auto;
+    margin: 50px auto;
     background: linear-gradient(to right,#696989, #dcdce6);
     color: white;
     width: 800px;
@@ -23,10 +23,9 @@
   } 
 
 .test_end {
-    position: relative;
-    left: 100px;
-    top: 100px;
-    width: 200%;
+
+    margin: auto;
+    width: 100%;
   } 
 
   /* .submit-offer */
@@ -68,6 +67,7 @@
   } 
   
 .question_text {
+  width: 100%;
     margin-bottom: 12px;
     font-size: 16px;
   }  
@@ -92,3 +92,34 @@
     border: 5px solid transparent;
     cursor: pointer;
   }  
+
+  @media all and (max-width: 850px) {
+    .test_content{
+      margin:  auto;
+      padding: 100px 20px;
+      width: 100%;}
+    .test_form{
+      display: block;
+      width: 100%;
+    padding: 0;
+  margin: auto;}
+
+      .test_button{
+        width: 90%;
+        margin: auto;
+        height: 50px;
+        margin: 5px;
+      }
+
+      .question_section{
+        padding: 60px 30px 30px 30px;
+      }
+
+      .answer_section {
+        margin: 40px 20px;
+      }
+
+      .test_end{
+        padding: 100px 50px;
+      }
+  }

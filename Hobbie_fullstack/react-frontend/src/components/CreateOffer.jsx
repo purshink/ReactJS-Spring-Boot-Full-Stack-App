@@ -1,5 +1,5 @@
 import React from 'react'
-import FooterHome from './FooterHome'
+import FooterDetails from './FooterDetails'
 import Background from './Background'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -330,8 +330,8 @@ const CreateOffer = () => {
                             </form>
                         </div>
               
-                    <FooterHome />
-                    <Background />
+                    <FooterDetails />
+                    {/* <Background /> */}
                    
                 </div>
             </div>

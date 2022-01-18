@@ -1,5 +1,4 @@
 import React from 'react'
-import FooterHome from './FooterHome';
 import Background from './Background';
 import TestResultsService from '../api/hobby/TestResultsService';
 import AuthenticationService from '../api/hobby/AuthenticationService';
@@ -7,6 +6,8 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/Test.module.css'
+import FooterDetails from './FooterDetails';
+import layout from '../css/UserHome.module.css'
 
 const TestForm = () => {
 
@@ -138,10 +139,10 @@ const TestForm = () => {
 
 	return (
 
-
+		<div className={layout.hobbie_main}>
 		<div className={styles.test_content}>
 			<div className={styles.test_form}>
-				{currentQuestion === questions.length && <div className={styles.test_end}>Thank you! Please visit your homepage to discover your new hobby! <button type="submit" className={styles.button} ><Link to='/user-home'className={styles.link_home} >Discover</Link></button></div>
+				{currentQuestion === questions.length && <div className={styles.test_end}>Thank you! Please visit your homepage to discover your new hobby! <br></br><button type="submit" className={styles.button} ><Link to='/user-home'className={styles.link_home} >Discover</Link></button></div>
 				}
 				<>
 					<div className={styles.question_section}>
@@ -159,8 +160,9 @@ const TestForm = () => {
 					</div>
 				</>
 			</div>
-			<FooterHome/>
-			<Background/>
+			</div>
+			<FooterDetails/>
+			{/* <Background/> */}
 		</div>
 
 	)
