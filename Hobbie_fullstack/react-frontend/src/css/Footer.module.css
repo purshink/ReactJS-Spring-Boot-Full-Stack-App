@@ -21,6 +21,19 @@
     color: #494969;
   }
 
+  .footer_cover {
+    position:absolute;
+    height : 40px;
+    margin-top : 40px;
+    margin-left: 5%;
+    bottom:0px;
+    background:transparent;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+    zoom: 1;
+    width: 90%;
+    color: #494969;
+  }
+
   .footer_home {
     background:transparent;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
@@ -34,11 +47,11 @@
   }
 
   @media all and (max-width: 850px) {
-    /* .footer_hobbie_details{
-      position: relative;
-      left: 30%;
-      margin-top: 20px;
-    } */
+    .footer{
+      margin: auto;
+      left: 20%;
+      width: 60%;
+    }
   }
 
 

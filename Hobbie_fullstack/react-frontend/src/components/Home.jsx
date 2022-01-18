@@ -1,8 +1,8 @@
 import React from 'react'
-import Footer from './Footer'
 import BackgroundCover from './BackgroundCover'
 import Presentation from './Presentation'
 import Cover from './Cover'
+import { FooterCover } from './FooterCover'
 
 
 
@@ -16,7 +16,7 @@ const Home = () => {
         <div>
             <Presentation />
              <Cover/>
-             <Footer/>
+             <FooterCover/>
              <BackgroundCover/>
         </div>
     )

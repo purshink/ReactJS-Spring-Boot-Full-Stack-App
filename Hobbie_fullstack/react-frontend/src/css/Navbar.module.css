@@ -20,7 +20,7 @@
 
 
 
-  @media only screen and (min-width: 900px) { 
+  @media all and (min-width: 900px) { 
 
     .menu {
       display: none;
@@ -31,13 +31,13 @@
     }
   } 
 
-  @media only screen and (max-width: 1000px) {
+  @media all and (max-width: 1000px) {
     .nav_link{
       font-size: 14px;
     }
   }
 
-@media only screen and (max-width: 900px) { 
+@media all and (max-width: 900px) { 
 
   .menu{
     float: right;

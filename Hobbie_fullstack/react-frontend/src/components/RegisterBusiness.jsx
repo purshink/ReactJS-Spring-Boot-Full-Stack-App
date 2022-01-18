@@ -92,7 +92,7 @@ const RegisterBusiness = () => {
     return (
         <div>
             <div className={styles.form_style}>
-                <h2>Register your business</h2>
+                <h2>Register Business</h2>
 
                 {error && <div className={styles.errors} >
                     This username, business name or email already exist.

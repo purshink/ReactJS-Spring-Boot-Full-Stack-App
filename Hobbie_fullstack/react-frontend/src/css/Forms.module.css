@@ -237,3 +237,27 @@ input[type=checkbox]:checked:after {
     float: right;
   }
 
+  
+  @media all and (max-width: 650px) {
+
+    h2 {font-size: 20px;
+      margin-top: 10px;
+    }
+    .checkbox {
+      font-size: 10px;
+      padding-left: 15px;
+
+    } 
+    input[type=checkbox]:after{
+      width: 15px;
+      height: 10px;
+      padding-left: 0;
+    }  
+  
+    input[type=checkbox]:checked:after {
+      content: "\2714";
+      padding: -15px;
+      font-weight: bold;
+    } 
+   
+  }
