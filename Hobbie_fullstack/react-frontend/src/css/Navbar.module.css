@@ -8,8 +8,9 @@
     display:flex;
     justify-content: space-around;
     list-style: none;
-    
   }
+
+
   
   .nav_link{
     color: #5f5f79;
@@ -19,9 +20,10 @@
   }
 
 
-
   @media all and (min-width: 900px) { 
-
+    .popup_menu {
+      display: none;
+    }
     .menu {
       display: none;
     }
@@ -51,8 +53,31 @@
     top: 0px;
     right: 10px;
   }
-  .nav_links{display: none;}
+  .nav_links_popup{
+    color: rgb(135, 158, 187);
+    list-style: none;
+    z-index: 2;
+    padding: 5px;
+  }
 
+
+  .popup_menu {
+    z-index: 99 !important; 
+    position: absolute;
+    padding: 5px;
+    top: 6%;
+    right: 5%;
+    width: auto;
+    height: auto;
+    box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
+  }
+
+
+  .nav_links{display: none;}
+  .nav_link {
+    font-size: 12px;
+    line-height: 30px;
+  }
 
 } 
 

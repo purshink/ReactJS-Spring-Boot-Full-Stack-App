@@ -3,7 +3,7 @@ import BackgroundHome from './BackgroundHome'
 import dancingImg from '/home/nix/Documents/my_apps/Hobbie_fullstack/react-frontend/src/img/2.jpg'
 import styles from '../css/Account.module.css'
 import layout from '../css/UserHome.module.css'
-import FooterDetails from './FooterDetails'
+import Footer from './Footer'
 
 
 const AccountUser = () => {
@@ -38,7 +38,7 @@ const AccountUser = () => {
                 <BackgroundHome />
             </div>
         </div>
-        <FooterDetails />
+        <Footer />
     </div>
     )
 }

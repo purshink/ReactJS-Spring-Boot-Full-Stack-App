@@ -8,3 +8,5 @@ export const FooterCover = () => {
     </footer>
     )
 }
+
+export default FooterCover

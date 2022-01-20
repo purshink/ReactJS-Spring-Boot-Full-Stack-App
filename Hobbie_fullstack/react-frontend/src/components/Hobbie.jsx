@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthenticationService from '../api/hobby/AuthenticationService'
-import FooterHome from './FooterHome'
+import FooterDetails from './FooterDetails'
 import BackgroundHome from './BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
@@ -67,7 +67,7 @@ const Hobbie = () => {
     const isColumnBased = useMediaQuery('(max-width: 1600px)');
 
     const isColumnBasedSmaller = useMediaQuery('(max-width: 1000px)');
-    const isColumnBasedSmall = useMediaQuery('(max-width: 810px)');
+    const isColumnBasedSmall = useMediaQuery('(max-width: 900px)');
 
 
 
@@ -75,7 +75,7 @@ const Hobbie = () => {
     return (
 
         <div className={styles.hobby_details_page}>
-                <BackgroundHome/>
+            <BackgroundHome />
 
             <div className={isColumnBasedSmall ? styles.hobbie_main_small : styles.hobbie_main}>
                 {isColumnBasedSmall && <div> <span className={styles.hobbie_title_small}><b>{hobby.name}</b></span> <h4 className={styles.slogan_small}> {hobby.slogan} </h4></div>}
@@ -110,24 +110,23 @@ const Hobbie = () => {
                                     <p> {hobby.description} </p>
                                 </div>}
                                 {currentPage === '03' &&
-                                  
-                                       
-                                        <div className={gallery_styles.gallery}>
-                                   
-                                            <div class={gallery_styles.row}>
-                                                <div class={gallery_styles.column}>
-                                                    <img className={gallery_styles.img} src={hobby.profileImgUrl} />
-                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl1} />
 
-                                                </div>
+                                    <div className={gallery_styles.gallery}>
 
-                                                <div class={gallery_styles.column}>
-                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl2} />
-                                                    <img className={gallery_styles.img} src={hobby.galleryImgUrl3} />
-                                                </div>
+                                        <div class={gallery_styles.row}>
+                                            <div class={gallery_styles.column}>
+                                                <img className={gallery_styles.img} src={hobby.profileImgUrl} />
+                                                <img className={gallery_styles.img} src={hobby.galleryImgUrl1} />
+
+                                            </div>
+
+                                            <div class={gallery_styles.column}>
+                                                <img className={gallery_styles.img} src={hobby.galleryImgUrl2} />
+                                                <img className={gallery_styles.img} src={hobby.galleryImgUrl3} />
                                             </div>
                                         </div>
-                                 
+                                    </div>
+
                                 }
                                 {currentPage === '04' && <div>
                                     <p> {hobby.contactInfo} </p>
@@ -135,13 +134,16 @@ const Hobbie = () => {
                                 {currentPage !== '03' && <div className={styles.buttons}>
                                     {isBusinessLoggedIn && <div><span className={styles.btn}>Edit </span>
                                         <span className={styles.btn}>Delete </span> </div>}
-                                    {isUserLoggedIn && <div><span className={styles.btn}>Save</span>
-                                        <span className={styles.btn}>Remove</span> </div>}
+                                    {isUserLoggedIn && <span className={styles.btn}>Save</span>}
                                 </div>}
                             </div>
-
+                                
+                           
+                            
                         </div>
                     </div>}
+
+
                     {welcomeDiv.showDiv && <div>
                         <div className={styles.error_message}>
                             <div className={styles.error_text}>
@@ -151,7 +153,7 @@ const Hobbie = () => {
                     </div>}
                 </div>
             </div>
-            <FooterHome />
+            <FooterDetails />
 
         </div>
     )

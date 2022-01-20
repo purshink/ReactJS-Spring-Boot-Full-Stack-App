@@ -48,6 +48,26 @@ padding-left: 10%;
     left: 0;
     margin:  auto;
     transform: scale(1.5);
-    
   
 }
+
+@media all and (max-width: 600px) {
+  .row{
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 20px;
+  }
+  .column{
+    max-width: 100%;
+  }
+
+  .img {
+      margin-bottom: 10px;
+      pointer-events:none;
+  }
+
+  .gallery {
+    padding-left: 15px;
+  }
+ }

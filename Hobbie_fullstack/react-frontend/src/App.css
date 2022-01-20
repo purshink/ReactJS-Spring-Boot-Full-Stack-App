@@ -4,6 +4,10 @@
   font-family: 'Poppins', sans-serif;
   border: 1px solid transparent;
   padding-bottom: 20px;
+  height: 100%;
+}
+#root{
+  height: 100%;
 }
 
 *{
@@ -12,6 +16,11 @@
   box-sizing: border-box;
   /* for debug: */
   /* border: 1px solid red; */
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
 }
 
 
