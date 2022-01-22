@@ -46,6 +46,8 @@ public interface UserService {
     boolean businessExists(String businessName);
 
     AppClient findAppClientByUsername(String username);
+
+    BusinessOwner findBusinessByUsername(String username);
 }
 
 

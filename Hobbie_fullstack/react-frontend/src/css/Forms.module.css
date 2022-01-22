@@ -226,6 +226,10 @@ input[type=checkbox]:checked:after {
     color:  #595f6e;
   }
 
+  input::placeholder{
+    color: #c2dbf1;
+  }
+
 .checkbox_choice_section:hover input ~ .checkmark {
     background-color: #ccc;
   }
@@ -259,5 +263,4 @@ input[type=checkbox]:checked:after {
       padding: -15px;
       font-weight: bold;
     } 
-   
   }

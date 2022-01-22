@@ -3,10 +3,11 @@ package backend.hobbiebackend.web;
 
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
+import backend.hobbiebackend.model.dto.UpdateAppClientDto;
+import backend.hobbiebackend.model.dto.UpdateBusinessDto;
 import backend.hobbiebackend.model.entities.AppClient;
 import backend.hobbiebackend.model.entities.BusinessOwner;
 import backend.hobbiebackend.model.entities.UserEntity;
-import backend.hobbiebackend.model.entities.UserRoleEntity;
 import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
@@ -81,52 +82,47 @@ public class UserController {
 
 
 
-    @GetMapping("/update-user")
-    public String showUpdateForm() {
+    @GetMapping("/show-client-details/{username}")
+    public AppClient showUserDetails(@PathVariable String username) {
+            return  this.userService.findAppClientByUsername(username);
+    }
 
-//            AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-            return "update-user";
 
+    @GetMapping("/show-business-details/{username}")
+    public BusinessOwner showBusinessDetails(@PathVariable String username) {
+        return  this.userService.findBusinessByUsername(username);
     }
 
         @PostMapping("/update-user")
-        public String updateUser() {
+        public ResponseEntity<?>  updateUser(@RequestBody UpdateAppClientDto user) {
 
-//                    AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//                    appClient.setId(currentUserAppClient.getId());
-//                    appClient.setUsername(currentUserAppClient.getUsername());
-//                    appClient.setPassword(this.passwordEncoder.encode(updateClientBindingModel.getPassword()));
-//                    appClient.setRoles(currentUserAppClient.getRoles());
-//                    this.userService.saveUpdatedUserClient(appClient);
-//            model.addAttribute("isExists",false);
-                    return "updated_user";
-
-    }
-
-    @GetMapping("/update-business")
-    public String showUpdateBusinessForm() {
-
-//            BusinessOwner currentUserBusinessOwner = this.userService.findCurrentUserBusinessOwner();
+                    AppClient client = this.userService.findAppClientById(user.getId());
 
 
-            return "business_data";
+                    client.setPassword(user.getPassword());
+                    client.setGender(user.getGender());
+                    client.setFullName(user.getFullName());
+
+                    this.userService.saveUpdatedUserClient(client);
+            return new ResponseEntity<AppClient>(client, HttpStatus.CREATED);
 
     }
+
+
 
     @PostMapping("/update-business")
-    public String updateBusiness() {
+    public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
 
-//                Long userId = (Long) request.getSession().getAttribute("userId");
-//                    UserEntity user = this.userService.findUserById(userId);
+        BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
 
-//                businessOwner.setId(userId);
-//                businessOwner.setUsername(user.getUsername());
-//                businessOwner.setPassword(this.passwordEncoder.encode(updateBusinessBindingModel.getPassword()));
-//                businessOwner.setRoles(user.getRoles());
-//                this.userService.saveUpdatedUser(businessOwner);
 
-                return "updated_business";
+                businessOwner.setBusinessName(business.getBusinessName());
+                businessOwner.setPassword(business.getPassword());
+                businessOwner.setAddress(business.getAddress());
+                this.userService.saveUpdatedUser(businessOwner);
+
+        return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
 
     }
     @GetMapping("/deleteAppClient")

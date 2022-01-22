@@ -121,7 +121,10 @@
     width: 50%;
     align-items: center;
   }
-
+  .intro_text {
+    margin: auto;
+    margin-bottom: 100px;
+  }
   .intro_text h1{
     font-size: 44px;
     font-weight: 900;

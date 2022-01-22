@@ -16,6 +16,8 @@ import CreateOffer from './components/CreateOffer';
 import MyHobbies from './components/MyHobbies';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import ProtectedRoutesBusiness from './components/ProtectedRoutesBusiness';
+import EditUserProfile from "./components/EditUserProfile";
+import EditBusinessProfile from "./components/EditBusinessProfile";
 
 
 
@@ -33,6 +35,7 @@ function App() {
     
 
       <Route element={<ProtectedRoutes/>}>
+      <Route path='/edit-profile'  element={<EditUserProfile/>}/>
       <Route path='/user-home'  element={<UserHome/>}/>
       <Route path='/account-user' element={<AccountUser/>}/>
       <Route path='/test'  element={<TestForm/>}/>
@@ -41,6 +44,7 @@ function App() {
       </Route>
 
    <Route element={<ProtectedRoutesBusiness/>}>
+   <Route path='/edit-business-profile'  element={<EditBusinessProfile/>}/>
       <Route path='/business-owner' element={<BusinessOwner/>}/>
       <Route path='/account-business'  element={<AccountBusiness/>}/>
       <Route path='/create-offer'  element={<CreateOffer/>}/>

@@ -21,7 +21,7 @@ const Hobbie = () => {
     let navigate = useNavigate();
     let params = useParams();
 
-
+   
     const id = params.id;
     const [currentPage, setCurrentPage] = useState('01');
 
