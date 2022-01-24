@@ -23,7 +23,6 @@ const EditBusinessProfile = () => {
 
     const [errors, setErrors] = useState({});
 
-    console.log(location.state);
     const validate = () => {
         const errors = {};
 

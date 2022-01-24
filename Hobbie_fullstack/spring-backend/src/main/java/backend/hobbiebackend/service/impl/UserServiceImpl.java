@@ -188,21 +188,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public boolean deleteUser(Long id) {
         UserEntity user = findUserById(id);
-//        expireUserSessions();
+        if (user == null){
+            return false;
+        }
 
         userRepository.delete(user);
 
-
+        return  true;
     }
 
     @Override
     public void deleteBusinessOwner(Long id) {
         Optional<BusinessOwner> user = this.businessOwnerRepository.findById(id);
         if(user.isPresent()) {
-
-//
 //            expireUserSessions();
             userRepository.delete(user.get());
         }
@@ -216,8 +216,6 @@ public class UserServiceImpl implements UserService {
     public void deleteAppClient(Long id) {
         Optional<AppClient> user = this.appClientRepository.findById(id);
         if(user.isPresent()) {
-
-            this.appClientRepository.save(user.get());
 //            expireUserSessions();
 
             appClientRepository.delete(user.get());

@@ -125,23 +125,22 @@ public class UserController {
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
 
     }
-    @GetMapping("/deleteAppClient")
-    public String deleteAppClient(){
+    @DeleteMapping("/delete-user/{id}")
+    public ResponseEntity<Long> deleteUser(@PathVariable Long id){
+        boolean isRemoved = this.userService.deleteUser(id);
 
-//            AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//
-//                this.userService.deleteAppClient(currentUserAppClient.getId());
-                return "deleted_user";
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/deleteBusinessOwner")
-    public String deleteBusinessOwner() {
+//    @DeleteMapping("/delete-business")
+//    public ResponseEntity<?> deleteBusiness(@RequestBody BusinessOwner business){
 //
-//            BusinessOwner currentUserBusinessOwner = this.userService.findCurrentUserBusinessOwner();
-//
-//                this.userService.deleteBusinessOwner(currentUserBusinessOwner.getId());
-                return "deleted_business";
-    }
+//        this.userService.deleteBusinessOwner(business.getId());
+//        return   new ResponseEntity<BusinessOwner>(business, HttpStatus.OK);
+//    }
 
     @PostMapping("/login")
     public String logInUser(@RequestParam String username) {

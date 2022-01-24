@@ -123,6 +123,7 @@
   }
   .intro_text {
     margin: auto;
+    padding-bottom: 30px;
     margin-bottom: 100px;
   }
   .intro_text h1{

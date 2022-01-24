@@ -80,7 +80,7 @@ const BusinessOwner = () => {
                             {welcomeDiv.showDiv && <div>
                                 <div className={styles.introduction_home}>
                                     <div className={styles.intro_text}>
-                                        <p>You have no offers. Plase fill in the form and create a new offer:.</p>
+                                        <p>You have no offers.</p>
                                         <div className={styles.buttuns}>
                                             <button className={styles.link} >
                                                 <Link to='/create-offer' className={styles.btn}>Create new offer</Link>

@@ -25,7 +25,7 @@ public interface UserService {
 
     UserEntity findUserById(Long userId);
 
-    void deleteUser(Long id);
+    boolean deleteUser(Long id);
 
     BusinessOwner findBusinessOwnerById(Long id);
 

@@ -8,31 +8,47 @@ import BusinessDataService from '../api/hobby/BusinessDataService'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import DeleteUserService from '../api/hobby/DeleteUserService'
+
 
 const AccountBusiness = () => {
-let navigate = useNavigate();
-const [business, setBusiness] = useState([]);
+    let navigate = useNavigate();
+    const [business, setBusiness] = useState([]);
+    const [error, setError] = useState(false);
 
-const handleSort = business => event => {
-    event.preventDefault();
-    let path = '/edit-business-profile'
-    navigate(path, { state: { id: business.id,   businessName:business.businessName, address: business.address} });
-
-}
-
-useLayoutEffect(() => {
-    let unmounted = false;
-
-    BusinessDataService().then(
-        response => {
-            if (!unmounted) {
-                setBusiness(response.data);
+    const handleDelete = business => async event => {
+        event.preventDefault();
+        if (window.confirm("Are you sure you want to delete your profile?")) {
+            const response = await DeleteUserService(business.id);
+            console.log(response);
+            if (response.status !== 201) {
+                setError(true)
+            } else {
+                navigate("/")
             }
-     
-        })
-    return () => { unmounted = true };
+        }
+    }
 
-}, []);
+    const handleEdit = business => event => {
+        event.preventDefault();
+        let path = '/edit-business-profile'
+        navigate(path, { state: { id: business.id, businessName: business.businessName, address: business.address } });
+
+    }
+
+    useLayoutEffect(() => {
+        let unmounted = false;
+
+        BusinessDataService().then(
+            response => {
+                if (!unmounted) {
+                    setBusiness(response.data);
+                }
+
+            })
+        return () => { unmounted = true };
+
+    }, []);
     return (
         <div>
             <div className={layout.hobbie_main}>
@@ -53,8 +69,8 @@ useLayoutEffect(() => {
                                         <p>Change password: **** </p>
                                         <br></br>
                                         <div className={styles.account_buttons}>
-                                            <a className={styles.account_btn} >Delete profile</a>
-                                            <Link to="#" onClick={handleSort(business)} className={styles.account_btn} >Edit profile</Link>
+                                            <Link to="#" onClick={handleDelete(business)} className={styles.account_btn} >Delete profile</Link>
+                                            <Link to="#" onClick={handleEdit(business)} className={styles.account_btn} >Edit profile</Link>
                                         </div>
                                     </div>
                                 </div>

@@ -8,18 +8,34 @@ import Footer from './Footer'
 import UserDataService from '../api/hobby/UserDataService'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
+import DeleteUserService from '../api/hobby/DeleteUserService'
+
+
 
 
 
 
 const AccountUser = () => {
     let navigate = useNavigate();
-    const [user, setUser] = useState([]);
 
-    const handleSort = user => event => {
+    const [user, setUser] = useState([]);
+    const [error, setError] = useState(false);
+    const handleDelete = user =>  async event => {
+        event.preventDefault();
+        if(window.confirm("Are you sure you want to delete your profile?")){
+        const response = await DeleteUserService(user.id);
+        console.log(response);
+        if (response.status !== 200) {
+            setError(true)
+        } else {
+            navigate("/")
+        }
+    }
+    }
+
+    const handleEdit = user => event => {
         event.preventDefault();
         let path = '/edit-profile'
-        let id = user.id;
         navigate(path, { state: { id: user.id, gender:user.gender, fullName: user.fullName} });
 
     }
@@ -57,8 +73,8 @@ const AccountUser = () => {
                                     <p> Change password: **** </p>
                                     <br></br>
                                     <div className={styles.account_buttons}>
-                                        <a className={styles.account_btn} >Delete profile</a>
-                                        <Link to="#" onClick={handleSort(user)} className={styles.account_btn} >Edit profile</Link>
+                                    <Link to="#" onClick={handleDelete(user)} className={styles.account_btn} >Delete profile</Link>
+                                        <Link to="#" onClick={handleEdit(user)} className={styles.account_btn} >Edit profile</Link>
                                     </div>
                                 </div>
                             </div>
