@@ -1,13 +1,12 @@
 package backend.hobbiebackend.model.dto;
 
-import backend.hobbiebackend.model.entities.Category;
-import backend.hobbiebackend.model.entities.Location;
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
 
 import java.math.BigDecimal;
 
-public class HobbyInfoDto {
+public class HobbyInfoUpdateDto {
+    private Long id;
     private String name;
     private String slogan;
     private String intro;
@@ -27,24 +26,12 @@ public class HobbyInfoDto {
     private String galleryImg2_id;
     private String galleryImg3_id;
 
-
-    public HobbyInfoDto() {
+    public Long getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSlogan() {
-        return slogan;
-    }
-
-    public void setSlogan(String slogan) {
-        this.slogan = slogan;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIntro() {
@@ -61,14 +48,6 @@ public class HobbyInfoDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public CategoryNameEnum getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryNameEnum category) {
-        this.category = category;
     }
 
     public String getCreator() {
@@ -94,7 +73,6 @@ public class HobbyInfoDto {
     public void setLocation(LocationEnum location) {
         this.location = location;
     }
-
 
     public String getContactInfo() {
         return contactInfo;
@@ -166,5 +144,29 @@ public class HobbyInfoDto {
 
     public void setGalleryImg3_id(String galleryImg3_id) {
         this.galleryImg3_id = galleryImg3_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
+    }
+
+    public CategoryNameEnum getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryNameEnum category) {
+        this.category = category;
     }
 }

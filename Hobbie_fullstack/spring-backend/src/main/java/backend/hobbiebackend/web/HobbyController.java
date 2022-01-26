@@ -2,6 +2,9 @@ package backend.hobbiebackend.web;
 
 
 import backend.hobbiebackend.model.dto.HobbyInfoDto;
+import backend.hobbiebackend.model.dto.HobbyInfoUpdateDto;
+import backend.hobbiebackend.model.dto.UpdateBusinessDto;
+import backend.hobbiebackend.model.entities.BusinessOwner;
 import backend.hobbiebackend.model.entities.Category;
 import backend.hobbiebackend.model.entities.Hobby;
 import backend.hobbiebackend.model.entities.Location;
@@ -10,7 +13,11 @@ import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.LocationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 
 @RestController
@@ -59,16 +66,7 @@ public class HobbyController {
 
 
     }
-//
-//    @GetMapping("/offer-details/{id}")
-//    public String showOffer(){
-//
-//
-////            Hobby hobby = this.hobbyService.findHobbieById(id);
-//
-//            return "offer-details";
-//
-//    }
+
 //
 //    @GetMapping("/save-hobby/{id}")
 //    public String saveHobbyForClient(){
@@ -90,29 +88,19 @@ public class HobbyController {
 //
 //    }
 //
-//    @GetMapping("/update-hobby/{id}")
-//    public String showUpdateHobbyForm(@PathVariable("id") long id, Model model) {
-//
-////            Hobby hobbie = this.hobbyService.findHobbieById(id);
-//
-//
-//            return "update-hobby";
-//
-//    }
-//
-//    @PostMapping("/update-hobby/{id}")
-//    public String updateHobby() {
-//
-////
-////                updateHobbyBindingModel.setId(id);
-////                this.hobbyService.saveUpdatedHobby();
-//
-//
-//
-//            return "updated_hobby";
-//
-//    }
-//
+
+    @PostMapping("/update-hobby")
+    public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
+        Hobby offer = this.modelMapper.map(info, Hobby.class);
+        Category category = this.categoryService.findByName(info.getCategory());
+        Location location = this.locationService.getLocationByName(info.getLocation());
+        offer.setLocation(location);
+        offer.setCategory(category);
+            this.hobbyService.saveUpdatedHobby(offer);
+            return  new ResponseEntity<Hobby>(offer, HttpStatus.CREATED);
+
+    }
+
 //    @GetMapping("/delete-hobby/{id}")
 //    public String deleteAppClient() {
 //

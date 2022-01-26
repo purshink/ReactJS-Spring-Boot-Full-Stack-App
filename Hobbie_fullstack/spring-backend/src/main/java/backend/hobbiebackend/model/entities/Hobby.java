@@ -19,6 +19,10 @@ public class Hobby extends BaseEntity{
     private String galleryImgUrl1;
     private String galleryImgUrl2;
     private String galleryImgUrl3;
+    private String profileImg_id;
+    private String galleryImg1_id;
+    private String galleryImg2_id;
+    private String galleryImg3_id;
 
     private String contactInfo;
 
@@ -28,6 +32,38 @@ public class Hobby extends BaseEntity{
 
 
     public Hobby() {
+    }
+    @Column(name = "profile_img_id")
+    public String getProfileImg_id() {
+        return profileImg_id;
+    }
+
+    public void setProfileImg_id(String profileImg_id) {
+        this.profileImg_id = profileImg_id;
+    }
+    @Column(name = "img1_id")
+    public String getGalleryImg1_id() {
+        return galleryImg1_id;
+    }
+
+    public void setGalleryImg1_id(String galleryImg1_id) {
+        this.galleryImg1_id = galleryImg1_id;
+    }
+    @Column(name = "img2_id")
+    public String getGalleryImg2_id() {
+        return galleryImg2_id;
+    }
+
+    public void setGalleryImg2_id(String galleryImg2_id) {
+        this.galleryImg2_id = galleryImg2_id;
+    }
+    @Column(name = "img3_id")
+    public String getGalleryImg3_id() {
+        return galleryImg3_id;
+    }
+
+    public void setGalleryImg3_id(String galleryImg3_id) {
+        this.galleryImg3_id = galleryImg3_id;
     }
 
     @Column(name = "profile_image_url")

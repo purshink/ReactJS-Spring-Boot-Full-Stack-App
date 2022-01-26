@@ -135,12 +135,6 @@ public class UserController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-//    @DeleteMapping("/delete-business")
-//    public ResponseEntity<?> deleteBusiness(@RequestBody BusinessOwner business){
-//
-//        this.userService.deleteBusinessOwner(business.getId());
-//        return   new ResponseEntity<BusinessOwner>(business, HttpStatus.OK);
-//    }
 
     @PostMapping("/login")
     public String logInUser(@RequestParam String username) {

@@ -49,7 +49,7 @@ const UserHome = () => {
 
 
     return (
-        <div className={styles.hobby_details_page}>
+        <div >
             <BackgroundHome />
             <div className={styles.hobbie_main}>
 

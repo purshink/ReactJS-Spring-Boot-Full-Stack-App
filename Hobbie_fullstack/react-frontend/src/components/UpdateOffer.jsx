@@ -1,40 +1,36 @@
 import React from 'react'
 import FooterDetails from './FooterDetails'
-import Background from './Background'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import AuthenticationService from '../api/hobby/AuthenticationService'
-import CreateOfferDataService from '../api/hobby/CreateOfferDataService';
+import UpdateOfferDataService from '../api/hobby/UpdateOfferDataService'
 import { useState, useEffect } from 'react'
 import styles from '../css/CreateOffer.module.css'
+import { useLocation } from 'react-router-dom';
 
 
 
-const CreateOffer = () => {
+const UpdateOffer = () => {
     let navigate = useNavigate();
+    let location = useLocation();
     let username = AuthenticationService.getLoggedInUser();
     let [uploaded, setUploaded] = useState(false);
+      let public_ids= [];
     let img_urls = [];
-    let public_ids= [];
     let fileURL = '';
     const [files, setFiles] = useState({});
     const [info, setInfo] = useState({
-        name: '',
-        slogan: '',
-        category: '',
-        intro: '',
-        description: '',
-        price: '',
+        id: location.state.id,
+        name: location.state.name,
+        slogan: location.state.slogan,
+        intro: location.state.intro,
+        description: location.state.description,
+        price: location.state.price,
         creator: username,
-        location: '',
-        profileImgUrl: '',
-        galleryImgUrl1: '',
-        galleryImgUrl2: '',
-        galleryImgUrl3: '',
-        contactInfo: ''
+        contactInfo: location.state.contactInfo
 
     });
-
+    console.log(info)
     const [errors, setErrors] = useState({});
 
 
@@ -128,9 +124,9 @@ const CreateOffer = () => {
                     headers: { "X-Requested-With": "XMLHttpRequest" },
                 }).then(response => {
                     const data = response.data;
-                    console.log(response.data);
+                    const public_id = data.public_id;
+                    console.log(data)
                     fileURL = data.secure_url
-                   const public_id = data.public_id;
                     img_urls.push(fileURL);
                     public_ids.push(public_id);
                 });
@@ -156,9 +152,12 @@ const CreateOffer = () => {
         const check_uploaded = () => {
             if (uploaded) {
 
-                CreateOfferDataService(info);
-                navigate("/business-owner")
+                UpdateOfferDataService(info);
+                let path = '/offer/' + info.id;
+                navigate(path);
+        
                 window.location.reload(false)
+           
             }
         }
         check_uploaded()
@@ -169,7 +168,7 @@ const CreateOffer = () => {
         <div>
                     <div className={styles.create_offer}>
                         <div className={styles.offer_main}>
-                            <h1 className={styles.title_offer}>Create offer</h1>
+                            <h1 className={styles.title_offer}>Edit offer</h1>
                             <form className={styles.form_offer} onSubmit={submitHandler}>
                                 <div className={styles.offer_row}>
                                     <div className={styles.form_field_photos}>
@@ -197,7 +196,7 @@ const CreateOffer = () => {
                                             <label forhtml="name" className={styles.label_name}>
                                                 <span>Hobbie Name</span>
                                             </label>
-                                            <input onChange={e => setInfo({ ...info, name: e.target.value })} placeholder="ex: Painting, Swimming classes etc.." className={styles.h_n} type="text" name="name" />
+                                            <input defaultValue={location.state.name} onChange={e => setInfo({ ...info, name: e.target.value})}  className={styles.h_n} type="text" name="name" />
 
                                         </div>
                                         {errors.name && <small className={styles.errors_offer}>{errors.name}</small>}
@@ -209,7 +208,7 @@ const CreateOffer = () => {
                                             <label htmlFor="slogan" className={styles.label_name}>
                                                 <span className="">Slogan</span>
                                             </label>
-                                            <input onChange={e => setInfo({ ...info, slogan: e.target.value })} placeholder="your offer in one sentence..." className={styles.h_n} type="text" name="slogan" />
+                                            <input defaultValue={location.state.slogan} onChange={e => setInfo({ ...info, slogan: e.target.value})} className={styles.h_n} type="text" name="slogan" />
                                         </div>
                                         {errors.slogan && <small className={styles.errors_offer}>{errors.slogan}</small>}
                                     </div>
@@ -235,7 +234,7 @@ const CreateOffer = () => {
                                             <label id="intro" className={styles.label_name}>
                                                 <span>Intro</span>
                                             </label>
-                                            <textarea onChange={e => setInfo({ ...info, intro: e.target.value })} className={styles.label_name} type="text" name="intro" ></textarea>
+                                            <textarea defaultValue={location.state.intro}onChange={e => setInfo({ ...info, intro: e.target.value})} className={styles.label_name} type="text" name="intro" ></textarea>
                                         </div>
                                         {errors.intro && <small className={styles.errors_offer}>{errors.intro}</small>}
                                     </div>
@@ -246,7 +245,7 @@ const CreateOffer = () => {
                                             <label id="description" className={styles.label_name}>
                                                 <span>Class description</span>
                                             </label>
-                                            <textarea onChange={e => setInfo({ ...info, description: e.target.value })} className={styles.label_name} type="text" name="name" ></textarea>
+                                            <textarea defaultValue={location.state.description} onChange={e => setInfo({ ...info, description: e.target.value })} className={styles.label_name} type="text" name="name" ></textarea>
                                         </div>
                                         {errors.description && <small className={styles.errors_offer}>{errors.description}</small>}
                                     </div>
@@ -257,7 +256,7 @@ const CreateOffer = () => {
                                             <label htmlFor="price" className={styles.label_name}>
                                                 <span>Price per entry</span>
                                             </label>
-                                            <input onChange={e => setInfo({ ...info, price: e.target.value })} className={styles.h_n} type="number" name="price" id="price" />
+                                            <input defaultValue={location.state.price} onChange={e => setInfo({ ...info, price: e.target.value })} className={styles.h_n} type="number" name="price" id="price" />
                                         </div>
                                         {errors.price && <small className={styles.errors_offer}>{errors.price}</small>}
                                     </div>
@@ -325,7 +324,7 @@ const CreateOffer = () => {
                                             <label id="contact" className={styles.label_name}>
                                                 <span>Contact info</span>
                                             </label>
-                                            <textarea onChange={e => setInfo({ ...info, contactInfo: e.target.value })} placeholder="ex: Venue Address, Website, Phone number etc.." className={styles.label_name} type="text" name="contact" ></textarea>
+                                            <textarea defaultValue={location.state.contactInfo} onChange={e => setInfo({ ...info, contactInfo: e.target.value || e.target.defaultValue })} placeholder="ex: Venue Address, Website, Phone number etc.." className={styles.label_name} type="text" name="contact" ></textarea>
                                         </div>
 
                                         {errors.contactInfo && <small className={styles.errors_offer}>{errors.contactInfo}</small>}
@@ -344,6 +343,6 @@ const CreateOffer = () => {
     )
 }
 
-export default CreateOffer
+export default UpdateOffer
 
 

@@ -15,8 +15,8 @@ const EditBusinessProfile = () => {
     const [error, setError] = useState(false);
     const [info, setInfo] = useState({
         id: location.state.id,
-        businessName: '',
-        address: '',
+        businessName: location.state.businessName,
+        address: location.state.address,
         password: '',
         repeatpassword: ''
     });
@@ -87,7 +87,7 @@ const EditBusinessProfile = () => {
                     <div className={styles.row}>
                         <div className={styles.form_field}>
                             <div className={styles.name_section}>
-                                <input placeholder={location.state.businessName} type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
+                                <input defaultValue={location.state.businessName} type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
                                 <label forhtml="businessName" className={styles.label_name}>
                                     <span className={styles.content_name}>Business Name</span>
                                     {errors.businessName && <small className={styles.errors}>{errors.businessName}</small>}
@@ -99,7 +99,7 @@ const EditBusinessProfile = () => {
                     <div className={styles.row}>
                         <div className={styles.form_field}>
                             <div className={styles.name_section}>
-                                <input placeholder={location.state.address} type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
+                                <input defaultValue={location.state.address} type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
                                 <label forhtml="address" className={styles.label_name}>
                                     <span className={styles.content_name}>Address</span>
                                     {errors.address && <small className={styles.errors}>{errors.address}</small>}

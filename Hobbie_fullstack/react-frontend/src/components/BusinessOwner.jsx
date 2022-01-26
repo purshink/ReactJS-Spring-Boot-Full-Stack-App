@@ -56,7 +56,7 @@ const BusinessOwner = () => {
                             <div className={styles.user_home}>
                                 {state.length !== undefined && <section className={styles.cards}>
                                     {state.map(hobby =>
-                                        <div className={styles.rapper}>
+                                        <div key={hobby.id} className={styles.rapper}>
                                             <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} key={hobby.id} id={hobby.id}>
                                                 <div className={styles.card_image_container}>
                                                     <img src={hobby.profileImgUrl} alt="Hobby picture" />

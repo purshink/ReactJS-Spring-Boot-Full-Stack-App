@@ -16,7 +16,7 @@ public interface HobbyService {
     Hobby findHobbieById(Long id);
 
 
-//    void saveUpdatedHobby(UpdateHobbyServiceModel map, String fileName) throws IOException;
+    void saveUpdatedHobby(Hobby hobby) throws Exception;
 
     void deleteHobby(long id) throws IOException;
 

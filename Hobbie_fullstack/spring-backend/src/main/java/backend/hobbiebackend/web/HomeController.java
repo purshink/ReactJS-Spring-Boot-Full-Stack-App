@@ -1,17 +1,15 @@
 package backend.hobbiebackend.web;
 
 
-import backend.hobbiebackend.model.entities.AppClient;
 import backend.hobbiebackend.model.entities.Hobby;
-import backend.hobbiebackend.model.entities.UserEntity;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
+import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -20,12 +18,14 @@ import java.util.Set;
 public class HomeController {
     private final HobbyService hobbyService;
     private final UserService userService;
+    private final Cloudinary cloudinary;
 
 
     @Autowired
-    public HomeController(HobbyService hobbyService, UserService userService) {
+    public HomeController(HobbyService hobbyService, UserService userService, Cloudinary cloudinary) {
         this.hobbyService = hobbyService;
         this.userService = userService;
+        this.cloudinary = cloudinary;
     }
     @GetMapping( "/")
     public String showHome(){
@@ -50,12 +50,13 @@ public class HomeController {
 //    }
 
     @GetMapping("/user-home/{username}")
-    public Set<Hobby> userHobbiesShow(@PathVariable String username) {
+    public Set<Hobby> userHobbiesShow(@PathVariable String username) throws Exception {
 //        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
 //        if(currentUserAppClient.getHobby_matches() == null){
 //            return new HashSet<>();
 //        }
         Set<Hobby> allHobbieMatchesForClient = this.hobbyService.getAllHobbieMatchesForClient(username);
+        cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));
         return allHobbieMatchesForClient;
 
 

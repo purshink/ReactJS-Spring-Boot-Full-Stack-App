@@ -4,7 +4,6 @@ import Background from './Background';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import styles from '../css/Forms.module.css'
-import { Link, useParams } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import UpdateUserDataService from '../api/hobby/UpdateUserDataService';
 
@@ -19,10 +18,8 @@ const EditUserProfile = () => {
     const [error, setError] = useState(false);
     const [info, setInfo] = useState({
         id: location.state.id,
-        username: '',
-        fullName: '',
+        fullName: location.state.fullName,
         gender: 'OTHER',
-        email: '',
         password: '',
         repeatpassword: ''
     });
@@ -86,16 +83,14 @@ const EditUserProfile = () => {
         <div>
             <div className={styles.form_style}>
                 <h2>Edit profile</h2>
-                {error && <div className={styles.errors} >
-                    This username or email already exist.
-                </div>}
+             
 
                 <form id="userInfo" onSubmit={submitHandler}>
  
                     <div className={styles.row}>
                         <div className={styles.form_field}>
                             <div className={styles.name_section}>
-                                <input placeholder={location.state.fullName} type="text"name="name" onChange={e => setInfo({ ...info, fullName: e.target.value })}
+                                <input defaultValue={location.state.fullName} type="text"name="name" onChange={e => setInfo({ ...info, fullName: e.target.value })}
                                 />
                                 <label htmlFor="name" className={styles.label_name}>
                                     <span className={styles.content_name}>Full Name</span>

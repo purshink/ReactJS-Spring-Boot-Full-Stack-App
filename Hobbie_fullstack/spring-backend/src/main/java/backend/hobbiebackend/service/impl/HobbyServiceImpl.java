@@ -10,10 +10,13 @@ import backend.hobbiebackend.service.CategoryService;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.LocationService;
 import backend.hobbiebackend.service.UserService;
+import com.cloudinary.Cloudinary;
+import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -28,17 +31,19 @@ public class HobbyServiceImpl implements HobbyService {
     private final CategoryService categoryService;
     private final UserService userService;
     private final LocationService locationService;
+    private  final  Cloudinary cloudinary;
 
 
 
     @Autowired
-    public HobbyServiceImpl(ModelMapper modelMapper, HobbyRepository hobbyRepository,  CategoryService categoryService, UserService userService, LocationService locationService) {
+    public HobbyServiceImpl(ModelMapper modelMapper, HobbyRepository hobbyRepository, CategoryService categoryService, UserService userService, LocationService locationService, Cloudinary cloudinary) {
         this.modelMapper = modelMapper;
         this.hobbyRepository = hobbyRepository;
         this.categoryService = categoryService;
         this.userService = userService;
         this.locationService = locationService;
 
+        this.cloudinary = cloudinary;
     }
 
 
@@ -73,21 +78,27 @@ public class HobbyServiceImpl implements HobbyService {
         }
     }
 
-//    @Override
-//    public void saveUpdatedHobby(UpdateHobbyServiceModel updateHobbyServiceModel, String fileName) throws IOException {
-//
-//        Hobby hobby = this.modelMapper.map(updateHobbyServiceModel, Hobby.class);
-//        hobby.setCategory(this.categoryService.findByName(updateHobbyServiceModel.getCategory()));
-////        hobby.setPhotos(fileName);
-//        hobby.setLocation(this.locationService.getLocationByName(updateHobbyServiceModel.getLocation()));
-//        hobby.setBusinessOwner(this.userService.findCurrentUserBusinessOwner());
-//
-//        MultipartFile img = updateHobbyServiceModel.getImg();
-//        String imageUrl = cloudinaryService.uploadImage(img);
-//        hobby.setProfileImgUrl(imageUrl);
-//        this.hobbyRepository.save(hobby);
-//
-//    }
+    @SneakyThrows
+    @Override
+    public void saveUpdatedHobby(Hobby hobby) throws Exception {
+
+
+
+        Optional<Hobby> byId = this.hobbyRepository.findById(hobby.getId());
+        if (byId.isPresent()){
+            String galleryImgUrl1 = byId.get().getGalleryImg1_id();
+            String galleryImgUrl2 = byId.get().getGalleryImg2_id();
+            String galleryImgUrl3 = byId.get().getGalleryImg3_id();
+            String profileImgUrl = byId.get().getProfileImg_id();
+
+            cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),Map.of("invalidate", true ));
+
+        }
+
+
+        this.hobbyRepository.save(hobby);
+
+    }
 
     @Override
     public void deleteHobby(long id) throws IOException {

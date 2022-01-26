@@ -18,6 +18,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import ProtectedRoutesBusiness from './components/ProtectedRoutesBusiness';
 import EditUserProfile from "./components/EditUserProfile";
 import EditBusinessProfile from "./components/EditBusinessProfile";
+import UpdateOffer from "./components/UpdateOffer";
 
 
 
@@ -45,6 +46,7 @@ function App() {
 
    <Route element={<ProtectedRoutesBusiness/>}>
    <Route path='/edit-business-profile'  element={<EditBusinessProfile/>}/>
+   <Route path='/edit-offer'  element={<UpdateOffer/>}/>
       <Route path='/business-owner' element={<BusinessOwner/>}/>
       <Route path='/account-business'  element={<AccountBusiness/>}/>
       <Route path='/create-offer'  element={<CreateOffer/>}/>
