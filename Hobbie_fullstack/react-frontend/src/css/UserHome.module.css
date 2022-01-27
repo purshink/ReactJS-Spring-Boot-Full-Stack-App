@@ -37,7 +37,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(auto, 60px));
   position: relative;
-  grid-gap: 15px;
+  grid-gap: 25px;
   /* margin: 10px auto; */
 }
 

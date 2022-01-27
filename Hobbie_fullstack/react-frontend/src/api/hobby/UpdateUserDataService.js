@@ -8,7 +8,7 @@ const UpdateUserDataService = (user) => {
 
   return (
 
-    axios.post(`http://localhost:8080/users/update-user`, user)
+     axios.post(`http://localhost:8080/users/update-user`, user)
       .then(res => {
         if (res.data != null) {
           // () => res.redirect('/user-home')

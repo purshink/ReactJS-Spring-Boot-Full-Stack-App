@@ -2,8 +2,8 @@ import React from 'react'
 import AuthenticationService from '../api/hobby/AuthenticationService'
 import FooterDetails from './FooterDetails'
 import BackgroundHome from './BackgroundHome'
-import { useState, useLayoutEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import HobbyDetailsDataService from '../api/hobby/HobbyDetailsDataService'
 import useMediaQuery from '../hooks/useMediaQuery'
@@ -16,13 +16,17 @@ import DeleteHobbyService from '../api/hobby/DeleteHobbyService'
 
 
 
+
 const Hobbie = () => {
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
     const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
     let navigate = useNavigate();
     const [error, setError] = useState(false);
     let params = useParams();
-    const [refresh, setRefresh] = useState(false);
+    let location = useLocation();
+
+
+
 
 
     const id = params.id;
@@ -41,12 +45,7 @@ const Hobbie = () => {
         contactInfo: ''
     })
 
-    // window.onload = function() {
-    //     if(!window.location.hash) {
-    //         window.location = window.location + '#loaded';
-    //         window.location.reload();
-    //     }
-    // }
+
 
     const [welcomeDiv, setWelcomeDiv] = useState({ showDiv: false })
 
@@ -71,12 +70,25 @@ const Hobbie = () => {
             contactInfo: hobby.contactInfo, profileImgUrl: hobby.profileImgUrl, galleryImgUrl1: hobby.galleryImgUrl1,
             galleryImgUrl2: hobby.galleryImgUrl2, galleryImgUrl3: hobby.galleryImgUrl3} });
     }
+
    
-    useLayoutEffect(() => {
+
+    
+
+   
+    useEffect(() => {
         let unmounted = false;
-        
+
+        // const reloadCount = sessionStorage.getItem('reloadCount');
+        // if(reloadCount < 2) {
+        //   sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+        //   window.location.reload();
+        // } else {
+        //   sessionStorage.removeItem('reloadCount');
+        // }
 
         HobbyDetailsDataService(id).then(
+            
             response => {
                 if (!unmounted) {
                     setHobby(response.data);

@@ -125,7 +125,6 @@ const UpdateOffer = () => {
                 }).then(response => {
                     const data = response.data;
                     const public_id = data.public_id;
-                    console.log(data)
                     fileURL = data.secure_url
                     img_urls.push(fileURL);
                     public_ids.push(public_id);
@@ -134,7 +133,7 @@ const UpdateOffer = () => {
 
             // Once all the files are uploaded 
             axios.all(uploaders).then(() => {
-                console.log(img_urls[0]);
+               
                 setInfo(prevState => ({
                     ...prevState, profileImgUrl: img_urls[0], galleryImgUrl1: img_urls[1], galleryImgUrl2: img_urls[2],
                     galleryImgUrl3: img_urls[3], profileImg_id: public_ids[0], galleryImg1_id: public_ids[1], galleryImg2_id: public_ids[2],
@@ -151,16 +150,12 @@ const UpdateOffer = () => {
     useEffect(() => {
         const check_uploaded = () => {
             if (uploaded) {
-
-                UpdateOfferDataService(info);
-                let path = '/offer/' + info.id;
-                navigate(path);
-        
-                window.location.reload(false)
+                    UpdateOfferDataService(info);
            
             }
         }
         check_uploaded()
+      
     }, [uploaded, info, navigate])
 
 
@@ -344,5 +339,3 @@ const UpdateOffer = () => {
 }
 
 export default UpdateOffer
-
-

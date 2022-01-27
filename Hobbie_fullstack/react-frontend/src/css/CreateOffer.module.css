@@ -154,6 +154,7 @@
 
 
 input[type="file"] {
+  /* z-index: 99 !important;  */
     height: 100%;
     width: 100%;
     opacity: 0;
@@ -203,6 +204,6 @@ textarea{
       width: 100%;
       top: 0;
       padding-top: 0;
-      z-index: -1;
+      /* z-index: -1; */
     }
   }

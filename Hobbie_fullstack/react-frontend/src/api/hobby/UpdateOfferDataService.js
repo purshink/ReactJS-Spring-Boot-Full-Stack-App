@@ -1,14 +1,18 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const UpdateOfferDataService = (hobby) => {
+
+const UpdateOfferDataService = async (hobby) => {
+  
+  
     return (
 
-        axios.post(`http://localhost:8080/hobbies/update-hobby`, hobby)
+        await axios.post(`http://localhost:8080/hobbies/update-hobby`, hobby)
           .then(res => {
+          
             if (res.data != null) {
-              // () => res.redirect('/user-home')
-              return res;
+              window.location.href='/offer/'+ hobby.id; 
             }
           }).catch(err => {
             let error = '';
