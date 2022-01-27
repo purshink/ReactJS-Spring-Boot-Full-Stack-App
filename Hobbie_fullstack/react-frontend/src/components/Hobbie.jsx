@@ -51,7 +51,7 @@ const Hobbie = () => {
 
     const handleDelete = hobby => async event => {
         event.preventDefault();
-        if (window.confirm("Are you sure you want to delete your profile?")) {
+        if (window.confirm("Are you sure you want to delete your offer?")) {
             const response = await DeleteHobbyService(hobby.id);
             console.log(response);
             if (response.status !== 201) {
@@ -78,15 +78,7 @@ const Hobbie = () => {
    
     useEffect(() => {
         let unmounted = false;
-
-        // const reloadCount = sessionStorage.getItem('reloadCount');
-        // if(reloadCount < 2) {
-        //   sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-        //   window.location.reload();
-        // } else {
-        //   sessionStorage.removeItem('reloadCount');
-        // }
-
+        
         HobbyDetailsDataService(id).then(
             
             response => {

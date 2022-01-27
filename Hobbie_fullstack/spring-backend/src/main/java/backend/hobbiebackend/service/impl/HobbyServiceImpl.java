@@ -16,7 +16,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -101,18 +100,17 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
-    public void deleteHobby(long id) throws IOException {
-//        String uploadDir = "hobby-photos/" + id;
+    public boolean deleteHobby(long id) throws IOException {
+
         Optional<Hobby> byId = this.hobbyRepository.findById(id);
         if(byId.isPresent()){
-//            FileUtils.deleteDirectory(new File(uploadDir));
+
             this.userService.findAndRemoveHobbyFromClientsRecords(byId.get());
             this.hobbyRepository.deleteById(id);
-        }
-        else {
-            throw new NotFoundException("Hobby does not exist");
+            return true;
         }
 
+        return false;
     }
 
     @Override

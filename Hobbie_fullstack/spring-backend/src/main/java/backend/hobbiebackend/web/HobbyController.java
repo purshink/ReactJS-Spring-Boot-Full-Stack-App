@@ -101,13 +101,15 @@ public class HobbyController {
 
     }
 
-//    @GetMapping("/delete-hobby/{id}")
-//    public String deleteAppClient() {
-//
-////            this.hobbyService.deleteHobby(id);
-//            return "deleted_hobby";
-//
-//    }
+    @DeleteMapping("/delete-hobby/{id}")
+    public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws IOException {
+        boolean isRemoved = this.hobbyService.deleteHobby(id);
+
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }
 
 

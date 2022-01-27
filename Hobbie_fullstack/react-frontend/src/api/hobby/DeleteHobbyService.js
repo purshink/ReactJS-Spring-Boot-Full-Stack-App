@@ -2,21 +2,13 @@ import axios from "axios";
 
 const DeleteHobbyService = (id) => {
 
-  let username = 'user';
-  let password = '123';
-  let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
-  let axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      "Access-Control-Allow-Origin": "*",
-      'Authorization': basicAuthHeader,
-    }
-  };
-
-  axios.delete(`http://localhost:8080/remove-hobby/:id`, id, axiosConfig).then(res => {
+  return   ( axios.delete(`http://localhost:8080/hobbies/delete-hobby/${id}`)
+  .then(res => {
     if (res.data != null) {
-      // () => res.redirect('/user-home')
-      //  alert("Thank you!")
+      if (res.data != null) {
+        window.location.href='/business-owner'; 
+      }
+      return res;
     }
   }).catch(err => {
     let error = '';
@@ -25,7 +17,7 @@ const DeleteHobbyService = (id) => {
       error += err.response;
     }
     return error;
-  });
+  }));
 }
 
 export default DeleteHobbyService

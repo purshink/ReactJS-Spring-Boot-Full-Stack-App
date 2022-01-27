@@ -18,7 +18,7 @@ public interface HobbyService {
 
     void saveUpdatedHobby(Hobby hobby) throws Exception;
 
-    void deleteHobby(long id) throws IOException;
+    boolean deleteHobby(long id) throws IOException;
 
     List<Hobby> initHobbyOffers();
 
