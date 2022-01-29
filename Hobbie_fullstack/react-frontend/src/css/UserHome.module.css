@@ -171,6 +171,12 @@
   border: 2px solid #c36cbb;
 } 
 
+@media all and (min-width: 850px) {
+  .intro_text{
+    position: relative;
+    left: 60px;
+  }
+}
 
 @media all and (max-width: 950px) {
 
@@ -183,6 +189,13 @@
 
 
 @media all and (max-width: 850px) { 
+
+  .intro_text{
+    font-size: small;
+    width: 350px;
+    position: relative;
+    right: 30px;
+  }
 
   .hobbie_main{
     margin:   0%;

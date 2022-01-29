@@ -3,14 +3,11 @@ package backend.hobbiebackend.web;
 
 import backend.hobbiebackend.model.dto.HobbyInfoDto;
 import backend.hobbiebackend.model.dto.HobbyInfoUpdateDto;
-import backend.hobbiebackend.model.dto.UpdateBusinessDto;
-import backend.hobbiebackend.model.entities.BusinessOwner;
-import backend.hobbiebackend.model.entities.Category;
-import backend.hobbiebackend.model.entities.Hobby;
-import backend.hobbiebackend.model.entities.Location;
+import backend.hobbiebackend.model.entities.*;
 import backend.hobbiebackend.service.CategoryService;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.LocationService;
+import backend.hobbiebackend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -29,14 +28,16 @@ public class HobbyController {
     private final HobbyService hobbyService;
     private final CategoryService categoryService;
     private final LocationService locationService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public HobbyController(HobbyService hobbyService, CategoryService categoryService, LocationService locationService, ModelMapper modelMapper) {
+    public HobbyController(HobbyService hobbyService, CategoryService categoryService, LocationService locationService, UserService userService, ModelMapper modelMapper) {
 
         this.hobbyService = hobbyService;
         this.categoryService = categoryService;
         this.locationService = locationService;
+        this.userService = userService;
         this.modelMapper = modelMapper;
     }
 
@@ -56,38 +57,48 @@ public class HobbyController {
 
     }
 
+    @GetMapping(value ="/is-saved")
+    public boolean isHobbySaved(@RequestParam Long id, @RequestParam String username){
+        return  this.hobbyService.isHobbySaved(id, username);
+    }
+
     @GetMapping(value ="/hobbie-details/{id}")
     public Hobby getHobbyDetails(@PathVariable Long id){
 
-//          "isSaved", this.hobbyService.isHobbySaved(id));
+      return  this.hobbyService.findHobbieById(id);
+    }
 
 
-            return this.hobbyService.findHobbieById(id);
+    @GetMapping("/save-hobby")
+    public ResponseEntity<Long> save(@RequestParam Long id, @RequestParam String username){
+        Hobby hobby = this.hobbyService.findHobbieById(id);
+
+        boolean isSaved =  this.hobbyService.saveHobbyForClient(hobby,username);
+
+        if (!isSaved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+
+
 
 
     }
 
-//
-//    @GetMapping("/save-hobby/{id}")
-//    public String saveHobbyForClient(){
-//
-////            Hobby hobby = this.hobbyService.findHobbieById(id);
-////            this.hobbyService.saveHobbyForClient(hobby);
-//
-////          "isSaved", this.hobbyService.isHobbySaved(id));
-//            return "hobbie-details";
-//
-//
-//    }
-//
-//    @GetMapping("/remove-hobby/{id}")
-//    public void removeHobby(@RequestParam(value = "id") Long id){
-//
-//            Hobby hobby = this.hobbyService.findHobbieById(id);
-//            this.hobbyService.removeHobbyForClient(hobby);
-//
-//    }
-//
+    @GetMapping("/remove-hobby")
+    public ResponseEntity<Long> removeHobby(@RequestParam Long id, @RequestParam String username){
+
+        Hobby hobby = this.hobbyService.findHobbieById(id);
+
+        boolean isRemoved =  this.hobbyService.removeHobbyForClient(hobby,username);
+
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+
+    }
+
 
     @PostMapping("/update-hobby")
     public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
@@ -106,13 +117,16 @@ public class HobbyController {
         boolean isRemoved = this.hobbyService.deleteHobby(id);
 
         if (!isRemoved) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @GetMapping("/saved-hobbies/{username}")
+    public List<Hobby> savedHobbies(@PathVariable String username){
+        AppClient appClient = this.userService.findAppClientByUsername(username);
+        return this.hobbyService.findSavedHobbies(appClient);
+
+    }
 }
 
-
-//
-//    String  profileImgUrl,
-//    String name, String  slogan, CategoryNameEnum category, String intro, String description, String price, String  creator, LocationEnum  location, String    galleryImgUrl1, String    galleryImgUrl2, String   galleryImgUrl3, String  galleryImgUrl4, String  galleryImgUrl5, String  galleryImgUrl6, String  contactInfo,

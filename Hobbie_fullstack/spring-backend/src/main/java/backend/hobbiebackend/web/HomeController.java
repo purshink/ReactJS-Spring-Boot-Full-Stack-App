@@ -41,20 +41,12 @@ public class HomeController {
     }
 
 
-    //TODO: IMPLEMENT /user as Admin page
-//    @GetMapping("/user")
-//    public ModelAndView userShow(@AuthenticationPrincipal UserDetails principal) {
-//        ModelAndView mav= new ModelAndView("user");
-//        mav.addObject("user", principal);
-//        return mav;
-//    }
+    //TODO: Admin
+
 
     @GetMapping("/user-home/{username}")
     public Set<Hobby> userHobbiesShow(@PathVariable String username) throws Exception {
-//        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
-//        if(currentUserAppClient.getHobby_matches() == null){
-//            return new HashSet<>();
-//        }
+
         Set<Hobby> allHobbieMatchesForClient = this.hobbyService.getAllHobbieMatchesForClient(username);
         cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));
         return allHobbieMatchesForClient;

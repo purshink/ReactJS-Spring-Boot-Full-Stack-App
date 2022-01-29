@@ -5,6 +5,7 @@ import BackgroundHome from './BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import MyHobbiesDataService from '../api/hobby/MyHobbiesDataService'
 
 const MyHobbies = () => {
 
@@ -26,23 +27,23 @@ const MyHobbies = () => {
     useLayoutEffect(() => {
         let unmounted = false;
 
-        // HobbyDataService().then(
-        //     response => {
-        //         if(!unmounted){
-        //             setState(response.data);
-        //             setWelcomeDiv({showDiv:false})
+        MyHobbiesDataService().then(
+            response => {
+                if (!unmounted) {
+                    setState(response.data);
+                    setWelcomeDiv({ showDiv: false })
 
-        //         }
-        //         if (!Object.keys(response.data).length){
-        //             setWelcomeDiv({showDiv:true})
-        //         }
-        //          })
+                }
+                if (!Object.keys(response.data).length) {
+                    setWelcomeDiv({ showDiv: true })
+                }
+            })
         return () => { unmounted = true };
 
     }, []);
     return (
         <div className={styles.hobby_details_page}>
-        <BackgroundHome/>
+            <BackgroundHome />
             <div className={styles.hobbie_main}>
 
                 <div className={styles.hobbie_container_home}>
@@ -51,22 +52,23 @@ const MyHobbies = () => {
                             <div className={styles.user_home}>
                                 {state.length !== undefined && <section className={styles.cards}>
                                     {state.map(hobby =>
-
-                                        <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} key={hobby.id} id={hobby.id}>
-                                            <div className={styles.card_image_container}>
-                                                <img src={hobby.profileImgUrl} alt="Hobby picture" />
-                                            </div>
-
-                                            <div className={styles.card_content}>   
-                                                <p className={styles.card_title}>
-                                                    {hobby.name}
-                                                </p>
-                                                <div className={styles.card_info}>
-                                                    <p className={styles.text_medium}> Find out more...</p>
-                                                    <p className={styles.card_price}  >{hobby.price} CHF</p>
+                                        <div key={hobby.id} className={styles.rapper}>
+                                            <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} id={hobby.id}>
+                                                <div className={styles.card_image_container}>
+                                                    <img src={hobby.profileImgUrl} alt="Hobby picture" />
                                                 </div>
-                                            </div>
-                                        </Link>)
+
+                                                <div className={styles.card_content}>
+                                                    <p className={styles.card_title}>
+                                                        {hobby.name}
+                                                    </p>
+                                                    <div className={styles.card_info}>
+                                                        <p className={styles.text_medium}> Find out more...</p>
+                                                        <p className={styles.card_price}  >{hobby.price} CHF</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>)
                                     }
                                 </section>}
                             </div>
@@ -74,12 +76,8 @@ const MyHobbies = () => {
                             {welcomeDiv.showDiv && <div>
                                 <div className={styles.introduction_home}>
                                     <div className={styles.intro_text}>
-                                        <p>You have no offers. Plase fill in the form and create a new offer:.</p>
-                                        <div className={styles.buttuns}>
-                                            <button className={styles.link} >
-                                                <Link to='/user-home' className={styles.btn}>You have no saved hobbies.</Link>
-                                            </button>
-                                        </div>
+                                        <p>You have no saved hobbies.</p>
+                                  
                                     </div>
                                 </div>
                             </div>}

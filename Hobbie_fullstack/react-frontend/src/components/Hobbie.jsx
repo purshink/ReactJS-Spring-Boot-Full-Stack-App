@@ -10,6 +10,10 @@ import useMediaQuery from '../hooks/useMediaQuery'
 import styles from '../css/Hobbie.module.css'
 import gallery_styles from '../css/Gallery.module.css'
 import DeleteHobbyService from '../api/hobby/DeleteHobbyService'
+import IsHobbySavedService from '../api/hobby/IsHobbySavedService'
+import SaveHobbyService from '../api/hobby/SaveHobbyService'
+import RemoveHobbyService from '../api/hobby/RemoveHobbyService'
+
 
 
 
@@ -22,6 +26,7 @@ const Hobbie = () => {
     const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
     let navigate = useNavigate();
     const [error, setError] = useState(false);
+    const [saved, setSaved] = useState(false);
     let params = useParams();
     let location = useLocation();
 
@@ -61,8 +66,8 @@ const Hobbie = () => {
             }
         }
     }
-
-    const handleEdit = business => event => {
+    // ???? const handleEdit = business => event => {????
+    const handleEdit = hobby => event => {
         event.preventDefault();
         let path = '/edit-offer'
         navigate(path, { state: { id: hobby.id, name: hobby.name, slogan: hobby.slogan, 
@@ -71,14 +76,41 @@ const Hobbie = () => {
             galleryImgUrl2: hobby.galleryImgUrl2, galleryImgUrl3: hobby.galleryImgUrl3} });
     }
 
-   
 
-    
+    const handleSave = id => event => {
+        event.preventDefault();
+
+            if(!saved){
+
+                SaveHobbyService(id).then(
+                    response => {
+                     
+                    setSaved(true);
+                    console.log(saved);
+                    })
+            }
+            else{
+                RemoveHobbyService(id).then(
+                    response => {
+                   
+                    setSaved(false);
+                    console.log(saved);
+                    })
+            }
+
+        }
 
    
     useEffect(() => {
         let unmounted = false;
-        
+        IsHobbySavedService(id).then(
+            response => {
+                if (!unmounted) {
+            setSaved(response.data);
+            console.log(saved);
+                }
+            }
+        )
         HobbyDetailsDataService(id).then(
             
             response => {
@@ -149,14 +181,14 @@ const Hobbie = () => {
 
                                     <div className={gallery_styles.gallery}>
 
-                                        <div class={gallery_styles.row}>
-                                            <div class={gallery_styles.column}>
+                                        <div className={gallery_styles.row}>
+                                            <div className={gallery_styles.column}>
                                                 <img className={gallery_styles.img} src={hobby.profileImgUrl} />
                                                 <img className={gallery_styles.img} src={hobby.galleryImgUrl1} />
 
                                             </div>
 
-                                            <div class={gallery_styles.column}>
+                                            <div className={gallery_styles.column}>
                                                 <img className={gallery_styles.img} src={hobby.galleryImgUrl2} />
                                                 <img className={gallery_styles.img} src={hobby.galleryImgUrl3} />
                                             </div>
@@ -170,7 +202,7 @@ const Hobbie = () => {
                                 {currentPage !== '03' && <div className={styles.buttons}>
                                     {isBusinessLoggedIn && <div> <Link to="#" onClick={handleEdit(hobby)} className={styles.btn}>Edit </Link>
                                         <Link to="#" onClick={handleDelete(hobby)} className={styles.btn}>Delete </Link> </div>}
-                                    {isUserLoggedIn && <span className={styles.btn}>Save</span>}
+                                    {isUserLoggedIn && <div onClick={handleSave(hobby.id)}>{saved? <span className={styles.btn}>Remove</span> :<span className={styles.btn}>Save</span>}</div>}
                                 </div>}
                             </div>
 

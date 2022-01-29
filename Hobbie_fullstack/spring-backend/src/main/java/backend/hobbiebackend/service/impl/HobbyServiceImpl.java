@@ -250,28 +250,38 @@ public class HobbyServiceImpl implements HobbyService {
 
 
     @Override
-    public void saveHobbyForClient(Hobby hobby) {
-//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
-//        List<Hobby> saved_hobbies = currentUserAppClient.getSaved_hobbies();
-//
-//            if(hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
-//                saved_hobbies.add(hobbyById.get());
-//            }
+    public boolean saveHobbyForClient(Hobby hobby, String username) {
+        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+        Optional<Hobby> hobbyById = this.hobbyRepository.findById(hobby.getId());
+        List<Hobby> saved_hobbies = currentUserAppClient.getSaved_hobbies();
+
+            if(hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
+                saved_hobbies.add(hobbyById.get());
+                return true;
+            }
+
+            return false;
     }
 
     @Override
-    public void removeHobbyForClient(Hobby hobby) {
-//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//        Optional<Hobby> hobbyById = this.hobbyRepository .findById(hobby.getId());
-//        hobbyById.ifPresent(value -> currentUserAppClient.getSaved_hobbies().remove(value));
+    public boolean removeHobbyForClient(Hobby hobby, String username) {
+        AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+        Optional<Hobby> hobbyById = this.hobbyRepository.findById(hobby.getId());
+        if(currentUserAppClient != null){
+            hobbyById.ifPresent(value -> currentUserAppClient.getSaved_hobbies().remove(value));
+            return true;
+        }
+            return false;
     }
 
     @Override
-    public boolean isHobbySaved(Long hobbyId) {
-//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//        Optional<Hobby> byId = this.hobbyRepository.findById(hobbyId);
-//        return byId.filter(hobby -> currentUserAppClient.getSaved_hobbies().contains(hobby)).isPresent();
+    public boolean isHobbySaved(Long hobbyId, String username) {
+        Optional<Hobby> byId = this.hobbyRepository.findById(hobbyId);
+        if(byId.isPresent()) {
+            AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
+
+            return currentUserAppClient.getSaved_hobbies().contains(byId.get());
+        }
 
         return false;
 

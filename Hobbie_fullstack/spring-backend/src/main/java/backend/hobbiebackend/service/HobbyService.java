@@ -26,11 +26,11 @@ public interface HobbyService {
 
 
 
-    void saveHobbyForClient(Hobby hobby);
+    boolean saveHobbyForClient(Hobby hobby, String username);
 
-    void removeHobbyForClient(Hobby hobby);
+    boolean removeHobbyForClient(Hobby hobby, String username);
 
-    boolean isHobbySaved(Long hobbyId);
+    boolean isHobbySaved(Long hobbyId, String username);
     List<Hobby> findSavedHobbies(AppClient appClient);
 
     //Just for learning
