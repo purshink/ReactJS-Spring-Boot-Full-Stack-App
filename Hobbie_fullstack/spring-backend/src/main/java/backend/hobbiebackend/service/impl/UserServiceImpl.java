@@ -216,7 +216,6 @@ public class UserServiceImpl implements UserService {
     public void deleteAppClient(Long id) {
         Optional<AppClient> user = this.appClientRepository.findById(id);
         if(user.isPresent()) {
-//            expireUserSessions();
 
             appClientRepository.delete(user.get());
         }
@@ -247,10 +246,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public void expireUserSessions() {
-//                    SecurityContextHolder.clearContext();
-//        }
 
     @Override
     public boolean businessExists(String businessName) {
@@ -269,42 +264,6 @@ public class UserServiceImpl implements UserService {
         return this.businessOwnerRepository.findByUsername(username).get();
     }
 
-//    @Override
-//    public BusinessOwner findCurrentUserBusinessOwner() {
-//
-//        Optional<BusinessOwner> user = this.businessOwnerRepository.findByUsername(findCurrentUsername());
-//        if(user.isPresent()) {
-//            return user.get();
-//        }
-//        else {
-//            throw new NotFoundException("Can not find current business owner");
-//        }
-//
-//    }
-
-//    @Override
-//    public AppClient findCurrentUserAppClient() {
-//        Optional<AppClient> user = this.appClientRepository.findByUsername(findCurrentUsername());
-//        if(user.isPresent()) {
-//            return user.get();
-//        }
-//        else {
-//            throw new NotFoundException("Can not find current user");
-//        }
-//    }
-
-
-//    public String findCurrentUsername() {
-//
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String username = "";
-//        if (principal instanceof UserDetails) {
-//            username = ((UserDetails)principal).getUsername();
-//        } else {
-//            username = principal.toString();
-//        }
-//            return username;
-//    }
 
 
 

@@ -68,16 +68,7 @@ public class UserController {
         BusinessOwner businessOwner = this.userService.registerBusiness(business);
 
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
-    }
-
-
-//
-//    @PostMapping("/login-error")
-//    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-//                                            String username) {
-//
-//        return "bad credentials";
-//    }
+    }   
 
 
 
@@ -113,9 +104,7 @@ public class UserController {
     @PostMapping("/update-business")
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
-
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
-
 
                 businessOwner.setBusinessName(business.getBusinessName());
                 businessOwner.setPassword(business.getPassword());

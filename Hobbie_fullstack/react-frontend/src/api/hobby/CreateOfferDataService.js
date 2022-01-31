@@ -20,8 +20,7 @@ const CreateOfferDataService = (info) => {
     axios.post(`http://localhost:8080/hobbies/create-offer`, info, axiosConfig)
       .then(res => {
         if (res.data != null) {
-          // () => res.redirect('/user-home')
-          alert("Thank you!")
+          window.location.href='/business-owner'; 
         }
       }).catch(err => {
         let error = '';

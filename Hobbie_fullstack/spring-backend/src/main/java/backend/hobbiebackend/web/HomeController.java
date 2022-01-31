@@ -27,11 +27,7 @@ public class HomeController {
         this.userService = userService;
         this.cloudinary = cloudinary;
     }
-    @GetMapping( "/")
-    public String showHome(){
 
-        return "Hello from the backend!";
-    }
 
     @GetMapping( "/business-owner/{username}")
     public Set<Hobby> offersShow(@PathVariable String username) {
@@ -39,9 +35,6 @@ public class HomeController {
             return  this.hobbyService.getAllHobbiesForBusiness(username);
 
     }
-
-
-    //TODO: Admin
 
 
     @GetMapping("/user-home/{username}")

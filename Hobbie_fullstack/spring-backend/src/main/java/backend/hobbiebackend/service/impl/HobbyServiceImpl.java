@@ -100,11 +100,16 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
-    public boolean deleteHobby(long id) throws IOException {
+    public boolean deleteHobby(long id) throws Exception {
 
         Optional<Hobby> byId = this.hobbyRepository.findById(id);
         if(byId.isPresent()){
+            String galleryImgUrl1 = byId.get().getGalleryImg1_id();
+            String galleryImgUrl2 = byId.get().getGalleryImg2_id();
+            String galleryImgUrl3 = byId.get().getGalleryImg3_id();
+            String profileImgUrl = byId.get().getProfileImg_id();
 
+            cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),Map.of("invalidate", true ));
             this.userService.findAndRemoveHobbyFromClientsRecords(byId.get());
             this.hobbyRepository.deleteById(id);
             return true;

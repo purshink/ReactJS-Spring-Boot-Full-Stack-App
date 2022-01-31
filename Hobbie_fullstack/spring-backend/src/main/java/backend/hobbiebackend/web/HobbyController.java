@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -113,11 +112,11 @@ public class HobbyController {
     }
 
     @DeleteMapping("/delete-hobby/{id}")
-    public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws IOException {
+    public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws Exception {
         boolean isRemoved = this.hobbyService.deleteHobby(id);
 
         if (!isRemoved) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
     }

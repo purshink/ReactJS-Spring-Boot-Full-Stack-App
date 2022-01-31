@@ -77,7 +77,6 @@ const MyHobbies = () => {
                                 <div className={styles.introduction_home}>
                                     <div className={styles.intro_text}>
                                         <p>You have no saved hobbies.</p>
-                                  
                                     </div>
                                 </div>
                             </div>}

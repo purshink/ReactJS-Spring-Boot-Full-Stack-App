@@ -17,7 +17,6 @@ public class HobbyInfoDto {
     private BigDecimal price;
     private LocationEnum location;
     private String contactInfo;
-
     private String profileImgUrl;
     private String galleryImgUrl1;
     private String galleryImgUrl2;
