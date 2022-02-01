@@ -83,7 +83,7 @@ const BusinessOwner = () => {
                                         <p>You have no offers.</p>
                                         <div className={styles.buttuns}>
                                             <button className={styles.link} >
-                                                <Link to='/create-offer' className={styles.btn}>Create new offer</Link>
+                                                <Link to='/create-offer' className={styles.btn}>Create Offer</Link>
                                             </button>
                                         </div>
                                     </div>

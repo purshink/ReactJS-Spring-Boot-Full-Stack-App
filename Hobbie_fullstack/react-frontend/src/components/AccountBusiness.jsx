@@ -9,6 +9,8 @@ import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import DeleteUserService from '../api/hobby/DeleteUserService'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 
 const AccountBusiness = () => {
@@ -16,17 +18,30 @@ const AccountBusiness = () => {
     const [business, setBusiness] = useState([]);
     const [error, setError] = useState(false);
 
-    const handleDelete = business => async event => {
+    const handleDelete = business =>  event => {
         event.preventDefault();
-        if (window.confirm("Are you sure you want to delete your profile?")) {
-            const response = await DeleteUserService(business.id);
-            console.log(response);
-            if (response.status !== 201) {
-                setError(true)
-            } else {
-                navigate("/")
-            }
-        }
+        confirmAlert({
+            title: 'Delete Profile',
+            message: 'Are you sure you want to delete your profile?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick:async (event) =>  {
+                    const response = await DeleteUserService(business.id);
+                    console.log(response);
+                    if (response.status !== 201) {
+                        setError(true)
+                    } else {
+                        navigate("/")
+                    }
+                }
+              },
+              {
+                label: 'No'
+              }
+            ]
+          });
+   
     }
 
     const handleEdit = business => event => {

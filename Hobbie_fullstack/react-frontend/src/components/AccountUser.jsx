@@ -9,6 +9,8 @@ import UserDataService from '../api/hobby/UserDataService'
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import DeleteUserService from '../api/hobby/DeleteUserService'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 
 
@@ -20,17 +22,30 @@ const AccountUser = () => {
 
     const [user, setUser] = useState([]);
     const [error, setError] = useState(false);
-    const handleDelete = user =>  async event => {
+
+    const handleDelete = user => event => {        
         event.preventDefault();
-        if(window.confirm("Are you sure you want to delete your profile?")){
-        const response = await DeleteUserService(user.id);
-        console.log(response);
-        if (response.status !== 200) {
-            setError(true)
-        } else {
-            navigate("/")
-        }
-    }
+        confirmAlert({
+            title: 'Delete Profile',
+            message: 'Are you sure you want to delete your profile?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick:async (event) =>  {
+                    const response = await DeleteUserService(user.id);
+                    console.log(response);
+                    if (response.status !== 201) {
+                        setError(true)
+                    } else {
+                        navigate("/")
+                    }
+                }
+              },
+              {
+                label: 'No'
+              }
+            ]
+            });
     }
 
     const handleEdit = user => event => {

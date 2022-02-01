@@ -13,6 +13,8 @@ import DeleteHobbyService from '../api/hobby/DeleteHobbyService'
 import IsHobbySavedService from '../api/hobby/IsHobbySavedService'
 import SaveHobbyService from '../api/hobby/SaveHobbyService'
 import RemoveHobbyService from '../api/hobby/RemoveHobbyService'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 
 
@@ -49,17 +51,30 @@ const Hobbie = () => {
 
     const [welcomeDiv, setWelcomeDiv] = useState({ showDiv: false })
 
-    const handleDelete = hobby => async event => {
+    const handleDelete = hobby => event => {
         event.preventDefault();
-        if (window.confirm("Are you sure you want to delete your offer?")) {
-            const response = await DeleteHobbyService(hobby.id);
-            console.log(response);
-            if (response.status !== 201) {
-                setError(true)
-            } else {
-                navigate("/")
-            }
-        }
+
+        confirmAlert({
+            title: 'Delete Offer',
+            message: 'Are you sure to do this Hobby offer?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick:async (event) =>  {
+                    const response = await DeleteHobbyService(hobby.id);
+                    console.log(response);
+                    if (response.status !== 201) {
+                        setError(true)
+                    } else {
+                        navigate("/")
+                    }
+                }
+              },
+              {
+                label: 'No'
+              }
+            ]
+          });
     }
     // ???? const handleEdit = business => event => {????
     const handleEdit = hobby => event => {
