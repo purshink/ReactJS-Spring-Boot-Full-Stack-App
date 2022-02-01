@@ -116,7 +116,7 @@ const CreateOffer = () => {
         if (Object.keys(errors).length === 0) {
             setLoading(true);
             const filesToUpload = [files.profileImgUrl, files.galleryImgUrl1, files.galleryImgUrl2, files.galleryImgUrl3];
-            const uploaders = filesToUpload.map(async file => {
+            const uploaders = filesToUpload.map( async file  => {
 
                 const formData = new FormData();
                 formData.append("file", file);

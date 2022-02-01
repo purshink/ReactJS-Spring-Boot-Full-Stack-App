@@ -56,7 +56,7 @@ const Hobbie = () => {
 
         confirmAlert({
             title: 'Delete Offer',
-            message: 'Are you sure to do this Hobby offer?',
+            message: 'Are you sure you want to delete this offer?',
             buttons: [
               {
                 label: 'Yes',
