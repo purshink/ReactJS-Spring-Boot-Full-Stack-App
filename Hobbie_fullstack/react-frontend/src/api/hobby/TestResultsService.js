@@ -1,24 +1,11 @@
-import axios from 'axios'
-
+import axios from './CustomAxiosConfig';
 
 const TestResultsService = (test) => {
-  let username = 'user';
-  let password = '123';
-  let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
-
-  let axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Authorization': basicAuthHeader,
-      // "Access-Control-Allow-Origin": "https://localhost:8080/users/signup",
-
-    }
-  };
 
   return (
 
 
-    axios.post(`http://localhost:8080/test/results`, test, axiosConfig)
+    axios.post(`http://localhost:8080/test/results`, test)
       .then(res => {
         if (res.data != null) {
           // () => res.redirect('/user-home')

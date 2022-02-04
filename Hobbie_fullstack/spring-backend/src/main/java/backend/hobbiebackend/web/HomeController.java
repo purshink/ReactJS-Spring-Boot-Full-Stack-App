@@ -27,7 +27,10 @@ public class HomeController {
         this.userService = userService;
         this.cloudinary = cloudinary;
     }
-
+    @GetMapping( "/")
+    public String hello(){
+        return "HELLO!";
+    }
 
     @GetMapping( "/business-owner/{username}")
     public Set<Hobby> offersShow(@PathVariable String username) {

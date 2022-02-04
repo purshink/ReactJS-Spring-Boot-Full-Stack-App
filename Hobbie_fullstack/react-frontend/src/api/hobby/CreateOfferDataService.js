@@ -1,23 +1,11 @@
-
-import axios from 'axios'
-
-
+import axios from './CustomAxiosConfig';
 
 const CreateOfferDataService = (info) => {
-  let username = 'user';
-  let password = '123';
-  let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
-  let axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      "Access-Control-Allow-Origin": "*",
-      'Authorization': basicAuthHeader,
-    }
-  };
+
 
   return (
 
-    axios.post(`http://localhost:8080/hobbies/create-offer`, info, axiosConfig)
+    axios.post(`http://localhost:8080/hobbies/create-offer`, info)
       .then(res => {
         if (res.data != null) {
           window.location.href='/business-owner'; 

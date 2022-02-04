@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,18 +34,20 @@ public class UserServiceImpl implements UserService {
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
-                            AppClientRepository appClientRepository,
-                           BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService) {
+                           AppClientRepository appClientRepository,
+                           BusinessOwnerRepository businessOwnerRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
 
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -62,8 +65,7 @@ public class UserServiceImpl implements UserService {
             AppClient user = new AppClient();
             user.setUsername("user");
             user.setEmail("n13@gmail.com");
-//            user.setPassword(this.passwordEncoder.encode("123"));
-            user.setPassword("123");
+            user.setPassword(this.passwordEncoder.encode("123"));
             user.setRoles(List.of(userRole));
             user.setFullName("Nikoleta Doykova");
             user.setGender(GenderEnum.FEMALE);
@@ -74,7 +76,7 @@ public class UserServiceImpl implements UserService {
             admin.setUsername("admin");
             admin.setEmail("n11@gamil.com");
 //            admin.setPassword(this.passwordEncoder.encode("topsecret"));
-            admin.setPassword("123");
+            admin.setPassword(this.passwordEncoder.encode("123"));
             admin.setRoles(List.of(adminRole, userRole));
             admin.setFullName("Full name of admin here");
             admin.setGender(GenderEnum.FEMALE);
@@ -93,8 +95,7 @@ public class UserServiceImpl implements UserService {
             BusinessOwner business_user = new BusinessOwner();
             business_user.setUsername("business");
             business_user.setEmail("n10@gamil.com");
-//            business_user.setPassword(this.passwordEncoder.encode("topsecret"));
-            business_user.setPassword("123");
+            business_user.setPassword(this.passwordEncoder.encode("123"));
             business_user.setRoles(List.of(businessRole));
             business_user.setBusinessName("My Business name");
             business_user.setAddress("My business address");
@@ -110,7 +111,7 @@ public class UserServiceImpl implements UserService {
             UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
             AppClient appClient = this.modelMapper.map(user, AppClient.class);
             appClient.setRoles(List.of(userRole));
-    //            appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
+                appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
         return  appClientRepository.save(appClient);
     }
 
@@ -120,7 +121,7 @@ public class UserServiceImpl implements UserService {
             UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
             BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
             businessOwner.setRoles(List.of(businessUserRole));
-//            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
+            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
            return businessOwnerRepository.save(businessOwner);
 
 
@@ -203,7 +204,7 @@ public class UserServiceImpl implements UserService {
     public void deleteBusinessOwner(Long id) {
         Optional<BusinessOwner> user = this.businessOwnerRepository.findById(id);
         if(user.isPresent()) {
-//            expireUserSessions();
+
             userRepository.delete(user.get());
         }
         else {
@@ -255,7 +256,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AppClient findAppClientByUsername(String username) {
-        //TODO CHECK EXCEPTION!
         return this.appClientRepository.findByUsername(username).orElseThrow();
     }
 

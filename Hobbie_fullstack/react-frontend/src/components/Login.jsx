@@ -8,8 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import AuthenticationService from '../api/hobby/AuthenticationService'
 import LoginService from '../api/hobby/LoginService'
 import styles from '../css/Forms.module.css'
-
-
+import AuthenticateUserDataService from '../api/hobby/AuthenticateUserDataService'
 
 
 const Login = () => {
@@ -27,29 +26,40 @@ const Login = () => {
 
     const loginClicked = async event => {
         event.preventDefault();
+        const res = await AuthenticateUserDataService(credentials.username, credentials.password);
+        let jwtToken = res.data.jwtToken;
+        const token = `Bearer ${jwtToken}`;
+        AuthenticationService.setUpToken(token);
 
-
-        const response = await LoginService(credentials.username, credentials.password);
-        console.log(response);
-        if (response.status !== 200) {
+        if (res.status !== 200) {
             setLoginState(prevState => ({ ...prevState, hasLoginFailed: true }))
             setLoginState(prevState => ({ ...prevState, showSuccessMessage: false }))
-        } else if (response.data === 'USER') {
-            AuthenticationService.registerSuccessfulLoginUser(credentials.username)
-            navigate("/user-home")
-
-            setLoginState(prevState => ({ ...prevState, hasLoginFailed: false }))
-            setLoginState(prevState => ({ ...prevState, showSuccessMessage: true }))
-            window.location.reload(false)
         }
-        else if (response.data === 'BUSINESS_USER') {
-            AuthenticationService.registerSuccessfulLoginBusiness(credentials.username)
-            navigate("/business-owner")
 
-            setLoginState(prevState => ({ ...prevState, hasLoginFailed: false }))
-            setLoginState(prevState => ({ ...prevState, showSuccessMessage: true }))
-            window.location.reload(false)
+        else {
+            const response = await LoginService(credentials.username, jwtToken);
+            console.log(response);
+            if (response.status !== 200) {
+                setLoginState(prevState => ({ ...prevState, hasLoginFailed: true }))
+                setLoginState(prevState => ({ ...prevState, showSuccessMessage: false }))
+            } else if (response.data === 'USER') {
+                AuthenticationService.registerSuccessfulLoginUser(credentials.username)
+                navigate("/user-home")
+    
+                setLoginState(prevState => ({ ...prevState, hasLoginFailed: false }))
+                setLoginState(prevState => ({ ...prevState, showSuccessMessage: true }))
+                window.location.reload(false)
+            }
+            else if (response.data === 'BUSINESS_USER') {
+                AuthenticationService.registerSuccessfulLoginBusiness(credentials.username)
+                navigate("/business-owner")
+    
+                setLoginState(prevState => ({ ...prevState, hasLoginFailed: false }))
+                setLoginState(prevState => ({ ...prevState, showSuccessMessage: true }))
+                window.location.reload(false)
+            }
         }
+    
     }
 
     return (

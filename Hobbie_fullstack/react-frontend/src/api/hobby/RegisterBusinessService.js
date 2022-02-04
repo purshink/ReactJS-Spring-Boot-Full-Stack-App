@@ -1,9 +1,6 @@
-import axios from 'axios';
-
+import axios from './CustomAxiosConfig';
 
 const RegisterBusinessService = (user) => {
-
-
 
   return (
 

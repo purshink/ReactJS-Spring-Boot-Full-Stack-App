@@ -9,18 +9,25 @@ import backend.hobbiebackend.model.entities.AppClient;
 import backend.hobbiebackend.model.entities.BusinessOwner;
 import backend.hobbiebackend.model.entities.UserEntity;
 import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
+import backend.hobbiebackend.model.jwt.JwtRequest;
+import backend.hobbiebackend.model.jwt.JwtResponse;
+import backend.hobbiebackend.security.HobbieUserDetailsService;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserService;
+import backend.hobbiebackend.utility.JWTUtility;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 
 @RestController
@@ -29,16 +36,26 @@ import java.util.List;
 public class UserController {
 
 
-    //TODO CREATE POP UP THAT USER HAT SUCCESSFULLY SIGNED UP
+
     private final UserService userService;
     private final HobbyService hobbyService;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(UserService userService, HobbyService hobbyService, ModelMapper modelMapper) {
+    private JWTUtility jwtUtility;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private HobbieUserDetailsService hobbieUserDetailsService;
+
+    @Autowired
+    public UserController(UserService userService, HobbyService hobbyService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.userService = userService;
         this.hobbyService = hobbyService;
+        this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
 
     }
@@ -90,7 +107,7 @@ public class UserController {
                     AppClient client = this.userService.findAppClientById(user.getId());
 
 
-                    client.setPassword(user.getPassword());
+                    client.setPassword(this.passwordEncoder.encode(user.getPassword()));
                     client.setGender(user.getGender());
                     client.setFullName(user.getFullName());
 
@@ -107,7 +124,7 @@ public class UserController {
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
 
                 businessOwner.setBusinessName(business.getBusinessName());
-                businessOwner.setPassword(business.getPassword());
+                businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
                 businessOwner.setAddress(business.getAddress());
                 this.userService.saveUpdatedUser(businessOwner);
 
@@ -124,9 +141,33 @@ public class UserController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
+    @PostMapping("/authenticate")
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
-    @PostMapping("/login")
-    public String logInUser(@RequestParam String username) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            jwtRequest.getUsername(),
+                            jwtRequest.getPassword()
+                    )
+            );
+        } catch (BadCredentialsException e) {
+            throw new Exception("INVALID_CREDENTIALS", e);
+        }
+
+        final UserDetails userDetails
+                = hobbieUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
+
+        final String token =
+                jwtUtility.generateToken(userDetails);
+
+        return  new JwtResponse(token);
+    }
+
+
+    @PostMapping("/login/{username}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public String logInUser(@PathVariable String username) {
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()
                 .anyMatch(u-> u.getRole().equals(UserRoleEnum.USER))) {

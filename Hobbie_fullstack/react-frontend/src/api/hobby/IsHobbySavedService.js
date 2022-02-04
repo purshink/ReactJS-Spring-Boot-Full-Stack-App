@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from './CustomAxiosConfig';
 import AuthenticationService from './AuthenticationService';
 
 const IsHobbySavedService = (id) => {
 
     let username = AuthenticationService.getLoggedInUser();
-  console.log(id)
+
   return   ( axios.get(`http://localhost:8080/hobbies/is-saved`,{
     params: {
       id,

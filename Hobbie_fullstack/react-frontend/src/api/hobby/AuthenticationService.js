@@ -1,6 +1,3 @@
-import axios from "axios"
-
-
 class AuthenticationService {
 
     registerSuccessfulLoginBusiness(username) {
@@ -55,22 +52,18 @@ class AuthenticationService {
         }
     }
 
+        setUpToken(jwtToken){
+            localStorage.setItem('token', jwtToken);
+        }
 
-
-    //    setUpAxiosInterseptors(){
-    //     console.log("Setting up interceptors.")
-    //     let username = 'user';
-    //     let password = '123';
-    //     let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password);
-
-
-
+    //    setUpAxiosInterseptors(jwtToken){
+    //     console.log("interception");
     //     axios.interceptors.request.use(
 
     //             (config) => {
-    //                 if(this.isUserLoggedIn){
-    //                 config.headers['Authorization'] = basicAuthHeader;
-    //                 }
+    //                 console.log(jwtToken);
+    //                 config.headers['Authorization'] = jwtToken;
+                    
     //                     console.log("Success");
     //                 return config;
     //             }

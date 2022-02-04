@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from './CustomAxiosConfig';
 import AuthenticationService from './AuthenticationService';
 
 const RemoveHobbyService = (id) => {

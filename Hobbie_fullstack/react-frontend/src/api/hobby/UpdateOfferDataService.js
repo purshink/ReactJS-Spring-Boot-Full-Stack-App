@@ -1,7 +1,4 @@
-import React from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import axios from './CustomAxiosConfig';
 
 const UpdateOfferDataService = async (hobby) => {
   

@@ -1,16 +1,20 @@
-import axios from 'axios';
+import axios from './CustomAxiosConfig';
 
+const LoginService = (username) => {
 
+//   let axiosConfig = { headers: {
 
-const LoginService = (username, password) => {
+//     'Accept' : 'application/json',  
+//     "Content-Type": "application/json",
+//     'Access-Control-Allow-Methods': "*",
+//     "Access-Control-Allow-Origin": "*",
+//     'Authorization': token
+// }}
+
+// console.log(axiosConfig)
+
   return (
-
-    axios.post(`http://localhost:8080/users/login`, null, {
-      params: {
-        username,
-        password
-      }
-    })
+    axios.post(`http://localhost:8080/users/login/${username}`)
       .then(res => {
         if (res != null) {
           console.log(res);

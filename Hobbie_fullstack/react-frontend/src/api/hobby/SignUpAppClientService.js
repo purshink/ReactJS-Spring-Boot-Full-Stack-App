@@ -1,10 +1,6 @@
-import axios from 'axios'
-
-
+import axios from './CustomAxiosConfig';
 
 const SignUpAppClientService = (user) => {
-
-
 
   return (
 
