@@ -155,6 +155,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity findUserByEmail(String email) {
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(email);
+        if (byEmail.isPresent()) {
+            return byEmail.get();
+        } else {
+            return  null;
+        }
+
+    }
+
+    @Override
     public BusinessOwner findBusinessOwnerById(Long id) {
         Optional<BusinessOwner> businessOwner = this.businessOwnerRepository.findById(id);
 
@@ -189,6 +200,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveUserWithUpdatedPassword(UserEntity userEntity) {
+        this.userRepository.save(userEntity);
+    }
+
+    @Override
     public boolean deleteUser(Long id) {
         UserEntity user = findUserById(id);
         if (user == null){
@@ -200,30 +216,6 @@ public class UserServiceImpl implements UserService {
         return  true;
     }
 
-    @Override
-    public void deleteBusinessOwner(Long id) {
-        Optional<BusinessOwner> user = this.businessOwnerRepository.findById(id);
-        if(user.isPresent()) {
-
-            userRepository.delete(user.get());
-        }
-        else {
-            throw new NotFoundException("Can not find current business owner");
-        }
-
-    }
-
-    @Override
-    public void deleteAppClient(Long id) {
-        Optional<AppClient> user = this.appClientRepository.findById(id);
-        if(user.isPresent()) {
-
-            appClientRepository.delete(user.get());
-        }
-        else {
-            throw new NotFoundException("Can not find current user");
-        }
-    }
 
     @Override
     public AppClient findAppClientById(Long clientId) {

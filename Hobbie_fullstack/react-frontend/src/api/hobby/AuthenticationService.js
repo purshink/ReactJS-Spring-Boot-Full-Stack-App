@@ -56,23 +56,6 @@ class AuthenticationService {
             localStorage.setItem('token', jwtToken);
         }
 
-    //    setUpAxiosInterseptors(jwtToken){
-    //     console.log("interception");
-    //     axios.interceptors.request.use(
-
-    //             (config) => {
-    //                 console.log(jwtToken);
-    //                 config.headers['Authorization'] = jwtToken;
-                    
-    //                     console.log("Success");
-    //                 return config;
-    //             }
-    //         )
-    //    }
-
-
-
-
 }
 
 

@@ -28,34 +28,32 @@ const RegisterBusiness = () => {
 
 
         if (!info.username) {
-            errors.username = 'Username is required'
+            errors.username = 'Invalid username'
         } else if (info.username.length < 5) {
-            errors.username = 'Username must be at least 5 characters long'
+            errors.username = 'Minimum 5 characters'
         }
 
         if (!info.businessName) {
-            errors.businessName = "Business name is required"
+            errors.businessName = "Invalid name"
         } else if (info.businessName.length < 2 || info.businessName.length > 20) {
-            errors.businessName = "Text has to be between 2 and 20 characters long"
+            errors.businessName = "Between 2 and 20 characters"
         }
 
         if (!info.address) {
-            errors.address = "Address is required"
+            errors.address = "Invalid Address"
         }
 
-        if (!info.email) {
-            errors.email = 'Email is required';
-        } else if (
+        if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(info.email)
         ) {
-            errors.email = 'Invalid email address';
+            errors.email = 'Invalid Email';
         }
 
         if (!info.password) {
-            errors.password = "A password is required"
+            errors.password = "Invalid Password"
         }
         if (!info.repeatpassword) {
-            errors.repeatpassword = "Please repeate the password"
+            errors.repeatpassword = "Repeate password"
         }
         if (info.password !== info.repeatpassword) {
             errors.repeatpassword = "Passwords don't match"
@@ -162,7 +160,7 @@ const RegisterBusiness = () => {
                             <div className={styles.name_section}>
                                 <input type="password" name="repeatpassword" id="repeatpassword" onChange={e => setInfo({ ...info, repeatpassword: e.target.value })} />
                                 <label forhtml="repeatpassword" className={styles.label_name}>
-                                    <span className={styles.content_name}>Repeat Password</span>
+                                {!errors.repeatpassword &&  <span className={styles.content_name}>Repeat Password</span>}
                                     {errors.repeatpassword && <small className={styles.errors}>
                                         {errors.repeatpassword}
                                     </small>}

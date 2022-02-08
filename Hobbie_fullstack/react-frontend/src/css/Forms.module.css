@@ -25,6 +25,7 @@
     position: relative;
     overflow: hidden;
     margin-top: 30px;
+    
   } 
   
 .form_field_radio {
@@ -201,8 +202,13 @@ input[type=checkbox]:checked:after {
     align-content: center;
   }  
 
+  .password_change_div {
+    width: 300px;
+  }
+
   /* .button2 */
-.button {background-color: #00BFF0;
+.button {
+  background-color: #00BFF0;
     padding: 10px 10px 10px 10px;
     content: " ";
     background-color: #fff;
@@ -217,6 +223,12 @@ input[type=checkbox]:checked:after {
     padding-left: 3px;
     border-radius: 5px;
     margin-bottom: 60px;
+  }
+
+  .button_password_forgot{
+    color: #73bacc;
+    font-size: small;
+    cursor: pointer;
   }
   
 .checkbox_choice_section{
@@ -235,7 +247,7 @@ input[type=checkbox]:checked:after {
   }
 
 .errors{
-    font-size: 14px;
+    font-size: small;
     color: #c36cbb;
     margin-left: 5px;
     float: right;
@@ -264,3 +276,4 @@ input[type=checkbox]:checked:after {
       font-weight: bold;
     } 
   }
+

@@ -14,9 +14,7 @@ public interface UserService {
     List<UserEntity> seedUsersAndUserRoles();
 
     AppClient register(AppClientSignUpDto user);
-//    BusinessOwner findCurrentUserBusinessOwner();
-//    AppClient findCurrentUserAppClient();
-//    String findCurrentUsername();
+
     BusinessOwner registerBusiness(BusinessRegisterDto business);
 
     BusinessOwner saveUpdatedUser(BusinessOwner businessOwner);
@@ -24,6 +22,8 @@ public interface UserService {
     AppClient saveUpdatedUserClient(AppClient appClient);
 
     UserEntity findUserById(Long userId);
+
+    UserEntity findUserByEmail(String email);
 
     boolean deleteUser(Long id);
 
@@ -34,14 +34,12 @@ public interface UserService {
 
     boolean userExists(String username, String email);
 
-    void deleteBusinessOwner(Long id);
-
-    void deleteAppClient(Long id);
+    void saveUserWithUpdatedPassword(UserEntity userEntity);
 
     AppClient findAppClientById(Long clientId);
 
     void findAndRemoveHobbyFromClientsRecords(Hobby hobby);
-//    void expireUserSessions();
+
 
     boolean businessExists(String businessName);
 

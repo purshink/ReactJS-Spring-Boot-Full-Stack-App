@@ -19,6 +19,8 @@ import ProtectedRoutesBusiness from './components/ProtectedRoutesBusiness';
 import EditUserProfile from "./components/EditUserProfile";
 import EditBusinessProfile from "./components/EditBusinessProfile";
 import UpdateOffer from "./components/UpdateOffer";
+import PasswordChange from "./components/PasswordChange";
+import SetUpNewPassword from "./components/SetUpNewPassword";
 
 
 
@@ -33,6 +35,8 @@ function App() {
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/register-business' element={<RegisterBusiness/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/change-password' element={<PasswordChange/>}/>
+      <Route path='/change-password-new/:id' element={<SetUpNewPassword/>}/>
     
 
       <Route element={<ProtectedRoutes/>}>

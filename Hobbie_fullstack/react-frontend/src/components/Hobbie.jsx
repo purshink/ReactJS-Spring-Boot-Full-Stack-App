@@ -215,7 +215,7 @@ return (
                             {currentPage === '04' && <div>
                                 <p> {hobby.contactInfo} </p>
                             </div>}
-                            {currentPage !== '03' && <div className={styles.buttons}>
+                            {currentPage !== '03' && currentPage !== '04' && <div className={styles.buttons}>
                                 {isBusinessLoggedIn && <div> <Link to="#" onClick={handleEdit(hobby)} className={styles.btn}>Edit </Link>
                                     <Link to="#" onClick={handleDelete(hobby)} className={styles.btn}>Delete </Link> </div>}
                                 {isUserLoggedIn && <div onClick={handleSave(hobby.id)}>{saved ? <span className={styles.btn}>Remove</span> : <span className={styles.btn}>Save</span>}</div>}

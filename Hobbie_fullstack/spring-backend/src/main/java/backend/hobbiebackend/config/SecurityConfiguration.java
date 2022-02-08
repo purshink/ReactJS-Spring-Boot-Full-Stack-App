@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
             http.csrf()
                     .disable()
                     .authorizeRequests()
-                    .antMatchers("/users/authenticate")
+                    .antMatchers("/users/authenticate", "/users/change-password", "/users/change-password-new")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

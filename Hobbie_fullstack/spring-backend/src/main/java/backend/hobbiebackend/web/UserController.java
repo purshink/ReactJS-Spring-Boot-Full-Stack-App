@@ -1,6 +1,7 @@
 package backend.hobbiebackend.web;
 
 
+import backend.hobbiebackend.handler.NotFoundException;
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
 import backend.hobbiebackend.model.dto.UpdateAppClientDto;
@@ -13,6 +14,7 @@ import backend.hobbiebackend.model.jwt.JwtRequest;
 import backend.hobbiebackend.model.jwt.JwtResponse;
 import backend.hobbiebackend.security.HobbieUserDetailsService;
 import backend.hobbiebackend.service.HobbyService;
+import backend.hobbiebackend.service.NotificationService;
 import backend.hobbiebackend.service.UserService;
 import backend.hobbiebackend.utility.JWTUtility;
 import org.modelmapper.ModelMapper;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +30,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 
 @RestController
@@ -41,23 +45,22 @@ public class UserController {
     private final HobbyService hobbyService;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final NotificationService notificationService;
+    private final JWTUtility jwtUtility;
+    private final AuthenticationManager authenticationManager;
+    private final HobbieUserDetailsService hobbieUserDetailsService;
 
     @Autowired
-    private JWTUtility jwtUtility;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private HobbieUserDetailsService hobbieUserDetailsService;
-
-    @Autowired
-    public UserController(UserService userService, HobbyService hobbyService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public UserController(UserService userService, HobbyService hobbyService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, NotificationService notificationService, JWTUtility jwtUtility, AuthenticationManager authenticationManager, HobbieUserDetailsService hobbieUserDetailsService) {
         this.userService = userService;
         this.hobbyService = hobbyService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
+        this.notificationService = notificationService;
+        this.jwtUtility = jwtUtility;
 
+        this.authenticationManager = authenticationManager;
+        this.hobbieUserDetailsService = hobbieUserDetailsService;
     }
 
 
@@ -115,8 +118,27 @@ public class UserController {
             return new ResponseEntity<AppClient>(client, HttpStatus.CREATED);
 
     }
+    @PostMapping ("/change-password")
+    public ResponseEntity<?>  changePassword(@RequestBody String e) throws UnsupportedEncodingException {
+        String email = URLDecoder.decode(e, "UTF-8");
+        email = email.substring(0, email.length()-1);
+        UserEntity userByEmail = this.userService.findUserByEmail(email);
 
-
+        if(userByEmail == null){
+            throw new NotFoundException("User not found");
+        }
+        else {
+            this.notificationService.sendNotification(userByEmail);
+        }
+        return new ResponseEntity<>(userByEmail, HttpStatus.OK);
+    }
+    @PostMapping("/change-password-new")
+    public ResponseEntity<?>  setUpNewPassword(@RequestParam Long id, String password) {
+        UserEntity userById = this.userService.findUserById(id);
+        userById.setPassword(this.passwordEncoder.encode(password));
+        this.userService.saveUserWithUpdatedPassword(userById);
+        return new ResponseEntity<UserEntity>(userById,HttpStatus.CREATED);
+    }
 
     @PostMapping("/update-business")
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {

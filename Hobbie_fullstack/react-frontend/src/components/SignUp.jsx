@@ -34,7 +34,7 @@ const SignUp = () => {
         if (!info.username) {
             errors.username = 'Username is required'
         } else if (info.username.length < 5) {
-            errors.username = 'Username must be at least 5 characters long'
+            errors.username = 'Minimum 5 characters'
         }
 
         if (!info.fullName) {
@@ -43,9 +43,7 @@ const SignUp = () => {
             errors.fullName = "Text has to be between 2 and 20 characters long"
         }
 
-        if (!info.email) {
-            errors.email = 'Email is required';
-        } else if (
+        if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(info.email)
         ) {
             errors.email = 'Invalid email address';
@@ -55,7 +53,7 @@ const SignUp = () => {
             errors.password = "A password is required"
         }
         if (!info.repeatpassword) {
-            errors.repeatpassword = "Please repeate the password"
+            errors.repeatpassword = "Repeate password"
         }
         if (info.password !== info.repeatpassword) {
             errors.repeatpassword = "Passwords don't match"
@@ -99,7 +97,7 @@ const SignUp = () => {
                 </div>}
 
                 <form id="userInfo" onSubmit={submitHandler}>
-                <div className={styles.row}>
+                    <div className={styles.row}>
                         <div className={styles.form_field}>
                             <div className={styles.name_section}>
                                 <input onChange={e => setInfo({ ...info, username: e.target.value })}
@@ -190,7 +188,7 @@ const SignUp = () => {
                                 />
 
                                 <label htmlFor="repassword" className={styles.label_name}>
-                                    <span className={styles.content_name}>Confirm Password</span>
+                                    {!errors.repeatpassword && <span className={styles.content_name}>Confirm Password</span>}
                                     {errors.repeatpassword && <small className={styles.errors} >{errors.repeatpassword}</small>}
                                 </label>
                             </div>
@@ -202,8 +200,8 @@ const SignUp = () => {
                     </div>
                 </form>
             </div>
-            <Footer/>
-           <Background/>
+            <Footer />
+            <Background />
         </div>
     )
 
