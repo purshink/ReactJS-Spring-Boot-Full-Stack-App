@@ -1,7 +1,7 @@
 import React from 'react'
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 import AuthenticationService from '../api/hobby/AuthenticationService';
-import { Navigate } from 'react-router';
+import { Navigate } from 'react-router-dom';
 
 const useAuth = () => {
     return AuthenticationService.isUserLoggedIn();

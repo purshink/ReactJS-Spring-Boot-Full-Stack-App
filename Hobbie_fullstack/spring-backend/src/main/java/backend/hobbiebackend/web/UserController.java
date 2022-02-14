@@ -149,7 +149,7 @@ public class UserController {
                 businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
                 businessOwner.setAddress(business.getAddress());
                 this.userService.saveUpdatedUser(businessOwner);
-
+    
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
 
     }

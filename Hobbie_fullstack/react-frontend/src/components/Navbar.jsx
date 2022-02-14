@@ -7,25 +7,25 @@ import { IonIcon } from '@ionic/react';
 import {grid} from 'ionicons/icons';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-
+import Menu from './Menu';
+import NavLinks from './NavLinks';
 
 
 const Navbar = () => {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
   const location = useLocation()
-  console.log(location.pathname);
+
 
 
   const [clicked, setClicked] = useState(false);
 
-
-
-  console.log(clicked);
   return (
     
     <nav className={styles.navbar}>
-    <div className="menu">
+      <Menu/>
+      <NavLinks/>
+    {/* <div className="menu">
       <IonIcon onClick={e => setClicked(!clicked)} className={styles.menu} icon={grid}></IonIcon> 
       {clicked &&   <div className={styles.popup_menu}> <ul className={styles.nav_links_popup}>
         {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='/user-home'>Home</NavLink></li>}
@@ -52,7 +52,7 @@ const Navbar = () => {
         {isUserLoggedIn && <li className={styles.nav_link}><NavLink to='account-user'>Account</NavLink></li>}
         {!isBusinessLoggedIn && location.pathname != '/register-business' && location.pathname != '/signup' &&  location.pathname != '/login'  && !isUserLoggedIn && location.pathname != '/change-password' && !(location.pathname.includes("/change-password-new"))&& <li className={styles.nav_link}><NavLink to='login'>Login</NavLink></li>}
         {(isUserLoggedIn || isBusinessLoggedIn) && <li className={styles.nav_link} onClick={AuthenticationService.logout}><NavLink to='/'> Logout</NavLink></li>}
-      </ul>
+      </ul> */}
     </nav>
 
   )
