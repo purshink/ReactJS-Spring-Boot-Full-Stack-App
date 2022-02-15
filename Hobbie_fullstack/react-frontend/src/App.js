@@ -1,26 +1,26 @@
 import React from "react"; 
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Home from './components/Home';
-import SignUp from './components/SignUp';
-import RegisterBusiness from './components/RegisterBusiness';
-import Login from './components/Login';
-import BusinessOwner from './components/BusinessOwner';
-import UserHome from './components/UserHome';
-import Hobbie from './components/Hobbie';
-import AccountUser from './components/AccountUser';
-import AccountBusiness from './components/AccountBusiness';
-import TestForm from './components/TestForm';
-import CreateOffer from './components/CreateOffer';
-import MyHobbies from './components/MyHobbies';
-import ProtectedRoutes from './components/ProtectedRoutes';
-import ProtectedRoutesBusiness from './components/ProtectedRoutesBusiness';
-import EditUserProfile from "./components/EditUserProfile";
-import EditBusinessProfile from "./components/EditBusinessProfile";
-import UpdateOffer from "./components/UpdateOffer";
-import PasswordChange from "./components/PasswordChange";
-import SetUpNewPassword from "./components/SetUpNewPassword";
+import Header from './components/root/fragments/header/Header';
+import Home from './components/root/home/Home';
+import SignUp from './components/root/users/signUp/SignUp';
+import RegisterBusiness from './components/root/users/signUp/RegisterBusiness';
+import Login from './components/root/users/login/Login';
+import BusinessOwner from './components/root/users/homeBusiness/BusinessOwner';
+import UserHome from './components/root/users/homeUser/UserHome';
+import Hobbie from './components/root/users/homeBusiness/Offer/Hobbie';
+import AccountUser from './components/root/users/homeUser/accountUser/AccountUser';
+import AccountBusiness from './components/root/users/homeBusiness/AccountBusiness/AccountBusiness';
+import TestForm from './components/root/users/homeUser/test/TestForm';
+import CreateOffer from './components/root/users/homeBusiness/Offer/CreateOffer';
+import MyHobbies from './components/root/users/homeUser/MyHobbies';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
+import ProtectedRoutesBusiness from './components/protectedRoutes/ProtectedRoutesBusiness';
+import EditUserProfile from "./components/root/users/homeUser/accountUser/EditUserProfile";
+import EditBusinessProfile from "./components/root/users/homeBusiness/AccountBusiness/EditBusinessProfile";
+import UpdateOffer from "./components/root/users/homeBusiness/Offer/UpdateOffer";
+import PasswordChange from "./components/root/users/login/forgottenPassword/PasswordChange";
+import SetUpNewPassword from "./components/root/users/login/forgottenPassword/SetUpNewPassword";
 
 
 

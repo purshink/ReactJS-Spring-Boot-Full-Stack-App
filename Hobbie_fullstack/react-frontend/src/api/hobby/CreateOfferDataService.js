@@ -1,4 +1,4 @@
-import axios from './CustomAxiosConfig';
+import axios from '../customAxiosConfig/CustomAxiosConfig';
 
 const CreateOfferDataService = (info) => {
 

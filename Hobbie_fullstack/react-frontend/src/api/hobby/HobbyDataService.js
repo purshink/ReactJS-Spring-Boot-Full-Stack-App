@@ -1,5 +1,5 @@
-import AuthenticationService from './AuthenticationService';
-import axios from './CustomAxiosConfig';
+import AuthenticationService from '../authentication/AuthenticationService';
+import axios from '../customAxiosConfig/CustomAxiosConfig';
 
 const HobbyDataService = () => {
     let username = AuthenticationService.getLoggedInUser();

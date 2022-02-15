@@ -1,6 +1,6 @@
 
-import axios from './CustomAxiosConfig';
-import AuthenticationService from './AuthenticationService';
+import axios from '../customAxiosConfig/CustomAxiosConfig';
+import AuthenticationService from '../authentication/AuthenticationService';
 
 
 const OffersDataService = () => {

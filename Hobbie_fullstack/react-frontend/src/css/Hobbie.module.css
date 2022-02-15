@@ -1,6 +1,6 @@
-.hobby_details_page{
+/* .hobby_details_page{
     position: relative;
-  }
+  } */
 
 .hobbie_main {
     margin:  auto 100px;
@@ -114,7 +114,7 @@
     justify-content: space-around;
     width: 200px;
     margin: auto;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     padding: 10px;
   }

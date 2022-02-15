@@ -1,12 +1,12 @@
-.test_content{
+/* .test_content{
     /* width: 50%; */
-    height: 100%;
+    /* height: 100%;
     margin: auto;
     padding: 0 40px;
     grid-area: content;
     align-content: center;
     justify-content: space-between;
-  }
+  } */ 
 
 .test_form {
     margin: 50px auto;
@@ -115,17 +115,17 @@
 
     .test_form{
       display: block;
-      width: 100%;
+      width: 90%;
       padding: 0;
-      margin: 40px  auto;
+      margin: 5%;
       margin-bottom: 200px;
       }
 
     .test_form_end{
       display: block;
-      width: 100%;
+      width: 90%;
       padding: 0;
-      margin-bottom: 200px;
+      margin: 5%;
       }
 
       .test_button{

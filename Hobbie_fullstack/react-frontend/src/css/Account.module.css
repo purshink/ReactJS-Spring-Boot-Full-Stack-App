@@ -1,10 +1,6 @@
-.account_main{
-    width: 50%;
-    margin: auto;
-
-  }
 
 .account_container{
+  width: 50%;
     margin: auto;
     display: block;
     box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
@@ -21,19 +17,13 @@
 
 .account_content{
     margin-top: 20px;
-    /* margin-bottom: 20px; */
     grid-area: content;
     height:auto;
     background-color: #fefefe;
-  }
-
-.account_content_body{
     padding: 30px;
-  }
-
-.account_label{
     margin: auto;
   }
+
 
 .account_title {
     background: linear-gradient(to right, #494969,#696989);
@@ -57,7 +47,7 @@
     text-align: center;
   }
 
-  .account_label p {
+  .account_content p {
     font-size: 14px;
     line-height: 25px;
     width: 100%;
@@ -69,11 +59,9 @@
   @media all and (max-width: 700px) {
     .account_container{
       padding: 20px;
-    }
-    .account_main{
-    
       width: 90%;
     }
+   
   }
 
 

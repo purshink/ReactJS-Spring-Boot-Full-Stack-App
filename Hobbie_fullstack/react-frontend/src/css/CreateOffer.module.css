@@ -1,6 +1,12 @@
 
   /* .offer_body */
   .offer_main{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
     margin: auto;
     background: linear-gradient(to right,#696989, #dcdce6);
     color: white;
@@ -13,14 +19,14 @@
     margin-bottom: 50px;
   }
 
-  .create_offer{
+  /* .create_offer{
     padding-top: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     font-family: sans-serif;
-  }
+  } */
 
   .title_offer{
     color: white;
@@ -32,9 +38,7 @@
     width: 100%;
   }
 
-  .offer_row{
-    width: 100%;
-  }
+ 
   
   .form_field_photos{
     display: flex;
