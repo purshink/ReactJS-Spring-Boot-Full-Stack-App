@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "hobbie",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,15 +28,21 @@
   "scripts": {
     "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test":  "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
     "eject": "react-scripts eject"
   },
+  
+  
+  
+  
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
+
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -48,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11"
   }
 }

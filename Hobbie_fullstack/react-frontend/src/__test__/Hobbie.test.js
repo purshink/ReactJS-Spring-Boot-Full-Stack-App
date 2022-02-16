@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hobbie from '../components/Hobbie';
+import Hobbie from '../components/root/users/homeBusiness/Offer/Hobbie';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

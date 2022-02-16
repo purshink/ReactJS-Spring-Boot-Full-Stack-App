@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateOffer from '../components/CreateOffer';
+import CreateOffer from '../components/root/users/homeBusiness/Offer/CreateOffer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

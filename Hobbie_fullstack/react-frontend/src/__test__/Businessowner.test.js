@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BusinessOwner from '../components/BusinessOwner';
+import BusinessOwner from '../components/root/users/homeBusiness/BusinessOwner';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

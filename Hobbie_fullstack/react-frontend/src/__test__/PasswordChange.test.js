@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PasswordChange from '../components/PasswordChange';
+import PasswordChange from '../components/root/users/login/forgottenPassword/PasswordChange';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 

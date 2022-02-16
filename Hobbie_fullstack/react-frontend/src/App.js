@@ -25,8 +25,7 @@ import SetUpNewPassword from "./components/root/users/login/forgottenPassword/Se
 
 
 function App() {
-
-
+ 
   return (
        <Router>
 <div className="App">
