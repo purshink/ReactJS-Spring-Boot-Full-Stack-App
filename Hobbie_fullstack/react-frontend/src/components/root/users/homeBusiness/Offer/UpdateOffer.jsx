@@ -1,4 +1,6 @@
 import React from 'react'
+import OfferInputField from './fields/OfferInputField'
+import OfferTextaria from './fields/OfferTextaria'
 import FooterDetails from '../../../fragments/footer/FooterDetails'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -17,9 +19,7 @@ const UpdateOffer = () => {
     const [loading, setLoading] = useState(false);
     const username = AuthenticationService.getLoggedInUser();
     const [uploaded, setUploaded] = useState(false);
-    const public_ids = [];
-    const img_urls = [];
-    let fileURL = '';
+
     const [files, setFiles] = useState({});
     const [info, setInfo] = useState({
         id: location.state.id,
@@ -32,7 +32,7 @@ const UpdateOffer = () => {
         contactInfo: location.state.contactInfo
 
     });
-    console.log(info)
+
     const [errors, setErrors] = useState({});
 
 
@@ -106,6 +106,9 @@ const UpdateOffer = () => {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        const public_ids = [];
+        const img_urls = [];
+        let fileURL = '';
 
         let errors = validate(info)
         setErrors(errors);
@@ -123,12 +126,10 @@ const UpdateOffer = () => {
 
                 return await axios.post("https://api.cloudinary.com/v1_1/dv6ktrxwv/image/upload", formData, {
                     headers: { "X-Requested-With": "XMLHttpRequest" },
-                }).then(response => {
-                    const data = response.data;
-                    const public_id = data.public_id;
+                }).then(({ data }) => {
                     fileURL = data.secure_url
                     img_urls.push(fileURL);
-                    public_ids.push(public_id);
+                    public_ids.push(data.public_id);
                 });
             });
 
@@ -166,25 +167,25 @@ const UpdateOffer = () => {
                 <h1 className={styles.title_offer}>Edit offer</h1>
                 <form className={styles.form_offer} onSubmit={submitHandler}>
 
-                        <div className={styles.form_field_2}>
-                            <div className={styles.name_section}>
-                                <label forhtml="name" className={styles.label_name}>
-                                    <span>Hobbie Name</span>
-                                </label>
-                                <input defaultValue={location.state.name} onChange={e => setInfo({ ...info, name: e.target.value })} className={styles.h_n} type="text" name="name" />
-                            </div>
-                            {errors.name && <small className={styles.errors_offer}>{errors.name}</small>}
-                        </div>
+                    <OfferInputField
+                        defaultValue={location.state.name}
+                        type="text"
+                        placeholder="ex: Painting, Swimming classes etc.."
+                        label="Hobbie Name"
+                        name="name"
+                        error={errors.name}
+                        onChange={e => setInfo({ ...info, name: e.target.value })}
+                    />
+                    <OfferInputField
+                        defaultValue={location.state.slogan}
+                        type="text"
+                        placeholder="your offer in one sentence..."
+                        label="Slogan"
+                        name="slogan"
+                        error={errors.slogan}
+                        onChange={e => setInfo({ ...info, slogan: e.target.value })}
+                    />
 
-                        <div className={styles.form_field_2}>
-                            <div className={styles.name_section}>
-                                <label htmlFor="slogan" className={styles.label_name}>
-                                    <span className="">Slogan</span>
-                                </label>
-                                <input defaultValue={location.state.slogan} onChange={e => setInfo({ ...info, slogan: e.target.value })} className={styles.h_n} type="text" name="slogan" />
-                            </div>
-                            {errors.slogan && <small className={styles.errors_offer}>{errors.slogan}</small>}
-                        </div>
 
                     <div className={styles.form_field_2}>
                         <span>Category</span>
@@ -200,47 +201,41 @@ const UpdateOffer = () => {
                         </select>
                         {errors.category && <small className={styles.errors_offer}>{errors.category}</small>}
                     </div>
-              
-                        <div className={styles.form_field_2}>
-                            <section className={styles.name_section}>
-                                <label id="intro" className={styles.label_name}>
-                                    <span>Intro</span>
-                                </label>
-                                <textarea defaultValue={location.state.intro} onChange={e => setInfo({ ...info, intro: e.target.value })} className={styles.label_name} type="text" name="intro" ></textarea>
-                            </section>
-                            {errors.intro && <small className={styles.errors_offer}>{errors.intro}</small>}
-                        </div>
+                    <OfferTextaria
+                        defaultValue={location.state.intro}
+                        label="Intro"
+                        name="intro"
+                        error={errors.intro}
+                        onChange={e => setInfo({ ...info, intro: e.target.value })}
+                    />
 
-                        <div className={styles.form_field_2}>
-                            <section className={styles.name_section}>
-                                <label id="description" className={styles.label_name}>
-                                    <span>Class description</span>
-                                </label>
-                                <textarea defaultValue={location.state.description} onChange={e => setInfo({ ...info, description: e.target.value })} className={styles.label_name} type="text" name="name" ></textarea>
-                            </section>
-                            {errors.description && <small className={styles.errors_offer}>{errors.description}</small>}
-                        </div>
-          
-         
-                        <div className={styles.form_field_2}>
-                            <div className={styles.name_section}>
-                                <label htmlFor="price" className={styles.label_name}>
-                                    <span>Price per entry</span>
-                                </label>
-                                <input defaultValue={location.state.price} onChange={e => setInfo({ ...info, price: e.target.value })} className={styles.h_n} type="number" name="price" id="price" />
-                            </div>
-                            {errors.price && <small className={styles.errors_offer}>{errors.price}</small>}
-                        </div>
-               
+                    <OfferTextaria
+                        defaultValue={location.state.description}
+                        label="Description"
+                        name="description"
+                        error={errors.description}
+                        onChange={e => setInfo({ ...info, description: e.target.value })}
+                    />
+
+
+                    <OfferInputField
+                        defaultValue={location.state.price}
+                        type="number"
+                        placeholder=""
+                        label="Price per entry"
+                        name="price"
+                        error={errors.price}
+                        onChange={e => setInfo({ ...info, price: e.target.value })}
+                    />
+
                     <div className={styles.form_field_2}>
                         <span>Location</span>
                         <select onChange={e => setInfo({ ...info, location: e.target.value })} className={styles.custom_select} id="location" name="location">
                             <option value="">Select location</option>
                             <option value="ZURICH">Zurich</option>
-                            <option value="OTHER">Bern</option>
-                            <option value="OTHER">Zug</option>
-                            <option value="OTHER">Luzern</option>
-                            <option value="OTHER">Other</option>
+                            <option value="BERN">Bern</option>
+                            <option value="ZUG">Zug</option>
+                            <option value="LUZERN">Luzern</option>
                         </select>
                         {errors.location && <small className={styles.errors_offer}>{errors.location}</small>}
                     </div>
@@ -276,17 +271,13 @@ const UpdateOffer = () => {
                         </div>
 
                     </div>
-
-                    <div className={styles.form_field_2}>
-                        <section className={styles.name_section}>
-                            <label id="contact" className={styles.label_name}>
-                                <span>Contact info</span>
-                            </label>
-                            <textarea defaultValue={location.state.contactInfo} onChange={e => setInfo({ ...info, contactInfo: e.target.value || e.target.defaultValue })} placeholder="ex: Venue Address, Website, Phone number etc.." className={styles.label_name} type="text" name="contact" ></textarea>
-                        </section>
-
-                        {errors.contactInfo && <small className={styles.errors_offer}>{errors.contactInfo}</small>}
-                    </div>
+                    <OfferTextaria
+                        defaultValue={location.state.contactInfo}
+                        label="Contact info"
+                        name="contact"
+                        error={errors.contact}
+                        onChange={e => setInfo({ ...info, contactInfo: e.target.value })}
+                    />
 
                     {loading && <LoadingDots />}
 

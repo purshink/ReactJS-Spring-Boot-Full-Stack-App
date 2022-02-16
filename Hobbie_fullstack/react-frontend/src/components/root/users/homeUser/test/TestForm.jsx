@@ -91,9 +91,9 @@ const TestForm = () => {
 			value: "location",
 			answerOptions: [
 				{ answerText: 'Zurich', category: "ZURICH" },
-				{ answerText: 'Bern', category: "OTHER" },
-				{ answerText: 'Luzern', category: "OTHER" },
-				{ answerText: 'Zug', category: "OTHER" },
+				{ answerText: 'Bern', category: "BERN" },
+				{ answerText: 'Luzern', category: "LUZERN" },
+				{ answerText: 'Zug', category: "ZUG" },
 			],
 		},
 	];

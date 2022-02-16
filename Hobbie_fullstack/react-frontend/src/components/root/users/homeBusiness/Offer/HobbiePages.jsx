@@ -135,7 +135,7 @@ const HobbiePages = () => {
 
 
 
-    const isColumnBasedSmall = useMediaQuery('(max-width: 900px)');
+    const isColumnBasedSmall = useMediaQuery('(max-width: 1200px)');
 
 
     const changePage = (page) => {

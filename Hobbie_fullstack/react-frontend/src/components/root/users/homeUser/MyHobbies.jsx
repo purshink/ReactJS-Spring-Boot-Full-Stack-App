@@ -1,5 +1,5 @@
 import React from 'react'
-import FooterDetails from '../../fragments/footer/FooterDetails'
+import FooterHome from '../../fragments/footer/Footer'
 import styles from '../../../../css/UserHome.module.css';
 import BackgroundHome from '../../fragments/background/BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
@@ -80,7 +80,7 @@ const MyHobbies = () => {
 
                 </section>
             </main>
-            <FooterDetails />
+            <FooterHome />
         </>
     )
 }

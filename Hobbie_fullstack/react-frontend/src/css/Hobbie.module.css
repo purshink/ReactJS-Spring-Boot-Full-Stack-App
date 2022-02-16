@@ -4,6 +4,7 @@
 
 .hobbie_main {
     margin:  auto 100px;
+    padding-bottom: 5%;
   }  
 
 .hobbie_title{
@@ -185,7 +186,6 @@
   -webkit-text-fill-color: transparent;
   margin-top: 20px;
   position: relative;
-
   
   }
 
@@ -254,6 +254,7 @@
     .buttons{
       position: relative;
       left: 5%;
+      margin-bottom: 5%;
     }
 
     .hobbie_lable{
