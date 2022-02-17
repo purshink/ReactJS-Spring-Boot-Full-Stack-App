@@ -50,8 +50,7 @@
 
   @media all and (max-width: 850px) {
     .footer{
-      margin: auto;
-      left: 20%;
+      position: relative;
       width: 60%;
     }
   }

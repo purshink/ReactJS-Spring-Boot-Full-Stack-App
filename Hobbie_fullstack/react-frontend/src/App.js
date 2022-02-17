@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/root/fragments/header/Header';
@@ -25,43 +25,44 @@ import SetUpNewPassword from "./components/root/users/login/forgottenPassword/Se
 
 
 function App() {
- 
-  return (
-       <Router>
-<div className="App">
-   <Header/>
-   <Routes>
-      <Route path='/'  element={<Home/>}/>
-      <Route path='/signup' element={<SignUp/>}/>
-      <Route path='/register-business' element={<RegisterBusiness/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/change-password' element={<PasswordChange/>}/>
-      <Route path='/change-password-new/:id' element={<SetUpNewPassword/>}/>
-    
 
-      <Route element={<ProtectedRoutes/>}>
-      <Route path='/edit-profile'  element={<EditUserProfile/>}/>
-      <Route path='/user-home'  element={<UserHome/>}/>
-      <Route path='/account-user' element={<AccountUser/>}/>
-      <Route path='/test'  element={<TestForm/>}/>
-      <Route path='/my-hobbies'  element={<MyHobbies/>}/>
-      <Route path='/hobbie/:id'  element={<Hobbie/>}/>
-      </Route>
+   return (
+      <Router>
+         <div className="App">
+            <Header />
+            <Routes>
+               
+               <Route path='/' element={<Home />} />
+               <Route path='/signup' element={<SignUp />} />
+               <Route path='/register-business' element={<RegisterBusiness />} />
+               <Route path='/login' element={<Login />} />
+               <Route path='/change-password' element={<PasswordChange />} />
+               <Route path='/change-password-new/:id' element={<SetUpNewPassword />} />
 
-   <Route element={<ProtectedRoutesBusiness/>}>
-   <Route path='/edit-business-profile'  element={<EditBusinessProfile/>}/>
-   <Route path='/edit-offer'  element={<UpdateOffer/>}/>
-      <Route path='/business-owner' element={<BusinessOwner/>}/>
-      <Route path='/account-business'  element={<AccountBusiness/>}/>
-      <Route path='/create-offer'  element={<CreateOffer/>}/>
-      <Route path='/account-business'  element={<AccountBusiness/>}/>
-      <Route path='/offer/:id'  element={<Hobbie/>}/>
-      </Route>
-   </Routes>
 
-</div>
-       </Router>
-  );
+               <Route element={<ProtectedRoutes />}>
+                  <Route path='/edit-profile' element={<EditUserProfile />} />
+                  <Route path='/user-home' element={<UserHome />} />
+                  <Route path='/account-user' element={<AccountUser />} />
+                  <Route path='/test' element={<TestForm />} />
+                  <Route path='/my-hobbies' element={<MyHobbies />} />
+                  <Route path='/hobbie/:id' element={<Hobbie />} />
+               </Route>
+
+               <Route element={<ProtectedRoutesBusiness />}>
+                  <Route path='/edit-business-profile' element={<EditBusinessProfile />} />
+                  <Route path='/edit-offer' element={<UpdateOffer />} />
+                  <Route path='/business-owner' element={<BusinessOwner />} />
+                  <Route path='/account-business' element={<AccountBusiness />} />
+                  <Route path='/create-offer' element={<CreateOffer />} />
+                  <Route path='/account-business' element={<AccountBusiness />} />
+                  <Route path='/offer/:id' element={<Hobbie />} />
+               </Route>
+            </Routes>
+
+         </div>
+      </Router>
+   );
 
 }
 
