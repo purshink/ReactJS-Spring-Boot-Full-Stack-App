@@ -74,7 +74,7 @@ const SetUpNewPassword = () => {
                                     onChange={e => setInfo({ ...info, password: e.target.value })}
                                 />
 
-                                <label htmlFor="name" className={styles.label_name}>
+                                <label htmlFor="password" className={styles.label_name}>
                                     <span className={styles.content_name}>Password</span>
                                     {errors.password && <small className={styles.errors}>Invalid password</small>}
                                 </label>

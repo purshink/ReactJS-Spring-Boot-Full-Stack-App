@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import styles from '../../../../css/UserHome.module.css';
 import FooterHome from '../../fragments/footer/Footer'
+import Footer from '../../fragments/footer/FooterCover'
 
 
 
@@ -93,7 +94,8 @@ const UserHome = () => {
                 
                 </section>
             </main>
-            <FooterHome/>
+            {!welcomeDiv.showDiv  &&  <FooterHome />}
+            {welcomeDiv.showDiv  &&  <Footer />}
         </>
     )
 

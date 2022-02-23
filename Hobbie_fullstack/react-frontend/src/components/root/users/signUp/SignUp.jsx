@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../fragments/footer/Footer';
+import Footer from '../../fragments/footer/FooterCover'
 import Background from '../../fragments/background/Background';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
@@ -99,22 +99,22 @@ const SignUp = () => {
                 <form id="userInfo" onSubmit={submitHandler}>
           
                         <div className={styles.form_field}>
-                            <secion className={styles.name_section}>
-                                <input onChange={e => setInfo({ ...info, username: e.target.value })}
+                            <section className={styles.name_section}>
+                                <input id="name" onChange={e => setInfo({ ...info, username: e.target.value })}
                                     type="text" name="name" />
-                                <label id="name" className={styles.label_name}>
+                                <label htmlFor="name" className={styles.label_name}>
                                     <span className={styles.content_name}>Username</span>
                                     {errors.username && <small className={styles.errors}>{errors.username}</small>}
                                 </label>
-                            </secion>
+                            </section>
                         </div>
                  
                     
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
-                                <input type="text" name="name" onChange={e => setInfo({ ...info, fullName: e.target.value })}
+                                <input id="fullName" type="text" name="fullName" onChange={e => setInfo({ ...info, fullName: e.target.value })}
                                 />
-                                <label htmlFor="name" className={styles.label_name}>
+                                <label htmlFor="fullName" className={styles.label_name}>
                                     <span className={styles.content_name}>Full Name</span>
                                     {errors.fullName && <small className={styles.errors}>{errors.fullName}</small>}
                                 </label>
@@ -130,7 +130,7 @@ const SignUp = () => {
                                 </label>
                             </section>
 
-                            <secion className={styles.checkbox_choice_section}>
+                            <section className={styles.checkbox_choice_section}>
                                 <input onClick={() => setCheckBoxChecked("male")} onChange={e => setInfo({ ...info, gender: "MALE" })}
                                     checked={checked === "male"}
                                     type="checkbox" id="checkbox1" />
@@ -138,27 +138,27 @@ const SignUp = () => {
                                 <input onClick={() => setCheckBoxChecked("female")} onChange={e => setInfo({ ...info, gender: "FEMALE" })}
                                     checked={checked === "female"}
                                     type="checkbox" id="checkbox2" />
-                                <label className={styles.checkbox} htmlFor="checkbox1">Female</label>
+                                <label className={styles.checkbox} htmlFor="checkbox2">Female</label>
                                 <input onClick={() => setCheckBoxChecked("other")} onChange={e => setInfo({ ...info, gender: "OTHER" })}
                                     checked={checked === "other"}
                                     type="checkbox" id="checkbox3" />
-                                <label className={styles.checkbox} htmlFor="checkbox1">Other</label>
-                            </secion>
+                                <label className={styles.checkbox} htmlFor="checkbox3">Other</label>
+                            </section>
                         </div>
                 
     
                         <div className={styles.form_field}>
-                            <secion className={styles.name_section}>
+                            <section className={styles.name_section}>
                                 <input id="email"
                                     name="email"
                                     type="email"
                                     onChange={e => setInfo({ ...info, email: e.target.value })}
                                 />
-                                <label htmlFor="name" className={styles.label_name}>
+                                <label htmlFor="email" className={styles.label_name}>
                                     <span className={styles.content_name}>Email</span>
                                     {errors.email && <small className={styles.errors}>{errors.email}</small>}
                                 </label>
-                            </secion>
+                            </section>
                         </div>
                    
                 
@@ -171,7 +171,7 @@ const SignUp = () => {
                                     onChange={e => setInfo({ ...info, password: e.target.value })}
                                 />
 
-                                <label htmlFor="name" className={styles.label_name}>
+                                <label htmlFor="password" className={styles.label_name}>
                                     <span className={styles.content_name}>Password</span>
                                     {errors.password && <small className={styles.errors}>{errors.password}</small>}
                                 </label>

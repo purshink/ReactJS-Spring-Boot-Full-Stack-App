@@ -64,8 +64,8 @@ const PasswordChange = () => {
                         <div className={styles.password_change_div}>
                             <div className={styles.form_field}>
                                 <section className={styles.name_section}>
-                                    <input type="text" name="email" onChange={e => setEmail(e.target.value)} required />
-                                    <label id="email"
+                                    <input type="text"  id="email" name="email" onChange={e => setEmail(e.target.value)} required />
+                                    <label htmlFor="email"
                                         name="email"
                                         type="email"
                                         className={styles.label_name}>

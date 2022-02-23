@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import Footer from '../../fragments/footer/Footer'
+import Footer from '../../fragments/footer/FooterCover'
 import Background from '../../fragments/background/Background'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -102,24 +102,24 @@ const Login = () => {
 
 
                         <div className={styles.form_field}>
-                            <secion className={styles.name_section}>
-                                <input type="text" name="username" onChange={e => setCredentials({ ...credentials, username: e.target.value })} required />
-                                <label id="name" className={styles.label_name}>
+                            <section className={styles.name_section}>
+                                <input id="username" type="text" name="username" onChange={e => setCredentials({ ...credentials, username: e.target.value })} required />
+                                <label htmlFor="username" className={styles.label_name}>
                                     {Object.keys(errors).length === 0 && <span className={styles.content_name}>Username</span>}
                                     {errors.username && <small className={styles.errors}>{errors.username}</small>}
                                 </label>
-                            </secion>
+                            </section>
                         </div>
            
                   
                         <div className={styles.form_field}>
-                            <secion className={styles.name_section}>
-                                <input type="password" name="password" onChange={e => setCredentials({ ...credentials, password: e.target.value })} required />
+                            <section className={styles.name_section}>
+                                <input type="password" id="password" name="password" onChange={e => setCredentials({ ...credentials, password: e.target.value })} required />
                                 <label htmlFor="password" className={styles.label_name}>
                                     {Object.keys(errors).length === 0 && <span className={styles.content_name}>Password</span>}
                                     {errors.password && <small className={styles.errors}>Password required</small>}
                                 </label>
-                            </secion>
+                            </section>
                         </div>
               
 
@@ -132,7 +132,7 @@ const Login = () => {
 
                 </div>
             </form>
-            <Footer />
+            <Footer/>
             <Background />
         </main>
     )

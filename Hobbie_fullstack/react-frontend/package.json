@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "@ionic/react": "^6.0.2",
+    "@react-mock/state": "^0.1.8",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@varld/popover": "^0.1.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "^0.24.0",
     "axios-auth-refresh": "^3.2.1",
     "babel-plugin-macros": "^3.1.0",
+    "enzyme": "^3.11.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-confirm-alert": "^2.7.0",
@@ -28,19 +31,15 @@
   "scripts": {
     "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
-    "test":  "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
     "eject": "react-scripts eject"
   },
-
-
-  
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
-
 
   "browserslist": {
     "production": [
@@ -55,6 +54,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.16.11"
+    "@babel/preset-env": "^7.16.11",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "axios-mock-adapter": "^1.20.0"
   }
 }

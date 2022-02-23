@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../fragments/footer/Footer'
+import Footer from '../../fragments/footer/FooterCover'
 import Background from '../../fragments/background/Background'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -100,8 +100,8 @@ const RegisterBusiness = () => {
                    
                         <div className={styles.form_field}>
                             <p className={styles.name_section}>
-                                <input type="text" name="username" onChange={e => setInfo({ ...info, username: e.target.value })} />
-                                <label id="username" className={styles.label_name}>
+                                <input id="username"type="text" name="username" onChange={e => setInfo({ ...info, username: e.target.value })} />
+                                <label htmlFor="username" className={styles.label_name}>
                                     <span className={styles.content_name}>Username</span>
                                     {errors.username && <small className={styles.errors}>{errors.username}</small>}
                                 </label>
@@ -112,8 +112,8 @@ const RegisterBusiness = () => {
                  
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
-                                <input type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
-                                <label forhtml="businessName" className={styles.label_name}>
+                                <input id="businessName" type="text" name="businessName" onChange={e => setInfo({ ...info, businessName: e.target.value })} />
+                                <label htmlFor="businessName" className={styles.label_name}>
                                     <span className={styles.content_name}>Business Name</span>
                                     {errors.businessName && <small className={styles.errors}>{errors.businessName}</small>}
                                 </label>
@@ -123,8 +123,8 @@ const RegisterBusiness = () => {
 
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
-                                <input type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
-                                <label forhtml="address" className={styles.label_name}>
+                                <input id="address" type="text" name="address" onChange={e => setInfo({ ...info, address: e.target.value })} />
+                                <label htmlFor="address" className={styles.label_name}>
                                     <span className={styles.content_name}>Address</span>
                                     {errors.address && <small className={styles.errors}>{errors.address}</small>}
                                 </label>
@@ -135,8 +135,8 @@ const RegisterBusiness = () => {
         
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
-                                <input type="email" name="enail" onChange={e => setInfo({ ...info, email: e.target.value })} />
-                                <label forhtml="email" className={styles.label_name}>
+                                <input type="email" id="email" name="email" onChange={e => setInfo({ ...info, email: e.target.value })} />
+                                <label htmlFor="email" className={styles.label_name}>
                                     <span className={styles.content_name}>Email</span>
                                     {errors.email && <small className={styles.errors}>{errors.email}</small>}
                                 </label>
@@ -147,7 +147,7 @@ const RegisterBusiness = () => {
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
                                 <input type="password" id="password" name="password" onChange={e => setInfo({ ...info, password: e.target.value })} />
-                                <label forhtml="password" className={styles.label_name}>
+                                <label htmlFor="password" className={styles.label_name}>
                                     <span className={styles.content_name}>Password</span>
                                     {errors.password && <small className={styles.errors}>{errors.password}</small>}
                                 </label>
@@ -158,7 +158,7 @@ const RegisterBusiness = () => {
                         <div className={styles.form_field}>
                             <section className={styles.name_section}>
                                 <input type="password" name="repeatpassword" id="repeatpassword" onChange={e => setInfo({ ...info, repeatpassword: e.target.value })} />
-                                <label forhtml="repeatpassword" className={styles.label_name}>
+                                <label htmlFor="repeatpassword" className={styles.label_name}>
                                 {!errors.repeatpassword &&  <span className={styles.content_name}>Repeat Password</span>}
                                     {errors.repeatpassword && <small className={styles.errors}>
                                         {errors.repeatpassword}

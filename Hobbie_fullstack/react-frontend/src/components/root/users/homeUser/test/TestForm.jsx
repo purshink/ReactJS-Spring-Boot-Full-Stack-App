@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../../fragments/footer/Footer'
+import Footer from '../../../fragments/footer/FooterCover'
 import TestResultsService from '../../../../../api/test/TestResultsService';
 import AuthenticationService from '../../../../../api/authentication/AuthenticationService';
 import { useState } from 'react'

@@ -1,5 +1,6 @@
 import React from 'react'
 import FooterHome from '../../fragments/footer/Footer'
+import Footer from '../../fragments/footer/FooterCover'
 import styles from '../../../../css/UserHome.module.css';
 import BackgroundHome from '../../fragments/background/BackgroundHome'
 import { useState, useLayoutEffect } from 'react'
@@ -80,7 +81,8 @@ const MyHobbies = () => {
 
                 </section>
             </main>
-            <FooterHome />
+            {!welcomeDiv.showDiv  &&  <FooterHome />}
+            {welcomeDiv.showDiv  &&  <Footer />}
         </>
     )
 }
