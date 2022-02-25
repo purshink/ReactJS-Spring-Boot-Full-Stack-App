@@ -4,7 +4,7 @@ import AuthenticationService from '../authentication/AuthenticationService';
 const RemoveHobbyService = (id) => {
   let username = AuthenticationService.getLoggedInUser();
 
-  return   ( axios.get(`http://localhost:8080/hobbies/remove-hobby`,{
+  return   (  axios.get(`http://localhost:8080/hobbies/remove-hobby`,{
     params: {
       id,
       username

@@ -152,8 +152,20 @@ const UpdateOffer = () => {
     useEffect(() => {
         const check_uploaded = () => {
             if (uploaded) {
-                UpdateOfferDataService(info);
-
+                UpdateOfferDataService(info)
+          .then(res => {
+          
+            if (res.data != null) {
+              window.location.href='/offer/'+ info.id; 
+            }
+          }).catch(err => {
+            let error = '';
+    
+            if (err.response) {
+              error += err.response;
+            }
+            return error;
+          })
             }
         }
         check_uploaded()

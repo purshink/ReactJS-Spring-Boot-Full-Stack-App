@@ -37,6 +37,7 @@ const UserHome = () => {
                 if (!unmounted) {
                     setState(response.data);
                     setWelcomeDiv({ showDiv: false })
+                    console.log(response);
 
                 }
                 if (!Object.keys(response.data).length) {
@@ -58,7 +59,7 @@ const UserHome = () => {
               
                                 {state.length !== undefined && <section className={styles.cards}>
                                     {state.map(hobby =>
-                                        <div  key={hobby.id} className={styles.rapper}>
+                                        <div data-testid={hobby.id} key={hobby.id} className={styles.rapper}>
                                             <Link to='#' onClick={handleSort(hobby.id)} className={styles.card} id={hobby.id}>
                                                 <section className={styles.card_image_container}>
                                                     <img src={hobby.profileImgUrl} alt='hobby' />

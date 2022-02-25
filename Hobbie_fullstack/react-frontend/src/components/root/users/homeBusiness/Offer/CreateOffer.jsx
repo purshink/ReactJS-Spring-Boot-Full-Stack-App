@@ -156,7 +156,19 @@ const CreateOffer = () => {
         const check_uploaded = () => {
             if (uploaded) {
 
-                CreateOfferDataService(info);
+                CreateOfferDataService(info)
+                .then(res => {
+                    if (res.data != null) {
+                      window.location.href='/business-owner'; 
+                    }
+                  }).catch(err => {
+                    let error = '';
+            
+                    if (err.response) {
+                      error += err.response;
+                    }
+                    return error;
+                  });
 
             }
         }

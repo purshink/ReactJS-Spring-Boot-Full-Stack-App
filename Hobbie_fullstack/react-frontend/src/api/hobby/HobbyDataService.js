@@ -4,11 +4,15 @@ import axios from '../customAxiosConfig/CustomAxiosConfig';
 const HobbyDataService = () => {
     let username = AuthenticationService.getLoggedInUser();
 
-    return (
-
-        axios.get(`http://localhost:8080/user-home/${username}`)
-    )
-
+        try {
+          return  axios.get(`http://localhost:8080/user-home/${username}`)
+          } catch (err) {
+            let error = '';
+            if (err.response) {
+                error += err.response;
+              }
+              return error;
+          }
 
 }
 
