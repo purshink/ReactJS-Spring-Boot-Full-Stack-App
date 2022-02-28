@@ -52,13 +52,13 @@ const HobbiePages = () => {
                     onClick: async () => {
                         const response = await DeleteHobbyService(hobby.id);
 
-                        if (response.status === 201) {
-                            navigate("/")
+                        if (response.data !== null) {
+                            window.location.href = '/business-owner';
                         }
                     }
                 },
                 {
-                    label: 'No'
+                    label: 'No' 
                 }
             ]
         });
@@ -100,7 +100,6 @@ const HobbiePages = () => {
         }
 
     }
-
 
     useEffect(() => {
         let unmounted = false;

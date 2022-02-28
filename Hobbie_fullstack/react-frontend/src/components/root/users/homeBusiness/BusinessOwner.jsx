@@ -73,9 +73,7 @@ const BusinessOwner = () => {
                             </div>)
                         }
                     </section>}
-                </section>
-
-                {welcomeDiv.showDiv && <div>
+                    {welcomeDiv.showDiv && <div>
                     <article className={styles.introduction_home}>
                         <div className={styles.intro_text}>
                             <p>You have no offers.</p>
@@ -87,6 +85,7 @@ const BusinessOwner = () => {
                         </div>
                     </article>
                 </div>}
+                </section>
 
             </main>
             {!welcomeDiv.showDiv && <FooterHome />}

@@ -3,9 +3,14 @@ import RegisterBusiness from '../../components/root/users/signUp/RegisterBusines
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event'
+import RegisterBusinessService from "../../api/signup/RegisterBusinessService"
+import mockAxios from "jest-mock-axios";
 
 beforeEach(() => render(<Router> <RegisterBusiness /></Router>));
-afterEach(cleanup);
+afterEach(() => {
+  mockAxios.reset();
+  cleanup;
+});
 
 
 it('input should be initially empty', () => {
@@ -92,4 +97,30 @@ it('input should be initially empty', () => {
     expect(errorEmail).toBeInTheDocument();
     expect(errorPassword).toBeInTheDocument();
     expect(errorRepassword).toBeInTheDocument();
+  });
+
+  it('should register business successfully', async () => {
+    const info = {
+      username: 'business',
+      businessName: 'Business',
+      address: 'Street City',
+      email: 'chris@gmail.com',
+      password: '123',
+      repeatpassword: '123'
+  }
+    mockAxios.post.mockResolvedValueOnce(info);
+    
+    const result = await RegisterBusinessService(info);
+   
+    expect(mockAxios.post).toHaveBeenCalledTimes(1);
+    expect(mockAxios.post).toHaveBeenCalledWith(`http://localhost:8080/users/register-business`, info);
+    expect(result).toEqual({
+      username: 'business',
+      businessName: 'Business',
+      address: 'Street City',
+      email: 'chris@gmail.com',
+      password: '123',
+      repeatpassword: '123'
+  });
+  
   });

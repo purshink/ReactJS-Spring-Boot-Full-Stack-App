@@ -3,10 +3,15 @@ import SignUp from '../../components/root/users/signUp/SignUp';
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event'
+import SignUpAppClientService from '../../api/signup/SignUpAppClientService';
+import mockAxios from "jest-mock-axios";
 
 
 beforeEach(() => render(<Router> <SignUp /></Router>));
-afterEach(cleanup);
+afterEach(() => {
+  mockAxios.reset();
+  cleanup;
+});
 
 
 it('input should be initially empty', () => {
@@ -111,4 +116,30 @@ it('should show error message on invalid input', () => {
   expect(errorEmail).toBeInTheDocument();
   expect(errorPassword).toBeInTheDocument();
   expect(errorRepassword).toBeInTheDocument();
+});
+
+it('should sign up user successfully', async () => {
+  const info = {
+    username: 'user',
+    fullName: 'Chris Brown',
+    gender: 'MALE',
+    email: 'chris@gmail.com',
+    password: '123',
+    repeatpassword: '123'
+}
+  mockAxios.post.mockResolvedValueOnce(info);
+  
+  const result = await SignUpAppClientService(info);
+ 
+  expect(mockAxios.post).toHaveBeenCalledTimes(1);
+  expect(mockAxios.post).toHaveBeenCalledWith(`http://localhost:8080/users/signup`, info);
+  expect(result).toEqual({
+    username: 'user',
+    fullName: 'Chris Brown',
+    gender: 'MALE',
+    email: 'chris@gmail.com',
+    password: '123',
+    repeatpassword: '123'
+});
+
 });

@@ -72,13 +72,16 @@ const RegisterBusiness = () => {
 
         if (Object.keys(errors).length === 0) {
             console.log(info)
-            const response = await RegisterBusinessService(info);
-            console.log(response);
-            if (response.status !== 201) {
+            await RegisterBusinessService(info).then(response => {
+                if (response.status === 201) {
+                    navigate("/login")
+                  
+                }
+              }).catch(err => {
+          
                 setError(true)
-            } else {
-                navigate("/business-owner")
-            }
+              });
+       
 
         }
         else {

@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom'
 import DeleteUserService from '../../../../../api/users/DeleteUserService'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import AuthenticationService from '../../../../../api/authentication/AuthenticationService';
+
 
 
 const AccountBusiness = () => {
@@ -27,10 +29,11 @@ const AccountBusiness = () => {
                 {
                     label: 'Yes',
                     onClick: async () => {
+                        
                         const response = await DeleteUserService(business.id);
 
-                        if (response.status === 201) {
-                            navigate("/")
+                        if (response.data !== null) {
+                            AuthenticationService.logout();
                         }
                     }
                 },

@@ -10,7 +10,6 @@ it('background renders without crashing', () => {
 
   render(<Router> <Background /></Router>);
 
-
 });
 
 

@@ -67,6 +67,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody AppClientSignUpDto user){
+        System.out.println(user);
 
         if( this.userService.userExists(user.getUsername(), user.getEmail())) {
             throw new RuntimeException("Username or email address already in use.");

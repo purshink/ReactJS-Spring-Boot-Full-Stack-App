@@ -3,9 +3,16 @@ import PasswordChange from '../../components/root/users/login/forgottenPassword/
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event'
+import UserEmailDataService from '../../api/users/UserEmailDataService';
+import mockAxios from "jest-mock-axios";
 
 beforeEach(() => render(<Router> <PasswordChange /></Router>));
-afterEach(cleanup);
+
+afterEach(() => {
+  mockAxios.reset();
+  cleanup;
+});
+
 
 
 it('input should be initially empty', () => {
@@ -41,4 +48,17 @@ it('input should be initially empty', () => {
 
     expect(errorEmail).toBeInTheDocument();
  
+  });
+
+  it('should send email correctly', async () => {
+    const email = "n87@gmail.com"
+    
+    mockAxios.post.mockResolvedValueOnce(email);
+  
+    const result = await UserEmailDataService(email);
+  
+    expect(mockAxios.post).toHaveBeenCalledTimes(1);
+    expect(mockAxios.post).toHaveBeenCalledWith(`http://localhost:8080/users/change-password`, email);
+    expect(result).toEqual("n87@gmail.com");
+  
   });

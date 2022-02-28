@@ -18,6 +18,7 @@ class AuthenticationService {
 
 
     logout() {
+        localStorage.clear();   
         sessionStorage.clear();
         window.location.reload(false)
     }

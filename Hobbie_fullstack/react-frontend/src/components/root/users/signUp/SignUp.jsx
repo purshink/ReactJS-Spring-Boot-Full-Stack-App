@@ -72,14 +72,16 @@ const SignUp = () => {
 
         if (Object.keys(errors).length === 0) {
             console.log(info)
-            const response = await SignUpAppClientService(info);
-            console.log(response);
-            if (response.status !== 201) {
+             await SignUpAppClientService(info).then(response => {
+                if (response.status === 201) {
+                    navigate("/login")
+                  
+                }
+              }).catch(err => {
+          
                 setError(true)
-            } else {
-
-                navigate("/test")
-            }
+              });
+            
 
         }
         else {

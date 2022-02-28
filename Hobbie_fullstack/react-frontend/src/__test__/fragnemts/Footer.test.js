@@ -26,13 +26,15 @@ it('footerHome renders without crashing', () => {
 
     render(<Router> <FooterDetails /></Router>);
   
+    expect(screen.getByText(/Hobbie 2022. All rights reserved./i)).toBeInTheDocument();
   
   });
 
   it('footerCover renders without crashing', () => {
 
     render(<Router> <FooterCover /></Router>);
-  
+
+    expect(screen.getByText(/Hobbie 2022. All rights reserved./i)).toBeInTheDocument();
   
   });
   
