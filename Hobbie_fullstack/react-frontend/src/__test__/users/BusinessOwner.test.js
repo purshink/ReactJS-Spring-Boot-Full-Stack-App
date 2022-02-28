@@ -10,7 +10,7 @@ afterEach(() => {
   cleanup;
 });
 
-it('should render no offers', async () => {
+it('should return no offers', async () => {
   const hobbies = []
   mockAxios.get.mockResolvedValueOnce(hobbies);
   

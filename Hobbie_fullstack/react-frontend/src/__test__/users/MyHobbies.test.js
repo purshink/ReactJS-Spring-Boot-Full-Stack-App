@@ -12,7 +12,7 @@ afterEach(() => {
   cleanup;
 });
 
-it('should render no saved hobbies', async () => {
+it('should return no saved hobbies', async () => {
   const hobbies = []
   
   mockAxios.get.mockReturnValueOnce(hobbies);
