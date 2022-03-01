@@ -137,7 +137,7 @@ spring-backend has the following endpoints
 <td>USER and BUSINESS</td>
 </tr>
 <tr class="odd">
-<td>PUT users/update-business {”businessname”, “address”,,”password”, “id”}</td>
+<td>PUT users/update-business {”businessname”, “address”,”password”, “id”}</td>
 <td>YES</td>
 <td>BUSINESS</td>
 </tr>
