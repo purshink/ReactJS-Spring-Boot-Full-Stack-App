@@ -9,6 +9,7 @@ Service-oriented platform focusing on establishing and maintaining connections b
 Applications
 <hr>
 -spring-backend
+<br>
 Spring Boot Web Java backend application that exposes a REST API to manage hobbies. Its secured endpoints can just be accessed if an access token (JWT)  is provided.
 
 spring-backend stores its data in a MySql database.
