@@ -157,7 +157,7 @@ spring-backend has the following endpoints
 
 <b>-react-frontend</b>
 
-ReactJS frontend application where users can find and save hobbies and businesses can manage offers. In order to access the application, user / business must login using his/her username and password.  All the requests coming from react-frontend to secured endpoints in react-frontend have a access token (JWT) that is generated when user / business logs in.
+ReactJS frontend application where users can find and save hobbies and businesses can manage offers. In order to access the application, user / business must login using his/her username and password.  All the requests coming from react-frontend to secured endpoints in spring-backend have a access token (JWT) that is generated when user / business logs in.
 
 react-frontend uses Semantic UI React as CSS-styled framework.
 
