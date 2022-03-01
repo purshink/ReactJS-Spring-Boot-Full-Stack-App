@@ -12,8 +12,8 @@ Entertainment, and Recreation sector.
 
 <b>Applications</b>
 <hr>
- <b> - spring-backend</b>
 
+ <b> - spring-backend</b>
 
 Spring Boot Web Java backend application that exposes a REST API to
 manage hobbies. Its secured endpoints can just be accessed if an access
@@ -26,9 +26,9 @@ spring-backend has the following endpoints
 <table>
 <tbody>
 <tr class="odd">
-<td>Endpoint</td>
-<td>Secured</td>
-<td>Roles</td>
+<td><b>Endpoint</b></td>
+<td><b>Secured</b></td>
+<td><b>Roles</b></td>
 </tr>
 <tr class="even">
 <td>POST /users/authenticate</td>
