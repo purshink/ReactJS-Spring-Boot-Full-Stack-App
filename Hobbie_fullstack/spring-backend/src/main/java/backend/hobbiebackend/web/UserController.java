@@ -42,20 +42,17 @@ public class UserController {
 
 
     private final UserService userService;
-    private final HobbyService hobbyService;
     private final PasswordEncoder passwordEncoder;
-    private final ModelMapper modelMapper;
+
     private final NotificationService notificationService;
     private final JWTUtility jwtUtility;
     private final AuthenticationManager authenticationManager;
     private final HobbieUserDetailsService hobbieUserDetailsService;
 
     @Autowired
-    public UserController(UserService userService, HobbyService hobbyService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, NotificationService notificationService, JWTUtility jwtUtility, AuthenticationManager authenticationManager, HobbieUserDetailsService hobbieUserDetailsService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder, NotificationService notificationService, JWTUtility jwtUtility, AuthenticationManager authenticationManager, HobbieUserDetailsService hobbieUserDetailsService) {
         this.userService = userService;
-        this.hobbyService = hobbyService;
         this.passwordEncoder = passwordEncoder;
-        this.modelMapper = modelMapper;
         this.notificationService = notificationService;
         this.jwtUtility = jwtUtility;
 
@@ -145,7 +142,9 @@ public class UserController {
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
-
+        if(this.userService.businessExists(business.getBusinessName() )){
+            throw new RuntimeException("Business name already in use.");
+        }
                 businessOwner.setBusinessName(business.getBusinessName());
                 businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
                 businessOwner.setAddress(business.getAddress());

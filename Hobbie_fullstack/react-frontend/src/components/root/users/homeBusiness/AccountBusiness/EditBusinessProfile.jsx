@@ -59,13 +59,16 @@ const EditBusinessProfile = () => {
 
         if (Object.keys(errors).length === 0) {
             console.log(info)
-            const response = await UpdateBusinessDataService(info);
-            console.log(response);
-            if (response.status !== 201) {
+            const response = await UpdateBusinessDataService(info).then(response => {
+                if (response.status === 201) {
+                    navigate("/account-business")
+                  
+                }
+              }).catch(err => {
+          
                 setError(true)
-            } else {
-                navigate("/account-business")
-            }
+              });
+       
 
         }
         else {
@@ -80,7 +83,7 @@ const EditBusinessProfile = () => {
                 <h2>Edit Business Profile</h2>
 
                 {error && <div className={styles.errors} >
-                    This username, business name or email already exist.
+                    This business name already exist.
                 </div>}
 
                 <form onSubmit={submitHandler}>
