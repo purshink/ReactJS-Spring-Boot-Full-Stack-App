@@ -52,7 +52,7 @@ const HobbiePages = () => {
             const response = await DeleteHobbyService(hobby.id);
 
             if (response.data !== null) {
-              window.location.href = "/business-owner";
+              window.location.href = "/business-home";
             }
           },
         },

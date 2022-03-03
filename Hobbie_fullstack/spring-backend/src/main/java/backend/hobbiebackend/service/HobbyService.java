@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface HobbyService {
-//    Long createHobby(HobbyServiceModel hobbyServiceModel,  String fileName) throws IOException;
 
-//    List<Hobby> getAllHobbyOffers();
 
     Hobby findHobbieById(Long id);
 

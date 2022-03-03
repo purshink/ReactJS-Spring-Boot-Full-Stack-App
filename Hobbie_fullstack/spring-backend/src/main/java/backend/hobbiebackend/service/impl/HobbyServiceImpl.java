@@ -12,12 +12,10 @@ import backend.hobbiebackend.service.LocationService;
 import backend.hobbiebackend.service.UserService;
 import com.cloudinary.Cloudinary;
 import lombok.SneakyThrows;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -25,7 +23,6 @@ import java.util.*;
 @Service
 @Transactional
 public class HobbyServiceImpl implements HobbyService {
-    private final ModelMapper modelMapper;
     private final HobbyRepository hobbyRepository;
     private final CategoryService categoryService;
     private final UserService userService;
@@ -35,35 +32,15 @@ public class HobbyServiceImpl implements HobbyService {
 
 
     @Autowired
-    public HobbyServiceImpl(ModelMapper modelMapper, HobbyRepository hobbyRepository, CategoryService categoryService, UserService userService, LocationService locationService, Cloudinary cloudinary) {
-        this.modelMapper = modelMapper;
+    public HobbyServiceImpl( HobbyRepository hobbyRepository, CategoryService categoryService, UserService userService, LocationService locationService, Cloudinary cloudinary) {
         this.hobbyRepository = hobbyRepository;
         this.categoryService = categoryService;
         this.userService = userService;
         this.locationService = locationService;
-
         this.cloudinary = cloudinary;
     }
 
 
-//    @Override
-//    public Long createHobby() throws IOException {
-//
-//        Hobby hobby = this.modelMapper.map(hobbyServiceModel, Hobby.class);
-//        hobby.setCategory(this.categoryService.findByName(hobbyServiceModel.getCategory()));
-//        hobby.setBusinessOwner(this.userService.findCurrentUserBusinessOwner());
-//        hobby.setLocation(this.locationService.getLocationByName(hobbyServiceModel.getLocation()));
-////        hobby.setPhotos(fileName);
-//
-////        MultipartFile img = hobbyServiceModel.getImg();
-//
-////        String imageUrl = cloudinaryService.uploadImage(img);
-////        hobby.setProfileImgUrl(imageUrl);
-//
-//        Hobby savedHobby = this.hobbyRepository.save(hobby);
-//        return savedHobby.getId();
-//
-//    }
 
 
 
@@ -79,37 +56,22 @@ public class HobbyServiceImpl implements HobbyService {
 
     @SneakyThrows
     @Override
-    public void saveUpdatedHobby(Hobby hobby) throws Exception {
-
-
+    public void saveUpdatedHobby(Hobby hobby)  {
 
         Optional<Hobby> byId = this.hobbyRepository.findById(hobby.getId());
         if (byId.isPresent()){
-            String galleryImgUrl1 = byId.get().getGalleryImg1_id();
-            String galleryImgUrl2 = byId.get().getGalleryImg2_id();
-            String galleryImgUrl3 = byId.get().getGalleryImg3_id();
-            String profileImgUrl = byId.get().getProfileImg_id();
-
-            cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),Map.of("invalidate", true ));
-
+            deleteResourcesById(byId.get());
         }
-
 
         this.hobbyRepository.save(hobby);
 
     }
-
     @Override
     public boolean deleteHobby(long id) throws Exception {
 
         Optional<Hobby> byId = this.hobbyRepository.findById(id);
         if(byId.isPresent()){
-            String galleryImgUrl1 = byId.get().getGalleryImg1_id();
-            String galleryImgUrl2 = byId.get().getGalleryImg2_id();
-            String galleryImgUrl3 = byId.get().getGalleryImg3_id();
-            String profileImgUrl = byId.get().getProfileImg_id();
-
-            cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),Map.of("invalidate", true ));
+            deleteResourcesById(byId.get());
             this.userService.findAndRemoveHobbyFromClientsRecords(byId.get());
             this.hobbyRepository.deleteById(id);
             return true;
@@ -117,6 +79,19 @@ public class HobbyServiceImpl implements HobbyService {
 
         return false;
     }
+
+    private void deleteResourcesById(Hobby byId) throws Exception {
+        String profileImgUrl = byId.getProfileImg_id();
+        String galleryImgUrl1 = byId.getGalleryImg1_id();
+        String galleryImgUrl2 = byId.getGalleryImg2_id();
+        String galleryImgUrl3 = byId.getGalleryImg3_id();
+
+
+        cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),
+                Map.of("invalidate", true ));
+
+    }
+
 
     @Override
     public List<Hobby> initHobbyOffers() {
@@ -246,8 +221,6 @@ public class HobbyServiceImpl implements HobbyService {
                 }
             }
         }
-
-
 
         return hobby_matches;
     }

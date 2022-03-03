@@ -164,7 +164,7 @@ const CreateOffer = () => {
         CreateOfferDataService(info)
           .then((res) => {
             if (res.data != null) {
-              window.location.href = "/business-owner";
+              window.location.href = "/business-home";
             }
           })
           .catch((err) => {

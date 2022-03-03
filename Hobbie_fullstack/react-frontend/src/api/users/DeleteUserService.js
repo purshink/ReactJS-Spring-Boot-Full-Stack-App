@@ -1,5 +1,4 @@
 import axios from "../customAxiosConfig/CustomAxiosConfig";
-import AuthenticationService from "../authentication/AuthenticationService";
 
 const DeleteUserService = (id) => {
   try {

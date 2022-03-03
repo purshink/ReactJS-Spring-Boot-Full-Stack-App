@@ -14,9 +14,6 @@ import backend.hobbiebackend.service.UserRoleService;
 import backend.hobbiebackend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.core.userdetails.UserDetails;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,19 +68,10 @@ public class UserServiceImpl implements UserService {
             user.setGender(GenderEnum.FEMALE);
 
 
-            //admin
-            AppClient admin = new AppClient();
-            admin.setUsername("admin");
-            admin.setEmail("n11@gamil.com");
-//            admin.setPassword(this.passwordEncoder.encode("topsecret"));
-            admin.setPassword(this.passwordEncoder.encode("123"));
-            admin.setRoles(List.of(adminRole, userRole));
-            admin.setFullName("Full name of admin here");
-            admin.setGender(GenderEnum.FEMALE);
+
             appClientRepository.save(user);
-            appClientRepository.save(admin);
             seededUsers.add( user);
-            seededUsers.add( admin);
+
 
         }
         if(businessOwnerRepository.count() == 0){

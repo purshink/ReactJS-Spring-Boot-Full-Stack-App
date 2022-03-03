@@ -13,10 +13,4 @@ public class HobbieBackendApplication {
         SpringApplication.run(HobbieBackendApplication.class, args);
     }
 
-
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
-
 }

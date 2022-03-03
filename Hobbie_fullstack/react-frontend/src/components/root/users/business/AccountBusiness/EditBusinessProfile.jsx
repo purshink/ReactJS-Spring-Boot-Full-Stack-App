@@ -56,7 +56,7 @@ const EditBusinessProfile = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log(info);
-      const response = await UpdateBusinessDataService(info)
+      await UpdateBusinessDataService(info)
         .then((response) => {
           if (response.status === 201) {
             navigate("/account-business");

@@ -20,15 +20,14 @@ import java.util.Set;
 @Transactional
 public class TestServiceImpl implements TestService {
     private final TestRepository testRepository;
-    private final ModelMapper modelMapper;
+
     private final UserService userService;
     private final HobbyService hobbyService;
 
 
     @Autowired
-    public TestServiceImpl(TestRepository testRepository, ModelMapper modelMapper, UserService userService, HobbyService hobbyService) {
+    public TestServiceImpl(TestRepository testRepository, UserService userService, HobbyService hobbyService) {
         this.testRepository = testRepository;
-        this.modelMapper = modelMapper;
         this.userService = userService;
         this.hobbyService = hobbyService;
     }
@@ -49,19 +48,4 @@ public class TestServiceImpl implements TestService {
         this.userService.saveUpdatedUserClient(currentUserAppClient);
     }
 
-//    @Override
-//    public void saveTest(TestServiceModel testServiceModel) {
-//        Test test = this.modelMapper.map(testServiceModel, Test.class);
-//        AppClient currentUserAppClient = this.userService.findCurrentUserAppClient();
-//        test.setAppClient(currentUserAppClient);
-//        test.setLocation((testServiceModel.getLocation()));
-//        if(currentUserAppClient.getTestResults() != null){
-//            test.setId(currentUserAppClient.getTestResults().getId());
-//        }
-//        this.testRepository.save(test);
-//        currentUserAppClient.setTestResults(test);
-//        List<Hobby> hobbyMatches = this.hobbyService.findHobbyMatches(currentUserAppClient);
-//        currentUserAppClient.setHobby_matches(hobbyMatches);
-//        this.userService.saveUpdatedUserClient(currentUserAppClient);
-//    }
 }

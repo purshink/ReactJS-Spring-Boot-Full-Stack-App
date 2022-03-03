@@ -58,7 +58,7 @@ const UserHome = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [isBusinessLoggedIn, isUserLoggedIn]);
 
   return (
     <>
