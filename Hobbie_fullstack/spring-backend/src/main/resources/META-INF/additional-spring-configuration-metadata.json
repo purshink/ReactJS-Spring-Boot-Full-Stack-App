@@ -15,4 +15,5 @@
       "type": "java.lang.String",
       "description": "Description for jwt.secret."
     }
-  ] }
+  ]
+}

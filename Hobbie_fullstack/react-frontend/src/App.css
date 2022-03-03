@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Poppins:wght@300&family=Raleway:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Poppins:wght@300&family=Raleway:wght@300&display=swap");
 
 .App {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: 1px solid transparent;
   padding-bottom: 20px;
   height: 100%;
 }
-#root{
+#root {
   height: 100%;
 }
 
-*{
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -18,21 +18,21 @@
   /* border: 1px solid red; */
 }
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }
 
-
-h2{
-  font: 1em ;
-  background: linear-gradient(to right, #494969,#696989);
+h2 {
+  font: 1em;
+  background: linear-gradient(to right, #494969, #696989);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-h3{
-  border-bottom: 1px solid  #494969;;
+h3 {
+  border-bottom: 1px solid #494969;
 }
 
 form {
@@ -47,6 +47,5 @@ a {
 }
 
 button {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-

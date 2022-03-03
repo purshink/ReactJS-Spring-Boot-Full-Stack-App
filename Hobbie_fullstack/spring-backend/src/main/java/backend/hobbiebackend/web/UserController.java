@@ -102,7 +102,7 @@ public class UserController {
         return  this.userService.findBusinessByUsername(username);
     }
 
-        @PostMapping("/update-user")
+    @PutMapping("/update-user")
         public ResponseEntity<?>  updateUser(@RequestBody UpdateAppClientDto user) {
 
                     AppClient client = this.userService.findAppClientById(user.getId());
@@ -138,7 +138,7 @@ public class UserController {
         return new ResponseEntity<UserEntity>(userById,HttpStatus.CREATED);
     }
 
-    @PostMapping("/update-business")
+    @PutMapping("/update-business")
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());

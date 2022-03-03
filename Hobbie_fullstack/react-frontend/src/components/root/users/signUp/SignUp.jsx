@@ -1,214 +1,222 @@
-import React from 'react'
-import Footer from '../../fragments/footer/FooterCover'
-import Background from '../../fragments/background/Background';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-import SignUpAppClientService from '../../../../api/signup/SignUpAppClientService';
-import styles from '../../../../css/Forms.module.css'
-
-
-
-
+import React from "react";
+import Footer from "../../fragments/footer/Footer";
+import Background from "../../fragments/background/Background";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SignUpAppClientService from "../../../../api/signup/SignUpAppClientService";
+import styles from "../../../../css/Forms.module.css";
+import style from "../../../../css/Footer.module.css";
 
 const SignUp = () => {
-    const navigate = useNavigate();
-    const [checked, setCheckBoxChecked] = useState("other");
-    const [error, setError] = useState(false);
-    const [info, setInfo] = useState({
-        username: '',
-        fullName: '',
-        gender: '',
-        email: '',
-        password: '',
-        repeatpassword: ''
-    });
+  const navigate = useNavigate();
+  const [checked, setCheckBoxChecked] = useState("other");
+  const [error, setError] = useState(false);
+  const [info, setInfo] = useState({
+    username: "",
+    fullName: "",
+    gender: "",
+    email: "",
+    password: "",
+    repeatpassword: "",
+  });
 
-    const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
+  const validate = () => {
+    const errors = {};
 
-    const validate = () => {
-        const errors = {};
-
-        //TODO username or email already exists?
-
-        if (!info.username) {
-            errors.username = 'Required'
-        } else if (info.username.length < 5) {
-            errors.username = 'Minimum 5 char'
-        }
-
-        if (!info.fullName) {
-            errors.fullName = "Required"
-        } else if (info.fullName.length < 2 || info.fullName.length > 20) {
-            errors.fullName = "2 to 20 char"
-        }
-
-        if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(info.email)
-        ) {
-            errors.email = 'Invalid email address';
-        }
-
-        if (!info.password) {
-            errors.password = "Required"
-        }
-        if (!info.repeatpassword) {
-            errors.repeatpassword = "Repeate"
-        }
-        if (info.password !== info.repeatpassword) {
-            errors.repeatpassword = "Passwords don't match"
-        }
-
-        return errors;
+    if (!info.username) {
+      errors.username = "Required";
+    } else if (info.username.length < 5) {
+      errors.username = "Minimum 5 char";
     }
 
-
-
-
-    const submitHandler = async event => {
-        event.preventDefault();
-        let errors = validate(info)
-        setErrors(errors);
-
-        if (Object.keys(errors).length === 0) {
-            console.log(info)
-             await SignUpAppClientService(info).then(response => {
-                if (response.status === 201) {
-                    navigate("/login")
-                  
-                }
-              }).catch(err => {
-          
-                setError(true)
-              });
-            
-
-        }
-        else {
-            console.log(errors);
-        }
+    if (!info.fullName) {
+      errors.fullName = "Required";
+    } else if (info.fullName.length < 2 || info.fullName.length > 20) {
+      errors.fullName = "2 to 20 char";
     }
 
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(info.email)) {
+      errors.email = "Invalid email address";
+    }
 
-    return (
-        <>
-            <main className={styles.form_style}>
-                <h2>Sign up</h2>
-                {error && <div className={styles.errors} >
-                    This username or email already exist.
-                </div>}
+    if (!info.password) {
+      errors.password = "Required";
+    }
+    if (!info.repeatpassword) {
+      errors.repeatpassword = "Repeate";
+    }
+    if (info.password !== info.repeatpassword) {
+      errors.repeatpassword = "Passwords don't match";
+    }
 
-                <form id="userInfo" onSubmit={submitHandler}>
-          
-                        <div className={styles.form_field}>
-                            <section className={styles.name_section}>
-                                <input id="name" onChange={e => setInfo({ ...info, username: e.target.value })}
-                                    type="text" name="name" />
-                                <label htmlFor="name" className={styles.label_name}>
-                                    <span className={styles.content_name}>Username</span>
-                                    {errors.username && <small className={styles.errors}>{errors.username}</small>}
-                                </label>
-                            </section>
-                        </div>
-                 
-                    
-                        <div className={styles.form_field}>
-                            <section className={styles.name_section}>
-                                <input id="fullName" type="text" name="fullName" onChange={e => setInfo({ ...info, fullName: e.target.value })}
-                                />
-                                <label htmlFor="fullName" className={styles.label_name}>
-                                    <span className={styles.content_name}>Full Name</span>
-                                    {errors.fullName && <small className={styles.errors}>{errors.fullName}</small>}
-                                </label>
-                            </section>
-                        </div>
-                   
+    return errors;
+  };
 
-                  
-                        <div className={styles.form_field_radio}>
-                            <section className={styles.name_section}>
-                                <label id="gender" className={styles.label_name}>
-                                    <span className={styles.content_name}>Gender</span>
-                                </label>
-                            </section>
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    let errors = validate(info);
+    setErrors(errors);
 
-                            <section className={styles.checkbox_choice_section}>
-                                <input onClick={() => setCheckBoxChecked("male")} onChange={e => setInfo({ ...info, gender: "MALE" })}
-                                    checked={checked === "male"}
-                                    type="checkbox" id="checkbox1" />
-                                <label className={styles.checkbox} htmlFor="checkbox1">Male</label>
-                                <input onClick={() => setCheckBoxChecked("female")} onChange={e => setInfo({ ...info, gender: "FEMALE" })}
-                                    checked={checked === "female"}
-                                    type="checkbox" id="checkbox2" />
-                                <label className={styles.checkbox} htmlFor="checkbox2">Female</label>
-                                <input onClick={() => setCheckBoxChecked("other")} onChange={e => setInfo({ ...info, gender: "OTHER" })}
-                                    checked={checked === "other"}
-                                    type="checkbox" id="checkbox3" />
-                                <label className={styles.checkbox} htmlFor="checkbox3">Other</label>
-                            </section>
-                        </div>
-                
-    
-                        <div className={styles.form_field}>
-                            <section className={styles.name_section}>
-                                <input id="email"
-                                    name="email"
-                                    type="email"
-                                    onChange={e => setInfo({ ...info, email: e.target.value })}
-                                />
-                                <label htmlFor="email" className={styles.label_name}>
-                                    <span className={styles.content_name}>Email</span>
-                                    {errors.email && <small className={styles.errors}>{errors.email}</small>}
-                                </label>
-                            </section>
-                        </div>
-                   
-                
-                        <div className={styles.form_field}>
-                            <section className={styles.name_section}>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    onChange={e => setInfo({ ...info, password: e.target.value })}
-                                />
+    if (Object.keys(errors).length === 0) {
+      console.log(info);
+      await SignUpAppClientService(info)
+        .then((response) => {
+          if (response.status === 201) {
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
+          setError(true);
+        });
+    } else {
+      console.log(errors);
+    }
+  };
 
-                                <label htmlFor="password" className={styles.label_name}>
-                                    <span className={styles.content_name}>Password</span>
-                                    {errors.password && <small className={styles.errors}>{errors.password}</small>}
-                                </label>
-                            </section>
-                        </div>
-                   
-                  
-                        <div className={styles.form_field}>
-                            <section className={styles.name_section}>
-                                <input
-                                    id="repassword"
-                                    name="repassword"
-                                    type="password"
-                                    onChange={e => setInfo({ ...info, repeatpassword: e.target.value })}
-                                />
+  return (
+    <>
+      <main className={styles.form_style}>
+        <h2>Sign up</h2>
+        {error && (
+          <div className={styles.errors}>
+            This username or email already exist.
+          </div>
+        )}
 
-                                <label htmlFor="repassword" className={styles.label_name}>
-                                    {!errors.repeatpassword && <span className={styles.content_name}>Confirm Password</span>}
-                                    {errors.repeatpassword && <small className={styles.errors} >{errors.repeatpassword}</small>}
-                                </label>
-                            </section>
-                        </div>
-                
+        <form id="userInfo" onSubmit={submitHandler}>
+          <section className={styles.form_field}>
+            <input
+              id="name"
+              onChange={(e) => setInfo({ ...info, username: e.target.value })}
+              type="text"
+              name="name"
+            />
+            <label htmlFor="name" className={styles.label_name}>
+              <span className={styles.content_name}>Username</span>
+              {errors.username && (
+                <small className={styles.errors}>{errors.username}</small>
+              )}
+            </label>
+          </section>
 
-                    <section className={styles.form_field}>
-                        <button id="button" type="submit" className={styles.button}>Sign up</button>
-                    </section>
-                </form>
-            </main>
-            <Footer />
-            <Background />
-        </>
-    )
+          <section className={styles.form_field}>
+            <input
+              id="fullName"
+              type="text"
+              name="fullName"
+              onChange={(e) => setInfo({ ...info, fullName: e.target.value })}
+            />
+            <label htmlFor="fullName" className={styles.label_name}>
+              <span className={styles.content_name}>Full Name</span>
+              {errors.fullName && (
+                <small className={styles.errors}>{errors.fullName}</small>
+              )}
+            </label>
+          </section>
 
-}
+          <section className={styles.form_field}>
+            <label id="gender" className={styles.label_name}>
+              <span className={styles.content_name}>Gender</span>
+            </label>
+          </section>
 
+          <section className={styles.checkbox_choice_section}>
+            <input
+              onClick={() => setCheckBoxChecked("male")}
+              onChange={(e) => setInfo({ ...info, gender: "MALE" })}
+              checked={checked === "male"}
+              type="checkbox"
+              id="checkbox1"
+            />
+            <label className={styles.checkbox} htmlFor="checkbox1">
+              Male
+            </label>
+            <input
+              onClick={() => setCheckBoxChecked("female")}
+              onChange={(e) => setInfo({ ...info, gender: "FEMALE" })}
+              checked={checked === "female"}
+              type="checkbox"
+              id="checkbox2"
+            />
+            <label className={styles.checkbox} htmlFor="checkbox2">
+              Female
+            </label>
+            <input
+              onClick={() => setCheckBoxChecked("other")}
+              onChange={(e) => setInfo({ ...info, gender: "OTHER" })}
+              checked={checked === "other"}
+              type="checkbox"
+              id="checkbox3"
+            />
+            <label className={styles.checkbox} htmlFor="checkbox3">
+              Other
+            </label>
+          </section>
 
-export default SignUp
+          <section className={styles.form_field}>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              onChange={(e) => setInfo({ ...info, email: e.target.value })}
+            />
+            <label htmlFor="email" className={styles.label_name}>
+              <span className={styles.content_name}>Email</span>
+              {errors.email && (
+                <small className={styles.errors}>{errors.email}</small>
+              )}
+            </label>
+          </section>
+
+          <section className={styles.form_field}>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              onChange={(e) => setInfo({ ...info, password: e.target.value })}
+            />
+
+            <label htmlFor="password" className={styles.label_name}>
+              <span className={styles.content_name}>Password</span>
+              {errors.password && (
+                <small className={styles.errors}>{errors.password}</small>
+              )}
+            </label>
+          </section>
+
+          <section className={styles.form_field}>
+            <input
+              id="repassword"
+              name="repassword"
+              type="password"
+              onChange={(e) =>
+                setInfo({ ...info, repeatpassword: e.target.value })
+              }
+            />
+
+            <label htmlFor="repassword" className={styles.label_name}>
+              {!errors.repeatpassword && (
+                <span className={styles.content_name}>Confirm Password</span>
+              )}
+              {errors.repeatpassword && (
+                <small className={styles.errors}>{errors.repeatpassword}</small>
+              )}
+            </label>
+          </section>
+
+          <section className={styles.form_field}>
+            <button id="button" type="submit" className={styles.button}>
+              Sign up
+            </button>
+          </section>
+        </form>
+      </main>
+      <Footer class={style.footer_cover}/>
+      <Background />
+    </>
+  );
+};
+
+export default SignUp;

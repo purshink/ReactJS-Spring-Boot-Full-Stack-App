@@ -1,8 +1,8 @@
-import { render, cleanup, screen } from '@testing-library/react';
-import TestForm from '../../components/root/users/homeUser/test/TestForm';
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TestResultsService from "../../api/test/TestResultsService"
+import { render, cleanup, screen } from "@testing-library/react";
+import TestForm from "../../components/root/users/user/test/TestForm";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TestResultsService from "../../api/test/TestResultsService";
 import mockAxios from "jest-mock-axios";
 
 afterEach(() => {
@@ -10,7 +10,7 @@ afterEach(() => {
   cleanup;
 });
 
-it('should post test results succsessfully', async () => {
+it("should post test results succsessfully", async () => {
   const test = {
     username: "user",
     categoryOne: "ACTIVE",
@@ -20,14 +20,17 @@ it('should post test results succsessfully', async () => {
     categoryFive: "OTHER",
     categorySix: "INTELLECTUAL",
     categorySeven: "CREATIVE",
-    location: "ZURICH"
-  }
+    location: "ZURICH",
+  };
   mockAxios.post.mockResolvedValueOnce(test);
 
   const result = await TestResultsService(test);
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(`http://localhost:8080/test/results`,test);
+  expect(mockAxios.post).toHaveBeenCalledWith(
+    `http://localhost:8080/test/results`,
+    test
+  );
   expect(result).toEqual({
     username: "user",
     categoryOne: "ACTIVE",
@@ -37,16 +40,15 @@ it('should post test results succsessfully', async () => {
     categoryFive: "OTHER",
     categorySix: "INTELLECTUAL",
     categorySeven: "CREATIVE",
-    location: "ZURICH"
+    location: "ZURICH",
   });
-
 });
 
-
-it('renders without crashing', () => {
-
-  render(<Router> <TestForm /></Router>);
-
+it("renders without crashing", () => {
+  render(
+    <Router>
+      {" "}
+      <TestForm />
+    </Router>
+  );
 });
-
-

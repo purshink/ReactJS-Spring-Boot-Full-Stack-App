@@ -1,48 +1,48 @@
 .presentation {
-    display: flex;
-    width: 90%;
-    margin: auto;
-    min-height: 80vh;
-    align-items: center;
-  }
+  display: flex;
+  width: 90%;
+  margin: auto;
+  min-height: 80vh;
+  align-items: center;
+}
 
 .introduction {
-    width: 50%;
-    align-items: center;
-  }
+  width: 50%;
+  align-items: center;
+}
 
-.intro_text h1{
-    font-size: 44px;
-    font-weight: 900;
-    background: linear-gradient(to right, #494969,#696989);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
+.intro_text h1 {
+  font-size: 44px;
+  font-weight: 900;
+  background: linear-gradient(to right, #494969, #696989);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .intro_text p {
-    margin-top: 5px;
-    font-size: 22px;
-    color: #585772;
-  }
+  margin-top: 5px;
+  font-size: 22px;
+  color: #585772;
+}
 
-  /* .cta */
+/* .cta */
 .buttons {
-    padding: 50px 0px 0px 0px;
-  }
+  padding: 50px 0px 0px 0px;
+}
 
-  /* .cta_second */
- .btn_first{
-    border: 2px solid #c36cbb;
-    background:  #c36cbb;
-    color: white;
-    width: 150px;
-    height: 50px;
-    cursor: pointer ;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-  }
+/* .cta_second */
+.btn_first {
+  border: 2px solid #c36cbb;
+  background: #c36cbb;
+  color: white;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
 
-  /* .btn_second {
+/* .btn_second {
     border: 2px solid #c36cbb;
     background: transparent;
     color: #c36cbb;
@@ -54,53 +54,42 @@
     margin: 30px 30px 0px 0px;
   } */
 
-
-  @media all and (max-width: 1250px){
-    .intro_text p{
-      font-size: 20px;
-    }
-
-    .introduction {
-      width: 60%;
-      position: relative;
-      top: -100px;
-    }
+@media all and (max-width: 1250px) {
+  .intro_text p {
+    font-size: 20px;
   }
 
-  @media all and (max-width: 900px) {
-    .introduction {
-      width: 90%;
-      margin: auto;
+  .introduction {
+    width: 60%;
+    position: relative;
+    top: -100px;
+  }
+}
 
-    }
-    .intro_text h1{
-      font-size: 37px;
-      margin-bottom: 20px;
-  
-    }
-
-    .intro_text p{
-      font-size: 18px;
-      width: 80%;
-  
-    }
-
+@media all and (max-width: 900px) {
+  .introduction {
+    width: 90%;
+    margin: auto;
+  }
+  .intro_text h1 {
+    font-size: 37px;
+    margin-bottom: 20px;
   }
 
-
-  @media all and (max-width: 650px) {
-  
-
-    .intro_text h1{
-      font-size: 37px;
-      margin-bottom: 20px;
-  
-    }
-
-    .intro_text p{
-      font-size: 18px;
-      width: 80%;
-  
-    }
-
+  .intro_text p {
+    font-size: 18px;
+    width: 80%;
   }
+}
+
+@media all and (max-width: 650px) {
+  .intro_text h1 {
+    font-size: 37px;
+    margin-bottom: 20px;
+  }
+
+  .intro_text p {
+    font-size: 18px;
+    width: 80%;
+  }
+}

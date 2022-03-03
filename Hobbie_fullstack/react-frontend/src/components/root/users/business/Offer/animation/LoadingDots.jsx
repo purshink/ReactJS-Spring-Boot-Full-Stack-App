@@ -19,7 +19,7 @@ const Dot = styled.div`
   margin: auto 5px;
   /* Animation */
   animation: ${BounceAnimation} 0.5s linear infinite;
-  animation-delay: ${props => props.delay};
+  animation-delay: ${(props) => props.delay};
 `;
 class LoadingDots extends Component {
   render() {
@@ -29,8 +29,8 @@ class LoadingDots extends Component {
         <Dot delay=".16s" />
         <Dot delay=".20s" />
       </DotWrapper>
-    )
+    );
   }
 }
 
-export default LoadingDots
+export default LoadingDots;

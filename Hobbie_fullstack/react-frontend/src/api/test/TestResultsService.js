@@ -1,19 +1,15 @@
-import axios from '../customAxiosConfig/CustomAxiosConfig';
+import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const TestResultsService = (test) => {
-
   try {
-    return axios.post(`http://localhost:8080/test/results`, test)
-
+    return axios.post(`http://localhost:8080/test/results`, test);
   } catch (err) {
-    let error = '';
+    let error = "";
     if (err.response) {
       error += err.response;
     }
     return error;
   }
+};
 
-}
-
-
-export default TestResultsService
+export default TestResultsService;

@@ -1,18 +1,15 @@
-import axios from '../customAxiosConfig/CustomAxiosConfig';
+import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const LoginService = (username) => {
-
-
   try {
-    return axios.post(`http://localhost:8080/users/login/${username}`)
-
+    return axios.post(`http://localhost:8080/users/login/${username}`);
   } catch (err) {
-    let error = '';
+    let error = "";
     if (err.response) {
       error += err.response;
     }
     return error;
   }
-}
+};
 
-export default LoginService
+export default LoginService;

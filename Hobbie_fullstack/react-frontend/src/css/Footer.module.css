@@ -1,58 +1,55 @@
-.footer_hobbie_details  {
-    background:transparent;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
-    zoom: 1;
-    margin: 0 auto;
-    width: 280px;
-    color: #494969;
-      
-    padding-bottom: 15px;
+.footer_hobbie_details {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+  zoom: 1;
+  margin: 0 auto;
+  width: 280px;
+  color: #494969;
 
-  }
+  padding-bottom: 15px;
+}
 
+.footer {
+  position: absolute;
+  height: 40px;
+  margin-top: 40px;
+  margin-left: 5%;
+  bottom: 0px;
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+  zoom: 1;
+  width: 90%;
+  color: #494969;
+}
+
+.footer_cover {
+  position: absolute;
+  height: 40px;
+  margin-top: 40px;
+  margin-left: 5%;
+  bottom: 0px;
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+  zoom: 1;
+  width: 90%;
+  color: #494969;
+}
+
+.footer_home {
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
+  zoom: 1;
+  margin: 10px auto;
+  width: 100%;
+  color: #494969;
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+}
+
+@media all and (max-width: 850px) {
   .footer {
-    position:absolute;
-    height : 40px;
-    margin-top : 40px;
-    margin-left: 5%;
-    bottom:0px;
-    background:transparent;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
-    zoom: 1;
-    width: 90%;
-    color: #494969;
+    position: relative;
+    width: 60%;
   }
-
-  .footer_cover {
-    position:absolute;
-    height : 40px;
-    margin-top : 40px;
-    margin-left: 5%;
-    bottom:0px;
-    background:transparent;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
-    zoom: 1;
-    width: 90%;
-    color: #494969;
-  }
-
-  .footer_home {
-    background:transparent;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
-    zoom: 1;
-    margin: 10px auto;
-    width: 100%;
-    color: #494969;
-    position: absolute;
-    left: 5%;
-    bottom: 0;
-  }
-
-  @media all and (max-width: 850px) {
-    .footer{
-      position: relative;
-      width: 60%;
-    }
-  }
-
-
+}

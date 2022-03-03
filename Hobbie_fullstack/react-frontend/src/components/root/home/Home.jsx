@@ -1,27 +1,19 @@
-import React from 'react'
-import BackgroundCover from './BackgroundCover'
-import Presentation from './Presentation'
-import Cover from './Cover'
-import { FooterCover } from '../fragments/footer/FooterCover';
-
-
-
-
-
+import React from "react";
+import BackgroundCover from "./BackgroundCover";
+import Presentation from "./Presentation";
+import Cover from "./Cover";
+import  Footer from "../fragments/footer/Footer";
+import style from "../../../css/Footer.module.css";
 
 const Home = () => {
+  return (
+    <main>
+      <Presentation />
+      <Cover />
+      <Footer class={style.footer_cover}/>
+      <BackgroundCover />
+    </main>
+  );
+};
 
-
-    return (
-        <main>
-            <Presentation />
-             <Cover/>
-             <FooterCover/>
-             <BackgroundCover/>
-        </main>
-    )
-}
-
-
-
-export default Home
+export default Home;

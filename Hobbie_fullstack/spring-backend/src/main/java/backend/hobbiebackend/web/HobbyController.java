@@ -61,7 +61,7 @@ public class HobbyController {
         return  this.hobbyService.isHobbySaved(id, username);
     }
 
-    @GetMapping(value ="/hobbie-details/{id}")
+    @GetMapping(value ="/hobby-details/{id}")
     public Hobby getHobbyDetails(@PathVariable Long id){
 
       return  this.hobbyService.findHobbieById(id);
@@ -99,7 +99,7 @@ public class HobbyController {
     }
 
 
-    @PostMapping("/update-hobby")
+    @PutMapping("/update-hobby")
     public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
         Hobby offer = this.modelMapper.map(info, Hobby.class);
         Category category = this.categoryService.findByName(info.getCategory());

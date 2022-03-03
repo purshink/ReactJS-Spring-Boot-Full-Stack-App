@@ -1,1 +1,1 @@
-export const setupFilesAfterEnv = ['./rtl.setup.js'];
+export const setupFilesAfterEnv = ["./rtl.setup.js"];

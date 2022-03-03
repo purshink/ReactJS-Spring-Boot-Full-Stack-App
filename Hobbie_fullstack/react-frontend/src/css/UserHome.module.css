@@ -1,5 +1,4 @@
-.hobby_details_page{
- 
+.hobby_details_page {
   width: 100%;
   height: 100%;
 }
@@ -10,33 +9,31 @@
   margin-bottom: 2%;
 }
 
-.hobbie_container_home{
+.hobbie_container_home {
   padding: 50px;
   width: 1000px;
   height: 100%;
   margin: 0px auto;
-  box-shadow: -2px 0px 33px 0px rgba(0,0,0,0.15);
+  box-shadow: -2px 0px 33px 0px rgba(0, 0, 0, 0.15);
   position: relative;
   background-color: transparent;
   grid-template-columns: 1fr repeat(9, minmax(auto, 100px)) 1fr;
   grid-gap: 20px;
 }
 
-
-
 /* .user_home{ */
-  /* background-color: transparent;
+/* background-color: transparent;
   margin: 0;
   width: 100%;
   margin: auto;
   grid-template-columns: 1fr repeat(9, minmax(auto, 100px)) 1fr;
   grid-gap: 20px; */
-  /* padding: 30px  ; */
+/* padding: 30px  ; */
 /* } */
 
-.cards{
+.cards {
   width: 100%;
-  grid-column: 2/ span 11;
+  grid-column: 2 / span 11;
   display: grid;
   grid-template-columns: repeat(12, minmax(auto, 60px));
   position: relative;
@@ -49,72 +46,72 @@
   background: gold;
   overflow: auto;
   grid-column-end: span 4;
-  display:  flex;
+  display: flex;
   flex-direction: column;
 }
 
-.card{
+.card {
   grid-column-end: span 4;
-  display:  flex;
+  display: flex;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.5 ease 0s;
-  background: linear-gradient(to right, #494969,#696989);
+  background: linear-gradient(to right, #494969, #696989);
   width: auto;
   box-shadow: -2px 0px 33px 0px rgb(0 0 0 / 15%);
   /* padding: 10px; */
 }
 
-.card_image_container{
+.card_image_container {
   padding-top: 56.25%;
   overflow: hidden;
   position: relative;
 }
-.card_image_container img{
+.card_image_container img {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
-.text_medium{
+.text_medium {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color:white   ;
+  color: white;
 }
 
-.card_content{
+.card_content {
   padding: 20px;
 }
 
-.card_content p{
+.card_content p {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-.card_title{
+.card_title {
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
-  color:white   ;
+  color: white;
 }
-.card_info{
+.card_info {
   display: flex;
   align-self: end;
   align-items: center;
 }
-.card_price{
-  margin-left:auto;
+.card_price {
+  margin-left: auto;
   padding: 5px, 20px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color:white   ;  
+  color: white;
 }
 
-.card:hover{
+.card:hover {
   transform: translateY(-7px);
 }
 
@@ -128,10 +125,10 @@
   padding-bottom: 30px;
   margin-bottom: 100px;
 }
-.intro_text h1{
+.intro_text h1 {
   font-size: 44px;
   font-weight: 900;
-  background: linear-gradient(to right, #494969,#696989);
+  background: linear-gradient(to right, #494969, #696989);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -145,52 +142,47 @@
 /* .cta */
 .buttuns {
   padding: 20px 0px 0px 0px;
-
 }
 /* .cta_second */
-.btn{
+.btn {
   border: 2px solid #c36cbb;
-  background:  #c36cbb;
+  background: #c36cbb;
   color: white;
   width: 150px;
   height: 50px;
-  cursor: pointer ;
-  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
 }
 
 /* .cta_second_s */
 .link {
   color: #c36cbb;
-  background:  #c36cbb;
+  background: #c36cbb;
   width: 150px;
   height: 50px;
-  cursor: pointer ;
-  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   border: 2px solid #c36cbb;
-} 
+}
 
 @media all and (min-width: 850px) {
-  .intro_text{
+  .intro_text {
     position: relative;
     left: 60px;
   }
 }
 
 @media all and (max-width: 950px) {
-
-  .hobbie_container_home{
+  .hobbie_container_home {
     width: auto;
     padding: 20px;
   }
-
 }
 
-
-@media all and (max-width: 850px) { 
-
-  .intro_text{
+@media all and (max-width: 850px) {
+  .intro_text {
     margin-top: 30px;
     font-size: small;
     width: 350px;
@@ -198,8 +190,8 @@
     right: 30px;
   }
 
-  .hobbie_main{
-    margin:   0%;
+  .hobbie_main {
+    margin: 0%;
     margin-bottom: 5%;
   }
 
@@ -209,21 +201,20 @@
     box-shadow: none;
   }
 
- 
-  .hobbie_home_content{
+  .hobbie_home_content {
     background-color: transparent;
     margin: 0;
   }
 
-  .rapper{
+  .rapper {
     width: 400px;
     height: auto;
     margin: auto;
   }
- 
-  .text_medium{
+
+  .text_medium {
     font-size: 14px;
-  } 
+  }
 
   .cards {
     display: grid;
@@ -231,8 +222,8 @@
     grid-row-gap: 20px;
   }
 
-  .card_price{
-    font-size: auto ;
+  .card_price {
+    font-size: auto;
     padding-left: 5px;
   }
-} 
+}

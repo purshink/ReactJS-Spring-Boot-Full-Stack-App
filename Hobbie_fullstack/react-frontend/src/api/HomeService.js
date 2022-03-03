@@ -1,14 +1,11 @@
-import React from 'react'
-import axios from 'axios'
+import React from "react";
+import axios from "axios";
 
 const HomeService = () => {
-
-
   try {
-    return axios.get('http://localhost:8080/')
-
+    return axios.get("http://localhost:8080/");
   } catch (err) {
-    let error = '';
+    let error = "";
     if (err.response) {
       error += err.response;
     }
@@ -16,4 +13,4 @@ const HomeService = () => {
   }
 };
 
-export default HomeService
+export default HomeService;
