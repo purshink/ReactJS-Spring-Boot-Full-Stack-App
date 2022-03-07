@@ -27,5 +27,19 @@ public class UpdateAppClientDto{
         return password;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setGender(GenderEnum gender) {
+        this.gender = gender;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

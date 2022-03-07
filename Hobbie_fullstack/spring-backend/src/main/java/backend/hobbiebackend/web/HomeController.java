@@ -17,19 +17,11 @@ import java.util.Set;
 @CrossOrigin(origins = "http://localhost:4200")
 public class HomeController {
     private final HobbyService hobbyService;
-    private final UserService userService;
-    private final Cloudinary cloudinary;
 
 
     @Autowired
-    public HomeController(HobbyService hobbyService, UserService userService, Cloudinary cloudinary) {
+    public HomeController(HobbyService hobbyService) {
         this.hobbyService = hobbyService;
-        this.userService = userService;
-        this.cloudinary = cloudinary;
-    }
-    @GetMapping( "/")
-    public String hello(){
-        return "HELLO!";
     }
 
     @GetMapping( "/business-owner/{username}")
@@ -43,9 +35,8 @@ public class HomeController {
     @GetMapping("/user-home/{username}")
     public Set<Hobby> userHobbiesShow(@PathVariable String username) throws Exception {
 
-        Set<Hobby> allHobbieMatchesForClient = this.hobbyService.getAllHobbieMatchesForClient(username);
-        cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));
-        return allHobbieMatchesForClient;
+        //        cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));
+        return this.hobbyService.getAllHobbieMatchesForClient(username);
 
 
     }

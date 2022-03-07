@@ -107,7 +107,6 @@ public class UserController {
 
                     AppClient client = this.userService.findAppClientById(user.getId());
 
-
                     client.setPassword(this.passwordEncoder.encode(user.getPassword()));
                     client.setGender(user.getGender());
                     client.setFullName(user.getFullName());

@@ -42,7 +42,7 @@ class LocationServiceImplTest {
     }
 
     @Test
-    void testUserNotFound() {
+    void testLocationNotFound() {
 
         Assertions.assertThrows(
                 NotFoundException.class,
@@ -52,7 +52,6 @@ class LocationServiceImplTest {
     //
     @Test
     void initLocations_should_work() {
-
         locationServiceToTest.initLocations();
         assertEquals(4, locationServiceToTest.initLocations().size());
     }

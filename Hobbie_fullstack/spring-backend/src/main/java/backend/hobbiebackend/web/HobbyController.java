@@ -44,7 +44,7 @@ public class HobbyController {
 
 
     @PostMapping("/create-offer")
-    public  void saveHobby(@RequestBody HobbyInfoDto info){
+    public  ResponseEntity<HttpStatus> saveHobby(@RequestBody HobbyInfoDto info){
 
         Hobby offer = this.modelMapper.map(info, Hobby.class);
         Category category = this.categoryService.findByName(info.getCategory());
@@ -53,6 +53,8 @@ public class HobbyController {
         offer.setCategory(category);
 
         this.hobbyService.createHobby(offer);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
@@ -78,8 +80,6 @@ public class HobbyController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
-
-
 
 
     }
