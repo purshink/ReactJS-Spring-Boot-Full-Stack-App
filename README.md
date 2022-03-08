@@ -161,6 +161,9 @@ ReactJS frontend application where users can find and save hobbies and businesse
 
 react-frontend uses Semantic UI React as CSS-styled framework.
 
+Click here to view the application.
+This application is subject to Copyright.
+
 <b>Prerequisites</b>
 <hr>
 
@@ -170,10 +173,9 @@ react-frontend uses Semantic UI React as CSS-styled framework.
 
 -JWT 
 
-Click here to view the application.
-This application is subject to Copyright.
+<b>Set up</b>
 
-Set up
+<hr></hr>
 Install NodeJs.
 
 <b>Frontend -</b>
