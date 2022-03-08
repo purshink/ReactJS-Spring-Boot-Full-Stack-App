@@ -190,8 +190,9 @@ Install NodeJs.
 
 <pre>The application will run on http://localhost:4200</pre>
 
-React JS
-Axios - API Calls
+-React JS
+
+-Axios - API Calls
 
 <b>Backend -</b>
 Install JDK 14.0.1
@@ -200,10 +201,11 @@ Install JDK 14.0.1
 
 <pre>The backend will run on http://localhost:8080 </pre>
 
-Spring Boot
+-Spring Boot
 
-Basic Authentication and JWT implemented both using Spring Security.
-Spring Data JPA + MySQL 
+-Basic Authentication and JWT implemented both using Spring Security.
+
+-Spring Data JPA + MySQL 
 
 <b>Database -</b>
 
