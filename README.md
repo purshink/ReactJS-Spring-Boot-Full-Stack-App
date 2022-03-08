@@ -11,6 +11,9 @@ Service-oriented platform focusing on establishing and maintaining
 connections between consumers and small businesses in the The Arts,
 Entertainment, and Recreation sector.
 
+Click here to view the application.
+This application is subject to Copyright.
+
 <b>Applications</b>
 <hr>
 
@@ -161,9 +164,6 @@ ReactJS frontend application where users can find and save hobbies and businesse
 
 react-frontend uses Semantic UI React as CSS-styled framework.
 
-Click here to view the application.
-This application is subject to Copyright.
-
 <b>Prerequisites</b>
 <hr>
 
@@ -176,16 +176,19 @@ This application is subject to Copyright.
 <b>Set up</b>
 
 <hr></hr>
+
 Install NodeJs.
 
 <b>Frontend -</b>
-Open ./react-frontend
 
-Install the modules - npm i
 
-Start the application on local host - npm start
+<pre>Open ./react-frontend</pre>
 
-The application will run on http://localhost:4200
+<pre>Install the modules - npm i</pre>
+
+<pre>Start the application on local host - npm start</pre>
+
+<pre>The application will run on http://localhost:4200</pre>
 
 React JS
 Axios - API Calls
@@ -193,14 +196,16 @@ Axios - API Calls
 <b>Backend -</b>
 Install JDK 14.0.1
 
-Open ./spring-backend on any IDE (IntelliJ/Eclipse etc.) and run the application.
+<pre>Open ./spring-backend on any IDE (IntelliJ/Eclipse etc.) and run the application.</pre>
 
-The backend will run on http://localhost:8080
+<pre>The backend will run on http://localhost:8080 </pre>
 
 Spring Boot
 
 Basic Authentication and JWT implemented both using Spring Security.
 Spring Data JPA + MySQL 
-Database -
+
+<b>Database -</b>
+
 Make sure to specify spring.datasource.username and spring.datasource.password in the application.properties file.
 The databse will be created with the start of the application. No set up required.
