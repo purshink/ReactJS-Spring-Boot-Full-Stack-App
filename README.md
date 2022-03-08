@@ -169,3 +169,36 @@ react-frontend uses Semantic UI React as CSS-styled framework.
 -npm
 
 -JWT 
+
+Click here to view the application.
+This application is subject to Copyright.
+
+Set up
+Install NodeJs.
+
+<b>Frontend -</b>
+Open ./react-frontend
+
+Install the modules - npm i
+
+Start the application on local host - npm start
+
+The application will run on http://localhost:4200
+
+React JS
+Axios - API Calls
+
+<b>Backend -</b>
+Install JDK 14.0.1
+
+Open ./spring-backend on any IDE (IntelliJ/Eclipse etc.) and run the application.
+
+The backend will run on http://localhost:8080
+
+Spring Boot
+
+Basic Authentication and JWT implemented both using Spring Security.
+Spring Data JPA + MySQL 
+Database -
+Make sure to specify spring.datasource.username and spring.datasource.password in the application.properties file.
+The databse will be created with the start of the application. No set up required.
