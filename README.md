@@ -195,7 +195,7 @@ Install NodeJs.
 -Axios - API Calls
 
 <b>Backend -</b>
-Install JDK 14.0.1
+Install JDK 11.0.11
 
 <pre>Open ./spring-backend on any IDE (IntelliJ/Eclipse etc.) and run the application.</pre>
 
