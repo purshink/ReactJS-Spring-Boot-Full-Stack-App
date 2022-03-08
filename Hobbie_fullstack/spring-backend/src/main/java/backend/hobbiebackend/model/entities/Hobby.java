@@ -169,7 +169,8 @@ public class Hobby extends BaseEntity{
         this.galleryImgUrl3 = galleryImgUrl3;
     }
 
-    @Column(name = "contact_info")
+    @Column(name = "contact_info", columnDefinition = "TEXT")
+
     public String getContactInfo() {
         return contactInfo;
     }

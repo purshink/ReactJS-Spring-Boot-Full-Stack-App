@@ -100,28 +100,37 @@ const UserHome = () => {
             <div>
               <article className={styles.introduction_home}>
                 <div className={styles.intro_text}>
-                  <p>You have no hobby matches.</p>
-                  <div className={styles.buttuns}>
-                    <button className={styles.link}>
-                      {isUserLoggedIn && (
-                        <Link to="/test" className={styles.btn}>
-                          Take the test
-                        </Link>
-                      )}
-                      {isBusinessLoggedIn && (
-                        <Link to="/create-offer" className={styles.btn}>
-                          Create Offer
-                        </Link>
-                      )}
-                    </button>
-                  </div>
+                  {isUserLoggedIn && (
+                    <div>
+                      <p>You have no hobby matches.</p>
+                      <div className={styles.buttuns}>
+                        <button className={styles.link}>
+                          <Link to="/test" className={styles.btn}>
+                            Take the test
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {isBusinessLoggedIn && (
+                    <div>
+                      <p>You have no hobby offers.</p>
+                      <div className={styles.buttuns}>
+                        <button className={styles.link}>
+                          <Link to="/create-offer" className={styles.btn}>
+                            Create Offer
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </article>
             </div>
           )}
         </section>
       </main>
-      {!welcomeDiv.showDiv && <Footer class={style.footer} />}
+      {!welcomeDiv.showDiv && <Footer class={style.footer_home} />}
       {welcomeDiv.showDiv && <Footer class={style.footer_cover} />}
     </>
   );

@@ -10,10 +10,8 @@
 }
 
 .footer {
-  position: absolute;
   height: 40px;
-  margin-top: 40px;
-  margin-left: 5%;
+  margin-left: 10%;
   bottom: 0px;
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
@@ -51,5 +49,7 @@
   .footer {
     position: relative;
     width: 60%;
+    margin-top: 40px;
+    margin-left: 5%;
   }
 }

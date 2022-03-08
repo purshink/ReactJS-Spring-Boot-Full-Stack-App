@@ -48,7 +48,7 @@
   padding: 60px;
   width: 90%;
   height: auto;
-  margin: auto auto 50px auto;
+  margin: auto auto auto auto;
   box-shadow: -2px 0px 33px 0px rgba(0, 0, 0, 0.15);
   position: relative;
 }
@@ -68,6 +68,7 @@
 .hobbie_content_small {
   height: 100%;
   width: 100%;
+  padding: 5%;
 }
 
 .hobbie_cover {
@@ -164,10 +165,12 @@
 }
 
 .hobbie_lable p {
-  padding-top: 40px;
-  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 15px;
   line-height: 1.7;
   width: 90%;
+  white-space: pre-line;
   color: gray;
   padding-bottom: 10px;
 }
@@ -176,7 +179,7 @@
 .buttons {
   display: flex;
   height: 30px;
-  width: 50%;
+  width: 100%;
   padding-left: 10px;
   border-left: 4px solid rgb(255, 177, 33);
   background: linear-gradient(to right, #494969, #696989);
@@ -191,7 +194,7 @@
   color: rgb(255, 177, 33);
   left: 2px;
   border-bottom: 1px solid rgb(177, 177, 177);
-  margin-right: 50px;
+  margin-right: 40px;
   text-align: center;
   cursor: pointer;
 }

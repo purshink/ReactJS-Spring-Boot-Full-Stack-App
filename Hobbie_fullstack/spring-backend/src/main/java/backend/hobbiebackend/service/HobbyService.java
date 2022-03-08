@@ -18,7 +18,7 @@ public interface HobbyService {
 
     boolean deleteHobby(long id) throws Exception;
 
-    List<Hobby> initHobbyOffers();
+//    List<Hobby> initHobbyOffers();
 
     Set<Hobby> findHobbyMatches(String username);
 

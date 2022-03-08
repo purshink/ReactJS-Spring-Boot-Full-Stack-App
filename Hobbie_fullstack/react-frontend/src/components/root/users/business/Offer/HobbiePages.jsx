@@ -259,7 +259,7 @@ const HobbiePages = () => {
                   </div>
                 )}
 
-                {currentPage === "01" && <p> {hobby.intro} </p>}
+                {currentPage === "01" && <p>{hobby.intro}</p>}
 
                 {currentPage === "02" && <p> {hobby.description} </p>}
 
@@ -297,7 +297,7 @@ const HobbiePages = () => {
 
                 {currentPage === "04" && <p> {hobby.contactInfo} </p>}
 
-                {currentPage !== "03" && currentPage !== "04" && (
+                {currentPage !== "03"  && (
                   <article className={styles.buttons}>
                     {isBusinessLoggedIn && (
                       <div>
