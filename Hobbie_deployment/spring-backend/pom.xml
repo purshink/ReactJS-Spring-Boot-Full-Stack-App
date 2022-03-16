@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>bg.softuni.mobilele</groupId>
-    <artifactId>hoggie-backend</artifactId>
+    <artifactId>hobbie-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>hobbie-backend</name  >
     <description>Project for Spring Boot</description>
@@ -152,6 +152,7 @@
             <artifactId>spring-boot-starter-mail</artifactId>
             <version>2.3.9.RELEASE</version>
         </dependency>
+
     </dependencies>
 
 
@@ -165,7 +166,13 @@
                     --add-opens java.base/java.time=ALL-UNNAMED
                 </argLine>
             </configuration>
-        </plugin></plugins>
+        </plugin>
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
 
         <testResources>
             <testResource>
