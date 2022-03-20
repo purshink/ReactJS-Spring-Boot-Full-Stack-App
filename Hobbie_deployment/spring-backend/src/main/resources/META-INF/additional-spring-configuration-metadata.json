@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "secret",
+      "type": "java.lang.String",
+      "description": "Description for secret."
+    },
+    {
+      "name": "jwt",
+      "type": "java.lang.String",
+      "description": "Description for jwt."
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "Description for jwt.secret."
+    }
+  ]
+}

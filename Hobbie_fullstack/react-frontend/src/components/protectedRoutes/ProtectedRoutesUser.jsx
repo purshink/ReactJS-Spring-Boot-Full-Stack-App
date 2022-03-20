@@ -6,9 +6,9 @@ import { Navigate } from "react-router-dom";
 const useAuth = () => {
   return AuthenticationService.isUserLoggedIn();
 };
-const ProtectedRoutes = () => {
+const ProtectedRoutesUser = () => {
   const isAuth = useAuth();
   return isAuth ? <Outlet /> : <Navigate to="/login" />;
 };
 
-export default ProtectedRoutes;
+export default ProtectedRoutesUser;
