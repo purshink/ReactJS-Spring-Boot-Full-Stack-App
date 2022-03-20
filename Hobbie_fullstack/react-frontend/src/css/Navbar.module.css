@@ -41,7 +41,7 @@
     padding-right: 20px;
     font-size: 12px;
     filter: invert(85%) sepia(3%) saturate(5839%) hue-rotate(183deg)
-      brightness(74%) contrast(95%);
+    brightness(74%) contrast(95%);
     color: rgb(135, 158, 187);
     cursor: pointer;
     font-weight: 200;

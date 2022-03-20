@@ -1,46 +1,64 @@
 import React from "react";
 import styles from "../../../../../css/Logo.module.css";
 import logo from "../../../../../img/logo.svg";
-import { Link } from "react-router-dom";
 import AuthenticationService from "../../../../../api/authentication/AuthenticationService";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Logo = () => {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   const isBusinessLoggedIn = AuthenticationService.isBusinessLoggedIn();
+  const navigate = useNavigate();
 
   return (
     <section className={styles.logo_container}>
       {!isBusinessLoggedIn && !isUserLoggedIn && (
-        <Link to="/" className="">
+        <NavLink onClick={() => navigate("/")} to="/" className="">
           <img className={styles.imgHeader} src={logo} alt="logo" />
-        </Link>
+        </NavLink>
       )}
       {!isBusinessLoggedIn && !isUserLoggedIn && (
-        <Link to="/" className="">
+        <NavLink onClick={() => navigate("/")} to="/" className="">
           <h4 className={styles.logo}>obbie</h4>
-        </Link>
+        </NavLink>
       )}
 
       {isBusinessLoggedIn && (
-        <Link to="/business-owner" className="">
+        <NavLink
+          onClick={() => navigate("/business-home")}
+          to="/business-home"
+          className=""
+        >
           <img className={styles.imgHeader} src={logo} alt="logo" />
-        </Link>
+        </NavLink>
       )}
       {isBusinessLoggedIn && (
-        <Link to="/business-owner" className="">
+        <NavLink
+          onClick={() => navigate("/business-home")}
+          to="/business-home"
+          className=""
+        >
           <h4 className={styles.logo}>obbie</h4>
-        </Link>
+        </NavLink>
       )}
 
       {isUserLoggedIn && (
-        <Link to="/user-home" className="">
+        <NavLink
+          onClick={() => navigate("/user-home")}
+          to="/user-home"
+          className=""
+        >
           <img className={styles.imgHeader} src={logo} alt="logo" />
-        </Link>
+        </NavLink>
       )}
       {isUserLoggedIn && (
-        <Link to="/user-home" className="">
+        <NavLink
+          onClick={() => navigate("/user-home")}
+          to="/user-home"
+          className=""
+        >
           <h4 className={styles.logo}>obbie</h4>
-        </Link>
+        </NavLink>
       )}
     </section>
   );

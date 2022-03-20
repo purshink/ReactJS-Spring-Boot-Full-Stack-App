@@ -5,12 +5,18 @@ import AuthenticationService from "../../../../../../api/authentication/Authenti
 import { NavLink } from "react-router-dom";
 import styles from "../../../../../../css/Navbar.module.css";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Menu = () => {
   const [clicked, setClicked] = useState(false);
   const userLogged = AuthenticationService.isUserLoggedIn();
   const businessLogged = AuthenticationService.isBusinessLoggedIn();
   const location = useLocation();
+  const pathname = location.pathname;
+
+  useEffect(() => {
+    setClicked(false);
+  }, [pathname]);
 
   return (
     <section className="menu">
@@ -72,17 +78,17 @@ const Menu = () => {
       {clicked && !businessLogged && !userLogged && (
         <menu className={styles.popup_menu}>
           <ul className={styles.nav_links_popup}>
-            {location.pathname !== "/signup" && location.pathname !== "/" && (
+            {pathname !== "/signup" && location.pathname !== "/" && (
               <li className={styles.nav_link}>
                 <NavLink to="/signup">Sign up</NavLink>
               </li>
             )}
-            {location.pathname !== "/register-business" && (
+            {pathname !== "/register-business" && (
               <li className={styles.nav_link}>
                 <NavLink to="register-business">Register Bizz</NavLink>
               </li>
             )}
-            {location.pathname !== "/login" && (
+            {pathname !== "/login" && (
               <li className={styles.nav_link}>
                 <NavLink to="/login">Login</NavLink>
               </li>
