@@ -1,7 +1,8 @@
 .header {
+  /* position: relative;
+  top: 2%; */
   display: flex;
   width: 90%;
-  margin: auto;
-  height: 10vh;
+  margin: 2.5% auto;
   align-items: center;
 }

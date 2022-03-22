@@ -88,14 +88,14 @@ const AccountUser = () => {
                   onClick={handleDelete(user)}
                   className={styles.account_btn}
                 >
-                  Delete profile
+                  Delete
                 </Link>
                 <Link
                   to="#"
                   onClick={handleEdit(user)}
                   className={styles.account_btn}
                 >
-                  Edit profile
+                  Edit
                 </Link>
               </article>
             </div>

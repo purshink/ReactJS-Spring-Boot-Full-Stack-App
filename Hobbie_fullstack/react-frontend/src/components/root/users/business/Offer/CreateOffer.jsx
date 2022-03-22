@@ -60,16 +60,14 @@ const CreateOffer = () => {
 
     if (!info.intro) {
       errors.intro = "Intro is required";
-    }
-    else if (info.intro.length > 900 ) {
-        errors.intro = "Text has to be maximum 900 characters long"
+    } else if (info.intro.length > 900) {
+      errors.intro = "Text has to be maximum 900 characters long";
     }
 
     if (!info.description) {
       errors.description = "Description is required";
-    }
-    else if (info.description.length  > 900) {
-        errors.description = "Text has to be maximum 900 characters long"
+    } else if (info.description.length > 900) {
+      errors.description = "Text has to be maximum 900 characters long";
     }
 
     if (!info.price) {
@@ -91,9 +89,8 @@ const CreateOffer = () => {
 
     if (!info.contactInfo) {
       errors.contactInfo = "Contact info is required";
-    }
-    else if (info.contactInfo.length < 20 || info.contactInfo.length > 900) {
-        errors.contactInfo = "Text has to be between 20 and 900 characters long"
+    } else if (info.contactInfo.length < 20 || info.contactInfo.length > 900) {
+      errors.contactInfo = "Text has to be between 20 and 900 characters long";
     }
     return errors;
   };
@@ -228,7 +225,12 @@ const CreateOffer = () => {
             label="Intro"
             name="intro"
             error={errors.intro}
-            onChange={(e) => setInfo({ ...info, intro:  e.target.value.replace(/\n\r?/g, "\n")  })}
+            onChange={(e) =>
+              setInfo({
+                ...info,
+                intro: e.target.value.replace(/\n\r?/g, "\n"),
+              })
+            }
           />
 
           <OfferTextaria
@@ -355,7 +357,7 @@ const CreateOffer = () => {
         </form>
       </main>
 
-      <Footer class={style.footer_hobbie_details}/>
+      <Footer class={style.footer_hobbie_details} />
     </>
   );
 };

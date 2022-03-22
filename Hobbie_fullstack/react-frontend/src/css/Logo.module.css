@@ -5,7 +5,7 @@
 
 .logo {
   font-weight: 400px;
-  margin: 1px;
+  margin: 2%;
   color: #494969;
 }
 
@@ -24,11 +24,10 @@
   }
 }
 
-/* @media all and (max-width: 850px){
-    .logo{
-      font-size: 14px;
-      position: relative;
-      top: 5px;
-      left: 1px;
-    }
-} */
+@media all and (max-width: 650px) {
+  .logo_container {
+    position: relative;
+    left: 3%;
+    margin-top: 2%;
+  }
+}

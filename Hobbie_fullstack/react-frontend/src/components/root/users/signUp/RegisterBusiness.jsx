@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import RegisterBusinessService from "../../../../api/signup/RegisterBusinessService";
 import styles from "../../../../css/Forms.module.css";
 import style from "../../../../css/Footer.module.css";
+import LoadingDots from "../business/Offer/animation/LoadingDots";
 
 const RegisterBusiness = () => {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [info, setInfo] = useState({
     username: "",
@@ -65,6 +66,7 @@ const RegisterBusiness = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log(info);
+      setLoading(true);
       await RegisterBusinessService(info)
         .then((response) => {
           if (response.status === 201) {
@@ -187,13 +189,17 @@ const RegisterBusiness = () => {
           </section>
 
           <section className={styles.form_field}>
-            <button type="submit" className={styles.button}>
-              Sign up
-            </button>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button type="submit" className={styles.button}>
+                Sign up
+              </button>
+            )}
           </section>
         </form>
       </main>
-      <Footer class={style.footer_cover} />
+      <Footer class={style.footer} />
       <Background />
     </>
   );

@@ -7,10 +7,11 @@ import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import { useLocation } from "react-router-dom";
 import UpdateUserDataService from "../../../../../api/users/UpdateUserDataService";
+import LoadingDots from "../../business/Offer/animation/LoadingDots";
 
 const EditUserProfile = () => {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const [checked, setCheckBoxChecked] = useState("other");
@@ -52,6 +53,7 @@ const EditUserProfile = () => {
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
+      setLoading(true);
       const response = await UpdateUserDataService(info);
 
       if (response.status === 201) {
@@ -158,13 +160,17 @@ const EditUserProfile = () => {
           </section>
 
           <article className={styles.form_field}>
-            <button id="button" type="submit" className={styles.button}>
-              Save
-            </button>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button id="button" type="submit" className={styles.button}>
+                Save
+              </button>
+            )}
           </article>
         </form>
       </main>
-      <Footer class={style.footer_cover} />
+      <Footer class={style.footer} />
       <Background />
     </>
   );

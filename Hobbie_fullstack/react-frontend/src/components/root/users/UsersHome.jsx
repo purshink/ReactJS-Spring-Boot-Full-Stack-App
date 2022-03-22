@@ -102,7 +102,7 @@ const UserHome = () => {
                 <div className={styles.intro_text}>
                   {isUserLoggedIn && (
                     <div>
-                      <p>You have no hobby matches.</p>
+                      <p className={styles.intro}>You have no hobby matches.</p>
                       <div className={styles.buttuns}>
                         <button className={styles.link}>
                           <Link to="/test" className={styles.btn}>
@@ -114,7 +114,7 @@ const UserHome = () => {
                   )}
                   {isBusinessLoggedIn && (
                     <div>
-                      <p>You have no hobby offers.</p>
+                      <p className={styles.intro}>You have no hobby offers.</p>
                       <div className={styles.buttuns}>
                         <button className={styles.link}>
                           <Link to="/create-offer" className={styles.btn}>

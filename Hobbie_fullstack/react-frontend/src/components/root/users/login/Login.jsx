@@ -9,16 +9,18 @@ import styles from "../../../../css/Forms.module.css";
 import style from "../../../../css/Footer.module.css";
 import { Link } from "react-router-dom";
 import AuthenticateUserDataService from "../../../../api/authentication/AuthenticateUserDataService";
+import LoadingDots from "../business/Offer/animation/LoadingDots";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+
   const [loginState, setLoginState] = useState({
     hasLoginFailed: false,
     showSuccessMessage: false,
@@ -46,6 +48,7 @@ const Login = () => {
     setErrors(errors);
     console.log(errors);
     if (Object.keys(errors).length === 0) {
+      setLoading(true);
       const res = await AuthenticateUserDataService(
         credentials.username,
         credentials.password
@@ -78,93 +81,96 @@ const Login = () => {
             credentials.username
           );
           navigate("/user-home");
-         
         } else if (response.data === "BUSINESS_USER") {
           AuthenticationService.registerSuccessfulLoginBusiness(
             credentials.username
           );
           navigate("/business-home");
         }
-
       }
     }
   };
 
   return (
-    <main>
-      <form className={styles.form_style}>
-        <div className={styles.loginh1}>
-          <h1>Login</h1>
-        </div>
-        <div className={styles.login}>
-          {loginState.hasLoginFailed && (
-            <div className={styles.midErrors}> Invalid credentials</div>
-          )}
-          {loginState.showSuccessMessage && (
-            <div className={styles.midErrors}>Login successful</div>
-          )}
-
-          <div className={styles.form_field}>
-            <section className={styles.name_section}>
-              <input
-                id="username"
-                type="text"
-                name="username"
-                onChange={(e) =>
-                  setCredentials({ ...credentials, username: e.target.value })
-                }
-                required
-              />
-              <label htmlFor="username" className={styles.label_name}>
-                {Object.keys(errors).length === 0 && (
-                  <span className={styles.content_name}>Username</span>
-                )}
-                {errors.username && (
-                  <small className={styles.errors}>{errors.username}</small>
-                )}
-              </label>
-            </section>
+    <>
+      <main>
+        <form className={styles.form_style}>
+          <div className={styles.loginh1}>
+            <h1>Login</h1>
           </div>
+          <div className={styles.login}>
+            {loginState.hasLoginFailed && (
+              <div className={styles.midErrors}> Invalid credentials</div>
+            )}
+            {loginState.showSuccessMessage && (
+              <div className={styles.midErrors}>Login successful</div>
+            )}
 
-          <div className={styles.form_field}>
-            <section className={styles.name_section}>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={(e) =>
-                  setCredentials({ ...credentials, password: e.target.value })
-                }
-                required
-              />
-              <label htmlFor="password" className={styles.label_name}>
-                {Object.keys(errors).length === 0 && (
-                  <span className={styles.content_name}>Password</span>
-                )}
-                {errors.password && (
-                  <small className={styles.errors}>Password required</small>
-                )}
-              </label>
-            </section>
+            <div className={styles.form_field}>
+              <section className={styles.name_section}>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  onChange={(e) =>
+                    setCredentials({ ...credentials, username: e.target.value })
+                  }
+                  required
+                />
+                <label htmlFor="username" className={styles.label_name}>
+                  {Object.keys(errors).length === 0 && (
+                    <span className={styles.content_name}>Username</span>
+                  )}
+                  {errors.username && (
+                    <small className={styles.errors}>{errors.username}</small>
+                  )}
+                </label>
+              </section>
+            </div>
+
+            <div className={styles.form_field}>
+              <section className={styles.name_section}>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  onChange={(e) =>
+                    setCredentials({ ...credentials, password: e.target.value })
+                  }
+                  required
+                />
+                <label htmlFor="password" className={styles.label_name}>
+                  {Object.keys(errors).length === 0 && (
+                    <span className={styles.content_name}>Password</span>
+                  )}
+                  {errors.password && (
+                    <small className={styles.errors}>Password required</small>
+                  )}
+                </label>
+              </section>
+            </div>
+
+            <p>
+              <Link
+                to="/change-password"
+                className={styles.button_password_forgot}
+              >
+                Forgot your password?
+              </Link>
+            </p>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button className={styles.button} onClick={loginClicked}>
+                Login
+              </button>
+            )}
           </div>
-
-          <p>
-            <Link
-              to="/change-password"
-              className={styles.button_password_forgot}
-            >
-              Forgot your password?
-            </Link>
-          </p>
-
-          <button className={styles.button} onClick={loginClicked}>
-            Login
-          </button>
-        </div>
-      </form>
-      <Footer class={style.footer_cover} />
+        </form>
+      </main>
+      <Footer class={style.footer} />
       <Background />
-    </main>
+    </>
   );
 };
 

@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import SignUpAppClientService from "../../../../api/signup/SignUpAppClientService";
 import styles from "../../../../css/Forms.module.css";
 import style from "../../../../css/Footer.module.css";
+import LoadingDots from "../business/Offer/animation/LoadingDots";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [checked, setCheckBoxChecked] = useState("other");
   const [error, setError] = useState(false);
   const [info, setInfo] = useState({
@@ -61,6 +63,7 @@ const SignUp = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log(info);
+      setLoading(true);
       await SignUpAppClientService(info)
         .then((response) => {
           if (response.status === 201) {
@@ -207,13 +210,17 @@ const SignUp = () => {
           </section>
 
           <section className={styles.form_field}>
-            <button id="button" type="submit" className={styles.button}>
-              Sign up
-            </button>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button id="button" type="submit" className={styles.button}>
+                Sign up
+              </button>
+            )}
           </section>
         </form>
       </main>
-      <Footer class={style.footer_cover}/>
+      <Footer class={style.footer} />
       <Background />
     </>
   );
