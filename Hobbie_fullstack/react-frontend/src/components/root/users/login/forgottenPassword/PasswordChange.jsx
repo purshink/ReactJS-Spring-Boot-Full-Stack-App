@@ -42,61 +42,62 @@ const PasswordChange = () => {
   };
 
   return (
-    <main>
-      <form className={styles.form_style}>
-        {!found && (
-          <div className={styles.midErrors}>
-            User with this email doesn't exist
-          </div>
-        )}
-
-        {!sent && (
-          <div className={styles.password_change_div}>
-            <div className={styles.form_field}>
-              <section className={styles.name_section}>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="email"
-                  name="email"
-                  type="email"
-                  className={styles.label_name}
-                >
-                  {Object.keys(errors).length === 0 && (
-                    <span className={styles.content_name}>Your email:</span>
-                  )}
-                  {errors.email && (
-                    <small className={styles.errors}>{errors.email}</small>
-                  )}
-                </label>
-              </section>
+    <>
+      <main>
+        <form className={styles.form_style}>
+          {!found && (
+            <div className={styles.midErrors}>
+              User with this email doesn't exist
             </div>
-            <button className={styles.button} onClick={sentClicked}>
-              Submit
-            </button>
-          </div>
-        )}
-        {sent && (
-          <div>
-            <div className={styles.form_field}>
-              <section className={styles.name_section}>
-                <span className={styles.content_name}>
-                  Thank you, please check your email.
-                </span>
-              </section>
-            </div>
-          </div>
-        )}
-      </form>
+          )}
 
-      <Footer class={style.footer}/>
+          {!sent && (
+            <div className={styles.password_change_div}>
+              <div className={styles.form_field}>
+                <section className={styles.name_section}>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <label
+                    htmlFor="email"
+                    name="email"
+                    type="email"
+                    className={styles.label_name}
+                  >
+                    {Object.keys(errors).length === 0 && (
+                      <span className={styles.content_name}>Your email:</span>
+                    )}
+                    {errors.email && (
+                      <small className={styles.errors}>{errors.email}</small>
+                    )}
+                  </label>
+                </section>
+              </div>
+              <button className={styles.button} onClick={sentClicked}>
+                Submit
+              </button>
+            </div>
+          )}
+          {sent && (
+            <div>
+              <div className={styles.form_field}>
+                <section className={styles.name_section}>
+                  <span className={styles.content_name}>
+                    Thank you, please check your email.
+                  </span>
+                </section>
+              </div>
+            </div>
+          )}
+        </form>
+      </main>
+      <Footer class={style.footer} />
       <Background />
-    </main>
+    </>
   );
 };
 

@@ -179,7 +179,7 @@ const TestForm = () => {
           </div>
         )}
       </main>
-      <Footer class={style.footer_cover}/>
+      <Footer class={style.footer_cover} />
     </>
   );
 };

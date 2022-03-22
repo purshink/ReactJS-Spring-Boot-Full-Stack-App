@@ -7,10 +7,12 @@ import UpdateBusinessDataService from "../../../../../api/users/UpdateBusinessDa
 import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import { useLocation } from "react-router-dom";
+import LoadingDots from "../Offer/animation/LoadingDots";
 
 const EditBusinessProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(false);
   const [info, setInfo] = useState({
@@ -56,6 +58,7 @@ const EditBusinessProfile = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log(info);
+      setLoading(true);
       await UpdateBusinessDataService(info)
         .then((response) => {
           if (response.status === 201) {
@@ -145,13 +148,17 @@ const EditBusinessProfile = () => {
           </section>
 
           <article className={styles.form_field}>
-            <button type="submit" className={styles.button}>
-              Save
-            </button>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button type="submit" className={styles.button}>
+                Save
+              </button>
+            )}
           </article>
         </form>
       </main>
-      <Footer class={style.footer_cover} />
+      <Footer class={style.footer} />
       <Background />
     </>
   );

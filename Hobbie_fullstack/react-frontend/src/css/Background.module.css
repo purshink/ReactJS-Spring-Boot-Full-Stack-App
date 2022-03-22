@@ -69,3 +69,12 @@
   height: 60%;
   width: 50%;
 }
+
+@media all and (max-width: 800px) {
+  .blueImg2 {
+    position: absolute;
+    height: 60%;
+    top: 8%;
+    bottom: 8%;
+  }
+}

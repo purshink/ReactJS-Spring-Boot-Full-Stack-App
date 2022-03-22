@@ -13,7 +13,7 @@
   min-height: 500px;
   height: min-content;
   border-radius: 15px;
-  padding: 80px;
+  padding: 10%;
   box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
   margin-bottom: 50px;
 }

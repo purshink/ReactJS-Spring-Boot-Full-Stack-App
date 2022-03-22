@@ -6,12 +6,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import UpdatePasswordService from "../../../../../api/login/forgottenPassword/UpdatePasswordService";
+import LoadingDots from "../../business/Offer/animation/LoadingDots";
 
 const SetUpNewPassword = () => {
   const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
 
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [info, setInfo] = useState({
     password: "",
@@ -41,6 +43,7 @@ const SetUpNewPassword = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log(info);
+      setLoading(true);
       const response = await UpdatePasswordService(id, info.password);
       console.log(response);
       if (response.status === 201) {
@@ -52,59 +55,68 @@ const SetUpNewPassword = () => {
   };
 
   return (
-    <main>
-      <form className={styles.form_style}>
-        <div>
-          <div className={styles.form_field}>
-            <section className={styles.name_section}>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                onChange={(e) => setInfo({ ...info, password: e.target.value })}
-              />
+    <>
+      <main>
+        <form className={styles.form_style}>
+          <div>
+            <div className={styles.form_field}>
+              <section className={styles.name_section}>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={(e) =>
+                    setInfo({ ...info, password: e.target.value })
+                  }
+                />
 
-              <label htmlFor="password" className={styles.label_name}>
-                <span className={styles.content_name}>Password</span>
-                {errors.password && (
-                  <small className={styles.errors}>Invalid password</small>
-                )}
-              </label>
-            </section>
+                <label htmlFor="password" className={styles.label_name}>
+                  <span className={styles.content_name}>Password</span>
+                  {errors.password && (
+                    <small className={styles.errors}>Invalid password</small>
+                  )}
+                </label>
+              </section>
+            </div>
+
+            <div className={styles.form_field}>
+              <section className={styles.name_section}>
+                <input
+                  id="repassword"
+                  name="repassword"
+                  type="password"
+                  onChange={(e) =>
+                    setInfo({ ...info, repeatpassword: e.target.value })
+                  }
+                />
+
+                <label htmlFor="repassword" className={styles.label_name}>
+                  {!errors.repeatpassword && (
+                    <span className={styles.content_name}>
+                      Confirm Password
+                    </span>
+                  )}
+                  {errors.repeatpassword && (
+                    <small className={styles.errors}>
+                      {errors.repeatpassword}
+                    </small>
+                  )}
+                </label>
+              </section>
+            </div>
+            {loading && <LoadingDots />}
+
+            {!loading && (
+              <button className={styles.button} onClick={updatePassword}>
+                Submit
+              </button>
+            )}
           </div>
-
-          <div className={styles.form_field}>
-            <section className={styles.name_section}>
-              <input
-                id="repassword"
-                name="repassword"
-                type="password"
-                onChange={(e) =>
-                  setInfo({ ...info, repeatpassword: e.target.value })
-                }
-              />
-
-              <label htmlFor="repassword" className={styles.label_name}>
-                {!errors.repeatpassword && (
-                  <span className={styles.content_name}>Confirm Password</span>
-                )}
-                {errors.repeatpassword && (
-                  <small className={styles.errors}>
-                    {errors.repeatpassword}
-                  </small>
-                )}
-              </label>
-            </section>
-          </div>
-
-          <button className={styles.button} onClick={updatePassword}>
-            Submit
-          </button>
-        </div>
-      </form>
-      <Footer class={style.footer}/>
+        </form>
+      </main>
+      <Footer class={style.footer} />
       <Background />
-    </main>
+    </>
   );
 };
 

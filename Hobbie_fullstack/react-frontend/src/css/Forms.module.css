@@ -8,7 +8,7 @@
 }
 
 .loginh1 {
-  padding-top: 100px;
+  /* padding-top: 100px; */
   background: linear-gradient(to right, #494969, #696989);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -244,6 +244,11 @@ input::placeholder {
   color: #c36cbb;
   margin-left: 5px;
   float: right;
+}
+@media all and (max-width: 800px) {
+  .form_style {
+    margin-top: 10%;
+  }
 }
 
 @media all and (max-width: 650px) {

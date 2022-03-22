@@ -93,14 +93,14 @@ const AccountBusiness = () => {
                   onClick={handleDelete(business)}
                   className={styles.account_btn}
                 >
-                  Delete profile
+                  Delete
                 </Link>
                 <Link
                   to="#"
                   onClick={handleEdit(business)}
                   className={styles.account_btn}
                 >
-                  Edit profile
+                  Edit
                 </Link>
               </article>
             </div>
