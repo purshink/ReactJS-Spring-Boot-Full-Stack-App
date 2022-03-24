@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hobbies")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://hobbie-ui-web.herokuapp.com")
 public class HobbyController {
 
 
@@ -43,7 +43,7 @@ public class HobbyController {
 
 
 
-    @PostMapping("/create-offer")
+    @PostMapping("/create-offer/")
     public  ResponseEntity<HttpStatus> saveHobby(@RequestBody HobbyInfoDto info){
 
         Hobby offer = this.modelMapper.map(info, Hobby.class);
@@ -58,19 +58,19 @@ public class HobbyController {
 
     }
 
-    @GetMapping(value ="/is-saved")
+    @GetMapping(value ="/is-saved/")
     public boolean isHobbySaved(@RequestParam Long id, @RequestParam String username){
         return  this.hobbyService.isHobbySaved(id, username);
     }
 
-    @GetMapping(value ="/hobby-details/{id}")
+    @GetMapping(value ="/hobby-details/{id}/")
     public Hobby getHobbyDetails(@PathVariable Long id){
 
       return  this.hobbyService.findHobbieById(id);
     }
 
 
-    @GetMapping("/save-hobby")
+    @GetMapping("/save-hobby/")
     public ResponseEntity<Long> save(@RequestParam Long id, @RequestParam String username){
         Hobby hobby = this.hobbyService.findHobbieById(id);
 
@@ -84,7 +84,7 @@ public class HobbyController {
 
     }
 
-    @GetMapping("/remove-hobby")
+    @GetMapping("/remove-hobby/")
     public ResponseEntity<Long> removeHobby(@RequestParam Long id, @RequestParam String username){
 
         Hobby hobby = this.hobbyService.findHobbieById(id);
@@ -99,7 +99,7 @@ public class HobbyController {
     }
 
 
-    @PutMapping("/update-hobby")
+    @PutMapping("/update-hobby/")
     public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
         Hobby offer = this.modelMapper.map(info, Hobby.class);
         Category category = this.categoryService.findByName(info.getCategory());
@@ -111,7 +111,7 @@ public class HobbyController {
 
     }
 
-    @DeleteMapping("/delete-hobby/{id}")
+    @DeleteMapping("/delete-hobby/{id}/")
     public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws Exception {
         boolean isRemoved = this.hobbyService.deleteHobby(id);
 
@@ -121,7 +121,7 @@ public class HobbyController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/saved-hobbies/{username}")
+    @GetMapping("/saved-hobbies/{username}/")
     public List<Hobby> savedHobbies(@PathVariable String username){
         AppClient appClient = this.userService.findAppClientByUsername(username);
         return this.hobbyService.findSavedHobbies(appClient);

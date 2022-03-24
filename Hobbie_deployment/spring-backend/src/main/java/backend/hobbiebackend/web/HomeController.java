@@ -14,7 +14,7 @@ import java.util.Set;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://hobbie-ui-web.herokuapp.com")
 public class HomeController {
     private final HobbyService hobbyService;
 
@@ -24,7 +24,14 @@ public class HomeController {
         this.hobbyService = hobbyService;
     }
 
-    @GetMapping( "/business-owner/{username}")
+    @GetMapping( "/")
+    public String hello() {
+
+        return  "Hello from the backend";
+
+    }
+
+    @GetMapping( "/business-owner/{username}/")
     public Set<Hobby> offersShow(@PathVariable String username) {
 
             return  this.hobbyService.getAllHobbiesForBusiness(username);
@@ -32,7 +39,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/user-home/{username}")
+    @GetMapping("/user-home/{username}/")
     public Set<Hobby> userHobbiesShow(@PathVariable String username) throws Exception {
 
         //        cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));

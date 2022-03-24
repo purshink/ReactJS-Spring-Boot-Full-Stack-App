@@ -36,7 +36,7 @@ import java.net.URLDecoder;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://hobbie-ui-web.herokuapp.com")
 public class UserController {
 
 
@@ -62,7 +62,7 @@ public class UserController {
 
 
 
-    @PostMapping("/signup")
+    @PostMapping("/signup/")
     public ResponseEntity<?> signup(@RequestBody AppClientSignUpDto user){
         System.out.println(user);
 
@@ -75,7 +75,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/register-business")
+    @PostMapping("/register-business/")
     public ResponseEntity<?> registerBusiness(@RequestBody BusinessRegisterDto business){
 
 
@@ -91,13 +91,13 @@ public class UserController {
 
 
 
-    @GetMapping("/show-client-details/{username}")
+    @GetMapping("/show-client-details/{username}/")
     public AppClient showUserDetails(@PathVariable String username) {
             return  this.userService.findAppClientByUsername(username);
     }
 
 
-    @GetMapping("/show-business-details/{username}")
+    @GetMapping("/show-business-details/{username}/")
     public BusinessOwner showBusinessDetails(@PathVariable String username) {
         return  this.userService.findBusinessByUsername(username);
     }
@@ -115,7 +115,7 @@ public class UserController {
             return new ResponseEntity<AppClient>(client, HttpStatus.CREATED);
 
     }
-    @PostMapping ("/change-password")
+    @PostMapping ("/change-password/")
     public ResponseEntity<?>  changePassword(@RequestBody String e) throws UnsupportedEncodingException {
         String email = URLDecoder.decode(e, "UTF-8");
         email = email.substring(0, email.length()-1);
@@ -129,7 +129,7 @@ public class UserController {
         }
         return new ResponseEntity<>(userByEmail, HttpStatus.OK);
     }
-    @PostMapping("/change-password-new")
+    @PostMapping("/change-password-new/")
     public ResponseEntity<?>  setUpNewPassword(@RequestParam Long id, String password) {
         UserEntity userById = this.userService.findUserById(id);
         userById.setPassword(this.passwordEncoder.encode(password));
@@ -137,11 +137,11 @@ public class UserController {
         return new ResponseEntity<UserEntity>(userById,HttpStatus.CREATED);
     }
 
-    @PutMapping("/update-business")
+    @PutMapping("/update-business/")
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
-        if(this.userService.businessExists(business.getBusinessName() )){
+        if(this.userService.businessExists(business.getBusinessName()) && (!businessOwner.getBusinessName().equals(business.getBusinessName()))){
             throw new RuntimeException("Business name already in use.");
         }
                 businessOwner.setBusinessName(business.getBusinessName());
@@ -152,7 +152,7 @@ public class UserController {
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
 
     }
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/delete-user/{id}/")
     public ResponseEntity<Long> deleteUser(@PathVariable Long id){
         boolean isRemoved = this.userService.deleteUser(id);
 
@@ -162,7 +162,7 @@ public class UserController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/authenticate/")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
         try {
@@ -187,7 +187,6 @@ public class UserController {
 
 
     @PostMapping("/login/{username}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public String logInUser(@PathVariable String username) {
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()

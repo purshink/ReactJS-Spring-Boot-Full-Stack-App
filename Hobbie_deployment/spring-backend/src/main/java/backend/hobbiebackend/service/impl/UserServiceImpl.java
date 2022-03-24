@@ -58,12 +58,13 @@ public class UserServiceImpl implements UserService {
             UserRoleEntity userRole = this.userRoleService.saveRole(userRoleEntity);
             UserRoleEntity userRoleEntity2 = new UserRoleEntity();
             userRoleEntity2.setRole(UserRoleEnum.ADMIN);
-            UserRoleEntity adminRole = this.userRoleService.saveRole(userRoleEntity2);
             AppClient user = new AppClient();
             user.setUsername("user");
             user.setEmail("n13@gmail.com");
             user.setPassword(this.passwordEncoder.encode("123"));
-            user.setRoles(List.of(userRole));
+            List<UserRoleEntity> roles = new ArrayList<>();
+            roles.add(userRole);
+            user.setRoles(roles);
             user.setFullName("Nikoleta Doykova");
             user.setGender(GenderEnum.FEMALE);
 
@@ -84,7 +85,9 @@ public class UserServiceImpl implements UserService {
             business_user.setUsername("business");
             business_user.setEmail("n10@gamil.com");
             business_user.setPassword(this.passwordEncoder.encode("123"));
-            business_user.setRoles(List.of(businessRole));
+            List<UserRoleEntity> roles = new ArrayList<>();
+            roles.add(businessRole);
+            business_user.setRoles(roles);
             business_user.setBusinessName("My Business name");
             business_user.setAddress("My business address");
             businessOwnerRepository.save(business_user);
@@ -98,7 +101,9 @@ public class UserServiceImpl implements UserService {
 
             UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
             AppClient appClient = this.modelMapper.map(user, AppClient.class);
-            appClient.setRoles(List.of(userRole));
+        List<UserRoleEntity> roles = new ArrayList<>();
+        roles.add(userRole);
+        appClient.setRoles(roles);
                 appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
         return  appClientRepository.save(appClient);
     }
@@ -108,7 +113,9 @@ public class UserServiceImpl implements UserService {
 
             UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
             BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
-            businessOwner.setRoles(List.of(businessUserRole));
+        List<UserRoleEntity> roles = new ArrayList<>();
+        roles.add(businessUserRole);
+        businessOwner.setRoles(roles);
             businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
            return businessOwnerRepository.save(businessOwner);
 
@@ -145,11 +152,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity findUserByEmail(String email) {
         Optional<UserEntity> byEmail = this.userRepository.findByEmail(email);
-        if (byEmail.isPresent()) {
-            return byEmail.get();
-        } else {
-            return  null;
-        }
+        return byEmail.orElse(null);
 
     }
 
@@ -236,7 +239,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AppClient findAppClientByUsername(String username) {
-        return this.appClientRepository.findByUsername(username).orElseThrow();
+       return   this.appClientRepository.findByUsername(username).orElseThrow();
     }
 
     @Override

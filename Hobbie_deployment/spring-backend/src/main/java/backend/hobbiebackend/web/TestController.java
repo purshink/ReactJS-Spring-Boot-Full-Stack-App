@@ -12,7 +12,7 @@ import javax.persistence.Access;
 
 @RestController
 @RequestMapping("/test")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://hobbie-ui-web.herokuapp.com")
 public class TestController {
 
     private final TestService testService;
@@ -26,7 +26,7 @@ public class TestController {
 
 
 
-    @PostMapping("/results")
+    @PostMapping("/results/")
     public ResponseEntity<HttpStatus> saveTestResults(@RequestBody Test results) {
         this.testService.saveTestResults(results);
         return new ResponseEntity<>(HttpStatus.CREATED);
