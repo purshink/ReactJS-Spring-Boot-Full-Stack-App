@@ -1,7 +1,4 @@
-/* .hobby_details_page{
-    position: relative;
-  } */
-
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 .hobbie_main {
   margin: auto 100px;
   padding-bottom: 5%;
@@ -12,11 +9,12 @@
   background: linear-gradient(to right, #494969, #696989);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: auto 3%;
 }
 
 .hobbie_title_small {
   margin-bottom: 30px;
-  margin: auto;
+  margin: auto 13%;
   font-size: 46px;
   background: linear-gradient(to right, #494969, #696989);
   -webkit-background-clip: text;
@@ -24,24 +22,25 @@
 }
 
 .slogan {
-  color: rgb(247, 199, 110);
-  background: linear-gradient(to right, #6b6b88, #696989);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #696989;
+  letter-spacing: 0.8px;
   border-bottom: none;
   position: relative;
   bottom: 10px;
   width: 80%;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 .slogan_small {
   margin: auto;
-  background: linear-gradient(to right, #6b6b88, #696989);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.8px;
+  color: #696989;
   border-bottom: none;
   margin-bottom: 30px;
   width: 80%;
+  opacity: 0.9;
+  font-weight: 600;
 }
 
 .hobbie_container {
@@ -69,6 +68,7 @@
   height: 100%;
   width: 100%;
   padding: 5%;
+  box-shadow: -2px 0px 33px 0px rgba(0, 0, 0, 0.15);
 }
 
 .hobbie_cover {
@@ -93,7 +93,7 @@
 .hobbie_pages {
   height: 40%;
   display: flex;
-  color: gray;
+  color: rgb(135, 158, 187);
   flex-direction: column;
   align-items: center;
   font-size: 13px;
@@ -109,7 +109,7 @@
 }
 
 .hobbie_pages_horizontal {
-  color: gray;
+  color: rgb(135, 158, 187);
   display: flex;
   justify-content: space-around;
   width: 200px;
@@ -126,7 +126,7 @@
   width: 37px;
   right: 137%;
   top: 45%;
-  background-color: #555;
+  background-color: rgb(255, 177, 33);
   cursor: pointer;
   min-height: 1px;
   z-index: 1;
@@ -150,7 +150,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
-  border-bottom: 2px solid #494969;
+  border-bottom: 2px solid rgb(255, 177, 33);
 }
 
 .hobbie_small {
@@ -168,14 +168,16 @@
   padding-top: 20px;
   padding-bottom: 20px;
   font-size: 15px;
-  line-height: 1.7;
-  width: 90%;
+  letter-spacing: 0.8px;
+  line-height: 25px;
+  width: 100%;
   white-space: pre-line;
-  color: gray;
+  opacity: 6;
+  color: rgb(31, 44, 61);
   padding-bottom: 10px;
+  font-weight: 500;
 }
 
-/* .prix */
 .buttons {
   display: flex;
   height: 30px;
@@ -189,7 +191,6 @@
   position: relative;
 }
 
-/* .add-crt-edit */
 .btn {
   color: rgb(255, 177, 33);
   left: 2px;
@@ -197,15 +198,15 @@
   margin-right: 40px;
   text-align: center;
   cursor: pointer;
+  width: 100%;
 }
 
-/* .introduction-home */
 .error_message {
   margin: auto;
   width: 50%;
   align-items: center;
 }
-/* .intro-text p  */
+
 .error_text p {
   margin-top: 5px;
   font-size: 22px;
@@ -269,5 +270,13 @@
     background-color: white;
     padding-bottom: 10px;
     margin-bottom: 30px;
+  }
+}
+@media all and (max-width: 600px) {
+  .hobbie_title_small {
+    margin: auto 10%;
+  }
+  .hobbie_lable p {
+    width: 90%;
   }
 }

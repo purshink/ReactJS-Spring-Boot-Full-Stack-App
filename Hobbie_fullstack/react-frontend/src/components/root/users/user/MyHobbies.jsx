@@ -83,7 +83,7 @@ const MyHobbies = () => {
         </section>
       </main>
       {!welcomeDiv.showDiv && <Footer class={style.footer} />}
-      {welcomeDiv.showDiv && <Footer  class={style.footer_cover} />}
+      {welcomeDiv.showDiv && <Footer class={style.footer_cover} />}
     </>
   );
 };

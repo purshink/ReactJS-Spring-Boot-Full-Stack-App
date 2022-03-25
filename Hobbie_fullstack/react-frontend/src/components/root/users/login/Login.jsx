@@ -9,7 +9,7 @@ import styles from "../../../../css/Forms.module.css";
 import style from "../../../../css/Footer.module.css";
 import { Link } from "react-router-dom";
 import AuthenticateUserDataService from "../../../../api/authentication/AuthenticateUserDataService";
-import LoadingDots from "../business/Offer/animation/LoadingDots";
+import LoadingDotsDark from "./animation/LoadingDotsDark";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -158,7 +158,7 @@ const Login = () => {
                 Forgot your password?
               </Link>
             </p>
-            {loading && <LoadingDots />}
+            {loading && <LoadingDotsDark className={styles.dots} />}
 
             {!loading && (
               <button className={styles.button} onClick={loginClicked}>

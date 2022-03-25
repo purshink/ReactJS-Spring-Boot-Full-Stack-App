@@ -14,6 +14,10 @@
   -webkit-text-fill-color: transparent;
 }
 
+.signup_form {
+  width: 30%;
+}
+
 .midErrors {
   padding-top: 15px;
   font-size: 14px;
@@ -238,6 +242,9 @@ input::placeholder {
 .checkbox_choice_section:hover input ~ .checkmark {
   background-color: #ccc;
 }
+.dots {
+  color: #5fa8d3;
+}
 
 .errors {
   font-size: small;
@@ -245,6 +252,12 @@ input::placeholder {
   margin-left: 5px;
   float: right;
 }
+@media all and (max-width: 1400px) {
+  .signup_form {
+    width: 60%;
+  }
+}
+
 @media all and (max-width: 800px) {
   .form_style {
     margin-top: 10%;
@@ -262,7 +275,7 @@ input::placeholder {
   }
   input[type="checkbox"]:after {
     width: 15px;
-    height: 10px;
+    height: 15px;
     padding-left: 0;
   }
 
@@ -270,5 +283,8 @@ input::placeholder {
     content: "\2714";
     padding: -15px;
     font-weight: bold;
+  }
+  .signup_form {
+    width: 90%;
   }
 }

@@ -7,7 +7,7 @@ import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import { useLocation } from "react-router-dom";
 import UpdateUserDataService from "../../../../../api/users/UpdateUserDataService";
-import LoadingDots from "../../business/Offer/animation/LoadingDots";
+import LoadingDotsDark from "../../login/animation/LoadingDotsDark";
 
 const EditUserProfile = () => {
   const navigate = useNavigate();
@@ -160,7 +160,7 @@ const EditUserProfile = () => {
           </section>
 
           <article className={styles.form_field}>
-            {loading && <LoadingDots />}
+            {loading && <LoadingDotsDark />}
 
             {!loading && (
               <button id="button" type="submit" className={styles.button}>

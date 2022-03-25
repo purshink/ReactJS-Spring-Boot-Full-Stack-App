@@ -104,7 +104,7 @@ const AccountUser = () => {
           <BackgroundHome />
         </section>
       </main>
-      <Footer class={style.footer_cover} />
+      <Footer class={style.footer} />
     </>
   );
 };

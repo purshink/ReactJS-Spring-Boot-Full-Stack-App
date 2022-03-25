@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import UpdatePasswordService from "../../../../../api/login/forgottenPassword/UpdatePasswordService";
-import LoadingDots from "../../business/Offer/animation/LoadingDots";
+import LoadingDotsDark from "../animation/LoadingDotsDark";
 
 const SetUpNewPassword = () => {
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ const SetUpNewPassword = () => {
                 </label>
               </section>
             </div>
-            {loading && <LoadingDots />}
+            {loading && <LoadingDotsDark />}
 
             {!loading && (
               <button className={styles.button} onClick={updatePassword}>

@@ -1,15 +1,5 @@
-/* .test_content{
-    /* width: 50%; */
-/* height: 100%;
-    margin: auto;
-    padding: 0 40px;
-    grid-area: content;
-    align-content: center;
-    justify-content: space-between;
-  } */
-
 .test_form {
-  margin: 100px auto;
+  margin: 20px auto;
   background: linear-gradient(to right, #696989, #dcdce6);
   color: white;
   width: 800px;
@@ -24,7 +14,7 @@
 }
 
 .test_form_end {
-  margin: 50px auto;
+  margin: 20px auto;
   background: linear-gradient(to right, #696989, #dcdce6);
   color: white;
   width: 800px;
@@ -41,7 +31,6 @@
   width: 100%;
 }
 
-/* .submit-offer */
 .button {
   padding: 10px 10px 10px 10px;
   content: " ";
@@ -116,7 +105,7 @@
     display: block;
     width: 90%;
     padding: 0;
-    margin: 50px 5%;
+    margin: 20px 5%;
     margin-bottom: 200px;
   }
 

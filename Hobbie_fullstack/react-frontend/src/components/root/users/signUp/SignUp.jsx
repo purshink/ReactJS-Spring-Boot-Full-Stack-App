@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SignUpAppClientService from "../../../../api/signup/SignUpAppClientService";
 import styles from "../../../../css/Forms.module.css";
 import style from "../../../../css/Footer.module.css";
-import LoadingDots from "../business/Offer/animation/LoadingDots";
+import LoadingDotsDark from "../login/animation/LoadingDotsDark";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ const SignUp = () => {
           </div>
         )}
 
-        <form id="userInfo" onSubmit={submitHandler}>
+        <form className={styles.signup_form} onSubmit={submitHandler}>
           <section className={styles.form_field}>
             <input
               id="name"
@@ -210,7 +210,7 @@ const SignUp = () => {
           </section>
 
           <section className={styles.form_field}>
-            {loading && <LoadingDots />}
+            {loading && <LoadingDotsDark />}
 
             {!loading && (
               <button id="button" type="submit" className={styles.button}>

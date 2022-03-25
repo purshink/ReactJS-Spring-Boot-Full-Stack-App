@@ -24,12 +24,6 @@
   }
 
   .nav_link {
-    font-size: 16px;
-  }
-}
-
-@media all and (max-width: 1000px) {
-  .nav_link {
     font-size: 14px;
   }
 }
@@ -50,10 +44,10 @@
     right: 10px;
   }
   .nav_links_popup {
-    color: rgb(135, 158, 187);
     list-style: none;
     z-index: 2;
     padding: 5px;
+    text-shadow: 0.1px 0px 0px rgb(241, 215, 167);
   }
 
   .popup_menu {

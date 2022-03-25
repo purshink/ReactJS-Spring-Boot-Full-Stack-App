@@ -25,16 +25,6 @@
   font-size: 14px;
 }
 
-/* .user_home{ */
-/* background-color: transparent;
-  margin: 0;
-  width: 100%;
-  margin: auto;
-  grid-template-columns: 1fr repeat(9, minmax(auto, 100px)) 1fr;
-  grid-gap: 20px; */
-/* padding: 30px  ; */
-/* } */
-
 .cards {
   width: 100%;
   grid-column: 2 / span 11;
@@ -42,7 +32,6 @@
   grid-template-columns: repeat(12, minmax(auto, 60px));
   position: relative;
   grid-gap: 25px;
-  /* margin: 10px auto; */
 }
 
 .rapper {
@@ -121,7 +110,6 @@
 
 .introduction_home {
   margin: auto;
-  /* width: 50%; */
   align-items: center;
 }
 .intro_text {
@@ -139,7 +127,7 @@
 
 .intro_text p {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 14px;
   color: #585772;
 }
 
@@ -170,7 +158,17 @@
   font-size: 16px;
   border: 2px solid #c36cbb;
 }
-
+@media all and (min-width: 1024px) {
+  .hobbie_container_home {
+    position: relative;
+    top: 80%;
+  }
+}
+@media all and (max-width: 1400px) {
+  .hobbie_container_home {
+    width: 100%;
+  }
+}
 @media all and (min-width: 850px) {
   .intro_text {
     position: relative;
@@ -184,12 +182,12 @@
 
 @media all and (max-width: 950px) {
   .hobbie_container_home {
-    width: auto;
+    width: 100%;
     padding: 20px;
   }
 }
 
-@media all and (max-width: 850px) {
+@media all and (max-width: 767px) {
   .intro_text {
     margin-top: 30px;
     font-size: small;

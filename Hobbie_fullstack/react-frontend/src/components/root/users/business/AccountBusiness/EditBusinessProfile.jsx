@@ -7,7 +7,7 @@ import UpdateBusinessDataService from "../../../../../api/users/UpdateBusinessDa
 import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import { useLocation } from "react-router-dom";
-import LoadingDots from "../Offer/animation/LoadingDots";
+import LoadingDotsDark from "../../login/animation/LoadingDotsDark";
 
 const EditBusinessProfile = () => {
   const navigate = useNavigate();
@@ -148,7 +148,7 @@ const EditBusinessProfile = () => {
           </section>
 
           <article className={styles.form_field}>
-            {loading && <LoadingDots />}
+            {loading && <LoadingDotsDark />}
 
             {!loading && (
               <button type="submit" className={styles.button}>

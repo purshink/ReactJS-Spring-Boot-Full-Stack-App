@@ -102,7 +102,9 @@ const UserHome = () => {
                 <div className={styles.intro_text}>
                   {isUserLoggedIn && (
                     <div>
-                      <p className={styles.intro}>You have no hobby matches.</p>
+                      <p className={styles.intro}>
+                        You have no hobbie matches.
+                      </p>
                       <div className={styles.buttuns}>
                         <button className={styles.link}>
                           <Link to="/test" className={styles.btn}>
@@ -114,7 +116,7 @@ const UserHome = () => {
                   )}
                   {isBusinessLoggedIn && (
                     <div>
-                      <p className={styles.intro}>You have no hobby offers.</p>
+                      <p className={styles.intro}>You have no hobbie offers.</p>
                       <div className={styles.buttuns}>
                         <button className={styles.link}>
                           <Link to="/create-offer" className={styles.btn}>
@@ -130,7 +132,7 @@ const UserHome = () => {
           )}
         </section>
       </main>
-      {!welcomeDiv.showDiv && <Footer class={style.footer_home} />}
+      {!welcomeDiv.showDiv && <Footer class={style.footer} />}
       {welcomeDiv.showDiv && <Footer class={style.footer_cover} />}
     </>
   );

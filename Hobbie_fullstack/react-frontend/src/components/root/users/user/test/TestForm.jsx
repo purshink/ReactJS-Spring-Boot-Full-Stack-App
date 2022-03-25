@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import styles from "../../../../../css/Test.module.css";
 import style from "../../../../../css/Footer.module.css";
 import layout from "../../../../../css/UserHome.module.css";
+import BackgroundHome from "../../../fragments/background/BackgroundHome";
 
 const TestForm = () => {
   let key = 1;
@@ -179,7 +180,8 @@ const TestForm = () => {
           </div>
         )}
       </main>
-      <Footer class={style.footer_cover} />
+      <Footer class={style.footer_hobbie_details} />
+      <BackgroundHome />
     </>
   );
 };

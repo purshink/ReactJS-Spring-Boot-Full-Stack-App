@@ -10,9 +10,8 @@
 
 .footer {
   position: absolute;
-  height: 40px;
   margin-top: 40px;
-  margin-left: 5%;
+  margin: 1% 5%;
   bottom: 0px;
   background: transparent;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
@@ -34,57 +33,27 @@
   color: #494969;
 }
 
-.footer_home {
-  background: transparent;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000);
-  zoom: 1;
-  margin: 10px auto;
-  width: 100%;
-  color: #494969;
-  position: absolute;
-  left: 5%;
-  bottom: 0;
-}
-@media all and (max-width: 1400px) {
-  .footer_cover {
-    position: relative;
-    padding: 2%;
-  }
-}
-
-@media all and (max-width: 1023px) {
+@media only screen and (hover: none) and (pointer: coarse) {
   .footer {
+    font-size: 14px;
     position: relative;
-    margin-top: 40px;
+    padding-top: 3%;
     margin-left: 5%;
+  }
+  .footer_cover {
+    position: fixed;
+    bottom: 1%;
   }
 }
 
 @media all and (max-width: 600px) {
-  .footer {
-    font-size: 14px;
-    position: relative;
-    padding-top: 10%;
-  }
-  .footer_home {
-    font-size: 14px;
-    position: absolute;
-    bottom: 1%;
-    padding-top: 3%;
-  }
-
   .footer_cover {
     font-size: 14px;
+    padding-top: 5%;
+    margin-bottom: 3%;
   }
-}
-
-@media all and (max-width: 320px) {
-  .footer_home {
+  .footer_hobbie_details {
     font-size: 14px;
-    position: absolute;
-    bottom: 1%;
-  }
-  .footer_cover {
-    padding-top: 3%;
+    padding-left: 3%;
   }
 }

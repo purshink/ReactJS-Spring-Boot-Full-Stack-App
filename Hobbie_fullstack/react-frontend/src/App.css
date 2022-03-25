@@ -4,15 +4,22 @@
   font-family: "Poppins", sans-serif;
   border: 1px solid transparent;
   padding-bottom: 20px;
+  height: auto;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 #root {
-  height: 100%;
+  height: auto;
 }
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  /* border: 1px solid red; */
   /* for debug: */
   /* border: 1px solid red; */
 }
@@ -20,7 +27,7 @@
 html,
 body {
   margin: 0;
-  height: 100%;
+  height: auto;
 }
 
 h2 {
@@ -41,7 +48,7 @@ form {
 }
 
 a {
-  color: #5f5f79;
+  color: rgb(135, 158, 187);
   text-decoration: none;
 }
 
