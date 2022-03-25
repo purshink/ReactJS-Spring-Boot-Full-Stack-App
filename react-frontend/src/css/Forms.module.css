@@ -1,0 +1,290 @@
+/* .test */
+.form_style {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginh1 {
+  /* padding-top: 100px; */
+  background: linear-gradient(to right, #494969, #696989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.signup_form {
+  width: 30%;
+}
+
+.midErrors {
+  padding-top: 15px;
+  font-size: 14px;
+  color: #c36cbb;
+  margin: auto 40px;
+}
+
+.form_field {
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.form_field_radio {
+  overflow: hidden;
+  padding-top: 30px;
+  color: #595f6e;
+}
+
+.form_field_radio input {
+  color: #595f6e;
+}
+
+.form_field input {
+  width: 100%;
+  height: 100%;
+  color: #595f6e;
+  padding-top: 30px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 16px;
+}
+
+.form_field label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.form_field label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #5fa8d3;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 2 0px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  visibility: hidden;
+  margin-top: 40px;
+  overflow-wrap: normal;
+  margin-bottom: 40px;
+}
+
+input[type="checkbox"]:after {
+  content: " ";
+  background-color: #fff;
+  display: inline-block;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  color: #00bff0;
+  width: 22px;
+  height: 12px;
+  visibility: visible;
+  border: 1px solid #00bff0;
+  padding-left: 3px;
+  border-radius: 5px;
+}
+
+.content_name {
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+  color: #5fa8d3;
+}
+
+.form_field input:focus + .label_name .content_name,
+.form_field input:valid + .lable_name .content_name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #5fa8d3;
+}
+
+.form_field input:focus + .label_name::after,
+.form_field input:valid + .label_name::after {
+  transform: translateX(0%);
+}
+
+.form_field label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.form_field label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #5fa8d3;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.checkbox_choice_section {
+  position: relative;
+  height: 70px;
+  overflow: hidden;
+  color: #595f6e;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 2 0px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  visibility: hidden;
+  margin-top: 40px;
+  overflow-wrap: normal;
+  margin-bottom: 40px;
+}
+
+input[type="checkbox"]:after {
+  content: " ";
+  background-color: #fff;
+  display: inline-block;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  color: #00bff0;
+  width: 22px;
+  height: 12px;
+  visibility: visible;
+  border: 1px solid #00bff0;
+  padding-left: 3px;
+  border-radius: 5px;
+}
+
+input[type="checkbox"]:checked:after {
+  content: "\2714";
+  padding: -5px;
+  font-weight: bold;
+}
+
+.checkbox {
+  background: linear-gradient(to right, #494969, #696989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-left: 30px;
+  margin-top: 50px;
+  align-content: center;
+}
+
+.password_change_div {
+  width: 300px;
+}
+
+/* .button2 */
+.button {
+  background-color: #00bff0;
+  padding: 10px 10px 10px 10px;
+  content: " ";
+  background-color: #fff;
+  display: inline-block;
+  margin-top: 20px;
+  padding-bottom: 5px;
+  color: #00bff0;
+  width: 100px;
+  height: 50px;
+  visibility: visible;
+  border: 1px solid #00bff0;
+  padding-left: 3px;
+  border-radius: 5px;
+  margin-bottom: 60px;
+}
+
+.button_password_forgot {
+  color: #73bacc;
+  font-size: small;
+  cursor: pointer;
+}
+
+.checkbox_choice_section {
+  position: relative;
+  height: 70px;
+  overflow: hidden;
+  color: #595f6e;
+}
+
+input::placeholder {
+  color: #c2dbf1;
+}
+
+.checkbox_choice_section:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.dots {
+  color: #5fa8d3;
+}
+
+.errors {
+  font-size: small;
+  color: #c36cbb;
+  margin-left: 5px;
+  float: right;
+}
+@media all and (max-width: 1400px) {
+  .signup_form {
+    width: 60%;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .form_style {
+    margin-top: 10%;
+  }
+}
+
+@media all and (max-width: 650px) {
+  h2 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .checkbox {
+    font-size: 10px;
+    padding-left: 15px;
+  }
+  input[type="checkbox"]:after {
+    width: 15px;
+    height: 15px;
+    padding-left: 0;
+  }
+
+  input[type="checkbox"]:checked:after {
+    content: "\2714";
+    padding: -15px;
+    font-weight: bold;
+  }
+  .signup_form {
+    width: 90%;
+  }
+}

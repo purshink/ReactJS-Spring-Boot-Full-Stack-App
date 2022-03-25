@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Poppins:wght@300&family=Raleway:wght@300&display=swap");
+
+.App {
+  font-family: "Poppins", sans-serif;
+  border: 1px solid transparent;
+  padding-bottom: 20px;
+  height: auto;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+#root {
+  height: auto;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+  /* for debug: */
+  /* border: 1px solid red; */
+}
+
+html,
+body {
+  margin: 0;
+  height: auto;
+}
+
+h2 {
+  font: 1em;
+  background: linear-gradient(to right, #494969, #696989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h3 {
+  border-bottom: 1px solid #494969;
+}
+
+form {
+  /* width: 50%; */
+  border: none;
+  margin-top: 20px;
+}
+
+a {
+  color: rgb(135, 158, 187);
+  text-decoration: none;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+}

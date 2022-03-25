@@ -1,0 +1,33 @@
+.logo_container {
+  display: flex;
+  flex: 1;
+}
+
+.logo {
+  font-weight: 400px;
+  margin: 2%;
+  color: #494969;
+}
+
+.imgHeader {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 30px;
+  padding: 0%;
+  margin: 0%;
+}
+
+@media all and (max-width: 900px) {
+  .logo_container {
+    position: relative;
+    left: 30px;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .logo_container {
+    position: relative;
+    left: 3%;
+    margin-top: 2%;
+  }
+}

@@ -1,0 +1,96 @@
+.blueImg {
+  position: absolute;
+  bottom: 0px;
+  height: 60%;
+  color: #494969;
+  z-index: -2;
+  opacity: 0.1;
+  width: 70%;
+}
+
+.blueImg2 {
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  color: #494969;
+  z-index: -1;
+  opacity: 0.11;
+  width: 100%;
+}
+
+.creative {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: -330px;
+  right: -200px;
+  bottom: 0px;
+  height: 100%;
+  color: #494969;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.blueImg4 {
+  position: absolute;
+  left: 0px;
+  height: 60%;
+  bottom: 0px;
+  height: 100%;
+  top: 0;
+  color: #494969;
+  z-index: -1;
+  opacity: 0.11;
+  width: 100%;
+}
+
+@media all and (min-width: 800px) {
+  .blueImg3 {
+    display: none;
+  }
+  .blue {
+    display: none;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .blueImg2 {
+    position: absolute;
+    height: 60%;
+    top: 8%;
+    bottom: 8%;
+  }
+
+  .blueImg3 {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 60vh;
+    color: #494969;
+    z-index: -1;
+    opacity: 0.2;
+    width: 30%;
+  }
+
+  .blueImg4 {
+    width: 100%;
+  }
+
+  .blue {
+    top: 100%;
+    left: 0;
+    opacity: 0.2;
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 60%;
+    width: 50%;
+  }
+}

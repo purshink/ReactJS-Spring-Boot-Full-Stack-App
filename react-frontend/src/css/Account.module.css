@@ -1,0 +1,61 @@
+.account_container {
+  width: 50%;
+  margin: auto;
+  display: block;
+  box-shadow: -2px 0px 33px 0px rgba(0, 0, 0, 0.15);
+}
+
+.account_cover {
+  grid-area: cover;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.account_content {
+  margin-top: 20px;
+  grid-area: content;
+  height: auto;
+  background-color: #fefefe;
+  padding: 30px;
+  margin: auto;
+}
+
+.account_title {
+  background: linear-gradient(to right, #494969, #696989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: auto;
+}
+
+.account_hr {
+  margin-bottom: 10px;
+  transition: all 0.5 ease 0s;
+  background: linear-gradient(to right, #494969, #696989);
+}
+
+/* add-crt-edit */
+.account_btn {
+  color: rgb(255, 177, 33);
+  left: 2px;
+  border-bottom: 1px solid rgb(177, 177, 177);
+  margin-right: 50px;
+  text-align: center;
+}
+
+.account_content p {
+  font-size: 14px;
+  line-height: 25px;
+  width: 100%;
+  opacity: 0.6;
+  color: #2b252c;
+  white-space: pre-wrap;
+}
+
+@media all and (max-width: 700px) {
+  .account_container {
+    padding: 20px;
+    width: 90%;
+  }
+}

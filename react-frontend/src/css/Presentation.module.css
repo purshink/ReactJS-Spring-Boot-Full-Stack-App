@@ -1,0 +1,95 @@
+.presentation {
+  display: flex;
+  width: 90%;
+  margin: 15% auto;
+  align-items: center;
+}
+
+.introduction {
+  width: 50%;
+  align-items: center;
+}
+
+.intro_text h1 {
+  font-size: 44px;
+  font-weight: 900;
+  background: linear-gradient(to right, #494969, #696989);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro_text p {
+  margin-top: 5px;
+  font-size: 22px;
+  color: #585772;
+}
+
+/* .cta */
+.buttons {
+  padding: 50px 0px 0px 0px;
+}
+
+/* .cta_second */
+.btn_first {
+  border: 2px solid #c36cbb;
+  background: #c36cbb;
+  color: white;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+@media all and (max-width: 1250px) {
+  .presentation {
+    margin: 25% auto;
+  }
+  .intro_text p {
+    font-size: 22px;
+  }
+
+  .introduction {
+    width: 60%;
+    position: relative;
+    /* top: -100px; */
+  }
+}
+@media all and (max-width: 1025px) {
+  .presentation {
+    margin: 15% auto;
+  }
+  .intro_text h1 {
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
+
+  .intro_text p {
+    font-size: 22px;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .introduction {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .presentation {
+    margin: 20% auto;
+  }
+
+  .intro_text h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    width: 95%;
+  }
+
+  .intro_text p {
+    font-size: 16px;
+    width: 90%;
+  }
+}

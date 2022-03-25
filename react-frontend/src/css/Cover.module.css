@@ -1,0 +1,61 @@
+.cover_style {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
+  color: #494969;
+  z-index: -1;
+  width: 72%;
+}
+@media only screen and (max-width: 1024px) and (max-height: 1366px) {
+  .cover_style {
+    position: absolute;
+    top: 10%;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    color: #494969;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .cover_style {
+    position: absolute;
+    top: 7%;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    color: #494969;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .cover_style {
+    position: absolute;
+    top: 10%;
+    right: 0px;
+    bottom: 0px;
+    height: 82%;
+    color: #494969;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@media all and (max-width: 280px) {
+  .cover_style {
+    position: absolute;
+    top: 8%;
+    right: 0px;
+    bottom: 0px;
+    height: 80%;
+    color: #494969;
+    width: 100%;
+    object-fit: cover;
+  }
+}

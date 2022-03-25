@@ -1,0 +1,14 @@
+.header {
+  /* position: relative;
+  top: 2%; */
+  display: flex;
+  width: 90%;
+  margin: 2% auto;
+  align-items: center;
+}
+
+@media all and (max-width: 600px) {
+  .header {
+    margin: 2.5% auto;
+  }
+}
