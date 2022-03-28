@@ -62,7 +62,7 @@ public class TestControllerTest extends AbstractTest{
 
     @Test
     public void post_results_should_work() throws Exception {
-        String uri = "/test/results";
+        String uri = "/test";
 
         String inputJson = super.mapToJson(results);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)

@@ -2,14 +2,17 @@ package backend.hobbiebackend.web;
 
 
 import backend.hobbiebackend.model.entities.Hobby;
+import backend.hobbiebackend.model.entities.UserEntity;
+import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.service.HobbyService;
+import backend.hobbiebackend.service.UserRoleService;
 import backend.hobbiebackend.service.UserService;
-import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 
@@ -24,20 +27,17 @@ public class HomeController {
         this.hobbyService = hobbyService;
     }
 
-    @GetMapping( "/business-owner/{username}")
-    public Set<Hobby> offersShow(@PathVariable String username) {
+    @GetMapping( "/home")
+    public Set<Hobby> hobbiesShow(@RequestParam String username,@RequestParam String role) {
 
-            return  this.hobbyService.getAllHobbiesForBusiness(username);
+        if(role.equals("user")){
+            return this.hobbyService.getAllHobbieMatchesForClient(username);
+        }
 
-    }
-
-
-    @GetMapping("/user-home/{username}")
-    public Set<Hobby> userHobbiesShow(@PathVariable String username) throws Exception {
-
-        //        cloudinary.api().deleteResources(Arrays.asList("q9eqihcud4ardbdkvrl6"),Map.of("invalidate", true ));
-        return this.hobbyService.getAllHobbieMatchesForClient(username);
-
+        return  this.hobbyService.getAllHobbiesForBusiness(username);
 
     }
+
+
+
 }

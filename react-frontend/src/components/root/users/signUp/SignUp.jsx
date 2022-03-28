@@ -16,7 +16,7 @@ const SignUp = () => {
   const [info, setInfo] = useState({
     username: "",
     fullName: "",
-    gender: "",
+    gender: "OTHER",
     email: "",
     password: "",
     repeatpassword: "",
@@ -72,6 +72,7 @@ const SignUp = () => {
         })
         .catch((err) => {
           setError(true);
+          setLoading(false);
         });
     } else {
       console.log(errors);

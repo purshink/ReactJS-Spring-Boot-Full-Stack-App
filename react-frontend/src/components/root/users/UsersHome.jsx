@@ -1,8 +1,7 @@
 import React from "react";
 import BackgroundHome from "../fragments/background/BackgroundHome";
-import HobbyDataService from "../../../api/hobby/HobbyDataService";
+import HomeDataService from "../../../api/hobby/HomeDataService";
 import AuthenticationService from "../../../api/authentication/AuthenticationService";
-import OffersDataService from "../../../api/hobby/OffersDataService";
 import { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -33,28 +32,18 @@ const UserHome = () => {
 
   useLayoutEffect(() => {
     let unmounted = false;
-    if (isUserLoggedIn) {
-      HobbyDataService().then((response) => {
-        if (!unmounted) {
-          setState(response.data);
-          setWelcomeDiv({ showDiv: false });
-          console.log(response);
-        }
-        if (!Object.keys(response.data).length) {
-          setWelcomeDiv({ showDiv: true });
-        }
-      });
-    } else if (isBusinessLoggedIn) {
-      OffersDataService().then((response) => {
-        if (!unmounted) {
-          setState(response.data);
-          setWelcomeDiv({ showDiv: false });
-        }
-        if (!Object.keys(response.data).length) {
-          setWelcomeDiv({ showDiv: true });
-        }
-      });
-    }
+
+    HomeDataService().then((response) => {
+      if (!unmounted) {
+        setState(response.data);
+        setWelcomeDiv({ showDiv: false });
+        console.log(response);
+      }
+      if (!Object.keys(response.data).length) {
+        setWelcomeDiv({ showDiv: true });
+      }
+    });
+
     return () => {
       unmounted = true;
     };
@@ -108,7 +97,7 @@ const UserHome = () => {
                       <div className={styles.buttuns}>
                         <button className={styles.link}>
                           <Link to="/test" className={styles.btn}>
-                            Take the test
+                            Discover
                           </Link>
                         </button>
                       </div>

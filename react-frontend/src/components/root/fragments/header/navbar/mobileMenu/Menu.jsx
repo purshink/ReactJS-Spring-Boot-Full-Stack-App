@@ -33,7 +33,7 @@ const Menu = () => {
               <NavLink to="/user-home">Home</NavLink>
             </li>
             <li className={styles.nav_link}>
-              <NavLink to="/test">Test</NavLink>
+              <NavLink to="/test">Discover</NavLink>
             </li>
             <li className={styles.nav_link}>
               <NavLink to="/my-hobbies" className="nav-link">

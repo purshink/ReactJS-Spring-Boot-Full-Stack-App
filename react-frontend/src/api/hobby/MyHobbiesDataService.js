@@ -5,7 +5,11 @@ const MyHobbiesDataService = (id) => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/hobbies/saved-hobbies/${username}`);
+    return axios.get(`http://localhost:8080/hobbies/saved/`, {
+      params: {
+        username,
+      },
+    });
   } catch (err) {
     let error = "";
     if (err.response) {

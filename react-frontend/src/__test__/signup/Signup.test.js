@@ -121,7 +121,7 @@ it("should sign up user successfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/users/signup`,
+    `http://localhost:8080/signup`,
     info
   );
   expect(result).toEqual({

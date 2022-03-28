@@ -2,7 +2,11 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const LoginService = (username) => {
   try {
-    return axios.post(`http://localhost:8080/users/login/${username}`);
+    return axios.post(`http://localhost:8080/login`, null, {
+      params: {
+        username,
+      },
+    });
   } catch (err) {
     let error = "";
     if (err.response) {

@@ -5,7 +5,7 @@ const SaveHobbyService = (id) => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/hobbies/save-hobby`, {
+    return axios.post(`http://localhost:8080/hobbies/save`, null, {
       params: {
         id,
         username,

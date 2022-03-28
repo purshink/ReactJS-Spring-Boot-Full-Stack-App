@@ -148,21 +148,19 @@ public class HobbyControllerTest extends AbstractTest{
 
     @Test
     public void create_offer_should_work() throws Exception {
-        String uri = "/hobbies/create-offer";
+        String uri = "/hobbies";
         String inputJson = super.mapToJson(hobbyInfoDto);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
-
-
     }
 
 
     @Test
     public void hobby_details_should_work() throws Exception {
-        String uri = "/hobbies/hobby-details/1";
+        String uri = "/hobbies/1";
         Long id = 1L;
         String inputJson = super.mapToJson(id);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
@@ -175,24 +173,8 @@ public class HobbyControllerTest extends AbstractTest{
     }
 
     @Test
-    public void saved_hobbies_should_work() throws Exception {
-        String uri = "/hobbies/saved-hobbies/user";
-        when(userService.findAppClientByUsername(username)).thenReturn(client);
-        when(service.findSavedHobbies(client)).thenReturn(hobbies);
-        String inputJson = super.mapToJson(username);
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        assertEquals(200, status);
-
-        String content = mvcResult.getResponse().getContentAsString();
-        Hobby[] hobbyList = super.mapFromJson(content, Hobby[].class);
-        assertTrue(hobbyList.length > 0);
-    }
-    @Test
     public void delete_hobby_should_work() throws Exception {
-        String uri = "/hobbies/delete-hobby/1";
+        String uri = "/hobbies/1";
         long id = 1L;
         when(service.deleteHobby(id)).thenReturn(true);
 
@@ -206,7 +188,7 @@ public class HobbyControllerTest extends AbstractTest{
 
     @Test
     public void delete_hobby_should_work_when_not_found() throws Exception {
-        String uri = "/hobbies/delete-hobby/1";
+        String uri = "/hobbies/1";
         long id = 1L;
 
         when(service.deleteHobby(id)).thenReturn(false);
@@ -221,7 +203,7 @@ public class HobbyControllerTest extends AbstractTest{
 
     @Test
     public void update_hobby_should_work() throws Exception {
-        String uri = "/hobbies/update-hobby";
+        String uri = "/hobbies";
 
         String inputJson = super.mapToJson(hobbyInfoUpdateDto);
 

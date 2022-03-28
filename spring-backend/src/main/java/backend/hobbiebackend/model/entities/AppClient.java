@@ -66,7 +66,7 @@ public class AppClient extends UserEntity implements Serializable {
         this.testResults = testResults;
     }
 
-    @OneToMany
+    @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     public List<Hobby> getSaved_hobbies() {
         return saved_hobbies;

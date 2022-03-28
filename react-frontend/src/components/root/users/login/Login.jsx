@@ -56,6 +56,7 @@ const Login = () => {
       console.log(res.data);
 
       if (res.status !== 200) {
+        setLoading(false);
         setLoginState((prevState) => ({ ...prevState, hasLoginFailed: true }));
         setLoginState((prevState) => ({
           ...prevState,
@@ -68,6 +69,7 @@ const Login = () => {
         const response = await LoginService(credentials.username, jwtToken);
         console.log(response);
         if (response.status !== 200) {
+          setLoading(false);
           setLoginState((prevState) => ({
             ...prevState,
             hasLoginFailed: true,

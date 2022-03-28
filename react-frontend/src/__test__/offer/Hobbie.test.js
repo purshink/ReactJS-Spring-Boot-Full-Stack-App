@@ -22,37 +22,7 @@ it("should delete hobby successfully", async () => {
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
   expect(mockAxios.delete).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/delete-hobby/6`
-  );
-  expect(result).toEqual(6);
-});
-
-it("should save hobby successfully", async () => {
-  const id = 6;
-
-  mockAxios.get.mockReturnValueOnce(id);
-
-  const result = await SaveHobbyService(id);
-
-  expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/save-hobby`,
-    { params: { id: 6, username: "" } }
-  );
-  expect(result).toEqual(6);
-});
-
-it("should remove hobby successfully", async () => {
-  const id = 6;
-
-  mockAxios.get.mockReturnValueOnce(id);
-
-  const result = await RemoveHobbyService(id);
-
-  expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/remove-hobby`,
-    { params: { id: 6, username: "" } }
+    "http://localhost:8080/hobbies/6"
   );
   expect(result).toEqual(6);
 });

@@ -28,7 +28,7 @@ it("should post test results succsessfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/test/results`,
+    `http://localhost:8080/test`,
     test
   );
   expect(result).toEqual({

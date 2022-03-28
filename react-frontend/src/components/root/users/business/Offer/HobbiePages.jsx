@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import HobbyDetailsDataService from "../../../../../api/hobby/HobbyDetailsDataService";
-import {useMediaQuery} from 'beautiful-react-hooks'; 
+import { useMediaQuery } from "beautiful-react-hooks";
 import gallery_styles from "../../../../../css/Gallery.module.css";
 import DeleteHobbyService from "../../../../../api/hobby/DeleteHobbyService";
 import IsHobbySavedService from "../../../../../api/hobby/IsHobbySavedService";
@@ -22,7 +22,7 @@ const HobbiePages = () => {
   let params = useParams();
 
   const id = params.id;
-  const [currentPage, setCurrentPage] = useState("01");
+  const [currentPage, setCurrentPage] = useState("about");
 
   const [hobby, setHobby] = useState({
     name: "",
@@ -110,22 +110,24 @@ const HobbiePages = () => {
         }
       });
     }
-    HobbyDetailsDataService(id).then((response) => {
-      if (!unmounted) {
-        setHobby(response.data);
-        console.log(response.data);
-        setHobbieDiv({ showDiv: false });
-      }
-      if (!Object.keys(response.data).length) {
-        setHobbieDiv({ showDiv: true });
-      }
-    });
+    if (isBusinessLoggedIn || isUserLoggedIn) {
+      HobbyDetailsDataService(id).then((response) => {
+        if (!unmounted) {
+          setHobby(response.data);
+          console.log(response.data);
+          setHobbieDiv({ showDiv: false });
+        }
+        if (!Object.keys(response.data).length) {
+          setHobbieDiv({ showDiv: true });
+        }
+      });
+    }
     return () => {
       unmounted = true;
     };
-  }, [id, isUserLoggedIn, saved]);
+  }, [id, isUserLoggedIn, isBusinessLoggedIn, saved]);
 
-  const isColumnBasedSmall = useMediaQuery('(max-width: 1200px)');
+  const isColumnBasedSmall = useMediaQuery("(max-width: 1200px)");
 
   const changePage = (page) => {
     setCurrentPage(page);
@@ -157,7 +159,7 @@ const HobbiePages = () => {
                 : styles.hobbie_content
             }
           >
-            {currentPage !== "03" && (
+            {currentPage !== "gallery" && (
               <section className={styles.hobbie_cover}>
                 <img
                   className={styles.hobbie_cover}
@@ -177,28 +179,36 @@ const HobbiePages = () => {
               {!isColumnBasedSmall && (
                 <article className={styles.hobbie_pages}>
                   <span
-                    onClick={() => changePage("01")}
-                    className={currentPage === "01" ? styles.hobbie_active : ""}
+                    onClick={() => changePage("about")}
+                    className={
+                      currentPage === "about" ? styles.hobbie_active : ""
+                    }
                   >
-                    01
+                    about
                   </span>
                   <span
-                    onClick={() => changePage("02")}
-                    className={currentPage === "02" ? styles.hobbie_active : ""}
+                    onClick={() => changePage("more")}
+                    className={
+                      currentPage === "more" ? styles.hobbie_active : ""
+                    }
                   >
-                    02
+                    more
                   </span>
                   <span
-                    onClick={() => changePage("03")}
-                    className={currentPage === "03" ? styles.hobbie_active : ""}
+                    onClick={() => changePage("gallery")}
+                    className={
+                      currentPage === "gallery" ? styles.hobbie_active : ""
+                    }
                   >
-                    03
+                    gallery
                   </span>
                   <span
-                    onClick={() => changePage("04")}
-                    className={currentPage === "04" ? styles.hobbie_active : ""}
+                    onClick={() => changePage("contact")}
+                    className={
+                      currentPage === "contact" ? styles.hobbie_active : ""
+                    }
                   >
-                    04
+                    contact
                   </span>
                 </article>
               )}
@@ -206,44 +216,44 @@ const HobbiePages = () => {
               {isColumnBasedSmall && (
                 <article className={styles.hobbie_pages_horizontal}>
                   <span
-                    onClick={() => changePage("01")}
+                    onClick={() => changePage("about")}
                     className={
-                      currentPage === "01"
+                      currentPage === "about"
                         ? styles.hobbie_active_small
                         : styles.hobbie_small
                     }
                   >
-                    01
+                    about
                   </span>
                   <span
-                    onClick={() => changePage("02")}
+                    onClick={() => changePage("more")}
                     className={
-                      currentPage === "02"
+                      currentPage === "more"
                         ? styles.hobbie_active_small
                         : styles.hobbie_small
                     }
                   >
-                    02
+                    more
                   </span>
                   <span
-                    onClick={() => changePage("03")}
+                    onClick={() => changePage("gallery")}
                     className={
-                      currentPage === "03"
+                      currentPage === "gallery"
                         ? styles.hobbie_active_small
                         : styles.hobbie_small
                     }
                   >
-                    03
+                    gallery
                   </span>
                   <span
-                    onClick={() => changePage("04")}
+                    onClick={() => changePage("contact")}
                     className={
-                      currentPage === "04"
+                      currentPage === "contact"
                         ? styles.hobbie_active_small
                         : styles.hobbie_small
                     }
                   >
-                    04
+                    contact
                   </span>
                 </article>
               )}
@@ -259,11 +269,11 @@ const HobbiePages = () => {
                   </div>
                 )}
 
-                {currentPage === "01" && <p>{hobby.intro}</p>}
+                {currentPage === "about" && <p>{hobby.intro}</p>}
 
-                {currentPage === "02" && <p> {hobby.description} </p>}
+                {currentPage === "more" && <p> {hobby.description} </p>}
 
-                {currentPage === "03" && (
+                {currentPage === "gallery" && (
                   <section className={gallery_styles.gallery}>
                     <div className={gallery_styles.row}>
                       <article className={gallery_styles.column}>
@@ -295,9 +305,9 @@ const HobbiePages = () => {
                   </section>
                 )}
 
-                {currentPage === "04" && <p> {hobby.contactInfo} </p>}
+                {currentPage === "contact" && <p> {hobby.contactInfo} </p>}
 
-                {currentPage !== "03"  && (
+                {currentPage !== "gallery" && (
                   <article className={styles.buttons}>
                     {isBusinessLoggedIn && (
                       <div>

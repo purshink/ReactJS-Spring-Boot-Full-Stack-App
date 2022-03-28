@@ -151,10 +151,12 @@
   -webkit-text-fill-color: transparent;
   font-weight: bold;
   border-bottom: 2px solid rgb(255, 177, 33);
+  margin-right: 15%;
 }
 
 .hobbie_small {
   padding: 10px;
+  margin-right: 10%;
 }
 
 .hobbie_lable {
@@ -278,5 +280,15 @@
   }
   .hobbie_lable p {
     width: 90%;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .hobbie_active_small {
+    margin-right: 5%;
+  }
+
+  .hobbie_small {
+    margin-right: 5%;
   }
 }

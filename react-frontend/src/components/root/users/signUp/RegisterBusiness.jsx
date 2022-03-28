@@ -75,6 +75,7 @@ const RegisterBusiness = () => {
         })
         .catch((err) => {
           setError(true);
+          setLoading(false);
         });
     } else {
       console.log(errors);

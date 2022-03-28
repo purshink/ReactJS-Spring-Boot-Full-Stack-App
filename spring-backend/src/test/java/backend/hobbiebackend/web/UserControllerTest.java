@@ -111,7 +111,7 @@ class UserControllerTest extends AbstractTest {
 
     @Test
     public void signup_should_work() throws Exception {
-        String uri = "/users/signup";
+        String uri = "/signup";
 
         String inputJson = super.mapToJson(appClientSignUpDto);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -123,7 +123,7 @@ class UserControllerTest extends AbstractTest {
 
     @Test
     public void register_business_should_work() throws Exception {
-        String uri = "/users/register-business";
+        String uri = "/register";
 
         String inputJson = super.mapToJson(businessRegisterDto);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -134,7 +134,7 @@ class UserControllerTest extends AbstractTest {
     }
     @Test
     public void change_password_should_work() throws Exception {
-        String uri = "/users/change-password";
+        String uri = "/notification";
         String email = "email";
 
         when(userService.findUserByEmail(email)).thenReturn(appClient);
@@ -149,7 +149,7 @@ class UserControllerTest extends AbstractTest {
 
     @Test
     public void update_user_should_work() throws Exception {
-        String uri = "/users/update-user";
+        String uri = "/user";
 
         String inputJson = super.mapToJson(updateAppClientDto);
         appClient.setId(updateAppClientDto.getId());
@@ -165,7 +165,7 @@ class UserControllerTest extends AbstractTest {
 
     @Test
     public void update_business_should_work() throws Exception {
-        String uri = "/users/update-business";
+        String uri = "/business";
 
         String inputJson = super.mapToJson(updateBusinessDto);
         businessOwner.setId(updateBusinessDto.getId());
@@ -179,7 +179,7 @@ class UserControllerTest extends AbstractTest {
     }
     @Test
     public void delete_user_should_work_when_not_found() throws Exception {
-        String uri = "/users/delete-user/1";
+        String uri = "/user/1";
         Long id = 1L;
 
         when(userService.deleteUser(id)).thenReturn(false);
@@ -194,7 +194,7 @@ class UserControllerTest extends AbstractTest {
 
     @Test
     public void delete_user_should_work() throws Exception {
-        String uri = "/users/delete-user/1";
+        String uri = "/user/1";
         Long id = 1L;
 
         when(userService.deleteUser(id)).thenReturn(true);
@@ -205,22 +205,6 @@ class UserControllerTest extends AbstractTest {
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
-    }
-
-
-    @Test
-    public void login_should_work() throws Exception {
-        String uri = "/users/login/user";
-        String username = "user";
-
-        when(userService.findUserByUsername("user")).thenReturn(user);
-
-        String inputJson = super.mapToJson(username);
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
-        String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "USER");
     }
 
 

@@ -67,7 +67,7 @@ it("should authenticate user creadentials successfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/users/authenticate`,
+    `http://localhost:8080/authenticate`,
     {
       password: "123",
       username: "user",
@@ -85,7 +85,9 @@ it("should assign correct user role successfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/users/login/user`
+    "http://localhost:8080/login",
+    null,
+    { params: { username: "user" } }
   );
   expect(result).toEqual("USER");
 });

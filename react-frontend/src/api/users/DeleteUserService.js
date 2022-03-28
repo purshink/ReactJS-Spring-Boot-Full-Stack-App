@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const DeleteUserService = (id) => {
   try {
-    const res = axios.delete(`http://localhost:8080/users/delete-user/${id}`);
+    const res = axios.delete(`http://localhost:8080/user/${id}`);
 
     return res;
   } catch (err) {

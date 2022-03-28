@@ -60,6 +60,7 @@ const EditUserProfile = () => {
         navigate("/account-user");
       }
     } else {
+      setLoading(false);
       console.log(errors);
     }
   };
@@ -67,7 +68,7 @@ const EditUserProfile = () => {
   return (
     <>
       <main className={styles.form_style}>
-        <h2>Edit profile</h2>
+        <h2>Edit account</h2>
 
         <form id="userInfo" onSubmit={submitHandler}>
           <section className={styles.form_field}>

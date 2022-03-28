@@ -329,6 +329,7 @@ const CreateOffer = () => {
                   name="img"
                 />
               </article>
+
               {(errors.galleryImgUrl1 ||
                 errors.galleryImgUrl2 ||
                 errors.galleryImgUrl3 ||

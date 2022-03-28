@@ -43,7 +43,7 @@ public class BusinessOwner extends UserEntity {
         this.address = address;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public Set<Hobby> getHobby_offers() {
         return hobby_offers;
     }

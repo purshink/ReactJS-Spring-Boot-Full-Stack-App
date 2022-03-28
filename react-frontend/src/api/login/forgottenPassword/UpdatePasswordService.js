@@ -4,7 +4,7 @@ const UpdatePasswordService = (id, password) => {
   console.log(id, password);
 
   try {
-    return axios.post(`http://localhost:8080/users/change-password-new`, null, {
+    return axios.post(`http://localhost:8080/password`, null, {
       params: {
         id,
         password,

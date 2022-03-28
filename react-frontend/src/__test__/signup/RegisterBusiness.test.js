@@ -110,7 +110,7 @@ it("should register business successfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/users/register-business`,
+    `http://localhost:8080/register`,
     info
   );
   expect(result).toEqual({

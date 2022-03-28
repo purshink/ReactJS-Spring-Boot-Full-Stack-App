@@ -131,7 +131,7 @@ it("should create offer successfully", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/create-offer`,
+    `http://localhost:8080/hobbies`,
     info
   );
   expect(result).toEqual({

@@ -5,11 +5,6 @@
   border: 1px solid transparent;
   padding-bottom: 20px;
   height: auto;
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
 }
 #root {
   height: auto;
@@ -48,7 +43,7 @@ form {
 }
 
 a {
-  color: rgb(135, 158, 187);
+  color: #5f5f79;
   text-decoration: none;
 }
 

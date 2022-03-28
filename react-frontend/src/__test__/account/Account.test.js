@@ -19,9 +19,7 @@ it("should delete account successfully", async () => {
   const result = await DeleteUserService(id);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toHaveBeenCalledWith(
-    `http://localhost:8080/users/delete-user/6`
-  );
+  expect(mockAxios.delete).toHaveBeenCalledWith(`http://localhost:8080/user/6`);
   expect(result).toEqual(6);
 });
 

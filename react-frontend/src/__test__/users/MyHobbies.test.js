@@ -20,7 +20,8 @@ it("should return no saved hobbies", async () => {
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/saved-hobbies/`
+    "http://localhost:8080/hobbies/saved/",
+    { params: { username: "" } }
   );
   expect(result).toEqual([]);
 });
@@ -79,7 +80,8 @@ it("should render multiple saved hobbies", async () => {
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies/saved-hobbies/`
+    "http://localhost:8080/hobbies/saved/",
+    { params: { username: "" } }
   );
   expect(result).toEqual([
     {

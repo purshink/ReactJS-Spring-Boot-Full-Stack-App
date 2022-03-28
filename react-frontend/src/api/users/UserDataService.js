@@ -5,9 +5,11 @@ const UserDataService = () => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(
-      `http://localhost:8080/users/show-client-details/${username}`
-    );
+    return axios.get(`http://localhost:8080/client`, {
+      params: {
+        username,
+      },
+    });
   } catch (err) {
     let error = "";
     if (err.response) {

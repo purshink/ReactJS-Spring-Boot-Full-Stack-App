@@ -8,10 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Access;
 
 @RestController
-@RequestMapping("/test")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TestController {
 
@@ -26,7 +24,7 @@ public class TestController {
 
 
 
-    @PostMapping("/results")
+    @PostMapping("/test")
     public ResponseEntity<HttpStatus> saveTestResults(@RequestBody Test results) {
         this.testService.saveTestResults(results);
         return new ResponseEntity<>(HttpStatus.CREATED);

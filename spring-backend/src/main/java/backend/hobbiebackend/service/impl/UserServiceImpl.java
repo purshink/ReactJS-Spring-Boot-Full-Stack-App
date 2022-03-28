@@ -10,6 +10,7 @@ import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.model.repostiory.AppClientRepository;
 import backend.hobbiebackend.model.repostiory.BusinessOwnerRepository;
 import backend.hobbiebackend.model.repostiory.UserRepository;
+import backend.hobbiebackend.model.repostiory.UserRoleRepository;
 import backend.hobbiebackend.service.UserRoleService;
 import backend.hobbiebackend.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
 
+
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
                            AppClientRepository appClientRepository,
@@ -43,8 +45,8 @@ public class UserServiceImpl implements UserService {
         this.appClientRepository = appClientRepository;
         this.businessOwnerRepository = businessOwnerRepository;
         this.userRoleService = userRoleService;
-
         this.passwordEncoder = passwordEncoder;
+
     }
 
     @Override
@@ -198,7 +200,18 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             return false;
         }
+        Optional<BusinessOwner> byId = this.businessOwnerRepository.findById(user.getId());
 
+        if(byId.isPresent()){
+            List<AppClient> all = appClientRepository.findAll();
+            for (AppClient client : all) {
+                for (Hobby hobby : byId.get().getHobby_offers()) {
+                    client.getHobby_matches().remove(hobby);
+                    client.getSaved_hobbies().remove(hobby);
+                }
+                this.userRepository.save(client);
+            }
+        }
         userRepository.delete(user);
 
         return  true;

@@ -13,16 +13,12 @@ import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.model.jwt.JwtRequest;
 import backend.hobbiebackend.model.jwt.JwtResponse;
 import backend.hobbiebackend.security.HobbieUserDetailsService;
-import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.NotificationService;
 import backend.hobbiebackend.service.UserService;
 import backend.hobbiebackend.utility.JWTUtility;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,12 +30,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 
+
 @RestController
-@RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
-
-
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
@@ -75,34 +69,34 @@ public class UserController {
     }
 
 
-    @PostMapping("/register-business")
+    @PostMapping("/register")
     public ResponseEntity<?> registerBusiness(@RequestBody BusinessRegisterDto business){
 
 
-    if(this.userService.businessExists(business.getBusinessName() ) || this.userService.userExists(business.getUsername(), business.getEmail())){
-        throw new RuntimeException("Username or email address already in use.");
-    }
+        if(this.userService.businessExists(business.getBusinessName() ) || this.userService.userExists(business.getUsername(), business.getEmail())){
+            throw new RuntimeException("Username or email address already in use.");
+        }
 
         BusinessOwner businessOwner = this.userService.registerBusiness(business);
 
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
-    }   
+    }
 
 
 
 
-    @GetMapping("/show-client-details/{username}")
-    public AppClient showUserDetails(@PathVariable String username) {
+    @GetMapping("/client")
+    public AppClient showUserDetails(@RequestParam String username) {
             return  this.userService.findAppClientByUsername(username);
     }
 
 
-    @GetMapping("/show-business-details/{username}")
-    public BusinessOwner showBusinessDetails(@PathVariable String username) {
+    @GetMapping("/business")
+    public BusinessOwner showBusinessDetails(@RequestParam String username)  {
         return  this.userService.findBusinessByUsername(username);
     }
 
-    @PutMapping("/update-user")
+    @PutMapping("/user")
         public ResponseEntity<?>  updateUser(@RequestBody UpdateAppClientDto user) {
 
                     AppClient client = this.userService.findAppClientById(user.getId());
@@ -115,8 +109,8 @@ public class UserController {
             return new ResponseEntity<AppClient>(client, HttpStatus.CREATED);
 
     }
-    @PostMapping ("/change-password")
-    public ResponseEntity<?>  changePassword(@RequestBody String e) throws UnsupportedEncodingException {
+    @PostMapping ("/notification")
+    public ResponseEntity<?>  sendNotification(@RequestBody String e) throws UnsupportedEncodingException {
         String email = URLDecoder.decode(e, "UTF-8");
         email = email.substring(0, email.length()-1);
         UserEntity userByEmail = this.userService.findUserByEmail(email);
@@ -129,7 +123,7 @@ public class UserController {
         }
         return new ResponseEntity<>(userByEmail, HttpStatus.OK);
     }
-    @PostMapping("/change-password-new")
+    @PostMapping("/password")
     public ResponseEntity<?>  setUpNewPassword(@RequestParam Long id, String password) {
         UserEntity userById = this.userService.findUserById(id);
         userById.setPassword(this.passwordEncoder.encode(password));
@@ -137,23 +131,24 @@ public class UserController {
         return new ResponseEntity<UserEntity>(userById,HttpStatus.CREATED);
     }
 
-    @PutMapping("/update-business")
+    @PutMapping("/business")
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
-        if(this.userService.businessExists(business.getBusinessName() )){
+        if(this.userService.businessExists(business.getBusinessName()) && (!businessOwner.getBusinessName().equals(business.getBusinessName()))){
             throw new RuntimeException("Business name already in use.");
         }
                 businessOwner.setBusinessName(business.getBusinessName());
                 businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
                 businessOwner.setAddress(business.getAddress());
                 this.userService.saveUpdatedUser(businessOwner);
-    
+
         return new ResponseEntity<BusinessOwner>(businessOwner, HttpStatus.CREATED);
 
     }
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<Long> deleteUser(@PathVariable Long id){
+
         boolean isRemoved = this.userService.deleteUser(id);
 
         if (!isRemoved) {
@@ -186,9 +181,9 @@ public class UserController {
     }
 
 
-    @PostMapping("/login/{username}")
+    @PostMapping("/login")
     @CrossOrigin(origins = "http://localhost:4200")
-    public String logInUser(@PathVariable String username) {
+    public String logInUser(@RequestParam String username){
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()
                 .anyMatch(u-> u.getRole().equals(UserRoleEnum.USER))) {

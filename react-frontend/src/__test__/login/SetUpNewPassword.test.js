@@ -65,7 +65,7 @@ it("should update password correctly", async () => {
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/users/change-password-new`,
+    `http://localhost:8080/password`,
     null,
     { params: { id: "1", password: "n87" } }
   );

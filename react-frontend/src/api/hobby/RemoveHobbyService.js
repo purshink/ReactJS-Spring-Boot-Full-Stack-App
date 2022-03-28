@@ -5,7 +5,7 @@ const RemoveHobbyService = (id) => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/hobbies/remove-hobby`, {
+    return axios.delete(`http://localhost:8080/hobbies/remove`, {
       params: {
         id,
         username,

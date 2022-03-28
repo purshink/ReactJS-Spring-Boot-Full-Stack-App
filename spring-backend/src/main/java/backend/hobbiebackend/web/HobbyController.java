@@ -15,7 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -43,7 +47,7 @@ public class HobbyController {
 
 
 
-    @PostMapping("/create-offer")
+    @PostMapping
     public  ResponseEntity<HttpStatus> saveHobby(@RequestBody HobbyInfoDto info){
 
         Hobby offer = this.modelMapper.map(info, Hobby.class);
@@ -51,8 +55,13 @@ public class HobbyController {
         Location location = this.locationService.getLocationByName(info.getLocation());
         offer.setLocation(location);
         offer.setCategory(category);
-
+        BusinessOwner business = this.userService.findBusinessByUsername(info.getCreator());
+        Set<Hobby> hobby_offers = business.getHobby_offers();
+        hobby_offers.add(offer);
+        business.setHobby_offers(hobby_offers);
         this.hobbyService.createHobby(offer);
+        this.userService.saveUpdatedUser(business);
+
 
         return new ResponseEntity<>(HttpStatus.CREATED);
 
@@ -63,14 +72,14 @@ public class HobbyController {
         return  this.hobbyService.isHobbySaved(id, username);
     }
 
-    @GetMapping(value ="/hobby-details/{id}")
+    @GetMapping(value ="/{id}")
     public Hobby getHobbyDetails(@PathVariable Long id){
 
       return  this.hobbyService.findHobbieById(id);
     }
 
 
-    @GetMapping("/save-hobby")
+    @PostMapping ("/save")
     public ResponseEntity<Long> save(@RequestParam Long id, @RequestParam String username){
         Hobby hobby = this.hobbyService.findHobbieById(id);
 
@@ -84,7 +93,7 @@ public class HobbyController {
 
     }
 
-    @GetMapping("/remove-hobby")
+    @DeleteMapping("/remove")
     public ResponseEntity<Long> removeHobby(@RequestParam Long id, @RequestParam String username){
 
         Hobby hobby = this.hobbyService.findHobbieById(id);
@@ -99,7 +108,7 @@ public class HobbyController {
     }
 
 
-    @PutMapping("/update-hobby")
+    @PutMapping
     public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
         Hobby offer = this.modelMapper.map(info, Hobby.class);
         Category category = this.categoryService.findByName(info.getCategory());
@@ -111,7 +120,7 @@ public class HobbyController {
 
     }
 
-    @DeleteMapping("/delete-hobby/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws Exception {
         boolean isRemoved = this.hobbyService.deleteHobby(id);
 
@@ -121,8 +130,8 @@ public class HobbyController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/saved-hobbies/{username}")
-    public List<Hobby> savedHobbies(@PathVariable String username){
+    @GetMapping("/saved")
+    public List<Hobby> savedHobbies(@RequestParam String username)  {
         AppClient appClient = this.userService.findAppClientByUsername(username);
         return this.hobbyService.findSavedHobbies(appClient);
 

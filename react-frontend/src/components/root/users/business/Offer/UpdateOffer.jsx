@@ -165,7 +165,7 @@ const UpdateOffer = () => {
           })
           .catch((err) => {
             let error = "";
-
+            setLoading(false);
             if (err.response) {
               error += err.response;
             }
@@ -355,7 +355,7 @@ const UpdateOffer = () => {
         </form>
       </main>
 
-      <Footer class={style.footer_hobbie_details}/>
+      <Footer class={style.footer_hobbie_details} />
     </>
   );
 };

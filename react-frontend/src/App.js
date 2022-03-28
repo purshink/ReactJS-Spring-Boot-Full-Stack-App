@@ -34,10 +34,7 @@ function App() {
             <Route path="/register-business" element={<RegisterBusiness />} />
             <Route path="/login" element={<Login />} />
             <Route path="/change-password" element={<PasswordChange />} />
-            <Route
-              path="/change-password-new/:id"
-              element={<SetUpNewPassword />}
-            />
+            <Route path="/password/:id" element={<SetUpNewPassword />} />
           </Route>
           <Route element={<ProtectedRoutesUser />}>
             <Route path="/edit-profile" element={<EditUserProfile />} />

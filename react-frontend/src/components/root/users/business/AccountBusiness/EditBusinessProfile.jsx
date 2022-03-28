@@ -66,9 +66,11 @@ const EditBusinessProfile = () => {
           }
         })
         .catch((err) => {
+          setLoading(false);
           setError(true);
         });
     } else {
+      setLoading(false);
       console.log(errors);
     }
   };
@@ -76,7 +78,7 @@ const EditBusinessProfile = () => {
   return (
     <>
       <main className={styles.form_style}>
-        <h2>Edit Business Profile</h2>
+        <h2>Edit account</h2>
 
         {error && (
           <div className={styles.errors}>This business name already exist.</div>
