@@ -5,9 +5,11 @@ import { useState } from "react";
 import styles from "../../../../../css/Forms.module.css";
 import style from "../../../../../css/Footer.module.css";
 import UserEmailDataService from "../../../../../api/users/UserEmailDataService";
+import LoadingDotsDark from "../animation/LoadingDotsDark";
 
 const PasswordChange = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [found, setFound] = useState(true);
   const [errors, setErrors] = useState({});
@@ -29,6 +31,7 @@ const PasswordChange = () => {
     console.log(errors);
 
     if (Object.keys(errors).length === 0) {
+      setLoading(true);
       const res = await UserEmailDataService(email);
       console.log(res.status);
 
@@ -36,6 +39,7 @@ const PasswordChange = () => {
         setSent(true);
         setFound(true);
       } else {
+        setLoading(false);
         setFound(false);
       }
     }
@@ -77,9 +81,13 @@ const PasswordChange = () => {
                   </label>
                 </section>
               </div>
-              <button className={styles.button} onClick={sentClicked}>
-                Submit
-              </button>
+              {loading && <LoadingDotsDark className={styles.dots} />}
+
+              {!loading && (
+                <button className={styles.button} onClick={sentClicked}>
+                  Submit
+                </button>
+              )}
             </div>
           )}
           {sent && (

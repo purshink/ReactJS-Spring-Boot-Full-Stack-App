@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-
+import java.nio.charset.StandardCharsets;
 
 
 @RestController
@@ -110,10 +110,8 @@ public class UserController {
 
     }
     @PostMapping ("/notification")
-    public ResponseEntity<?>  sendNotification(@RequestBody String e) throws UnsupportedEncodingException {
-        String email = URLDecoder.decode(e, "UTF-8");
-        email = email.substring(0, email.length()-1);
-        UserEntity userByEmail = this.userService.findUserByEmail(email);
+    public ResponseEntity<?>  sendNotification(@RequestParam("email")  String e) {
+        UserEntity userByEmail = this.userService.findUserByEmail(e);
 
         if(userByEmail == null){
             throw new NotFoundException("User not found");
