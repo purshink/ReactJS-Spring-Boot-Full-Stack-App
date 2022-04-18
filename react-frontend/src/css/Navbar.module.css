@@ -54,6 +54,7 @@
     z-index: 99 !important;
     position: absolute;
     padding: 5px;
+    background: white;
     top: 6%;
     right: 5%;
     width: auto;
