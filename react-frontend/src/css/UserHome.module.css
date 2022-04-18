@@ -126,6 +126,8 @@
 }
 
 .intro_text p {
+  width: 280px;
+  margin: auto;
   margin-top: 5px;
   font-size: 14px;
   color: #585772;
@@ -134,6 +136,8 @@
 /* .cta */
 .buttuns {
   padding: 20px 0px 0px 0px;
+  width: 280px;
+  margin: auto;
 }
 /* .cta_second */
 .btn {

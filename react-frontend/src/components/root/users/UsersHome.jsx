@@ -121,8 +121,7 @@ const UserHome = () => {
           )}
         </section>
       </main>
-      {!welcomeDiv.showDiv && <Footer class={style.footer} />}
-      {welcomeDiv.showDiv && <Footer class={style.footer_cover} />}
+      <Footer class={style.footer_hobbie_details} />
     </>
   );
 };

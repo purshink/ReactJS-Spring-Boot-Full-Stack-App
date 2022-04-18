@@ -10,7 +10,6 @@
   box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 200px;
 }
 
 .test_form_end {
@@ -23,7 +22,6 @@
   border-radius: 15px;
   padding: 80px;
   box-shadow: 10px 10px 12px 12px rgba(248, 246, 246, 0.75);
-  margin-bottom: 200px;
 }
 
 .test_end {
@@ -106,7 +104,6 @@
     width: 90%;
     padding: 0;
     margin: 20px 5%;
-    margin-bottom: 200px;
   }
 
   .test_form_end {

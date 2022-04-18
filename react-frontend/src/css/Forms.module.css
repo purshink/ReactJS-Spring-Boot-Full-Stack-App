@@ -78,33 +78,6 @@ input[type="checkbox"] {
   transform: scale(1.5);
 }
 
-input[type="checkbox"] {
-  width: 20px;
-  height: 2 0px;
-  margin-right: 8px;
-  cursor: pointer;
-  font-size: 17px;
-  visibility: hidden;
-  margin-top: 40px;
-  overflow-wrap: normal;
-  margin-bottom: 40px;
-}
-
-input[type="checkbox"]:after {
-  content: " ";
-  background-color: #fff;
-  display: inline-block;
-  margin-left: 10px;
-  padding-bottom: 5px;
-  color: #00bff0;
-  width: 22px;
-  height: 12px;
-  visibility: visible;
-  border: 1px solid #00bff0;
-  padding-left: 3px;
-  border-radius: 5px;
-}
-
 .content_name {
   bottom: 5px;
   left: 0px;
@@ -167,9 +140,11 @@ input[type="checkbox"] {
   margin-top: 40px;
   overflow-wrap: normal;
   margin-bottom: 40px;
+  -moz-appearance:initial;
 }
 
 input[type="checkbox"]:after {
+  -moz-appearance:initial;
   content: " ";
   background-color: #fff;
   display: inline-block;

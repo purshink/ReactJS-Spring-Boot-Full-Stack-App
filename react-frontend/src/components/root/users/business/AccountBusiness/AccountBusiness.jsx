@@ -109,7 +109,7 @@ const AccountBusiness = () => {
           <BackgroundHome />
         </section>
       </main>
-      <Footer class={style.footer} />
+      <Footer class={style.footer_hobbie_details} />
     </>
   );
 };

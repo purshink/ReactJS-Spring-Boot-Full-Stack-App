@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 .hobbie_main {
   margin: auto 100px;
+  min-height: 80%;
   padding-bottom: 5%;
 }
 
