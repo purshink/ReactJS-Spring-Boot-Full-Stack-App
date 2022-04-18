@@ -132,20 +132,6 @@ class UserControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
-    @Test
-    public void change_password_should_work() throws Exception {
-        String uri = "/notification";
-        String email = "email";
-
-        when(userService.findUserByEmail(email)).thenReturn(appClient);
-
-        String inputJson = super.mapToJson(email);
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        assertEquals(200, status);
-    }
 
     @Test
     public void update_user_should_work() throws Exception {

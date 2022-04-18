@@ -21,6 +21,7 @@ public class AppClient extends UserEntity implements Serializable {
     private List<Hobby> saved_hobbies;
 
 
+
     public AppClient() {
     }
 
@@ -75,4 +76,6 @@ public class AppClient extends UserEntity implements Serializable {
     public void setSaved_hobbies(List<Hobby> saved_hobbies) {
         this.saved_hobbies = saved_hobbies;
     }
+
+
 }
