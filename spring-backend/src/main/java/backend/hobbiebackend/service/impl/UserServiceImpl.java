@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
             AppClient user = new AppClient();
             user.setUsername("user");
             user.setEmail("n13@gmail.com");
-            user.setPassword(this.passwordEncoder.encode("123"));
+            user.setPassword(this.passwordEncoder.encode("topsecret"));
             user.setRoles(List.of(userRole));
             user.setFullName("Nikoleta Doykova");
             user.setGender(GenderEnum.FEMALE);
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
             BusinessOwner business_user = new BusinessOwner();
             business_user.setUsername("business");
             business_user.setEmail("n10@gamil.com");
-            business_user.setPassword(this.passwordEncoder.encode("123"));
+            business_user.setPassword(this.passwordEncoder.encode("topsecret"));
             business_user.setRoles(List.of(businessRole));
             business_user.setBusinessName("My Business name");
             business_user.setAddress("My business address");
