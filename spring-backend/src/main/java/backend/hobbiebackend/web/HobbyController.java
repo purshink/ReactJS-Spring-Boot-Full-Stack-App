@@ -8,6 +8,8 @@ import backend.hobbiebackend.service.CategoryService;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.LocationService;
 import backend.hobbiebackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -68,11 +70,13 @@ public class HobbyController {
     }
 
     @GetMapping(value ="/is-saved")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public boolean isHobbySaved(@RequestParam Long id, @RequestParam String username){
         return  this.hobbyService.isHobbySaved(id, username);
     }
 
     @GetMapping(value ="/{id}")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public Hobby getHobbyDetails(@PathVariable Long id){
 
       return  this.hobbyService.findHobbieById(id);
@@ -80,6 +84,7 @@ public class HobbyController {
 
 
     @PostMapping ("/save")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Long> save(@RequestParam Long id, @RequestParam String username){
         Hobby hobby = this.hobbyService.findHobbieById(id);
 
@@ -94,6 +99,7 @@ public class HobbyController {
     }
 
     @DeleteMapping("/remove")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Long> removeHobby(@RequestParam Long id, @RequestParam String username){
 
         Hobby hobby = this.hobbyService.findHobbieById(id);
@@ -109,6 +115,7 @@ public class HobbyController {
 
 
     @PutMapping
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> updateHobby(@RequestBody HobbyInfoUpdateDto info) throws Exception {
         Hobby offer = this.modelMapper.map(info, Hobby.class);
         Category category = this.categoryService.findByName(info.getCategory());
@@ -121,6 +128,7 @@ public class HobbyController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Long> deleteHobby(@PathVariable Long id) throws Exception {
         boolean isRemoved = this.hobbyService.deleteHobby(id);
 
@@ -131,6 +139,7 @@ public class HobbyController {
     }
 
     @GetMapping("/saved")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public List<Hobby> savedHobbies(@RequestParam String username)  {
         AppClient appClient = this.userService.findAppClientByUsername(username);
         return this.hobbyService.findSavedHobbies(appClient);

@@ -14,6 +14,11 @@
       "name": "jwt.secret",
       "type": "java.lang.String",
       "description": "Description for jwt.secret."
+    },
+    {
+      "name": "springdoc.swagger-ui.disable-swagger-default-url",
+      "type": "java.lang.String",
+      "description": "Description for springdoc.swagger-ui.disable-swagger-default-url."
     }
   ]
 }

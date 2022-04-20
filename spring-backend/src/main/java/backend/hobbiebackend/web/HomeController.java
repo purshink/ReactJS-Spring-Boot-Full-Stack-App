@@ -7,6 +7,8 @@ import backend.hobbiebackend.model.entities.enums.UserRoleEnum;
 import backend.hobbiebackend.service.HobbyService;
 import backend.hobbiebackend.service.UserRoleService;
 import backend.hobbiebackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,7 @@ public class HomeController {
     }
 
     @GetMapping( "/home")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public Set<Hobby> hobbiesShow(@RequestParam String username,@RequestParam String role) {
 
         if(role.equals("user")){

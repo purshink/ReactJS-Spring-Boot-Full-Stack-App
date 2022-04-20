@@ -16,6 +16,8 @@ import backend.hobbiebackend.security.HobbieUserDetailsService;
 import backend.hobbiebackend.service.NotificationService;
 import backend.hobbiebackend.service.UserService;
 import backend.hobbiebackend.utility.JWTUtility;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.notificationService = notificationService;
         this.jwtUtility = jwtUtility;
-
         this.authenticationManager = authenticationManager;
         this.hobbieUserDetailsService = hobbieUserDetailsService;
     }
@@ -72,7 +73,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerBusiness(@RequestBody BusinessRegisterDto business){
 
-
         if(this.userService.businessExists(business.getBusinessName() ) || this.userService.userExists(business.getUsername(), business.getEmail())){
             throw new RuntimeException("Username or email address already in use.");
         }
@@ -86,17 +86,20 @@ public class UserController {
 
 
     @GetMapping("/client")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public AppClient showUserDetails(@RequestParam String username) {
             return  this.userService.findAppClientByUsername(username);
     }
 
 
     @GetMapping("/business")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public BusinessOwner showBusinessDetails(@RequestParam String username)  {
         return  this.userService.findBusinessByUsername(username);
     }
 
     @PutMapping("/user")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
         public ResponseEntity<?>  updateUser(@RequestBody UpdateAppClientDto user) {
 
                     AppClient client = this.userService.findAppClientById(user.getId());
@@ -110,6 +113,7 @@ public class UserController {
 
     }
     @PostMapping ("/notification")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  sendNotification(@RequestParam("email")  String e) {
         UserEntity userByEmail = this.userService.findUserByEmail(e);
 
@@ -122,6 +126,7 @@ public class UserController {
         return new ResponseEntity<>(userByEmail, HttpStatus.OK);
     }
     @PostMapping("/password")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  setUpNewPassword(@RequestParam Long id, String password) {
         UserEntity userById = this.userService.findUserById(id);
         userById.setPassword(this.passwordEncoder.encode(password));
@@ -130,6 +135,7 @@ public class UserController {
     }
 
     @PutMapping("/business")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
@@ -145,6 +151,7 @@ public class UserController {
 
     }
     @DeleteMapping("/user/{id}")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Long> deleteUser(@PathVariable Long id){
 
         boolean isRemoved = this.userService.deleteUser(id);
@@ -181,6 +188,7 @@ public class UserController {
 
     @PostMapping("/login")
     @CrossOrigin(origins = "http://localhost:4200")
+    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public String logInUser(@RequestParam String username){
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()

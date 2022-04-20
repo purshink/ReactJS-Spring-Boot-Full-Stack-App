@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -39,6 +40,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     }
 
     @Override
+    public void configure(final WebSecurity webSecurity) {
+        webSecurity.ignoring().antMatchers(
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/swagger-ui/index.html");
+    }
+
+    @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -50,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
             http.csrf()
                     .disable()
                     .authorizeRequests()
-                    .antMatchers("/register","/signup","/authenticate", "/notification", "/password")
+                    .antMatchers("/register","/signup","/authenticate", "/notification", "/password","/swagger-ui/index.html","/v3/api-docs","/configuration/ui","/swagger-resources/**",
+                            "/configuration/security","/swagger-ui/*","/webjars/**","/v3/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
