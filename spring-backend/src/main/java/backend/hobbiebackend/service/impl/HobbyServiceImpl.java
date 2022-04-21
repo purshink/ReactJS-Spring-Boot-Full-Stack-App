@@ -83,13 +83,13 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     private void deleteResourcesById(Hobby byId) throws Exception {
-        String profileImgUrl = byId.getProfileImg_id();
-        String galleryImgUrl1 = byId.getGalleryImg1_id();
-        String galleryImgUrl2 = byId.getGalleryImg2_id();
-        String galleryImgUrl3 = byId.getGalleryImg3_id();
+        String profileImgId = byId.getProfileImg_id();
+        String galleryImgId1 = byId.getGalleryImg1_id();
+        String galleryImgId2 = byId.getGalleryImg2_id();
+        String galleryImgId3 = byId.getGalleryImg3_id();
 
 
-        cloudinary.api().deleteResources(Arrays.asList(profileImgUrl, galleryImgUrl1,galleryImgUrl2,galleryImgUrl3),
+        cloudinary.api().deleteResources(Arrays.asList(profileImgId, galleryImgId1,galleryImgId2,galleryImgId3),
                 Map.of("invalidate", true ));
 
     }

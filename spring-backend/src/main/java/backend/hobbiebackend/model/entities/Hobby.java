@@ -23,16 +23,12 @@ public class Hobby extends BaseEntity{
     private String galleryImg1_id;
     private String galleryImg2_id;
     private String galleryImg3_id;
-
     private String contactInfo;
-
-    //TODO HOBBY ADDRESS
-
-
 
 
     public Hobby() {
     }
+    
     @Column(name = "profile_img_id")
     public String getProfileImg_id() {
         return profileImg_id;

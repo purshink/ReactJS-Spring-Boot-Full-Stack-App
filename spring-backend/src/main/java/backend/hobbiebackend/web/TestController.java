@@ -27,7 +27,7 @@ public class TestController {
 
 
     @PostMapping("/test")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Save test results", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<HttpStatus> saveTestResults(@RequestBody Test results) {
         this.testService.saveTestResults(results);
         return new ResponseEntity<>(HttpStatus.CREATED);

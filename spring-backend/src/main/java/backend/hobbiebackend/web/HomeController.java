@@ -30,7 +30,7 @@ public class HomeController {
     }
 
     @GetMapping( "/home")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Show client/business homepage", security = @SecurityRequirement(name = "bearerAuth"))
     public Set<Hobby> hobbiesShow(@RequestParam String username,@RequestParam String role) {
 
         if(role.equals("user")){

@@ -58,6 +58,7 @@ public class UserController {
 
 
     @PostMapping("/signup")
+    @Operation(summary = "Create new client-user")
     public ResponseEntity<?> signup(@RequestBody AppClientSignUpDto user){
         System.out.println(user);
 
@@ -71,6 +72,7 @@ public class UserController {
 
 
     @PostMapping("/register")
+    @Operation(summary = "Create new business-user")
     public ResponseEntity<?> registerBusiness(@RequestBody BusinessRegisterDto business){
 
         if(this.userService.businessExists(business.getBusinessName() ) || this.userService.userExists(business.getUsername(), business.getEmail())){
@@ -86,20 +88,20 @@ public class UserController {
 
 
     @GetMapping("/client")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "show client-user information", security = @SecurityRequirement(name = "bearerAuth"))
     public AppClient showUserDetails(@RequestParam String username) {
             return  this.userService.findAppClientByUsername(username);
     }
 
 
     @GetMapping("/business")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Show business-user information", security = @SecurityRequirement(name = "bearerAuth"))
     public BusinessOwner showBusinessDetails(@RequestParam String username)  {
         return  this.userService.findBusinessByUsername(username);
     }
 
     @PutMapping("/user")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Update client-user information (use existing user id)", security = @SecurityRequirement(name = "bearerAuth"))
         public ResponseEntity<?>  updateUser(@RequestBody UpdateAppClientDto user) {
 
                     AppClient client = this.userService.findAppClientById(user.getId());
@@ -113,7 +115,7 @@ public class UserController {
 
     }
     @PostMapping ("/notification")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Send notification with password reset link", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  sendNotification(@RequestParam("email")  String e) {
         UserEntity userByEmail = this.userService.findUserByEmail(e);
 
@@ -125,8 +127,8 @@ public class UserController {
         }
         return new ResponseEntity<>(userByEmail, HttpStatus.OK);
     }
-    @PostMapping("/password")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @PutMapping("/password")
+    @Operation(summary = "Update password, (use existing user id)", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  setUpNewPassword(@RequestParam Long id, String password) {
         UserEntity userById = this.userService.findUserById(id);
         userById.setPassword(this.passwordEncoder.encode(password));
@@ -135,7 +137,7 @@ public class UserController {
     }
 
     @PutMapping("/business")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Update business-user, (use existing user id)", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?>  updateBusiness(@RequestBody UpdateBusinessDto business) {
 
         BusinessOwner businessOwner = this.userService.findBusinessOwnerById(business.getId());
@@ -151,7 +153,7 @@ public class UserController {
 
     }
     @DeleteMapping("/user/{id}")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Delete user", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Long> deleteUser(@PathVariable Long id){
 
         boolean isRemoved = this.userService.deleteUser(id);
@@ -163,6 +165,7 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
+    @Operation(summary = "Authenticate user and get JWT Token")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
         try {
@@ -188,7 +191,7 @@ public class UserController {
 
     @PostMapping("/login")
     @CrossOrigin(origins = "http://localhost:4200")
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Login based on user role after authentication", security = @SecurityRequirement(name = "bearerAuth"))
     public String logInUser(@RequestParam String username){
         UserEntity userByUsername = this.userService.findUserByUsername(username);
         if (userByUsername.getRoles().stream()

@@ -114,7 +114,7 @@ const SetUpNewPassword = () => {
           </div>
         </form>
       </main>
-      <Footer class={style.footer} />
+      <Footer class={style.footer_cover} />
       <Background />
     </>
   );
