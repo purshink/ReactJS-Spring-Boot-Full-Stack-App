@@ -28,7 +28,7 @@ public class Hobby extends BaseEntity{
 
     public Hobby() {
     }
-    
+
     @Column(name = "profile_img_id")
     public String getProfileImg_id() {
         return profileImg_id;

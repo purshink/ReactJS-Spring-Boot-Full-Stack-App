@@ -168,7 +168,23 @@
                     --add-opens java.base/java.time=ALL-UNNAMED
                 </argLine>
             </configuration>
-        </plugin></plugins>
+        </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>backend.hobbiebackend.HobbieBackendApplication</mainClass>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
         <testResources>
             <testResource>
