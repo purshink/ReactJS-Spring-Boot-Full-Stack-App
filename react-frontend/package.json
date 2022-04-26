@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "PORT=4200 react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
     "eject": "react-scripts eject"
   },
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "@types/jsdom": "^11.12.0",
-    "axios-mock-adapter": "^1.20.0"
+    "axios-mock-adapter": "^1.20.0",
+    "cross-env": "^7.0.3"
   }
 }
