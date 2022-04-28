@@ -1,5 +1,4 @@
 
-
 <b>ReactJS-Spring-Boot-Full-Stack-App</b>
 <hr>
 
@@ -27,136 +26,6 @@ spring-backend stores its data in a MySql database.
 
 spring-backend has the following endpoints
 
-<table>
-<tbody>
-<tr class="odd">
-<td><b>Endpoint</b></td>
-<td><b>Secured</b></td>
-<td><b>Roles</b></td>
-</tr>
-<tr class="even">
-<td>POST /users/authenticate</td>
-<td>NO</td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="odd">
-<td><p>POST /hobbies/create-offer</p>
-<p>{“name”,”slogan”, “category”, “intro”, “description”,”price”,”creator”,”location”,”profileImgUrl”,”galleryImgUrl1”,</p>
-<p>“galleryImgUrl2”,”galleryImgUrl3”,</p>
-<p>“contactInfo”</p>
-<p>}</p></td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="even">
-<td>DELETE /hobbies/delete-hobby/{sbdbId}</td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="odd">
-<td>GET /user-home/{sbdbUsername}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="even">
-<td>GET /hobbies/hobby-details/{sbdbId}</td>
-<td>YES</td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="odd">
-<td>GET /hobbies/is-saved {“id”, “username”}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="even">
-<td>GET /hobbies/saved-hobbies/{sbdbUsername}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="odd">
-<td>GET /business-owner/{sbdbUsername}</td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="even">
-<td>GET /hobbies/remove-hobby {“id”, “username”}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="odd">
-<td>GET /hobbies/remove-hobby {“id”, “username”}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="even">
-<td><p>PUT /hobbies/update-hobby </p>
-<p>{“name”,”slogan”, “category”, “intro”,</p>
-<p>“description”,”price”,”creator”,”location”,”profileImgUrl”,”galleryImgUrl1”,</p>
-<p>“galleryImgUrl2”,”galleryImgUrl3”,</p>
-<p>“contactInfo”, “id”</p>
-<p>}</p></td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="odd">
-<td>POST /users/login/{sbdbUsername} </td>
-<td>YES</td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="even">
-<td><p>POST /test/results {“categoryOne”,” categoryTwo”, “categoryThree”, “ categoryFour”,” categoryFive”, “ categorySix”, “ categorySeven”, “location”</p>
-<p>}</p></td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="odd">
-<td>POST /users/change-password {“email”}</td>
-<td><p>NO</p></td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="even">
-<td>POST /users/change-password-new {“id”, “username”}</td>
-<td><p>NO </p>
-<p>(link from Email)</p></td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="odd">
-<td>POST /users/register-business {“username”,”businessname”, “address”, “email”,”password”, “repeatpassword”}</td>
-<td>NO</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="even">
-<td>POST /users/rsignup {“username”,”fullName”, “gender”, “email”,”password”, “repeatpassword”}</td>
-<td>NO</td>
-<td>USER</td>
-</tr>
-<tr class="odd">
-<td>GET users/show-business-details/{sbdbUsername}</td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="even">
-<td>DELETE users/delete-user/{sbdbId}</td>
-<td>YES</td>
-<td>USER and BUSINESS</td>
-</tr>
-<tr class="odd">
-<td>PUT users/update-business {”businessname”, “address”,”password”, “id”}</td>
-<td>YES</td>
-<td>BUSINESS</td>
-</tr>
-<tr class="even">
-<td>PUT users/update-USER {,”fullName”, “gender”, ”password”, “id”}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-<tr class="odd">
-<td>GET users/show-client-details/{sbdbUsername}</td>
-<td>YES</td>
-<td>USER</td>
-</tr>
-</tbody>
-</table>
 
 <b>-react-frontend</b>
 
@@ -177,37 +46,71 @@ react-frontend uses Semantic UI React as CSS-styled framework.
 
 <hr></hr>
 
-Install NodeJs.
+Clone the repository:
+
+<pre>git clone https://github.com/purshink/ReactJS-Spring-Boot-Full-Stack-App.git</pre>
+
+Navigate to the newly created folder:
+
+<pre>cd  ReactJS-Spring-Boot-Full-Stack-App</pre>
+ 
 
 <b>Frontend -</b>
 
+Install NodeJs.v.16.13.1 /npm v.8.3.0
 
-<pre>Open ./react-frontend</pre>
+Navigate to react-frontend subfolder:
+ 
+<pre>cd react-frontend</pre>
 
-<pre>Install the modules - npm i</pre>
+Install the modules
 
-<pre>Start the application on local host - npm start</pre>
+<pre>npm i</pre>
 
-<pre>The application will run on http://localhost:4200</pre>
+Start the application on local host:
 
--React JS
+<pre>npm start</pre>
 
--Axios - API Calls
+Navigate to:
 
+http://localhost:4200
+
+ 
 <b>Backend -</b>
 Install JDK 11.0.11
+Install docker -v 20.10.7
+Install docker-compose -v 1.8.0
 
-<pre>Open ./spring-backend on any IDE (IntelliJ/Eclipse etc.) and run the application.</pre>
+Navigate to spring-backend subfolder:
+
+<pre>cd spring-backend</pre>
+
+Run the project with:
+
+<pre>docker-compose up --build</pre>
+
+
+The project has the following endpoints:
+
+http://localhost:8080/swagger-ui/index.html
+
+IMPORTANT: to explore api enter url:  /v3/api-docs
+
+NOTE: Testing API 
+
+-/signup (create client-user) or /register (create business-user)
+
+-/authenticate (returns JWT authentication token)
+
+-use JWT token in order to authorize access to secured endpoints (click the lock icon or use the Authorize button on the upper right corner - then paste JWT Token )
+
+NOTE: /notification endpoint will return an internal server error if you don't specify spring.mail credentials first.
 
 <pre>The backend will run on http://localhost:8080 </pre>
 
--Spring Boot
+<b>Spring Mail</b>
 
--Basic Authentication and JWT implemented both using Spring Security.
+Make sure to specify a valid spring.mail.username and spring.mail.password in the application.properties file in order to be able to send an Email confirmation for updating user entries.
 
--Spring Data JPA + MySQL 
+IMPORTANT: if you decide not to specify mail credentials, you will get javax.mail.AuthenticationFailedException. The rest of the application should work normally despite this exception.
 
-<b>Database -</b>
-
-Make sure to specify spring.datasource.username and spring.datasource.password in the application.properties file.
-The databse will be created with the start of the application. No set up required.

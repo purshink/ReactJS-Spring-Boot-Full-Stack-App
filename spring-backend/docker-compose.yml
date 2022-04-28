@@ -1,6 +1,15 @@
 version: "2"
 
 services:
+  mysqldb:
+    image: mysql:8-oracle
+
+    networks:
+      - springmysql-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=1
+      - MYSQL_DATABASE=hobbie_backend_db
+
   spring-backend:
     image: spring-backend
     build:
@@ -9,20 +18,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/hobbie_backend_db?useSSL=false
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/hobbie_backend_db?useSSL=false&serverTimezone=Europe/Paris
     networks:
       - springmysql-net
     depends_on:
       - mysqldb
-
-  mysqldb:
-    image: mysql:5.7
-
-    networks:
-      - springmysql-net
-    environment:
-      - MYSQL_ROOT_PASSWORD=1
-      - MYSQL_DATABASE=hobbie_backend_db
 
 networks:
   springmysql-net:
