@@ -5,6 +5,7 @@
   border: 1px solid transparent;
   padding-bottom: 20px;
   height: auto;
+  width: 100%;
 }
 #root {
   height: auto;
@@ -51,4 +52,7 @@ button {
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  overflow-y: scroll;
+}
 

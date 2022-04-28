@@ -201,6 +201,7 @@ input[type="checkbox"]:checked:after {
   color: #73bacc;
   font-size: small;
   cursor: pointer;
+  left: 0 ;
 }
 
 .checkbox_choice_section {

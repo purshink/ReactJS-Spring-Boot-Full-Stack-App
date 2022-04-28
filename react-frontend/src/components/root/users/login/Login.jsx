@@ -107,67 +107,61 @@ const Login = () => {
             {loginState.showSuccessMessage && (
               <div className={styles.midErrors}>Login successful</div>
             )}
-
-            <div className={styles.form_field}>
-              <section className={styles.name_section}>
-                <input
-                  id="username"
-                  type="text"
-                  name="username"
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, username: e.target.value })
-                  }
-                  required
-                />
-                <label htmlFor="username" className={styles.label_name}>
-                  {Object.keys(errors).length === 0 && (
-                    <span className={styles.content_name}>Username</span>
-                  )}
-                  {errors.username && (
-                    <small className={styles.errors}>{errors.username}</small>
-                  )}
-                </label>
-              </section>
-            </div>
-
-            <div className={styles.form_field}>
-              <section className={styles.name_section}>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, password: e.target.value })
-                  }
-                  required
-                />
-                <label htmlFor="password" className={styles.label_name}>
-                  {Object.keys(errors).length === 0 && (
-                    <span className={styles.content_name}>Password</span>
-                  )}
-                  {errors.password && (
-                    <small className={styles.errors}>Password required</small>
-                  )}
-                </label>
-              </section>
-            </div>
-
-            <p>
-              <Link
-                to="/change-password"
-                className={styles.button_password_forgot}
-              >
-                Forgot your password?
-              </Link>
-            </p>
-            {loading && <LoadingDotsDark className={styles.dots} />}
-
-            {!loading && (
-              <button className={styles.button} onClick={loginClicked}>
-                Login
-              </button>
-            )}
           </div>
+
+          <div className={styles.form_field}>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              onChange={(e) =>
+                setCredentials({ ...credentials, username: e.target.value })
+              }
+              required
+            />
+            <label htmlFor="username" className={styles.label_name}>
+              {Object.keys(errors).length === 0 && (
+                <span className={styles.content_name}>Username</span>
+              )}
+              {errors.username && (
+                <small className={styles.errors}>{errors.username}</small>
+              )}
+            </label>
+          </div>
+
+          <div className={styles.form_field}>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={(e) =>
+                setCredentials({ ...credentials, password: e.target.value })
+              }
+              required
+            />
+            <label htmlFor="password" className={styles.label_name}>
+              {Object.keys(errors).length === 0 && (
+                <span className={styles.content_name}>Password</span>
+              )}
+              {errors.password && (
+                <small className={styles.errors}>Password required</small>
+              )}
+            </label>
+          </div>
+          <p>
+            <Link
+              to="/change-password"
+              className={styles.button_password_forgot}
+            >
+              Forgot your password?
+            </Link>
+          </p>
+          {loading && <LoadingDotsDark className={styles.dots} />}  
+          {!loading && (
+            <button className={styles.button} onClick={loginClicked}>
+              Login
+            </button>
+          )}
         </form>
       </main>
       <Footer class={style.footer_cover} />
