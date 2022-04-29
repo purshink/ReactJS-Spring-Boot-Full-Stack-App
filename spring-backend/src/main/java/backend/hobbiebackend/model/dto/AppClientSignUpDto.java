@@ -9,7 +9,6 @@ public class AppClientSignUpDto {
     private String email;
     private String password;
 
-
     public AppClientSignUpDto() {
     }
 

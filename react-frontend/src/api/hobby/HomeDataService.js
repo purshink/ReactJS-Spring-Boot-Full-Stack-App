@@ -12,7 +12,7 @@ const HomeDataService = () => {
       role = "user";
     }
 
-    return axios.get(`http://localhost:8080/home`, {
+    return axios.get(`/home`, {
       params: {
         username,
         role,

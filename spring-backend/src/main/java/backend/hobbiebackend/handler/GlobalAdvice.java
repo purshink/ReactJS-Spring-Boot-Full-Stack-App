@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 class GlobalAdvise {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalAdvise.class);
 
     @ExceptionHandler({FailToDeleteException.class, NotFoundException.class})

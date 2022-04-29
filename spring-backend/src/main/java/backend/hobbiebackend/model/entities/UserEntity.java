@@ -8,14 +8,12 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public class UserEntity extends BaseEntity implements Serializable{
-
+public class UserEntity extends BaseEntity implements Serializable {
 
     private String username;
     private String email;
     private List<UserRoleEntity> roles = new ArrayList<>();
     private String password;
-
 
 
     public UserEntity(String username, String email, List<UserRoleEntity> roles, String password) {
@@ -36,6 +34,7 @@ public class UserEntity extends BaseEntity implements Serializable{
     public void setUsername(String username) {
         this.username = username;
     }
+
     @Column(nullable = false)
     public String getPassword() {
         return password;
@@ -44,7 +43,8 @@ public class UserEntity extends BaseEntity implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    @Column(nullable = false,unique = true)
+
+    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }

@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.handler.NotFoundException;
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
@@ -26,15 +25,12 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final AppClientRepository appClientRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     private final UserRoleService userRoleService;
     private final PasswordEncoder passwordEncoder;
-
-
 
     @Autowired
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository,
@@ -52,9 +48,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> seedUsersAndUserRoles() {
         List<UserEntity> seededUsers = new ArrayList<>();
-
         //simple user
-        if(appClientRepository.count() == 0) {
+        if (appClientRepository.count() == 0) {
             UserRoleEntity userRoleEntity = new UserRoleEntity();
             userRoleEntity.setRole(UserRoleEnum.USER);
             UserRoleEntity userRole = this.userRoleService.saveRole(userRoleEntity);
@@ -69,15 +64,12 @@ public class UserServiceImpl implements UserService {
             user.setFullName("Nikoleta Doykova");
             user.setGender(GenderEnum.FEMALE);
 
-
-
             appClientRepository.save(user);
-            seededUsers.add( user);
+            seededUsers.add(user);
 
 
         }
-        if(businessOwnerRepository.count() == 0){
-
+        if (businessOwnerRepository.count() == 0) {
             UserRoleEntity userRoleEntity3 = new UserRoleEntity();
             userRoleEntity3.setRole(UserRoleEnum.BUSINESS_USER);
             UserRoleEntity businessRole = this.userRoleService.saveRole(userRoleEntity3);
@@ -90,58 +82,47 @@ public class UserServiceImpl implements UserService {
             business_user.setBusinessName("My Business name");
             business_user.setAddress("My business address");
             businessOwnerRepository.save(business_user);
-            seededUsers.add( business_user);
+            seededUsers.add(business_user);
         }
         return seededUsers;
     }
 
     @Override
     public AppClient register(AppClientSignUpDto user) {
-
-            UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
-            AppClient appClient = this.modelMapper.map(user, AppClient.class);
-            appClient.setRoles(List.of(userRole));
-                appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        return  appClientRepository.save(appClient);
+        UserRoleEntity userRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.USER);
+        AppClient appClient = this.modelMapper.map(user, AppClient.class);
+        appClient.setRoles(List.of(userRole));
+        appClient.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        return appClientRepository.save(appClient);
     }
 
     @Override
     public BusinessOwner registerBusiness(BusinessRegisterDto business) {
-
-            UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
-            BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
-            businessOwner.setRoles(List.of(businessUserRole));
-            businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
-           return businessOwnerRepository.save(businessOwner);
-
-
+        UserRoleEntity businessUserRole = this.userRoleService.getUserRoleByEnumName(UserRoleEnum.BUSINESS_USER);
+        BusinessOwner businessOwner = this.modelMapper.map(business, BusinessOwner.class);
+        businessOwner.setRoles(List.of(businessUserRole));
+        businessOwner.setPassword(this.passwordEncoder.encode(business.getPassword()));
+        return businessOwnerRepository.save(businessOwner);
     }
 
     @Override
     public BusinessOwner saveUpdatedUser(BusinessOwner businessOwner) {
-      return   this.businessOwnerRepository.save(businessOwner);
-
+        return this.businessOwnerRepository.save(businessOwner);
     }
 
     @Override
     public AppClient saveUpdatedUserClient(AppClient appClient) {
-     return    this.appClientRepository.save(appClient);
-
+        return this.appClientRepository.save(appClient);
     }
 
     @Override
     public UserEntity findUserById(Long userId) {
-
-
         Optional<UserEntity> byId = this.userRepository.findById(userId);
-
         if (byId.isPresent()) {
             return byId.get();
         } else {
             throw new NotFoundException("User not found");
         }
-
-
     }
 
     @Override
@@ -150,32 +131,26 @@ public class UserServiceImpl implements UserService {
         if (byEmail.isPresent()) {
             return byEmail.get();
         } else {
-            return  null;
+            return null;
         }
-
     }
 
     @Override
     public BusinessOwner findBusinessOwnerById(Long id) {
         Optional<BusinessOwner> businessOwner = this.businessOwnerRepository.findById(id);
-
-        if(businessOwner.isPresent()) {
+        if (businessOwner.isPresent()) {
             return businessOwner.get();
-        }
-        else {
+        } else {
             throw new NotFoundException("Can not find business owner");
         }
-
     }
 
     @Override
     public UserEntity findUserByUsername(String username) {
         Optional<UserEntity> byUsername = this.userRepository.findByUsername(username);
-
-        if(byUsername.isPresent()){
+        if (byUsername.isPresent()) {
             return byUsername.get();
-        }
-        else {
+        } else {
             throw new NotFoundException("Can not find user with this username");
         }
     }
@@ -184,9 +159,7 @@ public class UserServiceImpl implements UserService {
     public boolean userExists(String username, String email) {
         Optional<UserEntity> byUsername = this.userRepository.findByUsername(username);
         Optional<UserEntity> byEmail = this.userRepository.findByEmail(email);
-
         return byUsername.isPresent() || byEmail.isPresent();
-
     }
 
     @Override
@@ -197,12 +170,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteUser(Long id) {
         UserEntity user = findUserById(id);
-        if (user == null){
+        if (user == null) {
             return false;
         }
         Optional<BusinessOwner> byId = this.businessOwnerRepository.findById(user.getId());
 
-        if(byId.isPresent()){
+        if (byId.isPresent()) {
             List<AppClient> all = appClientRepository.findAll();
             for (AppClient client : all) {
                 for (Hobby hobby : byId.get().getHobby_offers()) {
@@ -213,19 +186,17 @@ public class UserServiceImpl implements UserService {
             }
         }
         userRepository.delete(user);
-
-        return  true;
+        return true;
     }
 
 
     @Override
     public AppClient findAppClientById(Long clientId) {
         Optional<AppClient> user = this.appClientRepository.findById(clientId);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
 
             return user.get();
-        }
-        else {
+        } else {
             throw new NotFoundException("Can not find current user.");
         }
     }
@@ -256,8 +227,4 @@ public class UserServiceImpl implements UserService {
     public BusinessOwner findBusinessByUsername(String username) {
         return this.businessOwnerRepository.findByUsername(username).get();
     }
-
-
-
-
 }

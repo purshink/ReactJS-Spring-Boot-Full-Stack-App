@@ -130,10 +130,7 @@ it("should create offer successfully", async () => {
   const result = await CreateOfferDataService(info);
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/hobbies`,
-    info
-  );
+  expect(mockAxios.post).toHaveBeenCalledWith(`/hobbies`, info);
   expect(result).toEqual({
     category: { id: "1", name: "ACTIVE" },
     contactInfo: null,

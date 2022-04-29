@@ -1,18 +1,18 @@
 package backend.hobbiebackend.model.entities;
+
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "locations")
-public class Location extends BaseEntity{
+public class Location extends BaseEntity {
 
     private LocationEnum name;
 
     public Location(LocationEnum locationEnum) {
         this.name = locationEnum;
     }
-
 
     public Location() {
     }

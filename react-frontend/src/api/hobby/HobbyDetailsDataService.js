@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const HobbyDetailsDataService = (id) => {
   try {
-    return axios.get(`http://localhost:8080/hobbies/${id}`);
+    return axios.get(`/hobbies/${id}`);
   } catch (err) {
     let error = "";
     if (err.response) {

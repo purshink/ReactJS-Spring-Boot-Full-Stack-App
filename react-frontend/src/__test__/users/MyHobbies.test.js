@@ -19,10 +19,9 @@ it("should return no saved hobbies", async () => {
   expect(result).toEqual(hobbies);
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith(
-    "http://localhost:8080/hobbies/saved/",
-    { params: { username: "" } }
-  );
+  expect(mockAxios.get).toHaveBeenCalledWith("/hobbies/saved/", {
+    params: { username: "" },
+  });
   expect(result).toEqual([]);
 });
 
@@ -79,10 +78,9 @@ it("should render multiple saved hobbies", async () => {
   const result = await MyHobbiesDataService();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith(
-    "http://localhost:8080/hobbies/saved/",
-    { params: { username: "" } }
-  );
+  expect(mockAxios.get).toHaveBeenCalledWith("/hobbies/saved/", {
+    params: { username: "" },
+  });
   expect(result).toEqual([
     {
       category: { id: "1", name: "ACTIVE" },
@@ -129,13 +127,4 @@ it("should render multiple saved hobbies", async () => {
       slogan: null,
     },
   ]);
-});
-
-it("renders without crashing", () => {
-  render(
-    <Router>
-      {" "}
-      <MyHobbies />
-    </Router>
-  );
 });

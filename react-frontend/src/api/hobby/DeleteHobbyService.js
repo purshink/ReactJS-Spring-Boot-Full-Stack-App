@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const DeleteHobbyService = (id) => {
   try {
-    return axios.delete(`http://localhost:8080/hobbies/${id}`);
+    return axios.delete(`/hobbies/${id}`);
   } catch (err) {
     let error = "";
     if (err.response) {

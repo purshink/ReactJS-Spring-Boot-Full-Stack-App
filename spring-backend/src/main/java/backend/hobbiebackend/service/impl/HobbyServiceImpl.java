@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.handler.NotFoundException;
 import backend.hobbiebackend.model.entities.*;
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.*;
 
-
 @Service
 @Transactional
 public class HobbyServiceImpl implements HobbyService {
@@ -27,22 +25,16 @@ public class HobbyServiceImpl implements HobbyService {
     private final CategoryService categoryService;
     private final UserService userService;
     private final LocationService locationService;
-    private  final  Cloudinary cloudinary;
-
-
+    private final Cloudinary cloudinary;
 
     @Autowired
-    public HobbyServiceImpl( HobbyRepository hobbyRepository, CategoryService categoryService, UserService userService, LocationService locationService, Cloudinary cloudinary) {
+    public HobbyServiceImpl(HobbyRepository hobbyRepository, CategoryService categoryService, UserService userService, LocationService locationService, Cloudinary cloudinary) {
         this.hobbyRepository = hobbyRepository;
         this.categoryService = categoryService;
         this.userService = userService;
         this.locationService = locationService;
         this.cloudinary = cloudinary;
     }
-
-
-
-
 
     @Override
     public Hobby findHobbieById(Long id) {
@@ -56,21 +48,18 @@ public class HobbyServiceImpl implements HobbyService {
 
     @SneakyThrows
     @Override
-    public void saveUpdatedHobby(Hobby hobby)  {
-
+    public void saveUpdatedHobby(Hobby hobby) {
         Optional<Hobby> byId = this.hobbyRepository.findById(hobby.getId());
-        if (byId.isPresent()){
+        if (byId.isPresent()) {
             deleteResourcesById(byId.get());
         }
-
         this.hobbyRepository.save(hobby);
-
     }
+
     @Override
     public boolean deleteHobby(long id) throws Exception {
-
         Optional<Hobby> byId = this.hobbyRepository.findById(id);
-        if(byId.isPresent()){
+        if (byId.isPresent()) {
             deleteResourcesById(byId.get());
             BusinessOwner business = this.userService.findBusinessByUsername(byId.get().getCreator());
             business.getHobby_offers().remove(byId.get());
@@ -78,7 +67,6 @@ public class HobbyServiceImpl implements HobbyService {
             this.hobbyRepository.deleteById(id);
             return true;
         }
-
         return false;
     }
 
@@ -88,10 +76,8 @@ public class HobbyServiceImpl implements HobbyService {
         String galleryImgId2 = byId.getGalleryImg2_id();
         String galleryImgId3 = byId.getGalleryImg3_id();
 
-
-        cloudinary.api().deleteResources(Arrays.asList(profileImgId, galleryImgId1,galleryImgId2,galleryImgId3),
-                Map.of("invalidate", true ));
-
+        cloudinary.api().deleteResources(Arrays.asList(profileImgId, galleryImgId1, galleryImgId2, galleryImgId3),
+                Map.of("invalidate", true));
     }
 
 
@@ -99,7 +85,7 @@ public class HobbyServiceImpl implements HobbyService {
     public Set<Hobby> findHobbyMatches(String username) {
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
         Set<Hobby> hobby_matches = new HashSet<>();
-        if(currentUserAppClient.getTestResults() != null) {
+        if (currentUserAppClient.getTestResults() != null) {
             boolean isAdded = false;
             Random rand = new Random();
             LocationEnum location = currentUserAppClient.getTestResults().getLocation();
@@ -135,48 +121,40 @@ public class HobbyServiceImpl implements HobbyService {
                 }
             }
         }
-
         return hobby_matches;
     }
-
-
 
     @Override
     public boolean saveHobbyForClient(Hobby hobby, String username) {
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
         Optional<Hobby> hobbyById = this.hobbyRepository.findById(hobby.getId());
         List<Hobby> saved_hobbies = currentUserAppClient.getSaved_hobbies();
-
-            if(hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
-                saved_hobbies.add(hobbyById.get());
-                return true;
-            }
-
-            return false;
+        if (hobbyById.isPresent() && !(saved_hobbies.contains(hobbyById.get()))) {
+            saved_hobbies.add(hobbyById.get());
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean removeHobbyForClient(Hobby hobby, String username) {
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
         Optional<Hobby> hobbyById = this.hobbyRepository.findById(hobby.getId());
-        if(currentUserAppClient != null){
+        if (currentUserAppClient != null) {
             hobbyById.ifPresent(value -> currentUserAppClient.getSaved_hobbies().remove(value));
             return true;
         }
-            return false;
+        return false;
     }
 
     @Override
     public boolean isHobbySaved(Long hobbyId, String username) {
         Optional<Hobby> byId = this.hobbyRepository.findById(hobbyId);
-        if(byId.isPresent()) {
+        if (byId.isPresent()) {
             AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
-
             return currentUserAppClient.getSaved_hobbies().contains(byId.get());
         }
-
         return false;
-
     }
 
     @Override
@@ -186,20 +164,17 @@ public class HobbyServiceImpl implements HobbyService {
 
     @Override
     public Set<Hobby> getAllHobbiesForBusiness(String username) {
-
         return this.hobbyRepository.findAllByCreator(username);
     }
 
     @Override
     public Set<Hobby> getAllHobbieMatchesForClient(String username) {
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(username);
-
         return currentUserAppClient.getHobby_matches();
     }
 
     @Override
     public void createHobby(Hobby offer) {
-
         this.hobbyRepository.save(offer);
     }
 

@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const TestResultsService = (test) => {
   try {
-    return axios.post(`http://localhost:8080/test`, test);
+    return axios.post(`/test`, test);
   } catch (err) {
     let error = "";
     if (err.response) {

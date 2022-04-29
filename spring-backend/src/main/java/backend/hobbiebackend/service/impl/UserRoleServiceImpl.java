@@ -20,23 +20,17 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public UserRoleEntity getUserRoleByEnumName(UserRoleEnum userRoleEnum){
-
-        //todo check if needed
+    public UserRoleEntity getUserRoleByEnumName(UserRoleEnum userRoleEnum) {
         Optional<UserRoleEntity> byRole = this.userRoleRepository.findByRole(userRoleEnum);
-
         if (byRole.isPresent()) {
             return byRole.get();
         } else {
             throw new NotFoundException("User role not found. Please seed the roles.");
         }
-
     }
 
     @Override
     public UserRoleEntity saveRole(UserRoleEntity userRoleEntity) {
-         return    this.userRoleRepository.save(userRoleEntity);
+        return this.userRoleRepository.save(userRoleEntity);
     }
-
-
 }

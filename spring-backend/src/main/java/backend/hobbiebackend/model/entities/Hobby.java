@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "hobbies")
-public class Hobby extends BaseEntity{
-
+public class Hobby extends BaseEntity {
     private String name;
     private String slogan;
     private String intro;
@@ -25,7 +24,6 @@ public class Hobby extends BaseEntity{
     private String galleryImg3_id;
     private String contactInfo;
 
-
     public Hobby() {
     }
 
@@ -37,6 +35,7 @@ public class Hobby extends BaseEntity{
     public void setProfileImg_id(String profileImg_id) {
         this.profileImg_id = profileImg_id;
     }
+
     @Column(name = "img1_id")
     public String getGalleryImg1_id() {
         return galleryImg1_id;
@@ -45,6 +44,7 @@ public class Hobby extends BaseEntity{
     public void setGalleryImg1_id(String galleryImg1_id) {
         this.galleryImg1_id = galleryImg1_id;
     }
+
     @Column(name = "img2_id")
     public String getGalleryImg2_id() {
         return galleryImg2_id;
@@ -53,6 +53,7 @@ public class Hobby extends BaseEntity{
     public void setGalleryImg2_id(String galleryImg2_id) {
         this.galleryImg2_id = galleryImg2_id;
     }
+
     @Column(name = "img3_id")
     public String getGalleryImg3_id() {
         return galleryImg3_id;
@@ -88,6 +89,7 @@ public class Hobby extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
     @ManyToOne(fetch = FetchType.EAGER)
     public Category getCategory() {
         return category;
@@ -127,6 +129,7 @@ public class Hobby extends BaseEntity{
     public String getSlogan() {
         return slogan;
     }
+
     @Column(name = "slogan")
     public void setSlogan(String slogan) {
         this.slogan = slogan;
@@ -140,6 +143,7 @@ public class Hobby extends BaseEntity{
     public void setIntro(String intro) {
         this.intro = intro;
     }
+
     @Column(name = "gallery_image_url_1")
     public String getGalleryImgUrl1() {
         return galleryImgUrl1;
@@ -148,6 +152,7 @@ public class Hobby extends BaseEntity{
     public void setGalleryImgUrl1(String galleryImgUrl1) {
         this.galleryImgUrl1 = galleryImgUrl1;
     }
+
     @Column(name = "gallery_image_url_2")
     public String getGalleryImgUrl2() {
         return galleryImgUrl2;
@@ -156,6 +161,7 @@ public class Hobby extends BaseEntity{
     public void setGalleryImgUrl2(String galleryImgUrl2) {
         this.galleryImgUrl2 = galleryImgUrl2;
     }
+
     @Column(name = "gallery_image_url_3")
     public String getGalleryImgUrl3() {
         return galleryImgUrl3;
@@ -174,6 +180,4 @@ public class Hobby extends BaseEntity{
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
-
-
 }

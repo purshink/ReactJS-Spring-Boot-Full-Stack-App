@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service;
 
-
 import backend.hobbiebackend.model.entities.Category;
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
 
@@ -10,5 +9,4 @@ public interface CategoryService {
     Category findByName(CategoryNameEnum category);
 
     List<Category> initCategories();
-
 }

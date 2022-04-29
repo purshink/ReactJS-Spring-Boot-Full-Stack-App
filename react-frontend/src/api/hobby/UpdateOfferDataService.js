@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const UpdateOfferDataService = async (hobby) => {
   try {
-    return await axios.put(`http://localhost:8080/hobbies`, hobby);
+    return await axios.put(`/hobbies`, hobby);
   } catch (err) {
     let error = "";
     if (err.response) {

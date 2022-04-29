@@ -10,7 +10,7 @@ Service-oriented platform focusing on establishing and maintaining
 connections between consumers and small businesses in the The Arts,
 Entertainment, and Recreation sector.
 
-Click here to view the application.
+Click [here](https://www.hobbie.ch) to view the application.
 This application is subject to Copyright.
 
 <b>Applications</b>
@@ -92,9 +92,10 @@ Run the project with:
 
 The project has the following endpoints:
 
+IMPORTANT: to explore api enter url:  /v3/api-docs
+
 http://localhost:8080/swagger-ui/index.html
 
-IMPORTANT: to explore api enter url:  /v3/api-docs
 
 NOTE: Testing API 
 
@@ -113,4 +114,5 @@ NOTE: /notification endpoint will return an internal server error if you don't s
 Make sure to specify a valid spring.mail.username and spring.mail.password in the application.properties file in order to be able to send an Email confirmation for updating user entries.
 
 IMPORTANT: if you decide not to specify mail credentials, you will get javax.mail.AuthenticationFailedException. The rest of the application should work normally despite this exception.
+
 

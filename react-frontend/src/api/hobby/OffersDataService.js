@@ -5,7 +5,7 @@ const OffersDataService = () => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/business-owner/${username}`);
+    return axios.get(`/business-owner/${username}`);
   } catch (err) {
     let error = "";
     if (err.response) {

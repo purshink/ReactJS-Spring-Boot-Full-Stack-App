@@ -17,12 +17,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-
-
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final HobbieUserDetailsService hobbieUserDetailsService;
     private final PasswordEncoder passwordEncoder;
-
 
     private final JwtFilter jwtFilter;
 
@@ -35,7 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(hobbieUserDetailsService);
     }
 
@@ -53,21 +49,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         return super.authenticationManagerBean();
     }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.cors();
-            http.csrf()
-                    .disable()
-                    .authorizeRequests()
-                    .antMatchers("/register","/signup","/authenticate", "/notification", "/password","/swagger-ui/index.html","/v3/api-docs","/configuration/ui","/swagger-resources/**",
-                            "/configuration/security","/swagger-ui/*","/webjars/**","/v3/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
-                    .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
+        http.csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/register", "/signup", "/authenticate", "/notification", "/password", "/swagger-ui/index.html", "/v3/api-docs", "/configuration/ui", "/swagger-resources/**",
+                        "/configuration/security", "/swagger-ui/*", "/webjars/**", "/v3/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-        }
+    }
 }

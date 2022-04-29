@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 @Configuration
 public class HobbieConfigurationBeans {
-
     @Bean
     public PasswordEncoder createPasswordEncoder() {
         return new Pbkdf2PasswordEncoder();

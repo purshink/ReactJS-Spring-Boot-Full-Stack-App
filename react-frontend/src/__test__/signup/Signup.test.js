@@ -120,10 +120,7 @@ it("should sign up user successfully", async () => {
   const result = await SignUpAppClientService(info);
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/signup`,
-    info
-  );
+  expect(mockAxios.post).toHaveBeenCalledWith(`/signup`, info);
   expect(result).toEqual({
     username: "user",
     fullName: "Chris Brown",

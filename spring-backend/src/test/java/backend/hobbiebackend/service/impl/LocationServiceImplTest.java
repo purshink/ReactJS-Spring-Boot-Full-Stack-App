@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.handler.NotFoundException;
 import backend.hobbiebackend.model.entities.Location;
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
@@ -27,13 +26,10 @@ class LocationServiceImplTest {
         locationServiceToTest = new LocationServiceImpl(mockLocationRepository);
         location = new Location();
         location.setName(LocationEnum.ZURICH);
-
-
     }
 
     @Test
     void getLocationByName_should_work() {
-
         Mockito.when(mockLocationRepository.findByName(LocationEnum.ZURICH)).
                 thenReturn(Optional.of(location));
         Location locationByName = locationServiceToTest.getLocationByName(LocationEnum.ZURICH);
@@ -43,13 +39,11 @@ class LocationServiceImplTest {
 
     @Test
     void testLocationNotFound() {
-
         Assertions.assertThrows(
                 NotFoundException.class,
                 () -> locationServiceToTest.getLocationByName(LocationEnum.ZURICH));
     }
 
-    //
     @Test
     void initLocations_should_work() {
         locationServiceToTest.initLocations();

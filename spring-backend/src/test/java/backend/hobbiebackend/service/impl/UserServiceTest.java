@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.handler.NotFoundException;
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
@@ -29,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class UserServiceTest {
-
     private UserService userServiceToTest;
     private UserRepository mockUserRepository;
     private AppClientRepository mockAppClientRepository;
@@ -40,7 +38,6 @@ class UserServiceTest {
     private AppClientSignUpDto appClientSignUpDto;
     private BusinessRegisterDto businessRegisterDto;
 
-
     @BeforeEach
     public void setUp() {
         mockUserRepository = mock(UserRepository.class);
@@ -50,8 +47,9 @@ class UserServiceTest {
         mockBusinessOwnerRepository = mock(BusinessOwnerRepository.class);
         UserRoleService mockUserRoleService = mock(UserRoleService.class);
         ModelMapper modelMapper = new ModelMapper();
-        userServiceToTest = new UserServiceImpl( modelMapper, mockUserRepository, mockAppClientRepository,
-                mockBusinessOwnerRepository, mockUserRoleService,mockPasswordEncoder);
+        userServiceToTest = new UserServiceImpl(modelMapper, mockUserRepository, mockAppClientRepository,
+                mockBusinessOwnerRepository, mockUserRoleService, mockPasswordEncoder);
+
         // prepare data client
         appClientSignUpDto = new AppClientSignUpDto();
         appClientSignUpDto.setUsername("user");
@@ -89,7 +87,6 @@ class UserServiceTest {
         userEntity.setRoles(List.of(role));
         userEntity.setId(1L);
 
-
         // configure mocks
         when(mockPasswordEncoder.encode("topsecret"))
                 .thenReturn("topsecret");
@@ -115,7 +112,6 @@ class UserServiceTest {
                 .thenReturn(new UserRoleEntity() {{
                     setRole(UserRoleEnum.ADMIN);
                 }});
-
     }
 
     @Test
@@ -129,31 +125,23 @@ class UserServiceTest {
                     mockBusinessOwnerRepository.findByUsername("can-not-find-user");
                     mockAppClientRepository.findByUsername("can-not-find-user");
                 }
-
-
         );
     }
 
 
     @Test
     void register_should_work() {
-
         when(mockAppClientRepository.findByUsername("user")).
                 thenReturn(Optional.of(appClient));
 
         AppClient register = userServiceToTest.register(appClientSignUpDto);
         assertEquals(appClient.getUsername(), register.getUsername());
-
-
     }
 
     @Test
     void registerBusiness_should_work() {
-
         Mockito.when(mockBusinessOwnerRepository.findByUsername("business")).
                 thenReturn(Optional.of(businessOwner));
-
-
         BusinessOwner registerBusiness = userServiceToTest.registerBusiness(businessRegisterDto);
 
         assertEquals(businessOwner.getUsername(), registerBusiness.getUsername());
@@ -161,7 +149,6 @@ class UserServiceTest {
 
     @Test
     void findUserById_should_Work() {
-
         when(mockUserRepository.findById(1L)).
                 thenReturn(Optional.of(userEntity));
         Assertions.assertEquals(userEntity, userServiceToTest.findUserById(1L));
@@ -169,14 +156,11 @@ class UserServiceTest {
 
     @Test
     void findBusinessOwnerById_should_work() {
-
         when(mockBusinessOwnerRepository.findById(2L)).
                 thenReturn(Optional.of(businessOwner));
         Assertions.assertEquals(businessOwner, userServiceToTest.findBusinessOwnerById(2L));
-
     }
 
-    //
     @Test
     void findUserByUsername_should_work() {
         when(mockUserRepository.findByUsername("user")).
@@ -184,42 +168,33 @@ class UserServiceTest {
         Assertions.assertEquals(userEntity, userServiceToTest.findUserByUsername("user"));
     }
 
-
     @Test
     void userExists_should_work() {
         when(mockUserRepository.findByUsername("user")).
                 thenReturn(Optional.of(userEntity));
 
         Assertions.assertTrue(userServiceToTest.userExists("user", "email"));
-
     }
 
     @Test
     void seedUsersAndUserRoles_should_work() {
-
         userServiceToTest.seedUsersAndUserRoles();
         assertEquals(2, userServiceToTest.seedUsersAndUserRoles().size());
     }
-
 
     @Test
     void deleteUser_should_work() {
         when(mockUserRepository.findById(1L))
                 .thenReturn(Optional.of(userEntity));
-
         userServiceToTest.deleteUser(userEntity.getId());
 
         Mockito.verify(mockUserRepository, times(1)).delete(userEntity);
     }
-
-
-
+    
     @Test
     void findAppClientById_should_work() {
         when(mockAppClientRepository.findById(1L)).
                 thenReturn(Optional.of(appClient));
         Assertions.assertEquals(appClient, userServiceToTest.findAppClientById(1L));
     }
-
-
 }

@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.model.entities.AppClient;
 import backend.hobbiebackend.model.entities.Hobby;
 import backend.hobbiebackend.model.entities.Test;
@@ -20,7 +19,6 @@ import java.util.Set;
 @Transactional
 public class TestServiceImpl implements TestService {
     private final TestRepository testRepository;
-
     private final UserService userService;
     private final HobbyService hobbyService;
 
@@ -34,8 +32,6 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void saveTestResults(Test results) {
-
-
         AppClient currentUserAppClient = this.userService.findAppClientByUsername(results.getUsername());
         if (currentUserAppClient.getTestResults() != null) {
             results.setId(currentUserAppClient.getTestResults().getId());
@@ -47,5 +43,4 @@ public class TestServiceImpl implements TestService {
         currentUserAppClient.setHobby_matches(hobbyMatches);
         this.userService.saveUpdatedUserClient(currentUserAppClient);
     }
-
 }

@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service.impl;
 
-
 import backend.hobbiebackend.model.entities.UserEntity;
 import backend.hobbiebackend.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class NotificationServiceImpl implements NotificationService {
         mail.setTo(userEntity.getEmail());
         mail.setFrom("findyourhobbie@gmail.com");
         mail.setSubject("Change your password");
-        mail.setText( "Click the link to reset your password: " + mailBody);
+        mail.setText("Click the link to reset your password: " + mailBody);
 
         javaMailSender.send(mail);
     }

@@ -13,10 +13,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
@@ -27,7 +29,6 @@ class HobbyServiceImplTest {
     private HobbyService hobbyServiceToTest;
     private AppClient appClient;
     private Hobby hobby;
-
 
     @BeforeEach
     void setUp() {
@@ -42,7 +43,6 @@ class HobbyServiceImplTest {
 
         hobbyServiceToTest = new HobbyServiceImpl
                 (mockHobbyRepository, categoryServiceTest, userServiceTest, locationServiceTest, cloudinary);
-
 
         // prepare hobby data
         hobby = new Hobby();
@@ -83,7 +83,6 @@ class HobbyServiceImplTest {
                     setName(CategoryNameEnum.ACTIVE);
                 }});
 
-
         when(locationServiceTest.getLocationByName(LocationEnum.ZURICH)).
                 thenReturn(location);
         when(mockHobbyRepository.findById(1L)).
@@ -92,7 +91,6 @@ class HobbyServiceImplTest {
                 thenReturn(appClient);
 
     }
-
 
     @Test
     void testUserNotFound() {
@@ -109,17 +107,10 @@ class HobbyServiceImplTest {
         Assertions.assertEquals(hobby, hobbyServiceToTest.findHobbieById(1L));
     }
 
-
-//    @Test
-//    void initHobbyOffers_should_work() {
-//        hobbyServiceToTest.initHobbyOffers();
-//        assertEquals(5, hobbyServiceToTest.initHobbyOffers().size());
-//    }
-
     @Test
     void saveHobbyForClient_should_work() {
         appClient.setSaved_hobbies(new ArrayList<>());
-        hobbyServiceToTest.saveHobbyForClient(hobby,"username");
+        hobbyServiceToTest.saveHobbyForClient(hobby, "username");
         assertEquals(1, appClient.getSaved_hobbies().size());
     }
 

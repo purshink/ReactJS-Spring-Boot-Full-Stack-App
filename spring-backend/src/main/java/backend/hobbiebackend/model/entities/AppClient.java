@@ -20,8 +20,6 @@ public class AppClient extends UserEntity implements Serializable {
     private Set<Hobby> hobby_matches;
     private List<Hobby> saved_hobbies;
 
-
-
     public AppClient() {
     }
 
@@ -39,6 +37,7 @@ public class AppClient extends UserEntity implements Serializable {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public GenderEnum getGender() {
@@ -76,6 +75,4 @@ public class AppClient extends UserEntity implements Serializable {
     public void setSaved_hobbies(List<Hobby> saved_hobbies) {
         this.saved_hobbies = saved_hobbies;
     }
-
-
 }

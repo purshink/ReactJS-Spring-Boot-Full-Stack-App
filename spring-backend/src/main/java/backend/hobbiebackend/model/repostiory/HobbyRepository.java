@@ -10,10 +10,7 @@ import java.util.Set;
 
 @Repository
 public interface HobbyRepository extends JpaRepository<Hobby, Long> {
-
     Set<Hobby> findAllByCreator(String creator);
+
     List<Hobby> findAllByLocation(Location location);
-
-
-
 }

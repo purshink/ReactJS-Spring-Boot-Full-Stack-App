@@ -18,7 +18,7 @@ it("should return no hobbies", async () => {
   const result = await HomeDataService();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith("http://localhost:8080/home", {
+  expect(mockAxios.get).toHaveBeenCalledWith("/home", {
     params: { role: "business", username: "" },
   });
   expect(result).toEqual([]);
@@ -77,7 +77,7 @@ it("should render multiple hobbies", async () => {
   const result = await HomeDataService();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toHaveBeenCalledWith("http://localhost:8080/home", {
+  expect(mockAxios.get).toHaveBeenCalledWith("/home", {
     params: { role: "business", username: "" },
   });
   expect(result).toEqual([
@@ -126,13 +126,4 @@ it("should render multiple hobbies", async () => {
       slogan: null,
     },
   ]);
-});
-
-it("renders without crashing", () => {
-  render(
-    <Router>
-      {" "}
-      <UsersHome />
-    </Router>
-  );
 });

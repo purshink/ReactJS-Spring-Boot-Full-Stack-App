@@ -26,7 +26,6 @@ public class HobbyInfoDto {
     private String galleryImg2_id;
     private String galleryImg3_id;
 
-
     public HobbyInfoDto() {
     }
 

@@ -1,6 +1,5 @@
 package backend.hobbiebackend.service;
 
-
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
 import backend.hobbiebackend.model.entities.AppClient;
@@ -29,7 +28,6 @@ public interface UserService {
 
     BusinessOwner findBusinessOwnerById(Long id);
 
-
     UserEntity findUserByUsername(String username);
 
     boolean userExists(String username, String email);
@@ -39,8 +37,7 @@ public interface UserService {
     AppClient findAppClientById(Long clientId);
 
     void findAndRemoveHobbyFromClientsRecords(Hobby hobby);
-
-
+    
     boolean businessExists(String businessName);
 
     AppClient findAppClientByUsername(String username);

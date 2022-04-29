@@ -1,6 +1,5 @@
 package backend.hobbiebackend.web;
 
-
 import backend.hobbiebackend.model.dto.AppClientSignUpDto;
 import backend.hobbiebackend.model.dto.BusinessRegisterDto;
 import backend.hobbiebackend.model.dto.UpdateAppClientDto;
@@ -19,8 +18,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
@@ -31,24 +32,21 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
-import static org.mockito.Mockito.when;
 
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest extends AbstractTest {
-
     @Autowired
     private UserController controller;
-    private UserEntity user;
     private BusinessRegisterDto businessRegisterDto;
     private UpdateAppClientDto updateAppClientDto;
     private UpdateBusinessDto updateBusinessDto;
     private AppClientSignUpDto appClientSignUpDto;
     private BusinessOwner businessOwner;
     private AppClient appClient;
-
 
     @MockBean
     private UserService userService;
@@ -99,13 +97,13 @@ class UserControllerTest extends AbstractTest {
         updateBusinessDto.setBusinessName("Bizz name");
 
         //prepare data user
-        user = new UserEntity();
+        UserEntity user = new UserEntity();
         user.setRoles(List.of(roleUser, roleAdmin));
 
     }
 
     @Test
-    public void contextLoads()  {
+    public void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
@@ -163,6 +161,7 @@ class UserControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
+
     @Test
     public void delete_user_should_work_when_not_found() throws Exception {
         String uri = "/user/1";
@@ -192,6 +191,4 @@ class UserControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
     }
-
-
 }

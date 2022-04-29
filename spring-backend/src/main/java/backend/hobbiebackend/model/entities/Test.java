@@ -1,6 +1,5 @@
 package backend.hobbiebackend.model.entities;
 
-
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
 
@@ -18,7 +17,6 @@ public class Test extends BaseEntity {
     private CategoryNameEnum categorySix;
     private CategoryNameEnum categorySeven;
     private LocationEnum location;
-
 
     public Test() {
     }
@@ -41,6 +39,7 @@ public class Test extends BaseEntity {
     public void setCategoryOne(CategoryNameEnum categoryOne) {
         this.categoryOne = categoryOne;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_two")
     public CategoryNameEnum getCategoryTwo() {
@@ -50,6 +49,7 @@ public class Test extends BaseEntity {
     public void setCategoryTwo(CategoryNameEnum categoryTwo) {
         this.categoryTwo = categoryTwo;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_three")
     public CategoryNameEnum getCategoryThree() {
@@ -59,6 +59,7 @@ public class Test extends BaseEntity {
     public void setCategoryThree(CategoryNameEnum categoryThree) {
         this.categoryThree = categoryThree;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_four")
     public CategoryNameEnum getCategoryFour() {
@@ -68,6 +69,7 @@ public class Test extends BaseEntity {
     public void setCategoryFour(CategoryNameEnum categoryFour) {
         this.categoryFour = categoryFour;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_five")
     public CategoryNameEnum getCategoryFive() {
@@ -77,6 +79,7 @@ public class Test extends BaseEntity {
     public void setCategoryFive(CategoryNameEnum categoryFive) {
         this.categoryFive = categoryFive;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_six")
     public CategoryNameEnum getCategorySix() {
@@ -86,6 +89,7 @@ public class Test extends BaseEntity {
     public void setCategorySix(CategoryNameEnum categorySix) {
         this.categorySix = categorySix;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category_seven")
     public CategoryNameEnum getCategorySeven() {
@@ -95,6 +99,7 @@ public class Test extends BaseEntity {
     public void setCategorySeven(CategoryNameEnum categorySeven) {
         this.categorySeven = categorySeven;
     }
+
     @Enumerated(EnumType.STRING)
     public LocationEnum getLocation() {
         return location;

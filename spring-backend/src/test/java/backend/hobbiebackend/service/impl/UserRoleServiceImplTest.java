@@ -30,12 +30,10 @@ class UserRoleServiceImplTest {
         userRoleEntity.setRole(UserRoleEnum.USER);
         when(mockUserRoleRepository.save(any(UserRoleEntity.class)))
                 .thenAnswer(i -> i.getArguments()[0]);
-
     }
 
     @Test
     void getUserRoleByEnumName_Should_Work() {
-
         Mockito.when(mockUserRoleRepository.findByRole(UserRoleEnum.USER)).
                 thenReturn(Optional.of(userRoleEntity));
         UserRoleEntity userRoleByEnumName = mockUserRoleServiceToTest.getUserRoleByEnumName(UserRoleEnum.USER);
@@ -58,6 +56,4 @@ class UserRoleServiceImplTest {
                 NotFoundException.class,
                 () -> mockUserRoleServiceToTest.getUserRoleByEnumName(UserRoleEnum.USER));
     }
-
-
 }

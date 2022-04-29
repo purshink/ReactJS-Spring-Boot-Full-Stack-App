@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const RegisterBusinessService = (business) => {
   try {
-    return axios.post(`http://localhost:8080/register`, business);
+    return axios.post(`/register`, business);
   } catch (err) {
     let error = "";
     if (err.response) {

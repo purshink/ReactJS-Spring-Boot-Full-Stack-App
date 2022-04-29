@@ -84,10 +84,8 @@ it("should assign correct user role successfully", async () => {
   const result = await LoginService(username);
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(
-    "http://localhost:8080/login",
-    null,
-    { params: { username: "user" } }
-  );
+  expect(mockAxios.post).toHaveBeenCalledWith("/login", null, {
+    params: { username: "user" },
+  });
   expect(result).toEqual("USER");
 });

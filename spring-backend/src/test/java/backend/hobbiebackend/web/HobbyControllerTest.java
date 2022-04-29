@@ -35,16 +35,10 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HobbyControllerTest extends AbstractTest{
-
-
+public class HobbyControllerTest extends AbstractTest {
     @Autowired
     private HobbyController controller;
-    private ModelMapper modelMapper;
     private HobbyInfoDto hobbyInfoDto;
-    private List<Hobby> hobbies;
-    private String username;
-    private AppClient client;
     private HobbyInfoUpdateDto hobbyInfoUpdateDto;
     private Hobby hobby;
 
@@ -115,34 +109,29 @@ public class HobbyControllerTest extends AbstractTest{
         hobbyInfoUpdateDto.setPrice(BigDecimal.valueOf(123));
         hobbyInfoUpdateDto.setContactInfo("How fast your skills improve depend on every individual and on your purpose.");
 
-        modelMapper = new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
         Category category = new Category(CategoryNameEnum.ACTIVE);
         Location location = new Location(LocationEnum.ZURICH);
         hobby = modelMapper.map(hobbyInfoDto, Hobby.class);
         hobby.setCategory(category);
         hobby.setLocation(location);
-        client = new AppClient();
+        AppClient client = new AppClient();
         client.setUsername("user");
-        username = "user";
-        hobbies = new ArrayList<>();
+        String username = "user";
+        List<Hobby> hobbies = new ArrayList<>();
         hobby = new Hobby();
         hobbies.add(hobby);
 
-
-
         super.setUp();
     }
-
 
     @MockBean
     private HobbyService service;
     @MockBean
     private UserService userService;
 
-
-
     @Test
-    public void contextLoads()  {
+    public void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
@@ -156,7 +145,6 @@ public class HobbyControllerTest extends AbstractTest{
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
     }
-
 
     @Test
     public void hobby_details_should_work() throws Exception {
@@ -177,7 +165,6 @@ public class HobbyControllerTest extends AbstractTest{
         String uri = "/hobbies/1";
         long id = 1L;
         when(service.deleteHobby(id)).thenReturn(true);
-
         String inputJson = super.mapToJson(id);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
@@ -190,7 +177,6 @@ public class HobbyControllerTest extends AbstractTest{
     public void delete_hobby_should_work_when_not_found() throws Exception {
         String uri = "/hobbies/1";
         long id = 1L;
-
         when(service.deleteHobby(id)).thenReturn(false);
 
         String inputJson = super.mapToJson(id);
@@ -204,7 +190,6 @@ public class HobbyControllerTest extends AbstractTest{
     @Test
     public void update_hobby_should_work() throws Exception {
         String uri = "/hobbies";
-
         String inputJson = super.mapToJson(hobbyInfoUpdateDto);
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
@@ -213,7 +198,4 @@ public class HobbyControllerTest extends AbstractTest{
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
-
-
-
 }

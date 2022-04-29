@@ -1,6 +1,5 @@
 package backend.hobbiebackend.web;
 
-
 import backend.hobbiebackend.model.entities.enums.CategoryNameEnum;
 import backend.hobbiebackend.model.entities.enums.LocationEnum;
 import backend.hobbiebackend.service.TestService;
@@ -21,17 +20,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TestControllerTest extends AbstractTest{
-
-
+public class TestControllerTest extends AbstractTest {
     @Autowired
     private TestController controller;
-    private  backend.hobbiebackend.model.entities.Test results;
+    private backend.hobbiebackend.model.entities.Test results;
 
     @Before
     public void setUp() {
@@ -49,14 +44,11 @@ public class TestControllerTest extends AbstractTest{
         super.setUp();
     }
 
-
     @MockBean
     private TestService testService;
 
-
-
     @Test
-    public void contextLoads()  {
+    public void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
@@ -67,7 +59,6 @@ public class TestControllerTest extends AbstractTest{
         String inputJson = super.mapToJson(results);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);

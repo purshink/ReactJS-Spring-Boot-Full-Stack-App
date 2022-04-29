@@ -1,6 +1,5 @@
 package backend.hobbiebackend.security;
 
-
 import backend.hobbiebackend.model.entities.UserEntity;
 import backend.hobbiebackend.model.repostiory.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,17 +21,13 @@ public class HobbieUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("User with username " + username + " was not found."));
 
         return mapToUserDetails(userEntity);
-
-
     }
-
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
 
@@ -43,6 +38,5 @@ public class HobbieUserDetailsService implements UserDetailsService {
                 userEntity.getPassword(),
                 authorities
         );
-
     }
 }

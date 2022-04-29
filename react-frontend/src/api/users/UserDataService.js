@@ -5,7 +5,7 @@ const UserDataService = () => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/client`, {
+    return axios.get(`/client`, {
       params: {
         username,
       },

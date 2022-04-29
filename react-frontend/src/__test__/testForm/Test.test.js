@@ -27,10 +27,7 @@ it("should post test results succsessfully", async () => {
   const result = await TestResultsService(test);
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(
-    `http://localhost:8080/test`,
-    test
-  );
+  expect(mockAxios.post).toHaveBeenCalledWith(`/test`, test);
   expect(result).toEqual({
     username: "user",
     categoryOne: "ACTIVE",

@@ -1,6 +1,5 @@
 package backend.hobbiebackend.config;
 
-
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +10,6 @@ import java.util.Map;
 
 @Configuration
 public class CloudConfig {
-
     @Value("${cloudinary.cloud-name}")
     private String cloudName;
     @Value("${cloudinary.api-key}")

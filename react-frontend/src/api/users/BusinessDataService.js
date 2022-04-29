@@ -5,7 +5,7 @@ const BusinessDataService = () => {
   let username = AuthenticationService.getLoggedInUser();
 
   try {
-    return axios.get(`http://localhost:8080/business`, {
+    return axios.get(`/business`, {
       params: {
         username,
       },

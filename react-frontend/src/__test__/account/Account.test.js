@@ -19,26 +19,6 @@ it("should delete account successfully", async () => {
   const result = await DeleteUserService(id);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toHaveBeenCalledWith(`http://localhost:8080/user/6`);
+  expect(mockAxios.delete).toHaveBeenCalledWith(`/user/6`);
   expect(result).toEqual(6);
-});
-
-it(" account business renders without crashing", () => {
-  render(
-    <Router>
-      {" "}
-      <AccountBusiness />
-    </Router>
-  );
-  expect(screen.getByText(/Business name:/i)).toBeInTheDocument();
-});
-
-it("sccount user renders without crashing", () => {
-  render(
-    <Router>
-      {" "}
-      <AccountUser />
-    </Router>
-  );
-  expect(screen.getByText(/Username:/i)).toBeInTheDocument();
 });
