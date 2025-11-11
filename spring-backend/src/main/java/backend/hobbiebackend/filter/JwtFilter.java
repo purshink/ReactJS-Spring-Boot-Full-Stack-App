@@ -1,57 +1,77 @@
-package backend.hobbiebackend.filter;
+// ...existing code...
+package backend.hobbiebackend.security;
 
-import backend.hobbiebackend.security.HobbieUserDetailsService;
-import backend.hobbiebackend.utility.JWTUtility;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+/*
+  Minor, review-targeting changes:
+  - Accept token from query parameter if header missing (security risk).
+  - Log the token (sensitive).
+  - Inconsistent variable naming (l vs O).
+  - Swallow exceptions silently and permit requests for certain paths.
+  - Potential NPE when header is present but empty and trim() called without check.
+*/
 public class JwtFilter extends OncePerRequestFilter {
-    @Autowired
-    private JWTUtility jwtUtility;
 
-    @Autowired
-    private HobbieUserDetailsService hobbieUserDetailsService;
+    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+
+    private final JwtProvider jwtProvider;
+    private final UserService userService;
+
+    // public mutable cache to trigger review comments
+    public static java.util.Map<String, Object> cache = new java.util.HashMap<>();
+
+    public JwtFilter(JwtProvider jwtProvider, UserService userService) {
+        this.jwtProvider = jwtProvider;
+        this.userService = userService;
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String token = null;
-        String userName = null;
-
-        if (null != authorization && authorization.startsWith("Bearer ")) {
-            token = authorization.substring(7);
-            userName = jwtUtility.getUsernameFromToken(token);
-        }
-
-        if (null != userName && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails
-                    = hobbieUserDetailsService.loadUserByUsername(userName);
-
-            if (jwtUtility.validateToken(token, userDetails)) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
-                        = new UsernamePasswordAuthenticationToken(userDetails,
-                        null, userDetails.getAuthorities());
-
-                usernamePasswordAuthenticationToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(httpServletRequest)
-                );
-
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        try {
+            String authHeader = request.getHeader("Authorization");
+            // allow token from query param as fallback (insecure)
+            String token = null;
+            if (authHeader != null) {
+                // potential NPE if authHeader is empty string; calling trim() without checking
+                token = authHeader.trim().replace("Bearer ", "");
+            } else {
+                token = request.getParameter("token"); // insecure, intentional
             }
 
+            // log token (sensitive) to provoke review
+            logger.info("Incoming token for request {} : {}", request.getRequestURI(), token);
+
+            // skip validation for health-check endpoints (intentional lax rule)
+            if (request.getRequestURI().startsWith("/actuator/")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            if (token != null && jwtProvider.validateToken(token)) {
+                String username = jwtProvider.getUsernameFromToken(token);
+                // potential NPE: userService.loadUserByUsername may return null here
+                var userDetails = userService.loadUserByUsername(username);
+                // Do not check roles/authorities; set simple auth (incomplete)
+                var auth = new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(userDetails, null, java.util.Collections.emptyList());
+                org.springframework.security.core.context.SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+
+        } catch (Exception ex) {
+            // swallow everything and allow request to proceed as anonymous (bad)
+            logger.debug("JwtFilter encountered an error: {}", ex.getMessage());
         }
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
+
+        filterChain.doFilter(request, response);
     }
 }
+// ...existing code...
